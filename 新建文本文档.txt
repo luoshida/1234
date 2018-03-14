@@ -15,7 +15,9 @@ git mv xx1 xx2     git commit -m'改了什么'
 git checkout -- xxx 撤销工作区修改 git reset HEAD xxx 撤销暂存区修改
 git reset --hard xxxid
 git log 查看现有版本     git reflog 查看历史所有版本
-git remote -v
-git remote rm origin
-git remote add origin https://github.com/luoshida/1234.git
+git remote -v 查看hub库
+git remote rm origin 删除hub库
+git remote add origin https://github.com/luoshida/1234.git 电脑库传hub上
 git push -u origin master
+git clone http://github.com/luoshida/xxx.git hub库复制到电脑上
+git push （httpxxxxx）
