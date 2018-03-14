@@ -1,3 +1,4 @@
+分布式版本控制git
 pwd   ls    ls -la
 git config --global user.name xxx
 git config --global user.email xxx
@@ -13,3 +14,4 @@ git rm xxx     git commit -m'删除了什么'
 git mv xx1 xx2     git commit -m'改了什么'
 git checkout -- xxx 撤销工作区修改 git reset HEAD xxx 撤销暂存区修改
 git reset --hard xxxid
+git log 查看现有版本     git reflog 查看历史所有版本
