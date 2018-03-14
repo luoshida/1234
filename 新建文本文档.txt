@@ -1,0 +1,15 @@
+pwd   ls    ls -la
+git config --global user.name xxx
+git config --global user.email xxx
+git config user.name
+git config user.email
+mkdir xxx
+cd xxx
+git init 
+git status
+git add ./xxx
+git commit -m'做了什么'
+git rm xxx     git commit -m'删除了什么'
+git mv xx1 xx2     git commit -m'改了什么'
+git checkout -- xxx 撤销工作区修改 git reset HEAD xxx 撤销暂存区修改
+git reset --hard xxxid
