@@ -19,8 +19,8 @@ git remote -v 查看当前绑定hub网址
 git remote rm origin 删除绑定hub网址
 git remote add origin https://github.com/luoshida/1234.git 电脑上的东西绑定到hub上
 git push -u origin master 推送 可合并为 git push httpxxx master
-git clone httpxxx hub上的东西复制到电脑上
+git clone httpxxx        hub上的东西复制到电脑上
 ssh-keygen -t rsa -C '791371894@qq.com' 生成公钥和密钥
-cd .ssh  进入隐藏文件夹.ssh  公钥id_rsa.pub 密钥id_rsa
+cd .ssh  进入隐藏文件夹.ssh    公钥id_rsa.pub 密钥id_rsa
 cat id_rsa.pub  查看公钥
 ssh -T git@github.com 验证密钥是否绑定成功
