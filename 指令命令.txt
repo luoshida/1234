@@ -1,3 +1,4 @@
+
 分布式版本控制git
 pwd   ls    ls -la
 git config --global user.name xxx
@@ -24,3 +25,17 @@ ssh-keygen -t rsa -C '791371894@qq.com' 生成公钥和密钥
 cd .ssh  进入隐藏文件夹.ssh    公钥id_rsa.pub 密钥id_rsa
 cat id_rsa.pub  查看公钥
 ssh -T git@github.com 验证密钥是否绑定成功
+
+html标签
+<h1>指定标题</h1>  h1-h6
+<p>指定段落</p>
+<hr>画一条水平分割线
+<br>内容换行
+<b>加粗文字</b>=        <strong>定义重要性强调的文字</strong>
+<u>给字体标下划线</u>=  <ins>定义插入的文字</ins>
+<i>字体变斜</i>=        <em>定义强调的文字</em>
+<s>字体上加删除线</s>=  <del>定义被删除的文字</del>
+<sub>定义下标文本</sub>
+<sup>定义上标文本</sup>
+<ul><li>无序列表</li></ul> ul与li配套使用 ol li为有序列表与无序列表差不多
+<dl><dt>条目</dt><dd>条目的描述</dd></dl>
