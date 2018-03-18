@@ -39,3 +39,9 @@ html标签
 <sup>定义上标文本</sup>
 <ul><li>无序列表</li></ul> ul与li配套使用 ol li为有序列表与无序列表差不多
 <dl><dt>条目</dt><dd>条目的描述</dd></dl>
+<table>表格标签
+	<tr>
+		<td>1行1列</td>  或者<thead><th>加粗居中</th><td></td></thead>
+		<td>1行2列</td>
+	</tr>
+</table>
