@@ -37,11 +37,16 @@ html标签
 <s>字体上加删除线</s>=  <del>定义被删除的文字</del>
 <sub>定义下标文本</sub>
 <sup>定义上标文本</sup>
-<ul><li>无序列表</li></ul> ul与li配套使用 ol li为有序列表与无序列表差不多
-<dl><dt>条目</dt><dd>条目的描述</dd></dl>
+<ul><li>无序列表,用于导航栏商品列表等</li></ul>
+ ul与li配套使用 ol li为有序列表与无序列表差不多 多用于排行榜
+<dl><dt>条目</dt><dd>条目的描述</dd></dl> 给内容添加定义列表语义用于网站底部相关信息
 <table>表格标签
 	<tr>
-		<td>1行1列</td>  或者<thead><th>加粗居中</th><td></td></thead>
-		<td>1行2列</td>
+		<td>1行1列</td>      <thead><th>添加头命令（加粗居中）</th><td>正常</td></thead>
+		<td>1行2列</td>      <tfoot>添加脚命令</tfoot>
 	</tr>
+	<tr><td>2行1列</td></tr>
 </table>
+table标内参数 bgcolor背景色 width宽度200px height高度 align/valign水平方向居中靠左靠右或垂直方向上中下，在table中为表格朝向，在tr或td为文字朝向
+              border边框 cellspacing单元格之间的距离外边框 cellpadding文字与边框的距离内边框
+              rowspan/colspan="2"垂直或水平合并2单元格 
