@@ -5,7 +5,7 @@ git config --global user.name xxx
 git config --global user.email xxx
 git config user.name
 git config user.email
-mkdir xxx
+mkdir xxxÎÄ¼þ¼Ð touch xxx.txt
 cd xxx
 git init 
 git status
