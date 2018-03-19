@@ -2,13 +2,20 @@
 <html>
 <head>
 	<title>123</title>
+	<style>textarea{resize: none;}</style>
+	<!-- 使最下面的简介输入框固定大小 -->
 </head>
 <body>
-	<form action="http:www.baidu.com">
+	<form action="https://www.baidu.com">
+		<fieldset>
+	<!-- fieldset命令为在form表单加大边框 -->
+		<legend>在大边框上加自己想要的字</legend>
 		<p>
 			<label for="Users">姓名:</label>
-			<input type="text" name="输入文本" id="Users" list="123">
+	<!-- label命令是使鼠标点到内容时也能是光标定位在输入框内 -->
+			<input type="text" name="name" value="默认在输入框内容" id="Users" list="123">
 			<datalist id="123">
+	<!-- datalist命令是在输入框内加入备选项 -->
 				<option>ddd</option>
 				<option>aaa</option>
 				<option>bbb</option>
@@ -20,41 +27,51 @@
 			<input type="password" name="password" id="Use">
 		</p>
 		<p>
-			性别：男<input type="radio" name="sex" value="1">
+			性别(单选项)：男<input type="radio" name="sex" value="1">
 			女<input type="radio" name="sex" value="2">
+	<!-- （value为上传到服务器的一个代号radio和checkbox同样适用 上传结果为sex=1/2） -->
 		</p>
 		<p>
-			爱好：走<input type="checkbox" name="bobbit" value="1">
+			爱好(多选项)：走<input type="checkbox" name="bobbit" value="1">
 			跑<input type="checkbox" name="bobbit" value="2">
+			跳<input type="checkbox" name="bobbit" value="3">
 		</p>
 		<P>
-			<input type="reset" name="重置" value="重置">
+			<input type="reset" name="重置清空表单内容" value="重置">
+		<!-- value是在按钮上显示的文字 -->
 		</P>
 			<input type="hidden" name="隐藏目录私密上传">
-			<input type="button" name="万能按钮">
+			<input type="button" name="万能按钮自己起名" value="显示的文字">
 			<input type="submit" name="提交">
-			<input type="email" name="email">
-			网址<input type="url" name="网址">
-			<input type="number" name="数字">
-			<input type="date" name="日期" value="日期">
-			<input type="color" name="颜色">
+			邮箱<input type="email" name="email" value="默认在输入框内容">
+			网址<input type="url" name="网址" value="默认在输入框内容">
+			<input type="number" name="数字输入框">
+			日期<input type="date" name="日期">
+			喜欢的颜色<input type="color" name="颜色选择框">
 		<p>
 			用图片提交<input type="image" src="C:\Users\liyuphp\Desktop\图片\timg (1) - 副本.jpg">
 		</P>	
 		<p>
-			住址
-			<input type="text" name="option" list="address">
-		 <datalist id="address">
-			<optgroup label="市">
-				<option value="1">郑州</option>
-				<option value="2">周口</option>
-				<option value="3">平顶山</option>
-			</optgroup>
-		</datalist>
+			住址<!-- 选择命令，只能选择不能输入 -->
+			<select name="address">
+				<optgroup label="市区">
+		<!-- optgroup为分组命令可加可不加 -->
+					<option value="1">郑州</option>
+					<option value="2">周口</option>
+					<option value="3">南阳</option>
+		<!-- value为上传到网站的代号为住址=1 -->
+				</optgroup>
+				<optgroup label="省份">
+					<option value="4">河南</option>
+					<option value="5">河北</option>
+					<option value="6">安徽</option>
+				</optgroup>
+			</select>
 		<P>
-			简介
-			<input type="textarea" name="多行">
+			简介<!-- 多行编辑 -->
+			<textarea name="intr" id="intr" cols="20" rows="5">这里是表单上默认文字</textarea>
 		</P>
+		</fieldset>
 	</form>
 </body>
 </html>
