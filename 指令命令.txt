@@ -131,3 +131,7 @@ table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 	</fieldset>
 </form>
 </body>
+
+图片标签
+<img src="网址或路径" alt="图片不显示时显示的东西"
+ title="点击查看源网页" height="200px">
