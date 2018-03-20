@@ -135,3 +135,42 @@ table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 图片标签
 <img src="网址或路径" alt="图片不显示时显示的东西"
  title="点击查看源网页" height="200px">
+
+音频视频标签
+<video src="https://www.4611.com" loop muted height="100px"></video>
+<!-- autoplay:是否需要自动播放视频 controls:是否需要显示控制条
+ poster: 视频没有播放之前显示的占位图片
+loop: 一般用于做广告视频,视频播放完毕之后是否需要循环播放 
+preload:预加载视频,但是需要注意preload和autoplay相冲,如果设置了autoplay属性,那么preload属性就会失效
+muted:静音
+ width/height:和img标签中的一模一样 -->
+<video>
+	<source src="" type="video/mp4"></video>
+	<source src="" type="video/ogg"></video>
+	<source src="" type="video/webm"></video>
+</video>
+<!-- 不管是格式1还是格式2都需要浏览器支持HTML5,如果不支持,需要引入相应的框架,如:[html5media](https://html5media.info/) -->
+<!--Ogg=带有heora视频编码和Vorbis音频编码的Ogg文件
+   MPEG4=带有H.264视频编码和AAC音频编码的MPEG4文件
+  WebM=带有VP8视频编码和Vorbis音频编码的WebM文件-->
+<audio src=""></audio>
+
+链接标签a标签
+<head>
+	<meta charset="utf-8">
+	<title>链接标签a标签</title>
+	<base href="https://www.123.com">
+<!-- base标签为页面上的所有链接规定默认地址或默认打开的方式
+base标签必须写在head标签中 base标签没有结束标签 
+如果既在base中指定了target又在a标签中指定了target,那么浏览器会按照a标签中指定的来执行 
+如果在base中指定了默认地址,a标签的地址和img标签的地址都会以base标签的地址为相对地址 -->
+</head>
+<body>
+	<a href="https://www.baidu.com" target="_blank" title="链接">百度一下你就知道</a>
+	<a href="#">假链接</a>
+	<a href="javascript:">假链接2</a>
+	<p id="123">1.我的猫飞走了<p>
+	<a href="#">返回顶部</a>
+	<a href="#123">返回1</a>
+	<a href="表单标签.html#User" target="_blank">返回表单标签中的id:User</a>
+</body>
