@@ -1,0 +1,27 @@
+文字属性
+行内样式
+<p style="color:red;font-size:50px;">xxxxxxxxxx</p>
+内部样式
+<head>
+	<meta charset="utf-8">
+	<title>css样式</title>
+	<style type="text/css">
+p{color: green; font-style: italic/*倾斜或normal*/; font-weight: 500/*字体粗细0-900取整*/; font-size: 100px/*字体大小*/; font-family: 楷体;}
+h1{font: normal 900 50px 宋体;}/*这个是连写*/
+	</style>
+</head>
+<body>
+	<h1>问候语</h1>
+	<p>你好，大猫</p> 
+</body>
+外部样式 在外面建一个.css的层叠样式表p{color: green;font: 100px 楷体}
+两个.css的表格可以相互引用 用@import url(style2.css);引用
+<head>
+	<meta charset="utf-8">
+	<title>css样式</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>问候语</h1>
+	<p>你好，大猫</p> 
+</body>
