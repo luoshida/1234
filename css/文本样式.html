@@ -5,18 +5,29 @@
 	<title>css文本样式</title>
 	<style type="text/css">
 		h1{
-			color: fuchsia;
-		}
-		h1{
-			text-decoration: line-through;/*underline|overline|line-through|none*/
-			/*text-align: center;*/
+		/*	颜色的四种表示方法*/
+			color: rgb(123,56,148);
+			color: rgba(44,55,66,0.4);
+			color: #FF5566;
+			color: #f56;
+		
+			text-decoration: line-through;/*underline下划线overline上划线line-through贯穿文字线|none没有*/
+			text-align: center;
+			/*文本对齐样式left(默认)|center|right*/
 			text-indent: 2em;
-			text-shadow: 2px 2px 2px;
-			width: 100px;
- 			white-space:normal;
-  			overflow: hidden;
+           /*首行缩进，数字＋单位(px|em);这个单位可以是px可以是em(一个文字的宽度),用的最多的还是em*/
+			text-shadow: 2px 2px 2px red;
+			/*水平偏移距离 垂直偏移距离 模糊距离 阴影颜色;*/
+			width: 1000px;
+ 			white-space:nowrap; /*空白符处理
+ 		normal默认值,文字超出容器宽度会自动换行,容器会变高
+ 		nowrap,文字超出容器宽度不会换行文本会在同一行上溢出。*/
+  			
   			text-overflow: clip;
-  			word-wrap: normal/*|break-word*/
+  			overflow: hidden;
+  		/*	文本溢出处理方式 clip剪贴ellipsis显示省略号...*/
+  			word-wrap: normal;
+  			/*长单词换行到下一行 break-word单词换行*/
 		}
 	</style>
 </head>
