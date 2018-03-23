@@ -3,34 +3,29 @@
 <head>
 	<title></title>
 	<style type="text/css">
-		/*[title="qwert"]{
-			color: red;
-		}*/
-		/*a:link{
-			color: blue
-		}
-		a:visited{
-			color: red
-		}
-		a:hover{
-			color: black
-		}
-		a:active{
-			color: green
-		}*/
-		a:focus{
-			outline-color: gray
-		}
-		p:after{
-
-		}
+		[title]{color: green}
+		[title="qwert"]{color: red;}
+		[title|="qwert"]{}
+/*属性的值以qwert开始,只能选中用“-”分隔的和独立的,是CSS2中的选择器*/
+		[title^="qwert"]{}
+/*所有以qwert属性值开始的都可以选中,
+是CSS3中的选择器*/
+		[title$="qwert"]{}
+/*所有以属性值结尾的都可以选中,是CSS3中的选择器*/
+		[title~="qwert"]{}
+/*属性值包括什么，只能选中包括用空格分隔的和独立的,是CSS2中的选择器*/
+		[title*="qwert"]{}
+/*所有包括该属性值的都可以选中,是CSS3中的选择器*/
 	</style>
 </head>
 <body>
-	<a href="#">1</a>
-	<a href="#" title="qwert">2</a>
-	<a href="#" title="qwertyu">3</a>
-	<a href="#" title="qwertyuiop">4</a>
+	<a href="#" title="">title</a>
+	<a href="#" title="qwert">qwert</a>
+	<a href="#" title="qwert yu">qwert yu</a>
+	<a href="#" title="qwert_yu">qwert-yu</a>
+	<a href="#" title="aaa.qwert">aaa.qwert</a>
+	<a href="#" title="aaa.qwert.www">aaa.qwert.www</a>
+	<a href="#" title="qwertyuiop">qwertyuiop</a>
 	<p>我是谁</p>
 </body>
 </html>

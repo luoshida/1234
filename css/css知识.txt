@@ -53,7 +53,11 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
   /*长单词换行到下一行 break-word单词换行*/
 	}
 </style>
+
 选择器
+类选择器
+id选择器 交集,并集选择器
+相邻兄弟选择器 通用兄弟选择器
 <head>
 	<meta charset="utf-8">
  	<title>选择器</title>
@@ -80,3 +84,103 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
  		<h2>你有糖吗</h2>
  	</nav>
  </body>
+序选择器
+<head>
+<meta charset="utf-8">
+<title>13</title>
+	<style type="text/css">
+		p:first-child{    }
+	/*找到同级别的第一个元素不区分类型7和12被选中*/
+		p:last-child{   }
+	/*找到同级别的最后一个元素不区分类型15被选中*/
+		p:nth-child(n){color: red;}
+	/*找到同级别的第n个元素不区分类型,n可以写为nx+y*/
+		p:only-child{}
+	/*不区分类型的同级别唯一元素*/
+		p:first-of-type{color: red;}
+	/*找到同级别的第一个元素区分类型2.7.12被选中*/
+		p:last-of-type{  }
+	/*找到同级别的最后一个元素区分类型6.10.15被选中*/
+		p:nth-of-type(n){color: red;}
+	</style>
+</head>
+<body>
+	<h2>1</h2>
+	<P>2</P>
+	<P>3</P>
+	<P>4</P>
+	<P>5</P>
+	<P>6</P>
+	<div>
+		<p>7</p>
+		<p>8</p>
+		<p>9</p>
+		<p>10</p>
+		<h2>11</h2>
+		<ul>
+			<li>
+				<p>12</p>
+				<p>13</p>
+				<p>14</p>
+				<p>15</p>
+			</li>
+		</ul>
+	</div>
+</body>
+属性选择器
+<head>
+<title></title>
+<style type="text/css">
+	[title]{color: green}
+	[title="qwert"]{color: red;}
+	[title|="qwert"]{}
+/*属性的值以qwert开始,只能选中用“-”分隔的和独立的,是CSS2中的选择器*/
+	[title^="qwert"]{}
+/*所有以qwert属性值开始的都可以选中,
+是CSS3中的选择器*/
+	[title$="qwert"]{}
+/*所有以属性值结尾的都可以选中,是CSS3中的选择器*/
+	[title~="qwert"]{}
+/*属性值包括什么，只能选中包括用空格分隔的和独立的,是CSS2中的选择器*/
+	[title*="qwert"]{}
+/*所有包括该属性值的都可以选中,是CSS3中的选择器*/
+</style>
+</head>
+<body>
+	<a href="#" title="">title</a>
+	<a href="#" title="qwert">qwert</a>
+	<a href="#" title="qwert yu">qwert yu</a>
+	<a href="#" title="qwert_yu">qwert-yu</a>
+	<a href="#" title="aaa.qwert">aaa.qwert</a>
+	<a href="#" title="aaa.qwert.www">aaa.qwert.www</a>
+	<a href="#" title="qwertyuiop">qwertyuiop</a>
+	<p>我是谁</p>
+</body>
+通用选择器 伪选择器
+<head>
+<title>1111</title>
+<style type="text/css">
+	*{color: red;}
+/*通用选择器所有元素都被变红*/
+	a:link{color: green}
+/*默认状态*/
+	a:visited{color: }
+/*被访问过*/
+	a:hover{color: }
+/*鼠标悬停时*/
+	a:active{color: }
+/*鼠标点击时*/
+/*四种状态可以同时都写，也可以单独写,如果全写的情况下必须遵循一定的顺序，特别是active要写到hover后面,否则就会被覆盖,因为点击的同时鼠标肯定是悬停在内容上的,hover对其他元素也起作用*/
+	input:focus{outline-color: red;}
+/*获取焦点边框颜色*/
+	p:before{content: "你好"}
+	p:after{content: "你好"}
+/*在p标签的前后加上content*/
+	</style>
+</head>
+<body>
+	<h1>标题</h1>
+	<p>段落</p>
+	<a href="#">百度一下</a>
+	<input type="text" name="text">
+</body>

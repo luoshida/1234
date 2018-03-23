@@ -4,15 +4,19 @@
 	<meta charset="utf-8">
 	<title>13</title>
 	<style type="text/css">
-		/*p:nth-child(3){
-			color: red;
-		}*/
-		/*p:last-of-type{
-		color: red;
-		}*/
-		p:nth-of-type(2){
-			color: red;
-		}
+		p:first-child{    }
+	/*找到同级别的第一个元素不区分类型7和12被选中*/
+		p:last-child{   }
+	/*找到同级别的最后一个元素不区分类型15被选中*/
+		p:nth-child(n){color: red;}
+	/*找到同级别的第n个元素不区分类型,n可以写为nx+y*/
+		p:only-child{}
+	/*不区分类型的同级别唯一元素*/
+		p:first-of-type{color: red;}
+	/*找到同级别的第一个元素区分类型2.7.12被选中*/
+		p:last-of-type{  }
+	/*找到同级别的最后一个元素区分类型6.10.15被选中*/
+		p:nth-of-type(n){color: red;}
 	</style>
 </head>
 <body>

@@ -19,7 +19,7 @@ git log 查看现有版本     git reflog 查看历史所有版本
 git remote -v 查看当前绑定hub网址
 git remote rm origin 删除绑定hub网址
 git remote add origin https://github.com/luoshida/1234.git 电脑上的东西绑定到hub上
-git push -u origin master 推送 可合并为 git push httpxxx master
+git push -u origin master 推送 可合并为 git push -u httpxxx master
 git clone httpxxx        hub上的东西复制到电脑上
 ssh-keygen -t rsa -C '791371894@qq.com' 生成公钥和密钥
 cd .ssh  进入隐藏文件夹.ssh    公钥id_rsa.pub 密钥id_rsa
@@ -54,7 +54,7 @@ html标签
 </table>
 table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 表内参数   align="left/center/right" valign="top/center/bottom" table中为表格朝向，在tr或td为文字朝向
-           border="1/2/3"边框大小 cellspacing单元格之间的距离外边框 cellpadding文字与边框的距离内边框
+           border="1/2/3"边框粗细 cellspacing单元格之间的距离外边框 cellpadding文字与边框的距离内边框
            rowspan/colspan="2"垂直或水平合并2单元格 被合并的单元格程序命令删除
 <form>表单标签
 <head>
@@ -68,9 +68,8 @@ table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 	<!-- fieldset命令为在form表单加大边框 -->
 	<legend>在大边框上加自己想要的字</legend>
 	<p>
-		<label for="Users">姓名:</label>
-	<!-- label命令是使鼠标点到内容时也能是光标定位在输入框内 -->
-		<input type="text" name="name" value="默认在输入框内容" id="Users" list="123">
+		姓名:
+		<input type="text" name="name" value="默认在输入框内容" list="123">
 		<datalist id="123">
 	<!-- datalist命令是在输入框内加入备选项 -->
 			<option>ddd</option>
@@ -81,6 +80,7 @@ table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 	</p>
 	<p>
 		<label for="Use">密码:</label>
+	<!-- label命令是使鼠标点到内容时也能是光标定位在输入框内 -->
 		<input type="password" name="password" id="Use">
 	</p>
 	<p>
