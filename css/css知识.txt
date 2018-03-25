@@ -184,3 +184,55 @@ id选择器 交集,并集选择器
 	<a href="#">百度一下</a>
 	<input type="text" name="text">
 </body>
+
+盒子模型
+1.
+width: 300px;
+height: 300px;
+border: 50px solid pink;
+border:宽度 样式 颜色
+ 颜色可以省略，默认的是黑色
+ 常见样式有dotted(点状),dashed(虚线),solid(实线)
+ 宽度可以省略，默认是1px
+2.
+border-width: 100px;
+border-style: solid;
+border-color: black;
+ border-width:上 右 下 左;
+ border-style:上 右 下 左;
+ border-color:上 右 下 左;
+按照顺时针方向设置，如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
+3.
+border-top: 120px solid red;
+border-right: 150px solid yellow;
+border-bottom: 150px solid green;
+border-left: 100px solid blue;
+4.
+ border-top-width: 宽度;
+ border-top-style: 样式;
+ border-top-color: 颜色;
+ border-right-width: 宽度;
+ border-right-style: 样式;
+ border-right-color: 颜色;
+ border-bottom-width: 宽度;
+ border-bottom-style: 样式;
+ border-bottom-color: 颜色;
+ border-left-width: 宽度;
+ border-left-style: 样式;
+ border-left-color: 颜色;
+内边距
+padding:上 右 下 左;
+按照顺时针方向设置。如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
+外边距
+margin:上 右 下 左;
+按照顺时针方向设置。如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
+水平方向上的margin值可以叠加
+普通元素垂直方向上的margin值发生重叠现象，重叠后取较大的值
+普通的父子元素，给子元素设置margin top时候，这个值会传递到父元素,可以通过给父元素添加边框或者是内边距来阻止margin值的传递,还可以给父元素添加overflow:hidden来阻止margin的值传递
+外边距没有背景色
+外边距不会影响元素的宽和高，但是会影响整个元素空间的宽和高
+padding主要是用来设置父元素和子元素之间的距离，margin主要是用来设置元素和元素之间的距离
+margin可以取负值,表示相反的方向
+内容
+元素的宽width和高height决定了真正可以填充内容的空间
+取值可以是具体的像素也可以是百分比,百分比是相对于自己的父元素来说的
