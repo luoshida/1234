@@ -223,6 +223,8 @@ border-left: 100px solid blue;
 内边距
 padding:上 右 下 左;
 按照顺时针方向设置。如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
+当设置内边距时会使盒子变大，可以设置box-sizing: border-box;使内容边距变小 盒子大小不变 
+content-box为默认值 作用使盒子变大 内容区域不变
 外边距
 margin:上 右 下 左;
 按照顺时针方向设置。如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
@@ -236,3 +238,54 @@ margin可以取负值,表示相反的方向
 内容
 元素的宽width和高height决定了真正可以填充内容的空间
 取值可以是具体的像素也可以是百分比,百分比是相对于自己的父元素来说的
+display: inline-block;使两个盒子水平排版
+当两个盒子属于父子关系使，设置子盒子的width,height值时可以设置为百分比，相当父盒子的宽高
+盒子的圆角
+ border-radius: 150px;/*或50%*/
+ border-radius:取值1(左上 右上 右下 左下)/[取值2(左上 右上 右下 左下)]*/
+ border-top-left-radius:取值1 [取值2];
+ border-top-right-radius:取值1 [取值2];
+ border-bottom-right-radius:取值1 [取值2];
+ border-bottom-left-radius:取值1 [取值2];取值可以是px也可以是百分比
+（width: 100px;
+height: 100px;
+border-right: 10px solid red;
+border-top-right-radius: 60px;
+border-bottom-right-radius: 60px;）月牙形状 通过只设置一个盒子的边来完成
+盒子行高和阴影
+line-height: 40px;
+使行高变为知道的数值利于计算内边距和其他数值*/
+padding: 10px 10px;
+利用内边距的设置及计算使文字在方框内垂直居中*/
+box-shadow: 2px 2px 2px 2px black;
+水平距离 垂直距离 模糊距离 阴影大小 阴影颜色 内外阴影默认outset，inset;
+div:hover{
+box-shadow: 2px 2px 2px 2px black;/*当鼠标悬浮到盒子时显示的阴影*/
+cursor: pointer;当鼠标悬浮到盒子时的鼠标图标*/}
+盒子背景图片大小位置处理
+background-image: url(../54/修罗.jpg);
+background-color: green;
+background-repeat: no-repeat;
+repeat-x只在水平方向上平铺repeat-y只在垂直方向上平铺*/
+background-attachment: fixed;
+scroll(背景图片会随着滚动条的滚动而滚动)|fixed(背景图片固定在某个位置,不随滚动条的滚动而滚动)*/
+background-position: center center;
+background-position: 水平移动距离垂直移动距离
+取值:具体的数值+px|方向单词
+水平:right center left 垂直:top center bottom移动的参考点是容器的左上点
+background: url(../54/修罗.jpg) green no-repeat fixed center center;连写
+background-size:100% 100%;
+background-size:宽度 高度 | 单词 
+宽度和高度的取值有:
+具体的像素
+百分比(相对于容器)
+auto auto(谁设置为auto把谁等比拉伸)
+单词的取值有:
+cover,图片等比拉伸到宽度和高度都填满元素，图片不变形，但可能会显示不全
+contain,图片等比拉伸到宽度或高度中的一个填满元素另一个等比扩大或缩小，显示完全，不变形，但在整个盒子中可能会有空白区域
+background-origin:padding-box;
+格式padding-box(从内边距开始显示)border-box(从边框开始显示)content-box(从内容区域开始显示)
+注意点:该属性用来指定从哪个区域开始显示背景图片,默认是padding-box
+background-clip:padding-box;
+格式padding-box(从内边距开始显示)border-box(从边框开始显示)content-box(从内容区域开始显示)
+注意点:该属性用来指定从哪个区域开始显示背景颜色,默认是border-box*/

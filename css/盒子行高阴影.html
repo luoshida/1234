@@ -7,13 +7,18 @@
 		div{
 			width: 500px;
 			height: 100px; 
-			border: 10px solid red;
+			border: 1px solid red;
 			line-height: 40px;
 		/*使行高变为知道的数值利于计算内边距和其他数值*/
-			padding: 30px 10px;
+			padding: 10px 10px;
 		/*利用内边距的设置及计算使文字在方框内垂直居中*/
 			box-shadow: 2px 2px 2px 2px black;
-		/*水平距离 垂直距离 模糊距离 阴影大小 阴影颜色 内外阴影;*/
+		/*水平距离 垂直距离 模糊距离 阴影大小 阴影颜色 内外阴影默认outset，inset;*/
+			}
+			div:hover{/*当鼠标悬浮时盒子的阴影*/
+				box-shadow: 2px 2px 2px 2px black;
+				cursor: pointer;
+				/*当鼠标悬浮到盒子时的鼠标图标*/
 			}
 	</style>
 </head>
