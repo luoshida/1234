@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>biaoqian</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		div{
+		/*块状元素，
+		独占一行，
+		可设置宽高，
+		有默认宽高，
+		可设置边框，
+		可设置垂直和水平方向的内外边距
+常见的块状元素 p div header nav section article footer h ul ol dl li dt dd ...*/
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+		}
+		span{
+		/*行内元素
+		width height无效
+		垂直方向上的内外边距无效,但内边距可设置，外边距不可设置，其他跟块状元素效果一样
+常见的行内元素span b u i s stong em ins del ...*/
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+			margin: 20px 10px;
+			padding: 20px 20px;
+
+		}
+		p{
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+		}
+		img{
+		/*行内块状，
+		除了不会独占一行，其他效果跟块状元素一样
+		常见的行内块级元素img input textarea ...*/
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+			 
+		}
+		.aaa{
+			display: inline-block;
+/*给元素添加display可以手动的改变元素的显示模式,常见取值有:
+	block 块级 
+	inline 行内
+	inline-block 行内块级*/
+			vertical-align: top;
+/*行内块状对齐方式vertical-align:baseline|top|middle|bottom|text-bottom，
+	只有行内块状元素设置vertical-align属性才有效 
+	默认的对齐方式是baseline(基线对齐)
+	top是相对于父元素的顶部对齐
+	middle是相对于父元素的中部对齐
+	bottom是相对于是相对于父元素的底部对齐
+	text-bottom是相对于父元素的文字底部对齐*/
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<span>55555</span>
+	<p>123456</p>
+	<img src="../54/修罗.jpg">
+	<p class="aaa">123</p>
+</body>
+</html>
