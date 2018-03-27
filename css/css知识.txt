@@ -156,6 +156,7 @@ id选择器 交集,并集选择器
 	<a href="#" title="qwertyuiop">qwertyuiop</a>
 	<p>我是谁</p>
 </body>
+
 通用选择器 伪选择器
 <head>
 <title>1111</title>
@@ -289,3 +290,61 @@ background-origin:padding-box;
 background-clip:padding-box;
 格式padding-box(从内边距开始显示)border-box(从边框开始显示)content-box(从内容区域开始显示)
 注意点:该属性用来指定从哪个区域开始显示背景颜色,默认是border-box*/
+
+块状 行内块状 行内元素
+div{/*块状元素，
+独占一行，
+可设置宽高，
+有默认宽高，
+可设置边框，
+可设置垂直和水平方向的内外边距
+常见的块状元素 p div header nav section article footer h ul ol dl li dt dd ...*/
+width: 200px;
+height: 200px;
+border: 1px solid red;}
+span{/*行内元素
+width height无效
+垂直方向上的内外边距无效,但内边距可设置，外边距不可设置，其他跟块状元素效果一样
+常见的行内元素span b u i s stong em ins del ...*/
+	width: 200px;
+	height: 200px;
+	border: 1px solid red;
+	margin: 20px 10px;
+	padding: 20px 20px;}
+p{width: 200px;
+height: 200px;
+border: 1px solid red;}
+img{
+/*行内块状，
+除了不会独占一行，其他效果跟块状元素一样
+常见的行内块级元素img input textarea ...*/
+	width: 200px;
+	height: 200px;
+	border: 1px solid red;}
+.aaa{display: inline-block;
+/*给元素添加display可以手动的改变元素的显示模式,常见取值有:
+	block 块级 
+	inline 行内
+	inline-block 行内块级*/
+	vertical-align: top;
+/*行内块状对齐方式vertical-align:baseline|top|middle|bottom|text-bottom，
+	只有行内块状元素设置vertical-align属性才有效 
+	默认的对齐方式是baseline(基线对齐)
+	top是相对于父元素的顶部对齐
+	middle是相对于父元素的中部对齐
+	bottom是相对于是相对于父元素的底部对齐
+	text-bottom是相对于父元素的文字底部对齐*/}
+浮动标签
+float: left/right；
+没有中间对齐,对齐是相对于父元素的左右边框的
+浮动流主要是用来水平排版的
+虽然把元素设置为行内块状也可以实现水平排版,但有不足之处,例如左右水平排版,如果父元素宽度不固定的情况下会发生错位,所以在项目中一般都用浮动流来实现水平排版
+由于脱离标准后,标准流中位置空闲了出来,因此后面标准流中的元素会去顶替脱离标准流的那个元素的位置 
+浮动元素脱标后的在浮动流中的特点
+因为脱离标准流,所以浮动的元素不区分块状，行内，行内块状，他的属性和行内块状一样
+浮动流的元素不可以用margin: 0 auto;来水平居中
+浮动元素脱标后在浮动流中的排列规则
+同方向上,先浮动的显示在前面，后浮动的显示在后面,注意这个先后指的结构上的先后而不是css的书写先后
+不同方向上,左浮动找左浮动元素，右浮动找右浮动元素
+浮动后元素的位置由浮动前元素在标准流中的位置决定,这个位置主要指的是浮动前在标准流中是第几行,浮动后还是显示在第几行
+由于浮动元素的位置和浮动前在标准流的位置有光,所以严格意识上说浮动元素是非完全脱标
