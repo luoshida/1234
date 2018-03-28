@@ -1,5 +1,8 @@
-文本样式
-内部引用
+
+	文本样式
+
+	内部引用
+
 <p style="color:red;font-size:50px;">xxxxxxxxxx</p>
 <head>
 	<meta charset="utf-8">
@@ -13,7 +16,10 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
 	<h1>问候语</h1>
 	<p>你好，大猫</p> 
 </body>
-外部引用 在外面建一个.css的层叠样式表p{color: green;font: 100px 楷体}
+
+	外部引用
+
+ 在外面建一个.css的层叠样式表p{color: green;font: 100px 楷体}
 两个.css的表格可以相互引用 用@import url(style2.css);引用
 <head>
 	<meta charset="utf-8">
@@ -34,7 +40,7 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
 		color: #f56;
 		
 		text-decoration: line-through;
-/*underline|overline|line-through|none*/
+/*文本修饰 underline|overline|line-through|none*/
 		text-align: center;
 /*文本对齐样式left(默认)|center|right*/
 		text-indent: 2em;
@@ -54,10 +60,11 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
 	}
 </style>
 
-选择器
-类选择器
-id选择器 交集,并集选择器
-相邻兄弟选择器 通用兄弟选择器
+	选择器
+	类选择器
+	id选择器 交集,并集选择器
+	相邻兄弟选择器 通用兄弟选择器
+
 <head>
 	<meta charset="utf-8">
  	<title>选择器</title>
@@ -84,7 +91,9 @@ id选择器 交集,并集选择器
  		<h2>你有糖吗</h2>
  	</nav>
  </body>
-序选择器
+
+	序选择器
+
 <head>
 <meta charset="utf-8">
 <title>13</title>
@@ -127,7 +136,9 @@ id选择器 交集,并集选择器
 		</ul>
 	</div>
 </body>
-属性选择器
+
+	属性选择器
+
 <head>
 <title></title>
 <style type="text/css">
@@ -157,7 +168,8 @@ id选择器 交集,并集选择器
 	<p>我是谁</p>
 </body>
 
-通用选择器 伪选择器
+	通用选择器 伪选择器
+
 <head>
 <title>1111</title>
 <style type="text/css">
@@ -186,7 +198,8 @@ id选择器 交集,并集选择器
 	<input type="text" name="text">
 </body>
 
-盒子模型
+	盒子模型
+
 1.
 width: 300px;
 height: 300px;
@@ -241,7 +254,9 @@ margin可以取负值,表示相反的方向
 取值可以是具体的像素也可以是百分比,百分比是相对于自己的父元素来说的
 display: inline-block;使两个盒子水平排版
 当两个盒子属于父子关系使，设置子盒子的width,height值时可以设置为百分比，相当父盒子的宽高
-盒子的圆角
+
+	盒子的圆角
+
  border-radius: 150px;/*或50%*/
  border-radius:取值1(左上 右上 右下 左下)/[取值2(左上 右上 右下 左下)]*/
  border-top-left-radius:取值1 [取值2];
@@ -291,7 +306,8 @@ background-clip:padding-box;
 格式padding-box(从内边距开始显示)border-box(从边框开始显示)content-box(从内容区域开始显示)
 注意点:该属性用来指定从哪个区域开始显示背景颜色,默认是border-box*/
 
-块状 行内块状 行内元素
+	块状 行内块状 行内元素
+
 div{/*块状元素，
 独占一行，
 可设置宽高，
@@ -334,7 +350,9 @@ img{
 	middle是相对于父元素的中部对齐
 	bottom是相对于是相对于父元素的底部对齐
 	text-bottom是相对于父元素的文字底部对齐*/}
-浮动标签
+
+	浮动标签
+
 float: left/right；
 没有中间对齐,对齐是相对于父元素的左右边框的
 浮动流主要是用来水平排版的
@@ -348,3 +366,38 @@ float: left/right；
 不同方向上,左浮动找左浮动元素，右浮动找右浮动元素
 浮动后元素的位置由浮动前元素在标准流中的位置决定,这个位置主要指的是浮动前在标准流中是第几行,浮动后还是显示在第几行
 由于浮动元素的位置和浮动前在标准流的位置有光,所以严格意识上说浮动元素是非完全脱标
+
+	清除浮动
+
+	方式一,
+给前面的盒子添加高度
+项目中一般高度是有内容撑起来的,尽量不设置高度
+	方式二,
+通过给第二个盒子添加clear属性来清除前面元素浮动带来的影响
+clear: 	both;
+clear属性的取值有:left|right|both|none(默认)
+clear属性的意思是不让自己的子元素找前面浮动的元素
+通过clear属性清除浮动会导致第一个盒子的margin-bottom和第二个盒子的margin-top失效,第二个盒子的margin-top失效是因为margin的值传递
+	方式三
+给第一个盒子和第二个盒子之间添加一个空盒子，并且给这个空盒子设置clear:both属性,俗称外墙法
+第一个盒子的margin-bottom依然不可以用, 空盒子{clear: both;height: 20px;}
+但是第二个盒子的margin-top可以用
+可以通过设置空盒子的高度来达到设置margin-bottom/top的效果
+	方法四,
+给第一个盒子所有元素的后面添加一个空盒子，
+<div class="wall">空盒子</div>
+并且给这个空盒子设置clear:both属性,俗称内墙法
+第一个盒子的margin-bottom可以用,第二个盒子的margin-top也可以用
+也可以通过设置空盒子的高度来达到设置margin-bottom/top的效果
+内墙法可以撑起盒子的高度，而外墙法不可以
+	方法五,
+通过伪元素选择器(:after)实现内墙法
+.eee:after{content: "";
+       	clear: both;
+        display: block;
+        height: 0px;
+        visibility: hidden;}
+ .eee{*zoom:1;} /*此代码适用于IE6*/
+作用和内墙法一样，但是不用额外添加空元素，在第一个盒子的父元素盒子标签加 ：after 可以实现结构和样式分离，在实际项目开发中推荐使用*
+	方式六,
+通过给第一个盒子添加overflow: hidden来清除浮动

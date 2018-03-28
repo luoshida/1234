@@ -1,5 +1,6 @@
 
-分布式版本控制git
+	分布式版本控制git
+
 pwd   ls    ls -la
 git config --global user.name xxx
 git config --global user.email xxx
@@ -26,7 +27,8 @@ cd .ssh  进入隐藏文件夹.ssh    公钥id_rsa.pub 密钥id_rsa
 cat id_rsa.pub  查看公钥
 ssh -T git@github.com 验证密钥是否绑定成功
 
-html标签
+	html标签
+
 <h1>指定标题</h1>  h1-h6
 <p>指定段落</p>
 <hr>画一条水平分割线
@@ -41,7 +43,8 @@ html标签
  ul与li配套使用 ol li为有序列表与无序列表差不多 多用于排行榜
 <dl><dt>条目</dt><dd>条目的描述</dd></dl> 给内容添加定义列表语义用于网站底部相关信息
 
-<table>表格标签
+	<table>表格标签
+
 	<caption>给整个表格设置标题</caption>
 	<tr>
 		<td>1行1列</td>      <thead><th>添加头命令（加粗居中）</th><td>正常</td></thead>
@@ -56,7 +59,9 @@ table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 表内参数   align="left/center/right" valign="top/center/bottom" table中为表格朝向，在tr或td为文字朝向
            border="1/2/3"边框粗细 cellspacing单元格之间的距离外边框 cellpadding文字与边框的距离内边框
            rowspan/colspan="2"垂直或水平合并2单元格 被合并的单元格程序命令删除
-<form>表单标签
+	
+	<form>表单标签
+
 <head>
 	<title>123</title>
 	<style>textarea{resize: none;}</style>
@@ -132,11 +137,13 @@ table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
 </form>
 </body>
 
-图片标签
+	图片标签
+
 <img src="网址或路径" alt="图片不显示时显示的东西"
  title="点击查看源网页" height="200px">
+	
+	音频视频标签
 
-音频视频标签
 <video src="https://www.4611.com" loop muted height="100px"></video>
 <!-- autoplay:是否需要自动播放视频 controls:是否需要显示控制条
  poster: 视频没有播放之前显示的占位图片
@@ -155,7 +162,8 @@ muted:静音
   WebM=带有VP8视频编码和Vorbis音频编码的WebM文件-->
 <audio src=""></audio>
 
-链接标签a标签
+	链接标签a标签
+
 <head>
 	<meta charset="utf-8">
 	<title>链接标签a标签</title>
@@ -175,7 +183,8 @@ base标签必须写在head标签中 base标签没有结束标签
 	<a href="另一个网页的名称#转到某个命令行的id" target="_blank">返回另一个页面某个命令行中的id</a>
 </body>
 
-结构标签
+	结构标签
+
 <div>无实际意义，块状结构，独占一行，配合css</div>
 <span>无实际语义，用于布局</span>
 	<div class="header">
@@ -201,12 +210,14 @@ progress进度条标签 20%
 time时间标签pubdate为发布时间datetime规定的时间
 <time datetime="21:00" pubdate>12:00</time>
 
-字符实体
+	字符实体
+
 &nbsp;空格
 &copy;版权
 &lt;小于 http://www.w3school.com.cn/html/html_entities.asp
 
-元信息
+	元信息
+
 <meta charset="utf-8">
 <meta name="keyword" content="关键字">
 <!-- 告诉搜索引擎当前网页的关键词,能够提高搜索命中率,让别人更容易找到你,搜索引擎会用这些关键字对文档进行分类。 -->
@@ -219,7 +230,8 @@ time时间标签pubdate为发布时间datetime规定的时间
 <meta http-equiv="Refresh" content="5;url=https://www.kuazhu.com" />
 <!-- 进入该网站后5秒后自动跳转到url指定的网站 -->
 
-html属性
+	html属性
+
 全局属性 class id style title contenteditable可编辑属性
 局部属性 某个html标签自己所特有的属性
 事件属性 触发动作的能力
