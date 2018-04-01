@@ -447,3 +447,49 @@ top/right/bottom/left：10px;
 可以通过z-index：1；来更改元素的覆盖关系,值越大,显示越靠前,默认值是0
 父级元素的z-index属性会影响到子元素的z-index,子元素的z-index属性最终的值是所有父级元素中最顶层（程序最外面最大的）父级元素的z-index值
 父子关系的z-index属性之间不会相互覆盖（无效）。
+
+	过度
+
+transition-property: background-color,height;
+transition-duration: 10s,8s;
+transition-delay: 2s;
+transition-timing-function: linear; 运行的方式
+取值linear ease 默认的 ease-in ease-out ease-in-out cubic-bezier(x1,y1,x2,y2)*/
+简写1 transition:width 3s linear 2s,background-color 3s linear 2s;
+简写2 transition:width 3s,background-color 3s;
+简写3 transition: all 3s
+
+	模块的变化
+
+旋转
+transform: rotate(15deg)
+transform: rotateX();/*沿x轴旋转*/
+xy轴旋转配合加在父元素的透视perspective: xxpx;标签使用
+transform: rotateY();/*沿y轴旋转*/
+transform: rotateZ();/*默认是Z*/
+旋转会改变坐标系
+旋转写在平移前面是在旋转修改后的坐标系下平移
+平移后旋转是在平移以后的位置默认中心点旋转*/
+平移
+transform: translate(100px,100px)
+(水平方向移动距离,垂直方向移动距离)可为负数*/
+缩放
+transform: scale(1.5,1.5);
+transform: scale(水平方向缩放比例,垂直方向缩放比例)
+缩放比例如果是1代表不变,大于1代表放大,小于1代表缩小
+如果水平和垂直方向上缩放比例一样,可以简写一个
+复写
+transform: translate(200px,200px) rotate(20deg) scale(1.5,1.5);
+透明度 
+opacity：0到1；
+变化的基点
+transform-origin: 50px 50px; 格式:水平方向移动距离 垂直方向移动距离;
+变化基点就是以哪个点为参考点进行变化
+变化基点的移动参考点是元素的左上角顶点
+默认情况下所有的元素都是以自己的中心点作为参考来旋转的
+移动距离可以是具体的像素,百分比,和关键字水平方向上有left center right,在垂直方向上有top center bottom
+
+	动画
+
+animation-name:xx;
+@keyframes xx

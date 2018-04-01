@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	.a{
+		height: 900px;
+		width: 600px;
+		border: 1px solid black;
+		perspective: 500px;
+
+	}
+		.b,.c,.e,.p,.d{
+			height: 200px;
+			width: 200px;
+			background-color: red;
+			margin: 50px auto;	
+			transform-origin: 50px 50px;
+/*变化基点就是以哪个点为参考点进行变化
+变化基点的移动参考点是元素的左上角顶点
+格式:水平方向移动距离 垂直方向移动距离;
+默认情况下所有的元素都是以自己的中心点作为参考来旋转的
+移动距离可以是具体的像素,百分比,和关键字水平方向上有left center right,在垂直方向上有top center bottom
+*/
+		}
+		 .b{
+		 	transform: rotate(15deg);
+		 	transform: rotateX();/*沿x轴旋转*/
+		 /*xy轴旋转配合加在父元素的透视perspective标签使用*/
+		 	transform: rotateY();/*沿y轴旋转*/
+		 	transform: rotateZ();/*默认是Z*/
+/*旋转会改变坐标系
+旋转写在平移前面是在旋转修改后的坐标系下平移
+平移后旋转是在平移以后的位置默认中心点旋转*/
+		 }
+		 .c{
+		 	transform: translate(100px,100px);
+	/*(水平方向移动距离,垂直方向移动距离)可为负数*/
+		 }
+		 .d{
+		 	transform: scale(1.5,1.5);
+/*transform: scale(水平方向缩放比例,垂直方向缩放比例)缩放比例如果是1代表不变,大于1代表放大,小于1代表缩小
+如果水平和垂直方向上缩放比例一样,可以简写一个*/
+		 }
+		 .e{
+		 	transform: translate(200px,200px) rotate(20deg) scale(1.5,1.5); /*复写*/
+		 }
+		 /*opacity：0到1；透明度*/
+	</style>
+</head>
+<body>
+	<div class="a">
+		<div class="b">1</div>
+		<div class="c">2</div>
+		<div class="d">3</div>
+		<div class="e">5</div>
+	</div>
+</body>
+</html>
