@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>12</title>
+	<style type="text/css">
+		input,a{
+			 width: 20%;
+			height: 100px;
+			position: fixed;
+			top: 0px;
+			background: gray;
+			border: 1px solid black;
+
+		}
+		.aa,.aa+a{left: 0px;}
+		.bb,.bb+a{left: 20%;}
+		.cc,.cc+a{left: 40%;}
+		.dd,.dd+a{left: 60%;}
+		.ee,.ee+a{left: 80%;}
+		input{
+			z-index: 10;
+			opacity: 0;
+		}
+		a{
+			z-index: 1;
+			text-align: center;
+			line-height: 100px;
+		}
+		input:click input+a{
+			background: red;
+		}
+		
+	</style>
+</head>
+<body>
+	<div>
+		<input type="radio" name="top" class="aa">
+		<a href="#">hello</a>
+		<input type="radio" name="top" class="bb">
+		<a href="#">hello</a>
+		<input type="radio" name="top" class="cc">
+		<a href="#">hello</a>
+		<input type="radio" name="top" class="dd">
+		<a href="#">hello</a>
+		<input type="radio" name="top" class="ee">
+		<a href="#">hello</a>
+	</div>
+</body>
+</html>

@@ -455,7 +455,7 @@ transition-duration: 10s,8s;
 transition-delay: 2s;
 transition-timing-function: linear; 运行的方式
 取值linear ease 默认的 ease-in ease-out ease-in-out cubic-bezier(x1,y1,x2,y2)*/
-简写1 transition:width 3s linear 2s,background-color 3s linear 2s;
+简写1 transition:width 3s linear 2s,background-color 3s linear 2s;属性 时间 速度 延迟时间
 简写2 transition:width 3s,background-color 3s;
 简写3 transition: all 3s
 
@@ -491,5 +491,48 @@ transform-origin: 50px 50px; 格式:水平方向移动距离 垂直方向移动距离;
 
 	动画
 
-animation-name:xx;
-@keyframes xx
+	animation-delay: 2s;
+	animation-timing-function: ; /*linear|ease 默认的|ease-in|ease-out|ease-in-out|cubic-bezier(x1,y1,x2,y2);执行速度*/
+	animation-iteration-count: ;/*具体的数字(默认是1)|infinite(无限循环);*/
+	animation-direction: ;/* normal(默认状态不执行往返动画)|alternate(执行往返动画);*/
+	animation-play-state: ;/*running(默认状态动画执行)|paused(鼠标悬浮时动画暂停)*/
+	animation-fill-mode: ;/*none(不做改变)|backwards(动画等待时显示动画的第一帧)|
+forwards(动画执行结束保持显示动画的最后一帧)|both(动画执行前显示动画的第一帧并且动画执行结束显示动画的最后一帧*/
+	animation:bb 60s linear 2s infinite ;
+/*动画的名称 动画的执行时间 动画的速度 延迟时间 动画的执行次数 是否执行往返动画;*/
+	@keyframes bb{
+		0%{margin-left: 0px;
+		margin-top: 0px;
+		background: red;}
+		25%{margin-left: 400px;
+		margin-top: 0px;
+		background: yellow;}
+		50%{margin-left: 400px;
+		margin-top: 400px;
+		background: green;}
+		75%{margin-left: 0px;
+		margin-top: 400px;
+		background: blue;}
+		100%{margin-left: 0px;
+		margin-top: 0px;
+		background: red;}
+		}
+	@keyframes bb{ 
+		from{width: 500px;} 
+		to{width: 1000px;}
+		}
+
+	3D转化
+
+.father{
+	width: 200px;
+	height: 200px;
+	background: yellow;
+	transform-style: preserve-3d;
+/*flat让子元素呈现2D展示；preserve-3d让子元素呈现3D展示*/
+	}
+.son{
+	width: 100px;
+	height: 100px;
+	background: blue;
+	}
