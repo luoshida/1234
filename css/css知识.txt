@@ -536,3 +536,34 @@ forwards(动画执行结束保持显示动画的最后一帧)|both(动画执行前显示动画的第一帧并且
 	height: 100px;
 	background: blue;
 	}
+
+	自定义字体
+
+<style type="text/css">
+	@font-face{
+		font-family: news;
+		src:url(../课件/css课件/Sansation_Bold.eot),
+		url(../课件/css课件/Sansation_Bold.ttf);
+/*src中的url可以是本地字体也可以是网络上的字体文件，如果是网络上的字体文件注意跨域的问题*/
+		[font-weight: bold;]
+/*包含在news的字体中，使系统默认的其他字体和新建的news字体合并，如果一样就显示一种，不一样显示双重效果*/
+		}
+	p{
+		font-family: news;
+
+		}
+</style>
+</head>
+<body>
+	<p>祝贺你Congratulations我的字画</p>
+</body>
+
+	自定义字体改为图标 https://fontawesome.com/
+
+<link rel="stylesheet" type="text/css" href="../fontawesome-free-5.0.9/web-fonts-with-css/css/fontawesome-all.css">
+在head里面link一个在网上下载的.css外部引用文件
+<body>
+	<i class="fas fa-camera-retro"></i>
+	<!-- 通过在class里加入类来实现各种 效果 -->
+	<i class="fas">&#xf083;</i>
+在body里的程序行添加class类标签“fas” 在class里面加上各种类实现图标的各种样式

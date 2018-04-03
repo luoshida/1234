@@ -3,13 +3,20 @@
 <head>
 	<title>12</title>
 	<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+		box-sizing: border-box;
+	}
+	div{
+		width: 100%;
+		height: 100px;
+	}
 		input,a{
 			 width: 20%;
 			height: 100px;
 			position: fixed;
 			top: 0px;
-			background: gray;
-			border: 1px solid black;
 
 		}
 		.aa,.aa+a{left: 0px;}
@@ -22,28 +29,82 @@
 			opacity: 0;
 		}
 		a{
+			background: gray;
+			border: 1px solid rgba(0,0,0,0.2);
 			z-index: 1;
 			text-align: center;
 			line-height: 100px;
+			text-decoration: none;
+			color: white;
+			font-size: 30px;
 		}
-		input:click input+a{
+		input:checked+a{
+			background: red;
+
+		}
+		input:hover+a{
+			cursor: pointer;
+			background: #ccc;
+		}
+		input:checked:hover+a{
 			background: red;
 		}
-		
+		.bb1{
+			width: 100%;
+			height: 1920px;
+			border: 1px solid black;
+			overflow: hidden;
+
+		}
+		.bb11{
+			width: 100%;
+			height: 9600px;
+			transition: all 2s;
+		}
+		img{
+			width: 100%;
+			height: 1920px;
+			display: block;
+		}
+		.aa:checked~.bb1 .bb11{
+
+		}
+		.bb:checked~.bb1 .bb11{
+			transform: translateY(-1920px);
+		}
+		.cc:checked~.bb1 .bb11{
+			transform: translateY(-3840px);
+		}
+		.dd:checked~.bb1 .bb11{
+			transform: translateY(-5760px);
+		}
+		.ee:checked~.bb1 .bb11{
+			transform: translateY(-7680px);
+		}
 	</style>
 </head>
 <body>
 	<div>
 		<input type="radio" name="top" class="aa">
-		<a href="#">hello</a>
+		<a href="#">卖</a>
 		<input type="radio" name="top" class="bb">
-		<a href="#">hello</a>
+		<a href="#">东</a>
 		<input type="radio" name="top" class="cc">
-		<a href="#">hello</a>
+		<a href="#">西</a>
 		<input type="radio" name="top" class="dd">
-		<a href="#">hello</a>
+		<a href="#">淘</a>
 		<input type="radio" name="top" class="ee">
-		<a href="#">hello</a>
+		<a href="#">宝</a>
+		<div class="bb1">
+				<div class="bb11">
+				<img src="../54/1080+1920.jpg">
+				<img src="../54/1080+19202.jpg">
+				<img src="../54/1080+19203.jpg">
+				<img src="../54/1080+19204.jpg">
+				<img src="../54/1080+19205.jpg">
+				</div>
+		</div>
 	</div>
+	
 </body>
 </html>
