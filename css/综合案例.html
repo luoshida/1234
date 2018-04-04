@@ -9,10 +9,6 @@
 		padding: 0px;
 		box-sizing: border-box;
 	}
-	div{
-		width: 100%;
-		height: 100px;
-	}
 		input,a{
 			 width: 20%;
 			height: 100px;
@@ -59,11 +55,15 @@
 		.bb11{
 			width: 100%; 
 			height: 9600px;
-			transition: all 1s;
+			transition: all 1s linear;
 			
 		}
-	/*	.aa:checked~.bb1 .bb11 {
-			animation: nnn 2s;
+		.aa:checked ~ .bb1 .bb11 #o1,
+		.bb:checked ~ .bb1 .bb11 #o2,
+		.cc:checked ~ .bb1 .bb11 #o3,
+		.dd:checked ~ .bb1 .bb11 #o4,
+		.ee:checked ~ .bb1 .bb11 #o5{
+			animation: nnn 3s linear;
 		}
 		@keyframes nnn{
 			from{
@@ -72,7 +72,7 @@
 			to{
 				opacity: 1;
 			}
-		}*/
+		}
 		img{
 			width: 100%;
 			height: 1920px;
@@ -98,7 +98,7 @@
 	</style>
 </head>
 <body>
-	<div>
+	<div class="rrr">
 		<input type="radio" name="top" class="aa">
 		<a href="#"><i class="fas fa-camera-retro"></i>home</a>
 		<input type="radio" name="top" class="bb">
@@ -111,11 +111,11 @@
 		<a href="#">contact</a> 
 		<div class="bb1">
 				<div class="bb11">
-				<img src="../54/1080+1920.jpg">
-				<img src="../54/1080+19202.jpg">
-				<img src="../54/1080+19203.jpg">
-				<img src="../54/1080+19204.jpg">
-				<img src="../54/1080+19205.jpg">
+				<img src="../54/1080+1920.jpg" id="o1">
+				<img src="../54/1080+19202.jpg" id="o2">
+				<img src="../54/1080+19203.jpg" id="o3">
+				<img src="../54/1080+19204.jpg" id="o4">
+				<img src="../54/1080+19205.jpg" id="o5">
 				</div>
 		</div>
 	</div>
