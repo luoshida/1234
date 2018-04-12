@@ -310,8 +310,11 @@
 		.mid2 .content li{
 			width: 234px;
 			height: 339px;
-			background: #fafafa;
-			
+			background: #fafafa;	
+		}
+		.mid2 .content .king img{
+			width: 34px;
+			height: 53px;
 		}
 		.mid2 .content .king1{
 			border-top: 1px solid orange;
@@ -381,25 +384,28 @@
 			width: 100%;
 			height: 100%;
 		}
-		.shouji{
+		.sell{
 			background: #f5f5f5;
+			padding-top: 60px;
+			padding-bottom: 60px;
 		}
-		.shouji .nav{
+		.nav{
 			height: 58px;
+
 		}
-		.shouji .nav .nav1{
+		.nav .nav1{
 			float: left;
 			line-height: 58px;
 			font-size: 22px;
 		}
-		.shouji .nav .nav2{
+		.nav .nav2{
 			float: right;
 			line-height: 58px;
 		}
-		.shouji .nav .nav2 div{
+		.sell .nav .nav2 div{
 			float: right;
 		}
-		.shouji .nav .nav2 div:nth-child(1){
+		.sell .nav .nav2 div:nth-child(1){
 			height: 22px;
 			width: 22px;
 			border-radius: 50%;
@@ -410,7 +416,269 @@
 			font-size: 18px;
 			margin-top: 18px;
 		}
+		.sell .content{
+			height: 616px;
+		}
+		.sell .content .con1{
+			width: 234px;
+			height: 100%;
+			float: left;
+			transition: all 1s;
+		}
+		.sell .content .con1:hover{
+			box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+			transform: translateY(-3px);
+		}
+		img{
+			width: 100%;
+			height: 100%;
+		}
+		.sell .content .con2{
+			width: 994px;
+			height: 100%;
+			float: left;
+		}
+		.sell .content .con2 li{
+			width: 234px;
+			height: 302px;
+			background: #fff;
+			margin-left: 14px;
+			transition: all 1s;
+			position: relative;
+		}
+		.sell .content .con2 li:nth-child(5),
+		.sell .content .con2 li:nth-child(6),
+		.sell .content .con2 li:nth-child(7),
+		.sell .content .con2 li:nth-child(8){
+			margin-top: 12px;
+		}
+		.sell .content .con2 li img{
+			width: 160px;
+			height: 160px;
+			margin: 20px 37px;
+		}
+		.sell .content .con2 li p:nth-of-type(1){
+			text-align: center;
+			margin-bottom: 10px;
+			font-size: 15px;
+		}
+		.sell .content .con2 li p:nth-of-type(2){
+			text-align: center;
+			margin: 0px 12px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			font-size: 13px;
+			color: #b0b0b0;
+		}
+		.sell .content .con2 li p:nth-of-type(3){
+			text-align: center;
+			margin-top: 15px;
+			font-size: 15px;
+			color: #ff6700;
+		}
+		.sell .content .con2 li:hover{
+			box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+			transform: translateY(-3px);
+		}
+		.logofont:after{
+			content: "";
+			width: 64px;
+			height: 20px;
+			position: absolute;
+			left: 50%;
+			margin-left: -32px;
+			top: 0px;
+		}
+		.logored:after{
+			content: "";
+			background: red;
+		}
+		.loggreen:after{
+			content: "";
+			background: green;
+		}
+		.logocont:after{
+			content: "减600元";
+			color: white;
+			text-align: center;
+		}
+		.sell .con3{
+			height: 122px;
+			margin-top: 42px;
+		}
+		.jiadian .nav .nav2 li a,
+		.zhineng .nav .nav2 li a{
+			font-size: 17px;
+			color: #424242;
+		}
+		.jiadian .nav .nav2 li,
+		.zhineng .nav .nav2 li{
+			margin-left: 31px;
+		}
+		.jiadian .nav,
+		.zhineng .nav{
+			margin-top: 60px;
+		}
+		.jiadian .content .con1 div{
+			width: 234px;
+			height: 302px;
+			margin-top: 2px;
+		}
+		.jiadian .content .con1 a{
+			width: 100%;
+			height: 100%;
+			display: inline-block;
+		}
+		.jiadian .content .con1 .top{
+			margin-bottom: 12px;
+		}
+		.zhineng .content li{
+			width: 234px;
+			height: 300px;
+			margin-right: 14px;
+			position: relative;
+		}
+		.zhineng .content li:nth-child(5),
+		.zhineng .content li:nth-child(10){
+			margin-right: 0px;
+		}
+		.zhineng .content li:nth-child(6),
+		.zhineng .content li:nth-child(7),
+		.zhineng .content li:nth-child(8),
+		.zhineng .content li:nth-child(9),
+		.zhineng .content li:nth-child(10){
+			margin-top: 14px;
+		}
+		.zhineng .content li img{
+			width: 100%;
+			height: 100%;
+		}
+		.zhineng .content .aa{
+			width: 234px;
+			height: 143px;
+		}
+		.zhineng .content li .aa img{
+			width: 100%;
+			height: 100%;
+		}
+		.zhineng .content .aa:nth-child(2){
+			margin-top: 14px;
+		}
+		.zhineng .content .bb div{
+			width: 234px;
+			height: 0px;
+			background: red;
+			position: absolute;
+			overflow: hidden;
+			left: 0px;
+			bottom: 0px;
+			opacity: 0;
+		}
+		.zhineng .content .bb{
+			transition: all 2s;
+		}
+		.zhineng .content .bb:hover{
+			box-shadow: 0 0 10px rgba(0,0,0,0.3);
+			transform: translateY(-3px);
+		}
+		.zhineng .content .bb div{
+			transition: height 1s;
+		}
+		.zhineng .content .bb:hover div{
+			opacity: 1;
+			height: 100px;
+		}
+		.foot .promise{
+			height: 80px;
+			border-bottom: 1px solid #e0e0e0;
+		}
+		.foot .promise li{
+			width: 244px;
+			height: 26px;
+			margin-top: 27px;
+			text-align: center;
+			line-height: 26px;
+		}
+		.foot .promise .lia{
+			border-right: 1px solid #e0e0e0;
+		}
+		.foot .promise li a{
+			color: #616161;
+		}
+		.foot .promise li i{
+			font-size: 24px;
+			vertical-align: top;
+		}
+		.foot .promise li span{
+			font-size: 16px;	
+		}
+		.foot .bot{
+			height: 197px;
+			margin-bottom: 37px;
+		}
+		.foot .bot .left{
+			float: left;
+		}
+		.foot .bot .right{
+			width: 252px;
+			height: 113px;
+			float: right;
+			margin-top: 42px;
+		}
+		.foot .bot li{
+			width: 156px;
+		}
+		.foot .bot li dt{
+			font-size: 16px;
+			color: #424242;
+			margin-top: 40px;
+			margin-bottom: 31px;
+		}
+		.foot .bot li dd{
+			font-size: 13px;
+			color: #818181;
+			margin-bottom: 16px;
+		}
+		.foot .bot .right .zaixian{
+			width: 118px;
+			height: 28px;
+			border: 1px solid #ff6700;
+			text-align: center;
+			line-height: 28px;
+			margin-left: 67px;
+			margin-top: 19px;
+		}
+		.foot .bot .right .zaixian a{
+			color: #ff6700;
+			font-size: 12px;
+		}
+		.foot .bot .right p{
+			text-align: center;
+		}
+		.foot .bot .right p:nth-child(1){
+			color: #ff674f;
+			font-size: 18px;
+			margin-bottom: 11px;
+		}
+		.foot .bot .right p:nth-child(2),
+		.foot .bot .right p:nth-child(3){
+			color: #616161;
+			font-size: 12px;
+			margin-bottom: 7px;
+		}
+		.Degenerator{
+			height: 148px;
+			background: #fafafa;
+		}
+		.Degenerator img{
+			width: 100%;
+			height: 100%;
+		}
 
+
+
+ 
 
 
 
