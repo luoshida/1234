@@ -7,6 +7,13 @@ git config --global user.email xxx
 git config user.name
 git config user.email
 mkdir xxx文件夹 touch xxx.txt
+vim xxx.txt 打开文件夹 i 进入编辑模式 ESC 退出编辑模式
+在插入编辑模式下编辑文件。
+按下 “ESC” 键，退出编辑模式，切换到命令模式。
+在命令模式下键入"ZZ"或者":wq"保存修改并且退出 vi 。
+如果只想保存文件，则键入":w"，回车后底行会提示写入操作结果，并保持停留在命令模式。
+放弃所有文件修改：按下 "ESC" 键进入命令模式，键入 ":q!" 回车后放弃修改并退出vi。
+放弃所有文件修改，但不退出 vi ，即回退到文件打开后最后一次保存操作的状态，继续进行文件操作：按下 "ESC" 键进入命令模式，键入 ":e!" ，回车后回到命令模式。
 cd xxx
 git init 
 git status

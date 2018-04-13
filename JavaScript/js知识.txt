@@ -1,0 +1,34 @@
+	js基本格式
+
+1.写在元素标签的起始标签中
+<body>
+	<input type="checkbox" name="check" 
+	onclick="abc.style.display='none';" 
+	onmouseover="document.getElementById('abc').style.border='none';" 
+	onmouseout="document.getElementById('abc').style.border='1px solid red'">
+	<div id="abc">123</div>
+</body>
+2.写在script标签中
+<head>
+<script type="text/javascript">
+	function nihao(){  (定义)
+		alert('hi')
+	}
+	nihao()            (执行)
+	
+	function change(){ (定义)
+		var abc=document.getElementById('box')
+		abc.style.background='green';
+		abc.style.width='200px';
+		}
+	</script>
+</head>
+<body>
+	<div id="box" onclick="change()"(执行)></div>
+</body>
+注意事项
+任何属性都可以修改
+任何标签都可以有ID属性,可以通过ID属性获取该元素
+修改属性时，HTML当中怎么写，JS当中就怎么写,但class是特例,用className
+修改样式的格式：xxx.style.属性＝值
+JS用style修改属性时，如果CSS的属性有"-"的话，通常把"-"去掉，然后把"-"后面的单词首字母大写

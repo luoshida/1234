@@ -35,7 +35,16 @@
 }
 .top .account ul li:nth-child(1){
 	margin-right: 27px;
+	opacity: 0.6;
+}
+.top .account li{
 	position: relative;
+}
+.top .account li:nth-child(1):hover{
+	opacity: 1;
+}
+.top .account li:nth-child(2) a:hover+div{
+	opacity: 1;
 }
 .hx:after{
 	content: "";
@@ -46,6 +55,109 @@
 	top: 3px;
 	left: -49px;
 }
-.top div a:hover{
+.top .show .link li a:hover{
 	color: #fff;
 }
+.top .account li div{
+	position: absolute;
+	top: 22px;
+    right: -16px;
+    z-index: 2;
+	opacity: 0;
+}
+.content{
+	background: #e5e5e5;
+}
+.content .label{
+	height: 90px;
+}
+.content .label li{
+	margin-right: 20px;
+}
+.content .label li a{
+	text-decoration: none;
+	color: #616161;
+	font-size: 14px;
+	line-height: 90px;
+}
+.content .label li:first-child a{
+	font-weight: 900;
+	color: #222;
+}
+.content .label li:first-child{
+	margin-left: 10px;
+}
+.dot:before{
+	content: "·";
+	color: #c7c7c7;
+	margin-right: 20px;
+}
+.content .show{
+	height: 501px;
+	position: relative;
+	border: 1px solid #d2d2d2;
+	border-radius: 10px;
+}
+.content .show a img{
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	position: absolute;	
+}
+.content .show input:nth-child(1){
+	position: absolute;
+	left: 585px;
+    top: 438px;
+	z-index: 2;
+	opacity: 0.5;
+}
+.content .show input:nth-child(2){
+	position: absolute;
+	left: 603px;
+	top: 438px;
+	z-index: 2;
+	opacity: 0.5;
+}
+.content .show input:nth-child(3){
+	position: absolute;
+	left: 623px;
+	top: 438px;
+	z-index: 2;
+	opacity: 0.5;
+}
+.content .show a:nth-child(6) img{
+	animation: changea 18s linear infinite;
+}
+@keyframes changea{
+			0%{
+				opacity: 1;
+			}
+			23%{
+				opacity: 1;
+			}
+			34%{
+				opacity: 0;
+			}
+			89%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+.content .show a:nth-child(5) img{
+	animation: changeb 18s linear infinite;
+}
+@keyframes changeb{
+			0%{
+				opacity: 1;
+			}
+			56%{
+				opacity: 1;
+			}
+			67%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0;
+			}
