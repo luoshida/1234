@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		
+	</style>
+	<script>
+		var n=3
+		if (n==1) {
+//条件的求值结果即if后（）内的求值结果永远是一个布尔值,即只能是true或false,花括号中的语句不管它们有多少条，只有在给定条件的求值结果是true的情况下才会执行
+			alert(n);
+		}else{
+			alert(n+1);
+		}
+
+
+
+		if(n == 1){
+    		//代码1
+		}else if(n == 2){
+    		//代码2
+		}else if(n == 3){
+    		//代码3
+		}else{
+    		//其他代码
+		}
+
+
+		var num='2';
+		num>5 ? alert('大于5') : alert('不大于5');
+
+		
+		switch('2'){
+　//当所有的分支都依赖于同一个表达式的值时，else if并不是最佳解决方案。在这种情况下，重复计算多条if语句中的条件表达式是非常浪费的做法，而switch语句正适合处理这种情况
+　//switch语句执行一个多路分支，首先计算switch(expression)的值，然后查找case子句的表达式是否和expression的值相同。如果找到匹配的case，那么将会执行这个case对应的代码块。如果找不到匹配的case，那么将会执行default标签中的代码块。如果没有default标签，switch语句将跳过它的所有代码块
+			case'1':
+				alert('monday');
+				break;
+//每一个case语句块的结尾处都使用了关键字break。break语句可以使解释器跳出switch语句或循环语句
+//在switch语句中，case只是指明了要执行的代码起点，但并没有指明终点。如果没有break语句，那么switch语句就会从与expression的值相匹配的case标签处的代码块开始执行，依次执行后续的语句，一直到整个switch代码块的结尾
+			case'2':
+				alert('tuesday');
+				break;
+			case'3':
+				alert('wednesday');
+				break;
+			default:
+				alert(错误)
+		}
+//可以在switch语句中使用任何数据类型(在很多其他语言中只能使用数值)，而且每个case的值不一定是常量，可以是变量或表达式
+//switch语句中，对每个case的匹配操作实际上是'==='恒等运算符比较，而不是'=='相等运算符比较，因此，表达式和case的匹配并不会做任何类型转换
+	</script>
+</head>
+<body>
+	
+</body>
+</html> 

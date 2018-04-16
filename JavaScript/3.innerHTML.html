@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1</title>
+	<style type="text/css">
+		textarea{
+			display: block;
+			width: 300px;
+			height: 100px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var otxt=document.getElementById('txt');
+			var obtn1=document.getElementById('btn1');
+			var obtn2=document.getElementById('btn2');
+			obtn1.onclick=function(){
+				obtn2.innerHTML=otxt.value;
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="txt">
+	<input type="button" id="btn1" value="提交">
+	<textarea id="btn2"></textarea>
+</body>
+</html>
