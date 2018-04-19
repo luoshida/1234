@@ -13,7 +13,7 @@
 	<script >
 		var i=2  //直到...为止
 		while(i<5){
-// 当表达式(i<5)-(expression)是真值时则循环执行i++;-statement直到expression的值为假值为止；如果是假值，那么程序将跳过循环
+// 当表达式(i<5)-(expression)(循环退出条件)是真值时则循环执行alert(i);-(statement)(循环体语句)，i++;(循环条件的改变) 直到expression的值为假值为止；如果是假值，那么程序将跳过循环
 // 　　[注意]使用while(true)会创建一个死循环
 // 　　大多数循环都会有一个像count这样的计数器变量。尽管循环计数器常用i、j、k这样的变量名，但如果想要让代码可读性更强，就应当使用更具语义的变量名
 			alert(i);
@@ -24,6 +24,7 @@
 		for(var i=0;i<5;i++){
 			alert(i);
 		}
+
 
 		var count = 10;
 		var i;

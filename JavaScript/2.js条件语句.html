@@ -33,7 +33,7 @@
 		
 		switch('2'){
 　//当所有的分支都依赖于同一个表达式的值时，else if并不是最佳解决方案。在这种情况下，重复计算多条if语句中的条件表达式是非常浪费的做法，而switch语句正适合处理这种情况
-　//switch语句执行一个多路分支，首先计算switch(expression)的值，然后查找case子句的表达式是否和expression的值相同。如果找到匹配的case，那么将会执行这个case对应的代码块。如果找不到匹配的case，那么将会执行default标签中的代码块。如果没有default标签，switch语句将跳过它的所有代码块
+　//switch语句执行一个多路分支，首先计算switch(expression)变量的值，然后查找case子句的表达式是否和expression变量的值相同。如果找到匹配的case，那么将会执行这个case对应的代码块。如果找不到匹配的case，那么将会执行default标签中的代码块。如果没有default标签，switch语句将跳过它的所有代码块
 			case'1':
 				alert('monday');
 				break;

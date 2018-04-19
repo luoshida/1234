@@ -34,15 +34,15 @@
 		window.onload=function(){
 			var oli=document.getElementsByTagName('li');
 			var obox=document.getElementById('box')
-			var arr =[a,b,c,d,e,f,g,h,i,j,k,l];
 			for (var i = 0; i < oli.length; i++) {
 				oli[i].index=i;
+				var arr =['a','b','c','d','e','f','g','h','i','j','k','l'];
 				oli[i].onmouseover=function(){
 					for (var j= 0; j < oli.length; j++) {
 						oli[j].className='';
 					}
 					this.className="ggg";
-					obox.innerHTML='<h1>"+(this.index+1)+"月</h1><p>"+arr[this.index]+"</p>';
+					obox.innerHTML='<h1>'+(this.index+1)+'月</h1><p>'+arr[this.index]+'</p>';
 				}
 			}
 		}
