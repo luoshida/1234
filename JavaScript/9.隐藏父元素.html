@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var oul=document.getElementById('ul1');
+			var oa=document.getElementsByTagName('a');
+			for(var i=0;i<oa.length;i++){
+				oa[i].onclick=function(){
+					this.parentNode.style.display='none';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul id="ul1"> 
+		<li>aa1<a href="javascript:;">hide</a></li>
+		<li>aa2<a href="javascript:;">hide</a></li>
+		<li>aa3<a href="javascript:;">hide</a></li>
+		<li>aa4<a href="javascript:;">hide</a></li>
+		<li>aa5<a href="javascript:;">hide</a></li>
+	</ul>
+</body>
+</html>
