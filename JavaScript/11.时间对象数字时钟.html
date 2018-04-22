@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>time</title>
+	<style>
+		body{
+			background: #000;
+		}
+		#box{
+			width: 200px;
+			color: white;
+			margin: 40px auto;
+		}
+	</style>
+	<script>
+		function tostr(n){
+			if (n<10) {
+				return '0'+n;
+			} else {
+				return ''+n;
+			}
+		}
+		window.onload=function(){
+			var obox=document.getElementById('box');
+			var oimg=document.getElementsByTagName('img');
+			function timer(){
+				var now=new Date();
+				var h=now.getHours();
+				var m=now.getMinutes();
+				var s=now.getSeconds();
+				var str=tostr(h)+tostr(m)+tostr(s);
+				for (var i = 0; i < oimg.length; i++) {
+					oimg[i].src='images/'+str.charAt(i)+'.png';
+				}	
+			}
+			setInterval(timer,1000);
+			timer();	
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<img src="images/1.png" alt="">
+		<img src="images/2.png" alt="">
+		:
+		<img src="images/2.png" alt="">
+		<img src="images/2.png" alt="">
+		:
+		<img src="images/2.png" alt="">
+		<img src="images/2.png" alt="">
+
+	</div>
+</body>
+</html>
