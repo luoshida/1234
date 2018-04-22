@@ -8,11 +8,25 @@
 			var oUl=document.getElementById('ul1');
 			var oBtn=document.getElementById('btn');
 			var oInput=document.getElementById('inputt');
-			oAdd.onclick=function(){
+			oBtn.onclick=function(){
 				var oLi=document.createElement('li');
 				oLi.innerHTML=oInput.value;
-			}
-			oUl.appendChild(oLi); 
+				//创建一个li元素
+				oUl.appendChild(oLi);
+				//在oUl插入一个oLi子元素
+				//oUl.insertBefore(oLi,oUl.firstElementChild);
+				//在oUl.firstElementChild之前插入oLi子元素
+				var oA=document.createElement('a');
+				oA.onclick=function(){
+					oUl.removeChild(this.parentNode);
+					// oUl.removeChild(oLi);
+				}
+				oA.innerHTML='del';
+				oA.href='javascript:';
+				oLi.appendChild(oA);
+				
+				
+			} 
 		}
 	</script>
 </head>
