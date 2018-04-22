@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js动画animation</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: green;
+			margin-left: 0px;
+			position: absolute;
+			left: 0px;
+			top: 100px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var obtn=document.getElementById('btn');
+			var obox=document.getElementById('box');
+			
+			setInterval(obtn.onclick=function(){
+				isspeed=5;
+				obox.style.left=obox.offsetLeft+isspeed+'px';
+			},1000);
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="走" id="btn"> 
+	<div id="box"></div>
+</body>
+</html>
