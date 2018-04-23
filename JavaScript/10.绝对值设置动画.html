@@ -18,12 +18,25 @@
 		window.onload=function(){
 			var obtn=document.getElementById('btn');
 			var obox=document.getElementById('box');
-			
-			setInterval(obtn.onclick=function(){
-				isspeed=5;
-				obox.style.left=obox.offsetLeft+isspeed+'px';
-			},1000);
-		}
+			var isspeed=0;
+			var timer=null;
+			obtn.onclick=function(){
+				if (obox.offsetLeft<300) {
+					isspeed=5;
+				} else {
+					isspeed=-5;
+				}
+				clearInterval(timer);
+				timer = setInterval(function(){
+					if (Math.abs(300-obox.offsetLeft)<=Math.abs(isspeed)) {
+						obox.style.left='300px';
+						clearInterval(timer);
+					} else {
+						obox.style.left=obox.offsetLeft+isspeed+'px';
+					}
+				},30);
+			}	
+		} 
 	</script>
 </head>
 <body>
