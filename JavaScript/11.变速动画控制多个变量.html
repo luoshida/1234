@@ -23,7 +23,7 @@
 		}
 	</style>
 	<script>
-		function animation(obj,attr,iTarget ){
+		function animation(obj,attr,iTarget){
 			clearInterval(obj.timer);
 			obj.timer=setInterval(function(){
 				var str=parseFloat(getComputedStyle(obj,false)[attr]);
