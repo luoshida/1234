@@ -25,13 +25,12 @@
 		}
 	</style>
 	<script>
-		//isLinear默认为true线性 false为非线性
-
+		//isLinear默认为true线性 false为非线性 
 		function animation(obj,opation,isLinear,fnadd){
 			clearInterval(obj.timer);
 			var iSpeed = 0; 	
 			obj.timer = setInterval(function(){
-				var isdown=true;
+				var isStopAll=true;
 				for(attr in opation){
 					var curr = parseFloat(getComputedStyle(obj,false)[attr]);
 					var isStop = false;
@@ -44,18 +43,18 @@
 						} else {
 							iSpeed = -20;
 						}
-						if (Math.abs(curr-opation[attr]) <= Math.abs(iSpeed)) {
+						if (Math.abs(curr - opation[attr]) <= Math.abs(iSpeed)) {
 							isStop = true;
 						}else{
-							isdown = false;
+							isStopAll = false;
 						}
 					}else{
-						iSpeed = (opation[attr]-curr) / 10;
+						iSpeed = (opation[attr] - curr) / 10;
 						iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
 						if (!iSpeed) {
 							isStop = true;
 						}else{
-							isdown = false;
+							isStopAll = false;
 						}
 					}
 					if (isStop) {
@@ -66,18 +65,19 @@
 								obj.style[attr] = opation[attr] + 'px';
 							}
 						}
-						if (isdown) {
-							clearInterval(obj.timer);
-							if (fnadd) {
-								fnadd();
-							}
-						}			
+									
 					} else {
 						if (attr == 'opacity') {
 							obj.style[attr] = (curr + iSpeed) / 100;
 						} else {
 							obj.style[attr] = curr + iSpeed + 'px';
 						}
+					}
+				}
+				if (isStopAll) {
+					clearInterval(obj.timer);
+					if (fnadd) {
+						fnadd();
 					}
 				}
 			},30)

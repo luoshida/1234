@@ -47,6 +47,7 @@
 			float: left;
 		}
 		</style>
+		<script src="js/animation.js"></script>
 		<script>
 			window.onload=function(){
 				var oul=document.getElementById('ul1');
@@ -62,8 +63,12 @@
 					for (var i = 0; i < oli.length; i++) {
 						oli[i].style.zIndex=0;
 						oli2[i].style.background='';
+						oli[i].style.opacity=0;
 					}
 					oli[now].style.zIndex=30;
+					
+					animation(oli[now],{'opacity':100},false);
+					
 					oli2[now].style.background='red';
 				}
 				oright.onclick=function(){
@@ -90,7 +95,7 @@
 				
 				var timer =setInterval(function(){
 					oright.onclick();
-				},5000);
+				},3000);
 				
 				obox.onmouseover=function(){
 					clearInterval(timer); 
@@ -99,7 +104,7 @@
 				obox.onmouseout=function(){
 					timer =setInterval(function(){
 						oright.onclick();
-					},5000);
+					},3000);
 				}	
 			}  
 		</script>

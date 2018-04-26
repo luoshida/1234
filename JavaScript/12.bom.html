@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bom</title>
+	<script>
+		window.onload=function(){
+			var obtn=document.getElementById('btn');
+			var otxt=document.getElementById('txt');
+			obtn.onclick=function(){
+				window.open('about:blank','_blank')
+				var onew=window.open('about:blank','_blank')
+				onew.write(otxt.value)
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" id="btn">
+	<input type="text" id="txt" >
+</body>
+</html>
