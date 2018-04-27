@@ -4,19 +4,38 @@
 	<meta charset="UTF-8">
 	<title>bom</title>
 	<script>
+		alert(window.navigator.userAgent);
+		//获取浏览器信息
+		location.href='http://www.baidu.com';
+		window.location='http://www.baidu.com';
+		window.location.assign('http://www.baidu.com');
+		//改变页面网址
+		history.go(-1) == history.back();
+		history.go(1) == history.forward();
+		//历史记录跳转
+		prompt("请输入你的姓名？");
+		//弹框显示()内内容，并让你输入名字
+		confirm("你确定删除吗?");
+		//弹框显示确认删除项跟alert的弹框一样
+	
 		window.onload=function(){
 			var obtn=document.getElementById('btn');
+			var obtn1=document.getElementById('btn1');
 			var otxt=document.getElementById('txt');
 			obtn.onclick=function(){
-				window.open('about:blank','_blank')
 				var onew=window.open('about:blank','_blank')
-				onew.write(otxt.value)
+				onew.document.write(otxt.value);
 			}
+			obtn1.onclick=function(){
+				window.close();
+			}
+
 		}
 	</script>
 </head>
 <body>
 	<input type="button" id="btn">
+	<input type="button" id="btn1">
 	<input type="text" id="txt" >
 </body>
 </html>

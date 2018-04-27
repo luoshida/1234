@@ -20,6 +20,9 @@ git branch查看分支
 git checkout dev切换分支
 git branch -d dev删除分支
 git checkout -b dev origin/dev抓取分支
+抓取失败时
+git branch --set-upstream-to=origin/dev dev
+git branch --set-upstream dev origin/dev
 git push origin dev推送分支
 cd xxx
 git init 
