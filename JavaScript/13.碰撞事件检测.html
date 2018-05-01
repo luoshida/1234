@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>122-事件-碰撞检测.html</title>
+	<style>
+		#div1{
+			width: 100px;
+			height: 100px;
+			background: green;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		#div2{
+			width: 200px;
+			height: 200px;
+			background: gray;
+			position: absolute;
+			top:300px;
+			left:500px;
+		}
+	</style>
+	<script>
+		function checkKiss(obj1,obj2){
+			if ((obj1.offsetTop+obj1.offsetHeight)>obj2.offsetTop && 
+			(obj1.offsetLeft+obj1.offsetWidth)> obj2.offsetLeft &&
+			(obj2.offsetLeft+obj2.offsetWidth) > obj1.offsetLeft &&
+			(obj2.offsetTop+obj2.offsetHeight) > obj1.offsetTop) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
+		window.onload=function(){
+			var oDiv1=document.getElementById('div1');
+			var oDiv2=document.getElementById('div2');
+			var disX=0;
+			var disY=0;
+			
+			oDiv1.onmousedown=function(ev){
+				var oEvent=ev || event;
+				disX=oEvent.clientX-oDiv1.offsetLeft;
+				disY=oEvent.clientY-oDiv1.offsetTop;
+
+				document.onmousemove=function(ev){
+					var oEvent=ev || event;
+					var l=oEvent.clientX-disX;
+					var t=oEvent.clientY-disX;
+					if (checkKiss(oDiv1,oDiv2)) {
+						oDiv2.style.background='red';
+					} else {
+						oDiv2.style.background='gray';
+					}
+
+					oDiv1.style.left=l+'px';
+					oDiv1.style.top=t+'px';
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+				}
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>
