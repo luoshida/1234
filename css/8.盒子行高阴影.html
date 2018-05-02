@@ -12,8 +12,12 @@
 		/*使行高变为知道的数值利于计算内边距和其他数值*/
 			padding: 10px 10px;
 		/*利用内边距的设置及计算使文字在方框内垂直居中*/
-			box-shadow: 2px 2px 2px 2px black;
-		/*水平距离 垂直距离 模糊距离 阴影大小 阴影颜色 内外阴影默认outset，inset;*/
+			box-shadow: 5px 5px 2px 2px black;
+		/*水平距离 垂直距离 模糊距离 阴影大小 阴影颜色 内外阴影 默认outset，inset;*/
+/*背景阴影默认的颜色是盒子内容的颜色一样
+快速添加阴影只需写前三个参数即可
+前两个参数允许取负值
+默认是外阴影(outset),可以把最后一个参数改为inset来设置为内阴影*/
 			}
 			div:hover{/*当鼠标悬浮时盒子的阴影*/
 				box-shadow: 2px 2px 2px 2px black;

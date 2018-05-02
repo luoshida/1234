@@ -20,13 +20,11 @@
 	<script>
 		window.onload=function(){
 			var oDiv=document.getElementById('div1');
-			var disX=0;
-			var disY=0;
 			
 			oDiv.onmousedown=function(ev){
 				var oEvent=ev || event;
-				disX=oEvent.clientX-oDiv.offsetLeft;
-				disY=oEvent.clientY-oDiv.offsetTop;
+				var disX=oEvent.clientX-oDiv.offsetLeft;
+				var disY=oEvent.clientY-oDiv.offsetTop;
 
 				document.onmousemove=function(ev){
 					var oEvent=ev || event;
