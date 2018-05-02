@@ -4,17 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style>
-	*{
-		padding: 0;
-		margin: 0;
-	}
+		*{
+			margin: 0;
+			padding: 0;
+		}
 		#div1{
 			width: 100px;
 			height: 100px;
-			background: #000;
+			background: red;
 			position: absolute;
-			left: 0;
-			top: 0;
+			top:0;
+			left:0;
+		}
+		.box{
+			border: 1px dashed #000;
+			box-sizing: border-box;
+			position: absolute;
 		}
 	</style>
 	<script>
@@ -27,29 +32,27 @@
 				var oEvent=ev || event;
 				disX=oEvent.clientX-oDiv.offsetLeft;
 				disY=oEvent.clientY-oDiv.offsetTop;
-
+				var oBox=document.createElement('div');
+				oBox.className='box';
+				oBox.style.width=oDiv.offsetWidth+'px';
+				oBox.style.height=oDiv.offsetHeight+'px';
+				oBox.style.left=oDiv.offsetLeft+'px';
+				oBox.style.top=oDiv.offsetTop+'px';
+				document.body.appendChild(oBox);
 				document.onmousemove=function(ev){
 					var oEvent=ev || event;
 					var l=oEvent.clientX-disX;
 					var t=oEvent.clientY-disX;
-					var w=window.innerWidth - oDiv.offsetWidth;
-					var h=window.innerHeight -oDiv.offsetHeight;
-					if (l<0) {
-						l=0;
-					}else if(l > w){
-						l = w;
-					}
-					if (t<0) {
-						t=0;
-					}else if(t > h){
-						t = h;
-					}
-					oDiv.style.left=l+'px';
-					oDiv.style.top=t+'px';
+		
+					oBox.style.left=l+'px';
+					oBox.style.top=t+'px';
 				}
 				document.onmouseup=function(){
 					document.onmousemove=null;
 					document.onmouseup=null;
+					oDiv.style.left=oBox.offsetLeft+'px';
+					oDiv.style.top=oBox.offsetTop+'px';
+					document.body.removeChild(oBox);
 				}
 
 			}
@@ -57,6 +60,6 @@
 	</script>
 </head>
 <body>
-	<div id='div1'></div>
+	<div id="div1"></div>
 </body>
 </html>
