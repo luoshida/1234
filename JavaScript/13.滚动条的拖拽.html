@@ -39,34 +39,39 @@
 			var oBox2=document.getElementById('box2');
 			var oBox3=document.getElementById('box3');
 			var oBox4=document.getElementById('box4');
+			
 			oBox2.onmousedown=function(ev){
 				var oEvent=ev || event;
 				var disX=oEvent.clientX-oBox2.offsetLeft;
-
+				var l=0;
 				document.onmousemove=function(ev){
 					var oEvent=ev || event;
-					var l=oEvent.clientX-disX;
+					l=oEvent.clientX-disX;
+					handleMove();
+				}
+				oBox1.onmousewheel=function(ev){
+					var oEvent=ev || event;
+
+					if (oEvent.wheelDelta>0) {
+						l+=10;
+					} else {
+						l-=10;
+					}
+					handleMove();
+					return false;
+	
+				}
+				function handleMove(){
 					if (l<0) {
 						l=0;
 					}else if(l>(oBox1.offsetWidth-oBox2.offsetWidth)){
 						l=oBox1.offsetWidth-oBox2.offsetWidth;
 					}
 					
-					document.onmousewheel=function(ev){	
-						var oEvent=ev || event;
-						if (oEvent.wheelDelta>0) {
-							l-=10;
-						} else {
-							l+=10;
-						}
-						return false;
-					}
-					console.log(l);
-					oBox2.style.left=l+'px';
 					var ave=l/(oBox1.offsetWidth-oBox2.offsetWidth);
+					oBox2.style.left=l+'px';
 					oBox4.style.top=(oBox3.offsetHeight-oBox4.offsetHeight)*ave+'px';
 				}
-				
 				document.onmouseup=function(){
 					document.onmousemove=null;
 					document.onmouseup=null;
