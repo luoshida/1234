@@ -31,7 +31,7 @@
 			display: none;
 		}
 		#bigbox img{
-			top: 
+			
 			position: absolute;
 		}
 		#list{
@@ -106,14 +106,14 @@
 					}
 					omask.style.top=t+'px';
 					omask.style.left=l+'px';
-					oimg.style.left=-l*oimg.offsetWidth/omask.offsetWidth+'px';
-					oimg.style.top=-t*oimg.offsetHeight/omask.offsetHeight+'px';
+					oimg.style.left=-l*(osmallbox.offsetWidth-omask.offsetWidth)/(oimg.offsetWidth-obigbox.offsetWidth)+'px';
+					oimg.style.top=-t*(osmallbox.offsetHeight-omask.offsetHeight)/(oimg.offsetHeight-obigbox.offsetHeight)+'px';
 				}
 			}
 			osmallbox.onmouseout=function(){
 				obigbox.style.display='none';
 				omask.style.display='none';
-			}
+			} 
 		}
 	</script>
 </head>

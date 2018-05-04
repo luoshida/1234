@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var oinp=document.getElementById('inp');
+			var otxt=document.getElementById('txt');
+			oinp.onfocus=function(){
+				otxt.innerHTML='请输入6到8位数字';
+				otxt.style.color='green';
+			}
+			oinp.onblur=function(){
+				if (oinp.value.length>=6 && oinp.value.length<=8) {
+					otxt.innerHTML='输入正确';
+					otxt.style.color='green';
+				} else {
+					otxt.innerHTML='输入错误';
+					otxt.style.color='red';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="txt" name="username" id="inp">
+	<span id="txt"></span>
+	<p>
+		<input type="submit">
+	</p>
+	
+</body>
+</html>
