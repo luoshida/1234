@@ -57,7 +57,7 @@
 			
 
 			var creatTopLine;
-			clearInterval(creatTopLine);
+			// clearInterval(creatTopLine);
 			creatTopLine=setInterval(function(){
 				var oTopLine=document.createElement('div');
 				var oBottomLine=document.createElement('div');
@@ -72,7 +72,7 @@
 			},1000)
 
 			var moveLineTimer;
-			clearInterval(moveLineTimer);
+			// clearInterval(moveLineTimer);
 			moveLineTimer=setInterval(function(){
 				var aTopLine=document.getElementsByClassName('topLine');
 				var aBottomLine=document.getElementsByClassName('bottomLine');
@@ -96,7 +96,7 @@
 			var moveBirdTimer;
 			var iSpeed=0;
 			var isDie=false;
-			clearInterval(moveBirdTimer);
+			// clearInterval(moveBirdTimer);
 			moveBirdTimer=setInterval(function(){
 				
 				iSpeed+=0.5;
@@ -110,6 +110,9 @@
 				}
 				oBird.style.top=t+'px';
 			},30)
+
+
+			
 			document.onkeydown=function(){
 				if (isDie) {
 					return false;

@@ -4,6 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Magnifier</title>
 	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
 		#smallbox{
 			width: 200px;
 			height: 200px;
@@ -23,6 +27,12 @@
 			position: absolute;
 			top: 0px;
 			left: 210px;
+			overflow: hidden;
+			display: none;
+		}
+		#bigbox img{
+			top: 
+			position: absolute;
 		}
 		#list{
 			width: 200px;
@@ -34,25 +44,91 @@
 		#list li{
 			list-style: none;
 			float: left;
-		}   
-		#list img{
+			margin-right: 10px;
+			cursor: pointer;
+
+		} 
+		#list li.active{
+			border: 1px solid #f00;
+		}  
+		#list li img{
 			width: 50px;
 			height: 50px;
 		}
+		#mask{
+			width: 150px;
+			height: 150px;
+			background: rgba(255,255,0,0.5);
+			position: absolute;
+			top: 0;
+			left: 0;
+			cursor: move;
+			display: none;
+		}
+
 	</style>
+	<script>
+		window.onload=function(){
+			var osmallbox=document.getElementById('smallbox');
+			var olist=document.getElementById('list');
+			var omask=document.getElementById('mask');
+			var obigbox=document.getElementById('bigbox');
+			var oimg=document.getElementById('img1');
+			var oli=olist.getElementsByTagName('li');
+			for (var i = 0; i < oli.length; i++) {	
+				oli[i].index=i;	
+				oli[i].onmouseover=function(){
+					for (var j = 0; j < oli.length; j++){
+						oli[j].className='';
+					}
+					this.className='active';
+					osmallbox.children[0].src='images/p_b_000'+(this.index+1)+'.jpg';
+					obigbox.children[0].src='images/p_b_000'+(this.index+1)+'.jpg';			
+				}
+						
+			}
+			osmallbox.onmouseover=function(ev){
+				omask.style.display='block';
+				obigbox.style.display='block';
+				document.onmousemove=function(ev){
+					var oEvent=ev || event;
+					var l=oEvent.clientX- omask.offsetWidth*0.5;
+					var t=oEvent.clientY- omask.offsetHeight*0.5;
+					if (t<0) {
+						t=0
+					}else if(t>osmallbox.offsetHeight-omask.offsetHeight){
+						t=osmallbox.offsetHeight-omask.offsetHeight;
+					}
+					if (l<0) {
+						l=0
+					}else if(l>osmallbox.offsetWidth-omask.offsetWidth){
+						l=osmallbox.offsetWidth-omask.offsetWidth;
+					}
+					omask.style.top=t+'px';
+					omask.style.left=l+'px';
+					oimg.style.left=-l*oimg.offsetWidth/omask.offsetWidth+'px';
+					oimg.style.top=-t*oimg.offsetHeight/omask.offsetHeight+'px';
+				}
+			}
+			osmallbox.onmouseout=function(){
+				obigbox.style.display='none';
+				omask.style.display='none';
+			}
+		}
+	</script>
 </head>
 <body>
 	<div id="smallbox">
-		<img src="../54/1080+19202.jpg">
-		<span></span>
+		<img src="images/p_b_0001.jpg">
+		<span id="mask"></span>
 	</div>
 	<div id="list">
 		<ul>
-			<li><img src="../54/1080+19202.jpg"></li>
-			<li><img src="../54/1080+19203.jpg"></li>
-			<li><img src="../54/1080+19204.jpg"></li>
+			<li class="active"><img src="images/p_b_0001.jpg"></li>
+			<li><img src="images/p_b_0002.jpg"></li>
+			<li><img src="images/p_b_0003.jpg"></li>
 		</ul>
 	</div>
-	<div id="bigbox"></div>
+	<div id="bigbox"><img src="images/p_b_0001.jpg" id="img1"></div>
 </body>
 </html>

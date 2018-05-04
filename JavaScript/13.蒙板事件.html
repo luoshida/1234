@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			height: 3000px;
+		}
+		#box1{
+			width: 300px;
+			height: 300px;
+			background: white;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			margin-top: -150px;
+			margin-left: -150px;
+			display: none;
+		}
+		#mask{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(0,0,0,0.5);
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBox1=document.getElementById('box1');
+			var obtn1=document.getElementById('btn1');
+			var obtn2=document.getElementById('btn2');
+			var omask=document.getElementById('mask');
+			obtn1.onclick=function(ev){
+				var oEvent=ev || event;
+				oBox1.style.display='block';
+				omask.style.display='block';
+				document.body.style.overflow='hidden';
+				oEvent.stopPropagation();
+			}
+			document.onclick=function(){
+				oBox1.style.display='none';
+				omask.style.display='none';
+				document.body.style.overflow='visible';
+			}
+			oBox1.onclick=function(ev){
+				var oEvent=ev || event;
+				oEvent.stopPropagation();
+			}
+			obtn2.onclick=function(){
+				window.location='http://www.baidu.com/';
+			}
+		}
+		
+	</script>
+</head>
+<body>
+	<input type="button" value="登录" id="btn1">
+	<div id="mask"></div>
+	<div id="box1">
+		<input type="button" value="登录" id="btn2">
+	</div>
+	
+</body>
+</html>
