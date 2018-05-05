@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//创建对象,对象属性不会重复
+		var obj={
+			name:'luoshida',
+			age:22,
+			name:'bird',
+			newFunction:function(){
+				console.log('hello'+' '+this.name);
+			}
+		};
+		for(key in obj){
+			console.log(key);
+		}
+		console.log(obj.name);
+		obj.newFunction();
+
+
+
+		//利用对象属性不重复，来去除数组的重复元素
+		var theArray=[1,2,3,4,4,3,2,1];
+
+		function newArray(arr){
+			var result=[];
+			var obj1={};
+			for (var i = 0; i < arr.length; i++) {
+				obj1[arr[i]]='';	
+			}
+			for(key in obj1){	
+				result.push(parseInt(key));
+			}	
+			return result;
+		}
+		
+		console.log(theArray);
+		console.log(newArray(theArray));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
