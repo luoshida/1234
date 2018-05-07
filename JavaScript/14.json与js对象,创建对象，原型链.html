@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Difference</title>
+	<script>
+		var theJson='{"name":"luoshida","age":22,"ooo":45}'
+		//json里的值不能是函数
+		//json类型为字符串
+		var theObj=JSON.parse(theJson);
+		//json转化为js对象
+		var newJson=JSON.stringify(theObj);
+		//js对象转化为json
+		console.log(typeof theJson);
+		console.log(typeof theObj);
+		console.log(typeof newJson);
+		
+		
+		//创建对象（1）
+		var person=new Array(1,8,4,2,9,6);
+		person.name='luoshida';
+		person.age=15;
+		person.usename=function(){
+			console.log(this.name);
+		}
+
+		//创建对象（2）
+		var arr = [];
+		console.log(arr);
+		var obj = new Object();
+		obj.name = 'Tom';
+		obj.age = 18;
+		obj.sayHi = function(){
+			console.log(this.name + ' say Hello');
+		}
+		obj.sayHi();
+
+		//创建对象（3）
+		function createPerson(name,age){
+			var obj = new Object();
+			obj.name = name;
+			obj.age = age;
+			obj.showName = function(){
+				console.log("I am "+this.name);
+			}
+			obj.showAge = function(){
+				console.log("I am "+this.age + " years old");	
+			}
+			return obj;
+		}
+		var p1 = createPerson("Tom",18);
+		p1.showName();
+		p1.showAge();
+		var p2 = createPerson("Leo",88);
+		p2.showName();
+		p2.showAge();
+		console.log(p1.showName == p2.showName);//工厂模式创建的不相等
+
+
+		var arr=[1,2,3,4];
+		arr.sum=function(){  
+			var result=0;
+			for (var i = 0; i < arr.length; i++) {
+				result+=arr[i]
+			}
+			return result;
+		}
+		console.log(arr.sum());
+		
+
+		function Person(name,age){//构造函数 类
+			this.name=name;
+			this.age=age;
+			if(!this.usename){
+				Person.prototype.usename=function(){
+				//实例方法
+					console.log(this.name+'ooo')
+				}
+			};
+			if(!this.useage){
+				Person.prototype.useage=function(){
+					console.log(this.age+'ppp')
+				}
+			};
+			
+		}
+		Person.sum=function(a,b){//静态方法
+			return a+b;
+		}
+		console.log(Person.sum(1,2))
+		var p1=new Person('luoshdia','22');//对象实例
+		p1.usename();
+		var p2=new Person('nnn','22');
+		p2.usename();
+		console.log(p1.useage==p2.useage);
+		console.log(Person.prototype);//原型对象
+		//原型就是一个对象，所有的实例共享对象上的方法和属性
+		console.log(Person.prototype.constructor==Person)//构造函数
+		// 系统会给原型对象上添加一个constructor对象(prototype.constructor)，就是构造器，整个构造器指向构造函数本身
+		console.log(Person.prototype.__proto__ == Object.prototype);
+		//系统会给原型对象上添加另外一个__proto__的对象(prototype.__proto__)，该对象指向Object的原型对象(Object.prototype)
+		console.log(Object.prototype.constructor == Object);
+		//Object的原型对象(Object.prototype) 里面也有constructor对象和__proto__对象,constructor对象指向Object自己，__proto__对象指向null
+		console.log(Object.prototype.__proto__ );
+		//Object的原型对象(Object.prototype) 里面除了constructor对象和__proto__对象外，还有一些系统自带的方法，比如toString(),valueOf()等等
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function Person(name,age){
+			this.name=name;
+			this.age=age;
+			Person.prototype.showName=function(){
+				console.log('hello'+this.name+this.leg)
+			}
+		};
+		Person.prototype.leg=2;
+		var p1= new Person('tom',18);
+		//实例上添加一个实例上的同名属性会覆盖原来的
+		p1.leg=4;
+		//删除属性
+		//删除实质是判断有没有该属性，如果有删除返回真，若没有，直接返回真
+		delete Person.prototype.leg;
+		delete p1.leg;
+
+		var obj={};
+		//定义一个属性，该属性具有一定的特性
+		Object.defineProperty(obj,"name",{value:"tom",enumerable:true,writable:true,configurable:true})
+		//enumerable:true,是否可以枚举,被for循环,默认是false 
+		//writable:true,是否可写(赋值),默认是false 
+		//configurable:true 是否可删除,是否可以修改属性的权限，默认是false
+//Object.defineProperty(对象,属性名,{value:属性值,enumerable:true,writable:true,configurable:true });
+
+		//定义多个属性
+		Object.defineProperties(obj,{
+			"name",{
+				value:"tom",writable:true,enumerable:true,cinfigurable:true
+			},
+			"age",{
+				value:"18",writable:true,enumerable:true,configurable:true
+			}
+		});
+//Object.defineProperties(对象,{属性名1:{value:属性值,writable:true},属性名2:{value属性值,enumerable:true},属性名3:{value:属性值}});
+		
+		//查看属性的权限
+		console.log(Object.getOwnPropertyDescriptor(obj,"name"));
+
+		//判断对象上是否有该属性
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype.showName = function(){
+			console.log("I am "+ this.name+" I have "+this.LEGS + ' legs');
+		}
+		Person.prototype.showAge = function(){
+			console.log("I am "+ this.age + " years old");
+		}
+		// Person.prototype.LEGS = 2;		
+		var p1 = new Person("Tom",18);
+		p1.LEGS = 2;
+
+		//判断p1的 对象实例 上是否有age属性,有返回的是true,没有返回的是false
+		console.log(p1.hasOwnProperty('age'));
+
+		//判断p1的 原型对象和对象实例 上是否有name属性,有返回的是true,没有返回的是false
+		console.log("name" in p1);
+
+		//构建函数判断p1的 原型对象 上是否有该属性
+		function hasPrototypeProperty(obj,attr){
+			return !obj.hasOwnProperty(attr) && (attr in obj);
+		}
+		console.log(hasPrototypeProperty(p1,"LEGS"));
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
