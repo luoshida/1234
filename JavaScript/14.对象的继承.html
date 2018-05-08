@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>object inherit</title>
+	<script>
+
+		function Person(name,age){
+			this.name=name;
+			this.age=age;	
+		}
+		Person.prototype.usename=function(){
+			console.log(this.name+'nnn')
+		}
+		Person.prototype.useage=function(){
+			console.log(this.age+'aaa')
+		}
+
+		function Student(name,age,className){
+			Person.call(this,name,age);
+		//属性的继承
+			this.className=className;
+		}
+		// Student.prototype.usename=function(){
+		// 	console.log(this.name+'nnn')
+		// }
+		// Student.prototype.useage=function(){
+		// 	console.log(this.age+'aaa')
+		// }
+
+		Student.prototype=Person.prototype;//方法的继承1   缺点:由于方法的继承是引用赋值,所以父类也会有子类的方法
+
+		for(key in Person.prototype){
+		//方法的继承2   缺点:如果父类的方法是不可枚举的,子类就继承不到
+			Student.prototype[key]=Person.prototype[key]
+		}
+
+		//方法的继承3   缺点:调用两次父类的构造函数,同时在子类的原型上产生了不必要的父类的属性
+		Student.prototype=new Person();
+		Student.prototype.constructor = Student;
+
+		//方法的继承4 
+		var obj = Object.create(Person.prototype);
+		//Object.create(参数) 会创建一个新对象,新创建对象的__proto__对象就是参数
+		Student.prototype = obj;
+		Student.prototype.constructor = Student;
+
+		Student.prototype.className=function(){
+			console.log('Im from'+this.className)
+		}
+		var p1=new Student("tom",20);
+		console.log(p1);
+
+
+		//对象的复制
+		var obj1={
+			name:"tom",
+			age:12
+		}
+		var obj2={};
+		for(key in obj1){
+			obj2[key]=obj1[key]
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
