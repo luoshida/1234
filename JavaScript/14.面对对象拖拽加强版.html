@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>object</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#div1{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			new tuo({width:100,height:100,background:'red',position:'absolute'});
+			new tuo({width:200,height:200,background:'yellow',position:'absolute'});
+		}
+		function tuo(opation){
+			this.oDiv=document.createElement('div');
+			this.oDiv.style.width=opation.width+'px';
+			this.oDiv.style.height=opation.height+'px';
+			this.oDiv.style.background=opation.background;
+			this.oDiv.style.position=opation.position;
+			document.body.appendChild(this.oDiv);
+			var _self=this;
+			// this.oDiv.onmousedown=this.fnDown.bind(this);
+			this.oDiv.onmousedown=function(ev){
+				var oEvent=ev || event;
+				this.disX=oEvent.clientX-this.oDiv.offsetLeft;
+				this.disY=oEvent.clientY-this.oDiv.offsetTop;
+				document.onmousemove=this.fnMove.bind(this);
+				document.onmouseup=this.fnUp;
+			}.bind(this);
+		}
+		tuo.prototype.fnMove=function(ev){
+			var oEvent=ev || event;
+			this.oDiv.style.left=oEvent.clientX-this.disX+'px';
+			this.oDiv.style.top=oEvent.clientY-this.disY+'px';
+		}
+		tuo.prototype.fnUp=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+		}
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<title>object</title>
 	<style>
-		#div{
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#div1{
 			width: 100px;
 			height: 100px;
 			background: red;
@@ -15,26 +19,35 @@
 	</style>
 	<script>
 		window.onload=function(){
-			var oDiv=document.getElementById('div');
-			oDiv.onmousedown=function(ev){
-				var oEvent=ev || event;
-				var disX=oEvent.clientX-oDiv.offsetLeft;
-				var disY=oEvent.clientY-oDiv.offsetTop;
-				document.onmousemove=function(ev){
-					var oEvent=ev || event;
-					oDiv.style.left=oEvent.clientX-disX;
-					oDiv.style.top=oEvent.clientY-disY;
-				}
-				// oDiv.onmouseup=function(){
-				// 	document.onmousemove='null';
-				// 	oDiv.onmousedown='null';
-				// }
-
-			}
+			new tuo();
+		}
+		function tuo(){
+			this.oDiv=document.getElementById('div1');
+			var _self=this;
+			// this.oDiv.onmousedown=this.fnDown.bind(this);
+			this.oDiv.onmousedown=function(){
+				_self.fnDown();
+			};
+		}
+		tuo.prototype.fnDown=function(ev){
+			var oEvent=ev || event;
+			this.disX=oEvent.clientX-this.oDiv.offsetLeft;
+			this.disY=oEvent.clientY-this.oDiv.offsetTop;
+			document.onmousemove=this.fnMove.bind(this);
+			document.onmouseup=this.fnUp;
+		}
+		tuo.prototype.fnMove=function(ev){
+			var oEvent=ev || event;
+			this.oDiv.style.left=oEvent.clientX-this.disX+'px';
+			this.oDiv.style.top=oEvent.clientY-this.disY+'px';
+		}
+		tuo.prototype.fnUp=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
 		}
 	</script>
 </head>
 <body>
-	<div id="div"></div>
+	<div id="div1"></div>
 </body>
 </html>

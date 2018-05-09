@@ -1,0 +1,41 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+	</style>
+
+</head>
+<body>	
+	<div id="div1"></div>	
+</body>
+<script>
+	function king(option){
+		this.oDiv=document.getElementById(option.id);
+		this.son();
+	}
+	king.prototype.son=function(){
+		this.oUl1=document.createElement('ul');
+		this.oDiv.appendChild(this.oUl1);
+		for (var i = 0; i < oImg.length; i++) {
+			this.oLi1=document.createElement('li');
+			this.oUl1.appendChild(this.oli1);
+		}
+		
+	}
+	new king({
+		id:'div1',
+		oImg:[
+			'images/p_b_0001.jpg','images/p_b_0002.jpg','images/p_b_0003.jpg'
+		],
+		width:'800px',
+		height:'600px',
+	});
+</script>
+</html>

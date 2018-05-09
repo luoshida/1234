@@ -27,7 +27,7 @@
 		// Student.prototype.useage=function(){
 		// 	console.log(this.age+'aaa')
 		// }
-
+ 
 		Student.prototype=Person.prototype;//方法的继承1   缺点:由于方法的继承是引用赋值,所以父类也会有子类的方法
 
 		for(key in Person.prototype){
@@ -50,7 +50,6 @@
 		}
 		var p1=new Student("tom",20);
 		console.log(p1);
-
 
 		//对象的复制
 		var obj1={
