@@ -8,29 +8,36 @@
 			margin: 0;
 			padding: 0;
 		}
-		#div1{
-			width: 100px;
-			height: 100px;
-			background: red;
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
+
 	</style>
 	<script>
 		window.onload=function(){
-			new tuo({width:100,height:100,background:'red',position:'absolute'});
-			new tuo({width:200,height:200,background:'yellow',position:'absolute'});
+			new Drag({width:100,height:100,background:'red'});
+			new Drag({width:200,height:200,background:'yellow'});
+			new LimitDrag({width:300,height:300,background:'green'})
+		} 
+
+
+		function Drag(option){
+			this.width=option.width;
+			this.height=option.height;
+			this.background=option.background;
+			this.init();
+			this.bindEvent();	
 		}
-		function tuo(opation){
-			this.oDiv=document.createElement('div');
-			this.oDiv.style.width=opation.width+'px';
-			this.oDiv.style.height=opation.height+'px';
-			this.oDiv.style.background=opation.background;
-			this.oDiv.style.position=opation.position;
-			document.body.appendChild(this.oDiv);
-			var _self=this;
-			// this.oDiv.onmousedown=this.fnDown.bind(this);
+		Drag.prototype.bindEvent=function(){
+
+		/*方1
+			var _self = this;
+			this.oBox.onmousedown = function(ev){
+				var oEvent = ev || event;
+				_self.disX = oEvent.clientX - _self.oBox.offsetLeft;
+				_self.disY = oEvent.clientY - _self.oBox.offsetTop;
+				document.onmousemove =_self.fnMove.bind(_self);
+				document.onmouseup = _self.fnUp;	
+			}
+		*/
+		//方2
 			this.oDiv.onmousedown=function(ev){
 				var oEvent=ev || event;
 				this.disX=oEvent.clientX-this.oDiv.offsetLeft;
@@ -39,16 +46,49 @@
 				document.onmouseup=this.fnUp;
 			}.bind(this);
 		}
-		tuo.prototype.fnMove=function(ev){
+		Drag.prototype.init=function(){
+			this.oDiv=document.createElement('div');
+			this.oDiv.style.width=this.width+'px';
+			this.oDiv.style.height=this.height+'px';
+			this.oDiv.style.background=this.background;
+			this.oDiv.style.position='absolute';
+			document.body.appendChild(this.oDiv);
+		}
+		Drag.prototype.fnMove=function(ev){
 			var oEvent=ev || event;
 			this.oDiv.style.left=oEvent.clientX-this.disX+'px';
 			this.oDiv.style.top=oEvent.clientY-this.disY+'px';
 		}
-		tuo.prototype.fnUp=function(){
+		Drag.prototype.fnUp=function(){
 			document.onmousemove=null;
 			document.onmouseup=null;
 		}
 		
+
+
+		//构造一个对象，继承原型对象的属性和方法，在此基础上添加一些想要改动的方法，在此方法上添加一些想要的属性
+		function LimitDrag(option){
+			Drag.call(this,option);
+		}
+		LimitDrag.prototype=Object.create(Drag.prototype);
+		LimitDrag.prototype.constructor=LimitDrag;
+		LimitDrag.prototype.fnMove=function(ev){
+			var oEvent=ev || event;
+			var l=oEvent.clientX-this.disX;
+			var t=oEvent.clientY-this.disY;
+			if(l<0){
+				l=0;
+			}else if(l>=window.innerWidth-this.oDiv.offsetWidth){
+				l=window.innerWidth-this.oDiv.offsetWidth;
+			}
+			if(t<0){
+				t=0;
+			}else if(t>=window.innerHeight-this.oDiv.offsetHeight){
+				t=window.innerHeight-this.oDiv.offsetHeight;
+			}
+			this.oDiv.style.left=l+'px';
+			this.oDiv.style.top=t+'px';
+		}
 	</script>
 </head>
 <body>
