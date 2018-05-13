@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>the form aggregate</title>
+
+</head>
+<body>
+	<form action="https://www.baidu.com">
+		Username:<input type="text" name="username"><br>
+		Password:<input type="text" name="password"><br>
+		Test:<input type="text" name="test"><br>
+		Sex:<input type="radio" name="sex">man<input type="radio" name="sex">woman<br>
+		Hobby:<input type="checkbox" name="hobby">going<input type="checkbox" name="hobby">running<input type="checkbox" name="hobby">trying<br>
+		what is attribute like:<select name="attribute">
+			<option value="1">金</option>
+			<option value="2">木</option>
+			<option value="3">水</option>
+			<option value="4">火</option>
+		</select><br>
+		<input type="submit"><br>
+		<input type="button" value="提交1" id="btn">
+	</form>
+	<!-- <form action="www.163.com">
+		Username:<input type="text"><br>
+		Password:<input type="text"><br>
+		Sex:<input type="radio" name="sex">man<input type="radio" name="sex">woman<br>
+		Hobby:<input type="checkbox" name="hobby">going<input type="checkbox" name="hobby">running<input type="checkbox" name="hobby">trying<br>
+		<input type="submit">
+	</form> -->
+</body>
+	<script>
+		var theseForms=document.forms;
+		//获取表单集合
+
+		var theForm=theseForms[0];
+		//获取第一个表单
+
+		var theFormEm=theForm.elements;
+		//获取该表单所有元素集合
+		
+		//3种 获取name名为username的元素的方法，用theForm/theFormEm都行
+		console.log(theFormEm.username);
+		console.log(theFormEm['username']);
+		console.log(theFormEm[0]);
+
+		var theName=theFormEm.username;
+		theName.disabled = true;
+		//禁用name名为username表单的元素
+
+		var theWord=theFormEm.password;
+		theWord.readOnly = true;
+		//禁用name名为username表单的元素,但可读,可被提交
+		//只针对input(text/password)/textarea
+
+		var theRadio=theFormEm.sex;
+		theRadio[1].checked = true;
+		//设置默认选中 theRadio.checked判定选中 选中为true 否者false
+
+		var theSelect=theFormEm.attribute;
+		theSelect.options[1].selected=true;
+		//设置默认选中 选中为true 否者false
+
+		function getSelectedElements(theSelect){
+		//获取选中属性 
+   			var result = [];
+    		for(var i=0;i<theSelect.options.length;i++){
+        		if(theSelect.options[i].selected){
+            		result.push(theSelect.options[i]);
+       			}
+    		}
+    		return result;          
+		}
+
+		var oTest=theFormEm.test;
+		oTest.focus();
+		//设置焦点 表单元素.focus();进入该页面时该焦点的位置被获取;
+		// oTest.blur();
+		//移除焦点 表单元素.blur();
+
+		//表单的提交
+		//1种 <input type="submit"> 用input标签的submit类型
+		//2种 <input type="image"> 用input标签的image类型
+		//3种 <button type="submit"> 用button标签的submit类型
+
+		//4种
+		var oBtn=document.getElementById('btn');
+		//普通按钮绑定事件 利用一个button按钮执行该表单submit()函数来达到表单的提交效果
+		oBtn.onclick=function(){
+			theForm.submit();
+		//表单的submit()只能用document.forms[0] 
+		//不能用document.forms[0].element这种元素集合
+		}
+
+		//表单的提交事件  表单.onsubmit 这个事件只能用document.forms[0]， 不能用document.forms[0].element这种元素集合
+		theForm.onsubmit=function(){
+			return false;
+		}
+
+		//表单被提交,数据没有发送前触发,可以在该事件中通过阻止默认行为来阻止表单的提交,
+		//给普通按钮绑定事件,调用 form的submit()方法提交  这种form的 调用submit()函数方法 不会触发form.onsubmit事件
+		
+		
+		//表单的重置
+		//1种 <input type="reset">
+		//2种 <button type="reset">
+		//表单重置事件 表单.onrest 
+		//给普通按钮绑定事件,调用 form的reset()方法重置，这种form的 调用reset()函数的方法 会触发form.onrest事件
+	</script>
+</html>
