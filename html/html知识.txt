@@ -6,7 +6,7 @@ git config --global user.name xxx
 git config --global user.email xxx
 git config user.name
 git config user.email
-mkdir xxxÎÄ¼ş¼Ğ touch xxx.txt
+mkdir xxxÎÄ¼ş¼Ğ touch xxx.html
 vim xxx.txt ´ò¿ªÎÄ¼ş¼Ğ i ½øÈë±à¼­Ä£Ê½ ESC ÍË³ö±à¼­Ä£Ê½
 ÔÚ²åÈë±à¼­Ä£Ê½ÏÂ±à¼­ÎÄ¼ş¡£
 °´ÏÂ ¡°ESC¡± ¼ü£¬ÍË³ö±à¼­Ä£Ê½£¬ÇĞ»»µ½ÃüÁîÄ£Ê½¡£
@@ -133,7 +133,7 @@ placeholderÊôĞÔÌá¹©¿ÉÃèÊöÊäÈë×Ö¶ÎÔ¤ÆÚÖµµÄÌáÊ¾ĞÅÏ¢£¨hint£©¸ÃÌáÊ¾»áÔÚÊäÈë×Ö¶ÎÎª¿ÕÊ
 	</P>	
 	<p>
 		×¡Ö·<!-- Ñ¡ÔñÃüÁî£¬Ö»ÄÜÑ¡Ôñ²»ÄÜÊäÈë -->
-		<select name="address">
+		<select name="address" multiple ¶àÑ¡±êÇ©£¬¿É¶àÑ¡>
 			<optgroup label="ÊĞÇø">
 	<!-- optgroupÎª·Ö×éÃüÁî¿É¼Ó¿É²»¼Ó -->
 				<option value="1">Ö£Öİ</option>

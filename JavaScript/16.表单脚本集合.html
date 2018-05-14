@@ -12,7 +12,7 @@
 		Test:<input type="text" name="test"><br>
 		Sex:<input type="radio" name="sex">man<input type="radio" name="sex">woman<br>
 		Hobby:<input type="checkbox" name="hobby">going<input type="checkbox" name="hobby">running<input type="checkbox" name="hobby">trying<br>
-		what is attribute like:<select name="attribute">
+		what is attribute like:<select name="attribute" multiple="multiple">
 			<option value="1">金</option>
 			<option value="2">木</option>
 			<option value="3">水</option>
@@ -40,24 +40,24 @@
 		//获取该表单所有元素集合
 		
 		//3种 获取name名为username的元素的方法，用theForm/theFormEm都行
-		console.log(theFormEm.username);
-		console.log(theFormEm['username']);
-		console.log(theFormEm[0]);
+		console.log(theForm.username);
+		console.log(theForm['username']);
+		console.log(theForm[0]);
 
-		var theName=theFormEm.username;
+		var theName=theForm.username;
 		theName.disabled = true;
 		//禁用name名为username表单的元素
 
-		var theWord=theFormEm.password;
+		var theWord=theForm.password;
 		theWord.readOnly = true;
 		//禁用name名为username表单的元素,但可读,可被提交
 		//只针对input(text/password)/textarea
 
-		var theRadio=theFormEm.sex;
+		var theRadio=theForm.sex;
 		theRadio[1].checked = true;
 		//设置默认选中 theRadio.checked判定选中 选中为true 否者false
 
-		var theSelect=theFormEm.attribute;
+		var theSelect=theForm.attribute;
 		theSelect.options[1].selected=true;
 		//设置默认选中 选中为true 否者false
 
@@ -72,7 +72,7 @@
     		return result;          
 		}
 
-		var oTest=theFormEm.test;
+		var oTest=theForm.test;
 		oTest.focus();
 		//设置焦点 表单元素.focus();进入该页面时该焦点的位置被获取;
 		// oTest.blur();
@@ -80,7 +80,7 @@
 
 		//表单的提交
 		//1种 <input type="submit"> 用input标签的submit类型
-		//2种 <input type="image"> 用input标签的image类型
+		//2种 <input type="image" src=''> 用input标签的image类型
 		//3种 <button type="submit"> 用button标签的submit类型
 
 		//4种
