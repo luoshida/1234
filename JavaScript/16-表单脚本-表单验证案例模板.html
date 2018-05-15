@@ -385,53 +385,129 @@
             }
         }
     }
+    // function checkPassword(){
+
+    //     theForm[2].onfocus=function(){
+    //         theForm[2].style.borderColor='#488ee7';
+    //         oPwdCheckList.style.display='block';    
+    //     }
+    //     var bPwd1=false;
+    //     var bPwd2=false;
+    //     var bPwd3=false;
+    //     theForm[2].oninput=function(){
+    //         var theVae=theForm[2].value;
+    //         var reg1=/^.{6,14}$/;
+    //         var reg2=/[^0-9a-z\^\$\*\?\[\]\(\)]/i;
+    //         var reg3=/\s/;
+    //         if (reg1.test(theVae)) {
+    //             aPwdCheckListLi[0].className='pwd-checklist-item pwd-checklist-item-success';
+    //             bPwd1=true;
+    //         }else{
+    //             aPwdCheckListLi[0].className='pwd-checklist-item pwd-checklist-item-error';
+    //             bPwd1=false;
+    //         }
+    //         if (reg2.test(theVae)) {
+    //             aPwdCheckListLi[1].className='pwd-checklist-item pwd-checklist-item-error';
+    //             bPwd2=false;
+    //         }else{
+    //             aPwdCheckListLi[1].className='pwd-checklist-item pwd-checklist-item-success';
+    //             bPwd2=true;
+    //         }
+    //         if (reg3.test(theVae)) {
+    //             aPwdCheckListLi[2].className='pwd-checklist-item pwd-checklist-item-error';
+    //             bPwd3=false;
+    //         }else{
+    //             aPwdCheckListLi[2].className='pwd-checklist-item pwd-checklist-item-success';
+    //             bPwd3=true;
+    //         }
+    //     theForm[2].onblur=function(){
+    //         theForm[2].style.borderColor='#ddd';
+    //         aMsg[2].className='reg';
+
+    //         if (bPwd1 && bPwd2 && bPwd3) {
+    //             oPwdCheckList.style.display = 'none';
+    //             getOk(aMsg[2],theForm[2]);
+                
+    //         }
+ 
+    //         if (theForm[2].value=='') {
+    //            oPwdCheckList.style.display = 'none';
+    //         }
+    //     }
+    //     aCancel[2].onclick=function(){
+    //         bPwd1 = false;
+    //         bPwd2 = false;
+    //         bPwd3 = false;
+    //         for(var i = 0;i<aPwdCheckListLi.length;i++){
+    //             aPwdCheckListLi[i].className = 'pwd-checklist-item';
+    //         }
+    //     }
     function checkPassword(){
-
-        theForm[2].onfocus=function(){
-            theForm[2].style.borderColor='#488ee7';
-            oPwdCheckList.style.display='block';    
+        theForm[2].onfocus = function(){
+            oPwdCheckList.style.display = 'block';
+            theForm[2].style.borderColor = '#488ee7';
         }
-        var bPwd1=false;
-        var bPwd2=false;
-        var bPwd3=false;
-        theForm[2].oninput=function(){
-            var theVae=theForm[2].value;
-            var reg1=/^.{6,14}$/;
-            var reg2=/[^0-9a-z\^\$\*\?\[\]\(\)]/i;
-            var reg3=/\s/;
-            if (reg1.test(theVae)) {
-                aPwdCheckListLi[0].className='pwd-checklist-item pwd-checklist-item-success';
-                bPwd1=true;
+        var sSucc = 'pwd-checklist-item pwd-checklist-item-success';
+        var sErr = 'pwd-checklist-item pwd-checklist-item-error';
+        var bPwd1 = false;
+        var bPwd2 = false;
+        var bPwd3 = false;
+        theForm[2].oninput = function(){
+            var sVal = oPwd.value;
+            //长度为6~14个字符
+            var reg1 = /^.{6,14}$/;
+            //支持数字,大小写字母和标点符号
+            var reg2 = /[^0-9a-z\^\$\*\?\[\]\(\)]/i;
+            //不允许有空格
+            var reg3 = /\s/;
+            if(reg1.test(sVal)){
+                aPwdCheckListLi[0].className = sSucc;
+                bPwd1 = true;
             }else{
-                aPwdCheckListLi[0].className='pwd-checklist-item pwd-checklist-item-error';
-                bPwd1=false;
+                aPwdCheckListLi[0].className = sErr;
+                bPwd1 = false;
             }
-            if (reg2.test(theVae)) {
-                aPwdCheckListLi[1].className='pwd-checklist-item pwd-checklist-item-error';
-                bPwd1=false;
-            }else{
-                aPwdCheckListLi[1].className='pwd-checklist-item pwd-checklist-item-success';
-                bPwd1=true;
-            }
-            if (reg3.test(theVae)) {
-                aPwdCheckListLi[2].className='pwd-checklist-item pwd-checklist-item-error';
-                bPwd1=false;
-            }else{
-                aPwdCheckListLi[2].className='pwd-checklist-item pwd-checklist-item-success';
-                bPwd1=true;
-            }
-        theForm[2].onblur=function(){
-            theForm[2].style.borderColor='#ddd';
-            oPwdCheckList.style.display='none';
-            if (bPwd1 && bPwd2 && bPwd3) {
-              getOk(aMsg[2],theForm[2])  
-            }
-        } 
 
-           
-            
+            if(reg2.test(sVal)){
+                aPwdCheckListLi[1].className = sErr;
+                bPwd2 = false;
+            }else{
+                aPwdCheckListLi[1].className = sSucc;
+                bPwd2 =true;
+            }
+
+            if(reg3.test(sVal)){
+                aPwdCheckListLi[2].className = sErr;
+                bPwd3 = false;
+            }else{
+                aPwdCheckListLi[2].className = sSucc;
+                bPwd3 = true;
+            }
         }
-    }
+        theForm[2].onblur = function(){
+            aMsg[2].className = 'msg';
+            theForm[2].style.borderColor = '#ddd';
+            if(bPwd1 && bPwd2 && bPwd3){
+                oPwdCheckList.style.display = 'none';
+                setOk(aMsg[2],theForm[2]);
+                bPwd = true;
+            }else{
+                bPwd = false;
+            }
+            if(theForm[2].value == ''){
+                oPwdCheckList.style.display = 'none';
+                bPwd = false;
+            }
+        }
+        aCancel[2].onclick = function(){
+            bPwd1 = false;
+            bPwd2 = false;
+            bPwd3 = false;
+            for(var i = 0;i<aPwdCheckListLi.length;i++){
+                aPwdCheckListLi[i].className = 'pwd-checklist-item';
+            }
+        }
+    } 
 
     
 </script>
