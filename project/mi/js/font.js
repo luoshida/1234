@@ -1,47 +1,25 @@
 window.onload=function(){
-	var oul=document.getElementById('ul1');
-	var oul2=document.getElementById('ul2');
-	var oli=oul.children;
-	var oli2=oul2.children;
-	var oleft=document.getElementById('lefta');
-	var oright=document.getElementById('righta');
-	var obox=document.getElementById('box');
-	var now=0;
-	
-	function change(){
-		for (var i = 0; i < oli.length; i++) {
-			oli[i].style.zIndex=0;
-			oli2[i].style.background='';
-		}
-		oli[now].style.zIndex=30;
-		oli2[now].style.background='red';
+	var tNav=document.querySelector('.nav');
+	var tNavD=document.querySelector('.nav .navD');
+	var tNavDS=tNavD.firstElementChild;
+	var tNavI=tNav.firstElementChild;
+	var tNavA=tNavI.nextElementSibling;
+	console.log(tNav);
+	tNav.onmouseenter=function(){
+		tNav.style.backgroundColor='#fff';
+		tNavI.style.color='red';
+		tNavA.style.color='red';
+		
+		animation(tNavD,{'height':300},true,function(){
+			tNavD.style.borderTop='1px solid #b0b0b0'
+		})
 	}
-	oright.onclick=function(){
-		now++;
-		if (now>=oli.length) {
-			now=0;
-		}
-		change();		
-	}
-	oleft.onclick=function(){
-		now--;
-		if (now<0) {
-			now=oli.length-1;
-		}
-		change();		
-	}
-	for (var i = 0; i < oli2.length; i++) {
-		oli2[i].index=i;
-		oli2[i].onclick=function(){
-			now=this.index;
-			change();
-		}
-	}
-	var time=setInterval(function(){
-		oright.onclick();
-	},3000);
-	time();
-	obox.onmouseover=function(){
-		clearInterval(time);
+	tNav.onmouseleave=function(){
+		tNav.style.backgroundColor='#424242';
+		tNavI.style.color='#b0b0b0';
+		tNavA.style.color='#b0b0b0';
+		animation(tNavD,{height:'0px'},true,function(){
+			tNavD.style.borderTop='none'
+		})
 	}
 }

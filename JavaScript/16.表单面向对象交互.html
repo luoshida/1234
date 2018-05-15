@@ -38,6 +38,8 @@
 			background-position: -80px 0px;
 		}
 		.err{
+			
+			height: 16px;
 			color: #fc4343;
 			font-size: 12px;
 			text-indent: 20px;
@@ -47,7 +49,7 @@
 			display: inline-block;
 			position: absolute;
 			margin-top: 4px;
-			background-image: url(images/reg_icons.png);
+			background-image: url(images/reg_icons.png) no-repeat;
 			background-position: -80px -24px;
 		}
 		.reg div{
@@ -193,7 +195,8 @@
 	theForm[0].onblur=function(){
 		var theLong=getLen(theForm[0].value);
 		if (theLong.length>14) {
-			oMsg[0].className='err';	
+			oMsg[0].className='err';
+			oMsg[0].innerHTML='用户名不能超过7个汉字或14个字符';	
 		}
 	}
 

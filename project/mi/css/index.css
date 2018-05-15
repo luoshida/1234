@@ -27,6 +27,20 @@
 			background-color: #424242;
 			line-height: 40px;
 			float: right;
+			position: relative;
+
+		}
+		.top .nav div{
+			background-color: #fff;
+			width: 0px;
+			height: 100px;
+			position: absolute;
+			top: 40px;
+			right: 0px;
+			z-index: 999;
+			overflow: hidden;
+			box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+			
 		}
 		.top .nav i{
 			font-size: 20px;
@@ -56,7 +70,7 @@
 			display: inline-block;
 			width: 55px;
 			height: 55px;
-			background: #ff6700 url(../image/mi.png) center center no-repeat;
+			background: #ff6700 url(../images/mi1.png) center center no-repeat;
 			vertical-align: top;
 			margin-top: 22px;
 		}
