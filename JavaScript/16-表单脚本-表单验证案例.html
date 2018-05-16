@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>184-表单脚本-表单验证案例模板.html</title>
+    <title>184-表单脚本-表单验证案例.html</title>
     <style>
         * {
             margin: 0;
@@ -69,7 +69,7 @@
             background-color: #eee;
         }
         #verify-box .cancel{
-            left: 212px;
+            left: 230px;
         }
         .reg .subBtn {
             position: relative;
@@ -277,10 +277,19 @@
     var aMsg=document.querySelectorAll('.msg');
     var oPwdCheckList=document.getElementById('pwdChecklist');
     var aPwdCheckListLi = oPwdCheckList.getElementsByTagName('li');
+    var oSmsBtn=document.getElementById('smsBtn');
+    var oSubBtn=document.getElementById('subBtn');
+    var oIsAgree=document.getElementById('isAgree');
+    var bPhone=false;
+    var bUserName=false;
+    var bPwd=false;
+    var bVerify=false;
     init();
     checkUserName();
     checkPhone();
     checkPassword();
+    checkVerify();
+    handleSub();
     function init(){
         theForm[0].focus();
         aMsg[0].className='tiptext';
@@ -331,15 +340,19 @@
             var reg1=/^\d+$/;
             var reg2=/^\s+$/;
             if (theVae=='') {
-
+                bUserName=false;
             }else if (getLen(theVae)>14) {
-                getErr(aMsg[0],'用户名不能超过7个汉字或14个字符',theForm[0])
+                getErr(aMsg[0],'用户名不能超过7个汉字或14个字符',theForm[0]);
+                bUserName=false;
             } else if (reg2.test(theVae)) {
-                getErr(aMsg[0],'请输入用户名',theForm[0])
+                getErr(aMsg[0],'请输入用户名',theForm[0]);
+                bUserName=false;
             } else if(reg.test(theVae) || reg1.test(theVae)){
-                getErr(aMsg[0],'用户名仅支持中英文、数字和下划线,且不能为纯数字',theForm[0])
+                getErr(aMsg[0],'用户名仅支持中英文、数字和下划线,且不能为纯数字',theForm[0]);
+                bUserName=false;
             }else{
-                getOk(aMsg[0],theForm[0])
+                getOk(aMsg[0],theForm[0]);
+                bUserName=true;
             }
         }
     }
@@ -371,11 +384,14 @@
             if (theVae1=='') {
 
             } else if (reg1.test(theVae1)) {
-                getErr(aMsg[1],'请您输入手机号',theForm[1])
+                getErr(aMsg[1],'请您输入手机号',theForm[1]);
+                bPhone=false;
             } else if (!reg.test(theVae1)) {
-                getErr(aMsg[1],'手机号码格式不正确',theForm[1])
+                getErr(aMsg[1],'手机号码格式不正确',theForm[1]);
+                bPhone=false;
             } else{
-                getOk(aMsg[1],theForm[1])
+                getOk(aMsg[1],theForm[1]);
+                bPhone=true;
             }
         }
         theForm[1].onkeydown=function(ev){
@@ -385,63 +401,6 @@
             }
         }
     }
-    // function checkPassword(){
-
-    //     theForm[2].onfocus=function(){
-    //         theForm[2].style.borderColor='#488ee7';
-    //         oPwdCheckList.style.display='block';    
-    //     }
-    //     var bPwd1=false;
-    //     var bPwd2=false;
-    //     var bPwd3=false;
-    //     theForm[2].oninput=function(){
-    //         var theVae=theForm[2].value;
-    //         var reg1=/^.{6,14}$/;
-    //         var reg2=/[^0-9a-z\^\$\*\?\[\]\(\)]/i;
-    //         var reg3=/\s/;
-    //         if (reg1.test(theVae)) {
-    //             aPwdCheckListLi[0].className='pwd-checklist-item pwd-checklist-item-success';
-    //             bPwd1=true;
-    //         }else{
-    //             aPwdCheckListLi[0].className='pwd-checklist-item pwd-checklist-item-error';
-    //             bPwd1=false;
-    //         }
-    //         if (reg2.test(theVae)) {
-    //             aPwdCheckListLi[1].className='pwd-checklist-item pwd-checklist-item-error';
-    //             bPwd2=false;
-    //         }else{
-    //             aPwdCheckListLi[1].className='pwd-checklist-item pwd-checklist-item-success';
-    //             bPwd2=true;
-    //         }
-    //         if (reg3.test(theVae)) {
-    //             aPwdCheckListLi[2].className='pwd-checklist-item pwd-checklist-item-error';
-    //             bPwd3=false;
-    //         }else{
-    //             aPwdCheckListLi[2].className='pwd-checklist-item pwd-checklist-item-success';
-    //             bPwd3=true;
-    //         }
-    //     theForm[2].onblur=function(){
-    //         theForm[2].style.borderColor='#ddd';
-    //         aMsg[2].className='reg';
-
-    //         if (bPwd1 && bPwd2 && bPwd3) {
-    //             oPwdCheckList.style.display = 'none';
-    //             getOk(aMsg[2],theForm[2]);
-                
-    //         }
- 
-    //         if (theForm[2].value=='') {
-    //            oPwdCheckList.style.display = 'none';
-    //         }
-    //     }
-    //     aCancel[2].onclick=function(){
-    //         bPwd1 = false;
-    //         bPwd2 = false;
-    //         bPwd3 = false;
-    //         for(var i = 0;i<aPwdCheckListLi.length;i++){
-    //             aPwdCheckListLi[i].className = 'pwd-checklist-item';
-    //         }
-    //     }
     function checkPassword(){
         theForm[2].onfocus = function(){
             oPwdCheckList.style.display = 'block';
@@ -453,7 +412,7 @@
         var bPwd2 = false;
         var bPwd3 = false;
         theForm[2].oninput = function(){
-            var sVal = oPwd.value;
+            var sVal = theForm[2].value;
             //长度为6~14个字符
             var reg1 = /^.{6,14}$/;
             //支持数字,大小写字母和标点符号
@@ -489,7 +448,7 @@
             theForm[2].style.borderColor = '#ddd';
             if(bPwd1 && bPwd2 && bPwd3){
                 oPwdCheckList.style.display = 'none';
-                setOk(aMsg[2],theForm[2]);
+                getOk(aMsg[2],theForm[2]);
                 bPwd = true;
             }else{
                 bPwd = false;
@@ -508,7 +467,50 @@
             }
         }
     } 
-
+    function checkVerify(){
+        oSmsBtn.onclick=function(){
+            if (theForm[1].value=='') {
+                getErr(aMsg[1],'请您输入手机号',theForm[1]);
+                bPhone=false;
+            }
+            if (!bPhone) {
+                return false;
+            }
+        }
+        theForm[3].onblur=function(){
+                if (theForm[3].value.length!=6) {
+                    bVerify=false;
+                    
+                }else{
+                    bVerify=true;
+                   
+                }
+            }
+    }
+    function handleSub(){
+        oSubBtn.onclick=function(){
+            if (theForm[0].value=='') {
+                getErr(aMsg[0],'请您输入用户名',theForm[0]);
+            }
+            if (theForm[1].value=='') {
+                getErr(aMsg[1],'请您输入手机号',theForm[1]);
+            }
+            if (theForm[2].value=='') {
+                getErr(aMsg[2],'请您输入密码',theForm[2]);
+            }
+            if (theForm[3].value=='') {
+                getErr(aMsg[3],'请您输入验证码',theForm[3]);
+            }
+            if (!oIsAgree.checked) {
+                aMsg[4].style.display='inline';
+            }else{
+                aMsg[4].style.display='none';
+            }
+            if (bPhone && bUserName && bPwd && bVerify && oIsAgree.checked) {
+                theForm.submit();
+            }      
+        }
+    }
     
 </script>
 </html>

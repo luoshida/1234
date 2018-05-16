@@ -12,7 +12,7 @@
 			list-style: none;
 			font-size: 12px;
 			
-		}
+		} 
 		li span{
 			margin-left: 0.5em;
 			margin-right: 0.5em;
@@ -28,19 +28,25 @@
 			line-height: 40px;
 			float: right;
 			position: relative;
-
+			z-index: 1000;
+			cursor: pointer;
 		}
+
 		.top .nav div{
 			background-color: #fff;
-			width: 0px;
-			height: 100px;
+			width: 300px;
+			height: 0px;
 			position: absolute;
 			top: 40px;
 			right: 0px;
 			z-index: 999;
 			overflow: hidden;
-			box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
-			
+			box-shadow: 0px 5px 5px rgba(0,0,0,0.5);	
+		}
+		.top .nav div span{
+			margin-left: 50px;
+			height: 100px;
+			line-height: 100px;
 		}
 		.top .nav i{
 			font-size: 20px;
@@ -57,11 +63,25 @@
 			line-height: 40px;
 			margin: 0px 20px;
 		}
+		.up{
+			position: relative;
+		}
+		.up .nav-content{
+			width: 100%;
+			height: 0px;
+			position: absolute;
+			top: 100px;
+			background-color: white;
+			z-index: 999;
+			box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+			overflow: hidden;
+		}
 		.up .container{
 			height: 100px;
 		}
 		.up .box1 {
 			float: left;
+			cursor: pointer;
 		}
 		.up .box2 {
 			float: right;
@@ -106,6 +126,64 @@
 			padding-left: 5px;
 			border: 1px solid #e0e0e0;
 		}
+		.up .box2 div{
+			width: 244px;
+			height: 300px;
+			position: absolute;
+			top: 76px;
+			right: 79px;
+			background-color: gray;
+			z-index: 999;
+			display: none;
+		}
+		.up .box2 input:hover{
+			border-color: #a0a0a0;
+		}
+		.up .box2 div li{
+			float: none;
+			list-style: none;
+			margin-right: 20px;
+			margin-left: 50px;
+			margin-bottom: 20px;
+		}
+		.up .nav-content li{
+			width: 204px;
+			height: 100%;
+			position: relative;
+		}
+		.up .nav-content li div:nth-child(1){
+			width: 60px;
+			height: 20px;
+			border:1px solid red;
+			position: absolute;
+			top: 0px;
+			text-align: center;
+			line-height: 20px;
+			left: 50%;
+			color: red;
+			margin-left: -30px;
+		}
+		.up .nav-content li div:nth-child(2){
+			margin-top: 26px;
+			width: 204px;
+			height: 90px;
+			border-right: 1px solid #e0e0e0;
+			margin-bottom: 28px;
+		}
+		.up .nav-content li img{
+			width: 82px;
+			margin-left: 61px;
+			height: 101px;
+		}
+		.up .nav-content li p{
+			text-align: center;
+		}
+		.up .nav-content li p:nth-child(4){
+			color: red;
+		}
+		.up .nav-content li:last-child div:nth-child(2){
+			border-right: none;
+		}
 		.midd .container{
 			height: 460px;
 			position: relative;
@@ -115,7 +193,7 @@
 			height: 460px;
 			background: rgba(0,0,0,0.6);
 			position: absolute;
-			z-index: 999;
+			z-index: 998;
 		}
 		.midd .left ul{
 			margin: 20px 0px 20px 30px;
