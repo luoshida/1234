@@ -32,7 +32,7 @@
 			cursor: pointer;
 		}
 
-		.top .nav div{
+		.top .nav .navD{
 			background-color: #fff;
 			width: 300px;
 			height: 0px;
@@ -43,10 +43,14 @@
 			overflow: hidden;
 			box-shadow: 0px 5px 5px rgba(0,0,0,0.5);	
 		}
-		.top .nav div span{
+		.top .nav .navD span{
 			margin-left: 50px;
 			height: 100px;
 			line-height: 100px;
+			display: none;
+		}
+		.top .nav .navD .loading{
+			margin-top: 35px;
 		}
 		.top .nav i{
 			font-size: 20px;
@@ -96,13 +100,14 @@
 		}
 		.up .box1 ul{
 			display: inline-block;
-			margin-left: 188px;
-			font-size: 14px;
-			margin-top: 43px;
+			margin-left: 188px;	
 		}
 		.up .box1 ul li{
+			height: 100px;
 			color: #333;
+			font-size: 15px;
 			margin-right: 22px;
+			line-height: 100px;
 		}
 		.up .box2 i,input{
 			float: right;
@@ -127,29 +132,77 @@
 			border: 1px solid #e0e0e0;
 		}
 		.up .box2 div{
-			width: 244px;
+			width: 242px;
 			height: 300px;
 			position: absolute;
 			top: 76px;
 			right: 79px;
-			background-color: gray;
+			background-color: white;
 			z-index: 999;
 			display: none;
+			border:1px solid orange;
 		}
 		.up .box2 input:hover{
 			border-color: #a0a0a0;
 		}
 		.up .box2 div li{
+			width: 244px;
+			height: 50px;
 			float: none;
 			list-style: none;
-			margin-right: 20px;
-			margin-left: 50px;
-			margin-bottom: 20px;
+			cursor: pointer;
+			line-height: 50px;
+
+			font-size: 15px;
+			text-align: center;
+		}
+		.up .box2 div li:hover{
+			background-color: orange;
+		}
+		.up .nav-content{
+			overflow: hidden;
 		}
 		.up .nav-content li{
 			width: 204px;
 			height: 100%;
 			position: relative;
+		}
+		.loading{
+			width: 5px;
+			height: 30px;
+			background: red;
+			position: relative;
+			margin: 80px auto;
+			animation:sports 0.3s linear 0.2s infinite alternate;
+		}
+		.loading:after{
+			content: '';
+			width: 5px;
+			height: 30px;
+			background: red;
+			position: absolute;
+			top: 0px;
+			left: 15px;
+			animation:sports 0.3s linear 0.4s infinite alternate;
+		}
+		.loading:before{
+			content: '';
+			width: 5px;
+			height: 30px;
+			background: red;
+			position: absolute;
+			top: 0px;
+			left: -15px;
+			animation:sports 0.3s linear infinite alternate;
+		}
+		@keyframes sports{
+			from{
+				opacity: 0.2;
+				transform: scaleY(0.1); 
+			}to{
+				opacity: 1;
+				transform: scaleY(1);
+			}
 		}
 		.up .nav-content li div:nth-child(1){
 			width: 60px;
@@ -196,14 +249,20 @@
 			z-index: 998;
 		}
 		.midd .left ul{
-			margin: 20px 0px 20px 30px;
+			margin: 20px 0px 20px 0px;
 		}
 		.midd .left li{
+			width: 234px;
 			float: none;
 			height: 42px;
 			line-height: 42px;		
 		}
+		.midd .left li:hover{
+			background-color: orange;
+			cursor: pointer;
+		}
 		.midd .left li a{
+			margin-left: 30px;
 			color: #fff;
 			font-size: 14px;
 		}
@@ -216,88 +275,71 @@
 			width: 100%;
 			height: 100%;
 		}
-		.midd .right{
-			position: relative;
-		}
-		.midd .right li{
-			position: absolute;
-			
-		}
-	/*	.midd .right li:nth-child(2){
-			animation: sport2 30s infinite;
-		}
-		@keyframes sport2{
-			0%{z-index: 0;}
-			13%{z-index: 0;}
-			20%{z-index: 5;}
-			33%{z-index: 5;}
-			40%{z-index: 0;}
-			100%{z-index: 0;}
-		}
-		.midd .right li:nth-child(3){
-			animation: sport3 30s infinite;
-		}
-		@keyframes sport3{
-			0%{z-index: 0;}
-			33%{z-index: 0;}
-			40%{z-index: 5;}
-			53%{z-index: 5;}
-			60%{z-index: 0;}
-			100%{z-index: 0;}
-		}
-		.midd .right li:nth-child(4){
-			animation: sport4 30s infinite;
-		}
-		@keyframes sport4{
-			0%{z-index: 0;}
-			53%{z-index: 0;}
-			60%{z-index: 5;}
-			73%{z-index: 5;}
-			80%{z-index: 0;}
-			100%{z-index: 0;}
-		}
-		.midd .right li:nth-child(5){
-			animation: sport5 30s infinite;
-		}
-		@keyframes sport5{
-			0%{z-index: 0;}
-			73%{z-index: 0;}
-			80%{z-index: 5;}
-			93%{z-index: 5;}
-			100%{z-index: 0;}
-		}*/
-		.midd .right li:nth-child(1){
-			z-index: 2;
-		}
-		.leftarrow,.rightarrow{
-			width: 46px;
-			height: 80px;
-			position: absolute;
-			top: 207px;
-			z-index: 99;
-			font-size: 50px;
+		.leftBtn,.rightBtn{
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
 			text-align: center;
-			line-height: 80px;
-			color: #d5d4d1;
-		}
-		.leftarrow{left: 234px;}
-		.rightarrow{right: 0px;}
-		.btnbox{
+			background: rgba(0,0,0,0.5);
+			color: #fff;
+			font-size: 20px;
 			position: absolute;
-			bottom: 0px;
-			right: 0px;
-			z-index: 99;
-		}
-		.btnbox li{
-			width: 5px;
-			height: 5px;
-			border: 2px solid #97958f;
-			border-radius: 50%;
-			margin-right: 9px;
-		}
-		.leftarrow:hover,.rightarrow:hover{
-			background-color: rgba(0,0,0,0.4);
+			top:50%;
+			margin-top: -15px;
 			cursor: pointer;
+		}
+		.leftBtn{
+			left: 0;
+		}
+		.rightBtn{
+			right: 0;
+		}
+		.bottomBtn {
+			position: absolute;
+			bottom: 10px;
+			right: 0;
+		}
+		.bottomBtn li{
+			width: 20px;
+			height: 20px;
+			background: rgba(0,0,0,0.5);
+			float: left;
+			margin-right: 10px;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+		.bottomBtn li.active{
+			background: rgba(255,255,0,0.5);
+		}
+		#carousel .leftBtn{
+			left:234px;
+		}
+		#carousel .leftBtn,#carousel .rightBtn{
+			width: 40px;
+			height: 60px;
+			line-height: 60px;
+			background: none;
+			font-size: 40px;
+			margin-top: -25px;	
+			font-weight: 100;
+		}
+		#carousel .leftBtn:hover,#carousel .rightBtn:hover{
+			background: rgba(0,0,0,0.5);
+		}
+		#carousel  .bottomBtn {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+		#carousel .bottomBtn li{
+			width: 10px;
+			height: 10px;
+			box-sizing: border-box;
+
+		}
+		#carousel .bottomBtn li.active{
+			border: 1px solid rgba(0,0,0,0.6);
+			background: rgba(100,100,100,0.5);
 		}
 		.mid1{
 			margin-top: 14px;

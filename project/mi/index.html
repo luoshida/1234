@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script src='js/font.js'></script>
 	<script src="../../JavaScript/js/animation.js"></script>
+	<script src="js/array.js"></script>
+	<script src="../../JavaScript/js/Carousel.js"></script>
 </head>
 <body>
 	<div class="top">
@@ -29,7 +31,8 @@
 				<i class="iconfont">&#xe60c;</i>
 				<a href="#">购物车 (0)</a>
 				<div class="navD">
-					<span>你还没有物品</span>
+					<span class="navDS">你还没有物品</span>
+					<div class="loading"></div>
 				</div>
 			</div>
 			<div class="load">
@@ -75,55 +78,8 @@
 		</div>
 		<div class="nav-content">
 			<div class="container">
-				<ul>
-					<li>
-						<div>新品</div>
-						<div>
-							<img src="images/shouji.png">
-						</div>
-						<p>小米 MIX 2s</p>
-						<p>3299元起</p>
-					</li>
-					<li>
-						<div>新品</div>
-						<div>
-							<img src="images/shouji.png">
-						</div>
-						<p>小米 MIX 2s</p>
-						<p>3299元起</p>
-					</li>
-					<li>
-						<div>新品</div>
-						<div>
-							<img src="images/shouji.png">
-						</div>
-						<p>小米 MIX 2s</p>
-						<p>3299元起</p>
-					</li>
-					<li>
-						<div>新品</div>
-						<div>
-							<img src="images/shouji.png">
-						</div>
-						<p>小米 MIX 2s</p>
-						<p>3299元起</p>
-					</li>
-					<li>
-						<div>新品</div>
-						<div>
-							<img src="images/shouji.png">
-						</div>
-						<p>小米 MIX 2s</p>
-						<p>3299元起</p>
-					</li>
-					<li>
-						<div>新品</div>
-						<div>
-							<img src="images/shouji.png">
-						</div>
-						<p>小米 MIX 2s</p>
-						<p>3299元起</p>
-					</li>
+				<div class="loading"></div>
+				<ul> 
 				</ul>
 			</div>
 		</div>
@@ -144,35 +100,7 @@
 					<li><a href="#">生活 米兔<span>&gt;</span></a></li>
 				</ul>
 			</div>
-			<div class="right" >
-				<ul id="ul1">
-					<li>
-						<img src="images/xuanchuan1.png">
-					</li>
-					<li>
-						<img src="images/xuanchuan2.png">
-					</li>
-					<li>
-						<img src="images/xuanchuan3.png">
-					</li>
-					<li>
-						<img src="images/xuanchuan4.png">
-					</li>
-					<li>
-						<img src="images/xuanchuan5.png">
-					</li>
-				</ul>
-			</div>
-			<div class="leftarrow" id="lefta">&lt;</div>
-			<div class="rightarrow" id="righta">&gt;</div>
-			<div class="btnbox">
-				<ul id="ul2">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
+			<div id="carousel" >
 			</div>
 		</div>
 	</div>
