@@ -7,7 +7,7 @@
 		height: 900px;
 		width: 600px;
 		border: 1px solid black;
-		perspective: 500px;
+		perspective: 400px;
 		/*透视大小*/
 
 	}
@@ -25,14 +25,18 @@
 */
 		}
 		 .b{
+		 	
 		 	transform: rotate(15deg);
-		 	transform: rotateX();/*沿x轴旋转*/
+		 	transform: rotateX(30deg);/*沿x轴旋转*/
 		 /*xy轴旋转配合加在父元素的透视perspective标签使用使其有立体感*/
 		 	transform: rotateY();/*沿y轴旋转*/
 		 	transform: rotateZ();/*默认是Z*/
 /*旋转会改变坐标系
 旋转写在平移前面是在旋转修改后的坐标系下平移
 平移后旋转是在平移以后的位置默认中心点旋转*/
+/*旋转 正值沿Z轴 顺时针
+  旋转 正值沿X轴 上边向里，下边向外
+  旋转 正值沿Z轴 左边向外，右边向里*/
 		 }
 		 .c{
 		 	transform: translate(100px,100px);

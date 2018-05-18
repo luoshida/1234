@@ -15,6 +15,7 @@
 		可设置边框，
 		可设置垂直和水平方向的内外边距
 常见的块状元素 p div header nav section article footer h ul ol dl li dt dd ...*/
+/*p元素，只能包含inline元素，而不能包含block元素*/
 			width: 200px;
 			height: 200px;
 			border: 1px solid red;
@@ -24,6 +25,8 @@
 		width height无效
 	垂直方向上的内外边距无效,但内边距可设置，外边距不可设置，其他跟块状元素效果一样
 常见的行内元素a span b u i s stong em ins del ...*/
+
+/*inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果，注意元素范围是增大了，但是对元素周围的内容是没影响的。*/
 			width: 200px;
 			height: 200px;
 			border: 1px solid red;

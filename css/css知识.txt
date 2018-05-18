@@ -8,8 +8,16 @@
 	<meta charset="utf-8">
 	<title>css样式</title>
 	<style type="text/css">
-p{color: green; font-style: italic/*倾斜或normal*/; font-weight: 500/*字体粗细0-900取整*/; font-size: 100px/*字体大小*/; font-family: 楷体;}
-h1{font: normal 900 50px 宋体;}/*这个是连写*/
+p{
+  color: green; 
+  font-style: italic/*倾斜或normal*/; 
+  font-weight: 500/*字体粗细0-900取整*/; 
+  font-size: 100px/*字体大小*/; 
+  font-family: 楷体;
+ }
+h1{
+  font: normal 900 50px 宋体;
+ }/*这个是连写*/
 	</style>
 </head>
 <body>
@@ -40,7 +48,7 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
 		color: #f56;
 		
 		text-decoration: line-through;
-/*文本修饰 underline|overline|line-through|none*/
+/*文本修饰 underline下划线 overline上划线 line-through贯穿文字线 none */
 		text-align: center;
 /*文本对齐样式left(默认)|center|right*/
 		text-indent: 2em;
@@ -82,9 +90,9 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
  	</style>
  </head>
  <body>
- 		<p class="dang">你有糖吗</p>
- 		<p class="dang">你有糖吗</p>
- 		<p id="a1">你有糖吗</p>
+ 	<p class="dang">你有糖吗</p>
+ 	<p class="dang">你有糖吗</p>
+ 	<p id="a1">你有糖吗</p>
  	<nav>
  		<p>你有糖吗</p>
  		<h2 class="dang">你有糖吗</h2>
@@ -183,7 +191,8 @@ h1{font: normal 900 50px 宋体;}/*这个是连写*/
 /*鼠标悬停时*/
 	a:active{color: }
 /*鼠标点击时*/
-/*四种状态可以同时都写，也可以单独写,如果全写的情况下必须遵循一定的顺序，特别是active要写到hover后面,否则就会被覆盖,因为点击的同时鼠标肯定是悬停在内容上的,hover对其他元素也起作用*/
+/*四种状态可以同时都写，也可以单独写,如果全写的情况下必须遵循一定的顺序，
+特别是active要写到hover后面,否则就会被覆盖,因为点击的同时鼠标肯定是悬停在内容上的,hover对其他元素也起作用*/
 	input:focus{outline-color: red;}
 /*获取焦点边框颜色*/
 	p:before{content: "你好"}
@@ -234,26 +243,36 @@ border-left: 100px solid blue;
  border-left-width: 宽度;
  border-left-style: 样式;
  border-left-color: 颜色;
-内边距
+	内边距
 padding:上 右 下 左;
 按照顺时针方向设置。如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
 当设置内边距时会使盒子变大，可以设置box-sizing: border-box;使内容边距变小 盒子大小不变 
 content-box为默认值 作用使盒子变大 内容区域不变
-外边距
+	外边距
 margin:上 右 下 左;
 按照顺时针方向设置。如果省略了一个边，就取对边的值，如果只设置了一个边，那么所有的边都一样
 水平方向上的margin值可以叠加
 普通元素垂直方向上的margin值发生重叠现象，重叠后取较大的值
 普通的父子元素，给子元素设置margin top时候，这个值会传递到父元素,可以通过给父元素添加边框或者是内边距来阻止margin值的传递,还可以给父元素添加overflow:hidden来阻止margin的值传递
-外边距没有背景色
+ 
 外边距不会影响元素的宽和高，但是会影响整个元素空间的宽和高
 padding主要是用来设置父元素和子元素之间的距离，margin主要是用来设置元素和元素之间的距离
 margin可以取负值,表示相反的方向
-内容
+	内容
 元素的宽width和高height决定了真正可以填充内容的空间
 取值可以是具体的像素也可以是百分比,百分比是相对于自己的父元素来说的
 display: inline-block;使两个盒子水平排版
 当两个盒子属于父子关系使，设置子盒子的width,height值时可以设置为百分比，相当父盒子的宽高
+
+	内容的宽和高
+内容的宽:通过width属性设置的值
+内容的高:通过height属性设置的值
+	元素的宽和高
+元素的宽：左边框＋左内边距＋内容的宽度＋右内边距＋右边框
+元素的高：上边框＋上内边距＋内容的高度＋下内边距＋下边框
+	元素空间的宽和高
+元素空间的宽：左外边距＋左边框＋左内边距＋内容的宽度＋右内边距＋右边框＋右外边距
+元素空间的高：上外边距＋上边框＋上内边距＋内容的高度＋下内边距＋下边框＋下外边距
 
 	盒子的圆角
 
@@ -319,6 +338,7 @@ div{/*块状元素，
 可设置边框，
 可设置垂直和水平方向的内外边距
 常见的块状元素 p div header nav section article footer h ul ol dl li dt dd ...*/
+p元素，只能包含inline元素，而不能包含block元素
 width: 200px;
 height: 200px;
 border: 1px solid red;}
@@ -326,6 +346,9 @@ span{/*行内元素
 width height无效
 垂直方向上的内外边距无效,但内边距可设置，外边距不可设置，其他跟块状元素效果一样
 常见的行内元素span b u i s stong em ins del ...*/
+inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；
+但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果，
+注意元素范围是增大了，但是对元素周围的内容是没影响的。
 	width: 200px;
 	height: 200px;
 	border: 1px solid red;
@@ -369,7 +392,7 @@ float: left/right；
 同方向上,先浮动的显示在前面，后浮动的显示在后面,注意这个先后指的结构上的先后而不是css的书写先后
 不同方向上,左浮动找左浮动元素，右浮动找右浮动元素
 浮动后元素的位置由浮动前元素在标准流中的位置决定,这个位置主要指的是浮动前在标准流中是第几行,浮动后还是显示在第几行
-由于浮动元素的位置和浮动前在标准流的位置有光,所以严格意识上说浮动元素是非完全脱标
+由于浮动元素的位置和浮动前在标准流的位置有关  ,所以严格意识上说浮动元素是非完全脱标
 	清除浮动
 	方式一,
 给前面的盒子添加高度
@@ -463,11 +486,15 @@ transition-timing-function: linear; 运行的方式
 
 旋转
 transform: rotate(15deg)
+旋转 正值沿Z轴 顺时针
+旋转 正值沿X轴 上边向里，下边向外
+旋转 正值沿Z轴 左边向外，右边向里
 transform: rotateX();/*沿x轴旋转*/
 xy轴旋转配合加在父元素的透视perspective: xxpx;标签使用
+perspective意思为人眼与旋转的元素垂直距离的大小
 transform: rotateY();/*沿y轴旋转*/
 transform: rotateZ();/*默认是Z*/
-旋转会改变坐标系
+旋转会改变坐标系 
 旋转写在平移前面是在旋转修改后的坐标系下平移
 平移后旋转是在平移以后的位置默认中心点旋转*/
 平移
@@ -498,7 +525,7 @@ transform-origin: 50px 50px; 格式:水平方向移动距离 垂直方向移动距离;
 	animation-play-state: ;/*running(默认状态动画执行)|paused(鼠标悬浮时动画暂停)*/
 	animation-fill-mode: ;/*none(不做改变)|backwards(动画等待时显示动画的第一帧)|
 forwards(动画执行结束保持显示动画的最后一帧)|both(动画执行前显示动画的第一帧并且动画执行结束显示动画的最后一帧*/
-	animation:bb 60s linear 2s infinite ;
+	animation:bb 60s linear 2s infinite alternate;
 /*动画的名称 动画的执行时间 动画的速度 延迟时间 动画的执行次数 是否执行往返动画;*/
 	@keyframes bb{
 		0%{margin-left: 0px;
@@ -530,6 +557,7 @@ forwards(动画执行结束保持显示动画的最后一帧)|both(动画执行前显示动画的第一帧并且
 	background: yellow;
 	transform-style: preserve-3d;
 /*flat让子元素呈现2D展示；preserve-3d让子元素呈现3D展示*/
+3D使元素具有厚度
 	}
 .son{
 	width: 100px;

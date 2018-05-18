@@ -3,6 +3,7 @@ window.onload=function(){
 	handleNav();
 	handleMenu();
 	handleCarousel();
+	handleMidd();
 }
 function handleCart(){
 	var tNav=document.querySelector('.nav');
@@ -128,4 +129,24 @@ function handleCarousel(){
 		height:460,
 		playDuration:3000		
 	})
+}
+function handleMidd(){
+	var oLeft=document.querySelector('.midd .left');
+	var oLeftLi=oLeft.getElementsByTagName('li');
+	var oLeftList=document.querySelector('.midd .leftList');
+	console.log(oLeftLi);
+	for (var i = 0; i < oLeftLi.length; i++) {
+		oLeftLi[i].onmouseenter=function(){
+			for (var j = 0; j < oLeftLi.length; j++) {
+				oLeftLi[j].style.backgroundColor='';
+			}
+			this.style.backgroundColor='orange';
+			oLeftList.style.display='block';
+		}
+		oLeft.onmouseleave=function(){
+			oLeftLi[i].style.backgroundColor='';
+			oLeftList.style.display='none';
+		}
+	}
+
 }
