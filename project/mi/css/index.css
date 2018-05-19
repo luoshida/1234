@@ -1,5 +1,5 @@
 		.top{
-			background-color: #333;
+			background: #333;
 		}
 		.top .container{
 			height: 40px;
@@ -257,9 +257,9 @@
 			height: 42px;
 			line-height: 42px;		
 		}
-		.midd .left li:hover{
-			
+		.midd .left li.active{
 			cursor: pointer;
+			background-color: orange;
 		}
 		.midd .left li a{
 			margin-left: 30px;
@@ -279,10 +279,39 @@
 			position: absolute;
 			left: 234px;
 			height: 460px;
-			min-width: 500px;
-			background: #000;
+			
+			width: 900px;
 			z-index: 10000;
 			display: none;
+			background-color: white;
+			border-top: 1px solid rgba(0,0,0,0.3); 
+			box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+		}
+		.midd .leftList ul{
+			margin-top: 30px;
+			margin-left: 30px
+		} 
+		.midd .leftList li{
+			margin-right: 100px;
+			margin-bottom: 60px;
+			
+			width: 100px;
+			height: 50px;
+		}
+		.midd .leftList li img{
+			width: 30px;
+			height: 30px;
+			float: left;	
+		}
+		.midd .leftList li a{
+			float: left;
+			margin-top: 5px;
+			margin-left: 5px;
+			color: #000;
+		}
+		.midd .leftList li a:hover{
+			color: orange;
+			cursor: pointer;
 		}
 		.leftBtn,.rightBtn{
 			width: 30px;
@@ -433,19 +462,28 @@
 		.mid2 .nav .nav2{
 			float: right;
 		}
+
 		.mid2 .nav .nav2 div{
 			width: 34px;
 			height: 22px;
 			border: 1px solid #e0e0e0;
-			color:  #b0b0b0;
+			color:  #ccc;
 			float: right;
 			font-size: 15px;
 			text-align: center;
 			line-height: 22px;
 			margin-top: 26px;
+			font-weight: 900;
 		}
 		.mid2 .nav .nav2 div:nth-child(1){
 			border-left: none;
+		}
+		.mid2 .nav .nav2 .linkNow{
+			color: #888;
+			cursor: pointer;
+		}
+		.mid2 .nav .nav2 .linkNow:hover{
+			color: orange;
 		}
 		.mid2 .content{
 			height: 340px;
@@ -455,9 +493,20 @@
 			height: 339px;
 			background: #fafafa;	
 		}
-		.mid2 .content .king img{
-			width: 34px;
-			height: 53px;
+		.mid2 .content .king{
+			width: 234px;
+			height: 339px;
+			float: left;
+		}
+		.mid2 .content .kinga{
+			float: left;
+			width: 979.5px;
+			height: 340px;
+			overflow: hidden;
+		}
+		.mid2 .content .kingaU{
+			height: 340px;
+			
 		}
 		.mid2 .content .king1{
 			border-top: 1px solid orange;
@@ -475,6 +524,14 @@
 			border-top: 1px solid red;
 			margin-right: none;
 		}
+		.mid2 .content .king5{
+			border-top: 1px solid yellow;
+			margin-right: 14.5px;
+		}
+		.mid2 .content .king6{
+			border-top: 1px solid purple;
+			margin-right: 14.5px
+		}
 		.mid2 .content .king{
 			background: #f1eded;
 			text-align: center;
@@ -483,13 +540,15 @@
 			border-top: 1px solid red;
 			margin-right: 14.5px;
 		}
+		.mid2 .content .king img{
+			width: 34px;
+			height: 53px;
+			display: block;
+			margin: 30px auto;
+		}
 		.mid2 .content .king h4{
 			color: red;
 			font-size: 22px;
-		}
-		.mid2 .content .king img{
-			display: block;
-			margin: 30px auto;
 		}
 		.mid2 .content .king p{
 			color: #706f6f;
@@ -658,6 +717,9 @@
 		.jiadian .nav .nav2 li,
 		.zhineng .nav .nav2 li{
 			margin-left: 31px;
+			cursor: pointer;
+			font-size: 17px;
+			color: #424242;
 		}
 		.jiadian .nav,
 		.zhineng .nav{
@@ -668,34 +730,43 @@
 			height: 302px;
 			margin-top: 2px;
 		}
+		.zhineng .nav .nav2 li.changeOrange a{
+			color: orange;
+			border-bottom: 2px solid orange;
+		}
 		.jiadian .content .con1 a{
 			width: 100%;
 			height: 100%;
 			display: inline-block;
 		}
-		.jiadian .content .con1 .top{
+		#top{
 			margin-bottom: 12px;
+			background-color: #f5f5f5;
 		}
-		.zhineng .content li{
-			width: 234px;
-			height: 300px;
-			margin-right: 14px;
-			position: relative;
+		#zhineng .content .con1{
+			float: left;
 		}
-		.zhineng .content li:nth-child(5),
-		.zhineng .content li:nth-child(10){
-			margin-right: 0px;
+		#zhineng .content .con22{
+			float: right;
+			width: 994px;
+			height: 100%;
 		}
-		.zhineng .content li:nth-child(6),
-		.zhineng .content li:nth-child(7),
-		.zhineng .content li:nth-child(8),
-		.zhineng .content li:nth-child(9),
-		.zhineng .content li:nth-child(10){
-			margin-top: 14px;
-		}
-		.zhineng .content li img{
+		#zhineng .content .con22 img{
 			width: 100%;
 			height: 100%;
+		}
+		#zhineng .content .con22 li{
+			width: 234px;
+			height: 302px;
+			margin-left: 14px;
+
+		}
+
+		.zhineng .content .con22 li:nth-child(5),
+		.zhineng .content .con22 li:nth-child(6),
+		.zhineng .content .con22 li:nth-child(7),
+		.zhineng .content .con22 li:nth-child(8){
+			margin-top: 14px;
 		}
 		.zhineng .content .aa{
 			width: 234px;

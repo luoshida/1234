@@ -4,6 +4,9 @@ window.onload=function(){
 	handleMenu();
 	handleCarousel();
 	handleMidd();
+	countDown();
+	handleMid2();
+	handlezhineng();
 }
 function handleCart(){
 	var tNav=document.querySelector('.nav');
@@ -54,7 +57,6 @@ function handleNav(){
 		} 
 		uBox1Li[i].onmouseleave=function(){
 			timer=setTimeout(function(){
-				
 				animation(uNavcontent,{'height':0},true,)
 			},300);
 			
@@ -134,19 +136,130 @@ function handleMidd(){
 	var oLeft=document.querySelector('.midd .left');
 	var oLeftLi=oLeft.getElementsByTagName('li');
 	var oLeftList=document.querySelector('.midd .leftList');
-	console.log(oLeftLi);
+	var oLeftListUl=oLeftList.getElementsByTagName('ul')[0];
+	var timer=null;
 	for (var i = 0; i < oLeftLi.length; i++) {
+		oLeftLi[i].index=i;
 		oLeftLi[i].onmouseenter=function(){
 			for (var j = 0; j < oLeftLi.length; j++) {
-				oLeftLi[j].style.backgroundColor='';
+				oLeftLi[j].className='';
 			}
-			this.style.backgroundColor='orange';
+			this.className='active';
 			oLeftList.style.display='block';
-		}
-		oLeft.onmouseleave=function(){
-			oLeftLi[i].style.backgroundColor='';
-			oLeftList.style.display='none';
+			loadData(this.index);
 		}
 	}
+	oLeft.onmouseleave=function(){
+		timer=setTimeout(function(){
+			for (var i = 0; i < oLeftLi.length; i++){
+				oLeftLi[i].className='';		
+			}
+			oLeftList.style.display='none';
+		},100)	
+	}
+	oLeftList.onmouseenter=function(){
+		clearTimeout(timer);
+	}
+	oLeftList.onmouseleave=function(){
+		for (var i = 0; i < oLeftLi.length; i++){
+				oLeftLi[i].className='';		
+			}
+		oLeftList.style.display='none';
+	}
+	function loadData(index){
+		oLeftListUl.innerHTML='';
+		var oLeftListArr=theArray1[index];
+		if (!oLeftListArr) {
+			return
+		}
+		if (index==2) {
+			oLeftList.style.width='700px';
+		}else{
+			oLeftList.style.width='1000px';
+		}
+		
+		var LiARR='';
+		for (var i = 0; i < oLeftListArr.length; i++) {
+			// var oLeftListLi=document.createElement('li');
+			// var oLeftListLiI=document.createElement('img');
+			// oLeftListLiI.src=oLeftListArr[i].img;
+			// var oLeftListLiA=document.createElement('a');
+			// oLeftListLiA.innerHTML=oLeftListArr[i].name;
+			// oLeftListLi.appendChild(oLeftListLiI);
+			// oLeftListLi.appendChild(oLeftListLiA);
+			// oLeftListUl.appendChild(oLeftListLi);
 
+			LiARR += '<li><img src="'+oLeftListArr[i].img+'">';
+			LiARR += '<a href="#">'+oLeftListArr[i].name+'</a></li>'
+		}
+		oLeftListUl.innerHTML=LiARR;
+	}
+}
+function countDown(){
+	var oKing=document.querySelector('.king');
+	var oKingU=document.querySelector('.king .kingU');
+	var oKingLi=oKingU.getElementsByTagName('li');
+	
+	var future=new Date('2018/5/21 12:00:00');
+	function toStr(num){
+		if(num<10){
+			return '0'+num;
+		}else{
+			return ''+num;
+		}
+	}
+	var timer;
+	timer=setInterval(function(){
+		var nows=new Date();
+		var allTime=(future.getTime()-nows.getTime())/1000;
+		if (allTime<0) {
+			allTime=0;
+			clearInterval(timer);
+		}
+		var h=parseInt(allTime/3600);
+		var m=parseInt((allTime%3600)/60);
+		var s=parseInt((allTime%3600)%60);
+		
+		oKingLi[0].innerHTML=toStr(h);
+		oKingLi[2].innerHTML=toStr(m);
+		oKingLi[4].innerHTML=toStr(s);
+	},50)
+}
+function handleMid2(){
+	var oNav2=document.querySelector('.mid2 .nav2');
+	var oDiv=oNav2.getElementsByTagName('div');
+	var okaDiv=document.querySelector('.mid2 .content .kinga'); 
+	var okaDivU=okaDiv.querySelector('.kingaU'); 
+
+	oDiv[0].onclick=function(){
+		animation(okaDivU,{'marginLeft':-980});
+		oDiv[0].className='';
+		oDiv[1].className='linkNow';
+	}
+	oDiv[1].onclick=function(){
+		animation(okaDivU,{'marginLeft':0});
+		oDiv[1].className='';
+		oDiv[0].className='linkNow';
+	}
+}
+function handlezhineng(){
+	var oNav2=document.querySelector('.zhineng .nav2');
+	var oNav2Li=document.querySelectorAll('.zhineng .nav2 li');
+	var oCon2=document.querySelector('.zhineng .content .con22');
+	var oCon2Ul=oCon2.querySelector('ul');
+	for (var i = 0; i < oNav2Li.length; i++) {
+		oNav2Li[i].index=i
+		oNav2Li[i].onmouseover=function(){
+			for (var j = 0; j < oNav2Li.length; j++) {
+				oNav2Li[j].className='';
+			}
+			this.className='changeOrange';
+			gogogo(this.index);
+		}
+	}
+	function gogogo(index){
+		oCon2Ul.innerHTML='';
+		var theArray22=theArray2[index];
+	}
+	
 }
