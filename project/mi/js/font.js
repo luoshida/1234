@@ -260,6 +260,13 @@ function handlezhineng(){
 	function gogogo(index){
 		oCon2Ul.innerHTML='';
 		var theArray22=theArray2[index];
+		var kong='';
+		console.log(theArray22.length);
+		for (var i = 0; i < theArray22.length-1; i++) {
+			kong+='<li class="bb"><img src="'+theArray22[i].img+'"><div><p>'+theArray22[i].p1+'</p><p>'+theArray22[i].p2+'</p></div></li>';	
+		}
+		kong+='<li><div class="aa"><img src="'+theArray22[theArray22.length-1].img1+'"></div><div class="aa"><img src="'+theArray22[theArray22.length-1].img2+'"></div></li>';
+		oCon2Ul.innerHTML=kong;	
 	}
-	
+	  
 }

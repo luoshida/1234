@@ -595,202 +595,174 @@ var theArray1=[[{
 var theArray2=[
 	[
 		{
-			img:'images/jiadian1.png',
-			p:'小米电视4A 40英寸',
-			p:'FHD全高清屏 / 人工智能语音系统 ',
-			p:'1599元'
+			img:'images/zhi2.png',
+			p1:'FHD全高清屏 / 人工智能语音系统 ',
+			p2:'1599元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2199元'
+			img:'images/zhi3.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2199元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2299元'
+			img:'images/zhi4.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2299元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2399元'
+			img:'images/zhi5.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2399元'
 		},
 		{
-			img:'images/jiadian1.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2499元'
+			img:'images/zhi7.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2499元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2599元'
+			img:'images/zhi8.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2599元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2699元'
+			img:'images/zhi9.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2699元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2799元'
+			img1:'images/zhi10.png',
+			img2:'images/zhi11.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2799元'
 		}
 	],
 	[
 		{
-			img:'images/jiadian3.png',
-			p:'小米电视4A 40英寸',
-			p:'FHD全高清屏 / 人工智能语音系统 ',
-			p:'1599元'
+			img:'images/zhi3.png',
+			p1:'FHD全高清屏 / 人工智能语音系统 ',
+			p2:'1599元'
 		},
 		{
-			img:'images/jiadian1.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2199元'
+			img:'images/zhi4.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2199元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2299元'
+			img:'images/zhi2.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2299元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2399元'
+			img:'images/zhi8.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2399元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2499元'
+			img:'images/zhi7.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2499元'
 		},
 		{
-			img:'images/jiadian1.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2599元'
+			img:'images/zhi5.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2599元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2699元'
+			img:'images/zhi9.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2699元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2799元'
+			img1:'images/zhi10.png',
+			img2:'images/zhi11.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2799元'
 		}
 	],
 	[
 		{
-			img:'images/jiadian1.png',
-			p:'小米电视4A 40英寸',
-			p:'FHD全高清屏 / 人工智能语音系统 ',
-			p:'1599元'
+			img:'images/zhi4.png',
+			p1:'FHD全高清屏 / 人工智能语音系统 ',
+			p2:'1599元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2199元'
+			img:'images/zhi3.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2199元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2299元'
+			img:'images/zhi2.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2299元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2399元'
+			img:'images/zhi5.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2399元'
 		},
 		{
-			img:'images/jiadian1.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2499元'
+			img:'images/zhi8.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2499元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2599元'
+			img:'images/zhi7.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2599元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2699元'
+			img:'images/zhi9.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2699元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2799元'
+			img1:'images/zhi10.png',
+			img2:'images/zhi11.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2799元'
 		}
 	],
 	[
 		{
-			img:'images/jiadian1.png',
-			p:'小米电视4A 40英寸',
-			p:'FHD全高清屏 / 人工智能语音系统 ',
-			p:'1599元'
+			img:'images/zhi2.png',
+			p1:'FHD全高清屏 / 人工智能语音系统 ',
+			p2:'1599元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2199元'
+			img:'images/zhi3.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2199元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2299元'
+			img:'images/zhi4.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2299元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2399元'
+			img:'images/zhi5.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2399元'
 		},
 		{
-			img:'images/jiadian1.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2499元'
+			img:'images/zhi7.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2499元'
 		},
 		{
-			img:'images/jiadian3.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2599元'
+			img:'images/zhi8.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2599元'
 		},
 		{
-			img:'images/jiadian4.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2699元'
+			img:'images/zhi9.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2699元'
 		},
 		{
-			img:'images/jiadian5.png',
-			p:'小米5 4GB+64GB',
-			p:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
-			p:'2799元'
+			img1:'images/zhi10.png',
+			img2:'images/zhi11.png',
+			p1:'变焦双摄，4 轴防抖，骁龙835 处理器 ',
+			p2:'2799元'
 		}
 	]
 ]
