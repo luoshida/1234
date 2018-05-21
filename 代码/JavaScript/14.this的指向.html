@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this的指向</title>
+	<script>
+		function show(n1,n2){
+			console.log(this,n1,n2)
+		}
+		show.call({name:"tom"},200,300);
+		//call可以改变函数体show的 this的指向，让它指向{name:"tom"}
+		show.apply({name:"tom"},[200,300]);
+
+		//相当于具有一个return返回值，返回值是一个函数，
+		show.bind({name:"tom"},200,300);
+		//可以对这个函数用变量接收
+		var theFun=show.bind({name:"tom"},200,300);
+		theFun();
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -75,15 +75,6 @@
 .content .label li{
 	margin-right: 20px;
 }
-
-
-.content .label li a:hover{
-	color: #222;
-}
-.content .label li a:active{
-	font-size: 15px;
-	color: #222;
-}
 .content .label li a{
 	text-decoration: none;
 	color: #616161;
@@ -97,56 +88,40 @@
 .content .label li:first-child{
 	margin-left: 10px;
 }
+.content .show img{
+	border-radius: 10px;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+
 .dot:before{
 	content: "·";
 	color: #c7c7c7;
 	margin-right: 20px;
 }
-.content .show{
-	height: 501px;
-	position: relative;
-	border: 1px solid #d2d2d2;
-	border-radius: 10px;
-}
-.content .show a img{
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-	position: absolute;	
-}
-.content .show input:nth-child(1){
+.bottomBtn{
 	position: absolute;
-	left: 585px;
-    top: 438px;
-	z-index: 2;
-	opacity: 0.5;
+	bottom: 10px;
+	left: 50%;
 }
-.content .show input:nth-child(2){
-	position: absolute;
-	left: 603px;
-	top: 438px;
-	z-index: 2;
-	opacity: 0.5;
+.bottomBtn li{
+	float: left;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: 1px solid #000;
+	margin-right: 10px;
+	cursor: pointer;
+	list-style: none;
 }
-.content .show input:nth-child(3){
-	position: absolute;
-	left: 623px;
-	top: 438px;
-	z-index: 2;
-	opacity: 0.5;
+.bottomBtn li.active{
+	background: rgba(255,0,255);
 }
-.content .show a:nth-child(6) img{
-	animation: changea 18s linear infinite;
-}
-		
-.content .show a:nth-child(5) img{
-	animation: changeb 18s linear infinite;
-}		
 .content .load{
 	height: 800px;
 	margin-top: 14px;
 	border-radius: 10px;
 	position: relative;
+	cursor: pointer;
 }
 .content .load div{
 	position: absolute;
@@ -329,7 +304,7 @@
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
-	background: url(../image/top.png) no-repeat center center;
+	background: url(../images/image5/top.png) no-repeat center center;
 	background-size: cover;
 }
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		li{
+			list-style: none;
+
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oinp=document.getElementById('inp');
+			var otxt=document.getElementById('txt');
+			var osub=document.getElementById('sub');
+			var oul1=document.getElementById('ul1');
+			var date=['ammy','ammt','tily','copy'];
+			oinp.onfocus=function(){
+				otxt.innerHTML='请输入6到8位数字';
+				otxt.style.color='green';
+			}
+			var isok=false;
+			oinp.onblur=function(){
+				if (oinp.value.length>=6 && oinp.value.length<=8) {
+					otxt.innerHTML='输入正确';
+					otxt.style.color='green';
+					isok=true;
+				} else {
+					otxt.innerHTML='输入错误，请重新输入';
+					otxt.style.color='red';
+				}
+			}
+			osub.onclick=function(){
+				if (!isok) {
+					return false;
+				}
+			//输入错误submit不会提交；
+			}
+			var isload=false;
+			oinp.oninput=function(){
+				if (isload) {
+						return false;
+					}
+				for (var i = 0; i <date.length; i++) {
+					
+					var oli=document.createElement('li');
+					oli.innerHTML=date[i];
+					oul1.appendChild(oli);
+					// oli.onclick=function(){
+					// 	oinp.value=this.innerHTML;
+					// }
+					oul1.onclick=function(ev){
+						var oEvent=ev || event;
+						oinp.value=oEvent.target.innerHTML;
+					}
+				}
+				isload=true;
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<form action="https://www.baidu.com">
+		<input type="txt" name="username" id="inp">
+		<span id="txt"></span>
+		<ul id="ul1">
+		</ul>
+		<p>
+			<input type="submit" id="sub">
+		</p>
+	</form>
+</body>
+</html>

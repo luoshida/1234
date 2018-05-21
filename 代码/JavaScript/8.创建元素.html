@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var oUl=document.getElementById('ul1');
+			var oBtn=document.getElementById('btn');
+			var oInput=document.getElementById('inputt');
+			oBtn.onclick=function(){
+				var oLi=document.createElement('li');
+				oLi.innerHTML=oInput.value;
+				//创建一个li元素
+				oUl.appendChild(oLi);
+				//在oUl插入一个oLi子元素
+				//oUl.insertBefore(oLi,oUl.firstElementChild);
+				//在oUl.firstElementChild之前插入oLi子元素
+				var oA=document.createElement('a');
+				oA.onclick=function(){
+					oUl.removeChild(this.parentNode);
+					// oUl.removeChild(oLi);
+				}
+				oA.innerHTML='del';
+				oA.href='javascript:';
+				oLi.appendChild(oA);
+				
+				
+			} 
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="加li" id="btn">
+	<input type="text" id="inputt">
+	<ul id="ul1">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		li{
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			list-style: none;
+		}
+	</style>
+	<script >
+		var i=2  //直到...为止
+		while(i<5){
+// 当表达式(i<5)-(expression)(循环退出条件)是真值时则循环执行alert(i);-(statement)(循环体语句)，i++;(循环条件的改变) 直到expression的值为假值为止；如果是假值，那么程序将跳过循环
+// 　　[注意]使用while(true)会创建一个死循环
+// 　　大多数循环都会有一个像count这样的计数器变量。尽管循环计数器常用i、j、k这样的变量名，但如果想要让代码可读性更强，就应当使用更具语义的变量名
+			alert(i);
+			i++;
+		}
+
+
+		for(var i=0;i<5;i++){
+			alert(i);
+		}
+
+
+		var count = 10;
+		var i;
+// 在for循环的变量初始化表达式中，也可以不使用var关键字该变量的初始化可以在外部执行
+		for(i = 0; i < count; i++){
+    	console.log(i);
+		}
+
+
+
+// 由于ECMAScript中不存在块级作用域，因此在循环内部定义的变量也可以在外部访问到		
+		var count = 10;
+		for(var i = 0; i < count; i++){
+    		console.log(i);
+		}
+		console.log(i);
+
+
+// 如果循环中的一次迭代会改变多个变量，则需要用到逗号运算符，它将初始化表达式和自增表达式合并入一个表达式中以用于for循环
+		var i,j;
+		for(i = 0,j =10; i<10; i++,j--) sum+= i*j;
+	</script>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

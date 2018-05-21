@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animation</title>
+	<style>
+		body{
+			height: 2000px;
+		}
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			right: 0px;
+
+		}
+	</style>
+	<script>
+		function animation(obj,attr,iTarget){
+			clearInterval(obj.timer);
+        	var iSpeed = 0;
+        	obj.timer = setInterval(function(){
+          		var curr=parseFloat(getComputedStyle(obj,false)[attr]);
+             	if(attr == 'opacity'){
+            		curr = curr * 100;
+	            }
+	            if(curr <= iTarget){
+	            	iSpeed = 100;
+	            }else{
+	            	iSpeed = -100;
+	        	}
+	            if(Math.abs(iTarget - curr) <= Math.abs(iSpeed)){
+	             	clearInterval(obj.timer);
+	                if(attr == 'opacity'){
+	                	obj.style[attr] = iTarget/100;
+	                }else{
+	               		obj.style[attr] = iTarget + 'px';
+	                }
+	            }else{
+	                if(attr == 'opacity'){
+	                	obj.style[attr] = (curr + iSpeed)/100; 
+	                }else{
+	                	obj.style[attr] = curr + iSpeed + 'px';
+	                }
+	            }
+        	},30)  
+		}
+		window.onresize=window.onscroll=window.onload=function(){
+			var obox=document.getElementById('box');
+			var iHeight=window.innerHeight;
+			var iTop=document.body.scrollTop || document.documentElement.scrollTop;
+			
+			
+			// var iTarget=iTop+iHeight-obox.offsetHeight;
+			//盒子在右下角悬浮
+			var iTarget=iTop+(iHeight-obox.offsetHeight)/2;
+			//盒子在右中部悬浮
+			animation(obox,'top',iTarget);
+		}
+
+
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

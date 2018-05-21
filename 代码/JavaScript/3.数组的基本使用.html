@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1</title>
+	<script type="text/javascript">
+	// 	//数组
+	// 	var arr = new Arrar(1,2,3,4,5,6,7,8,9);
+	// 	var arr = [1,2,3,4,5,6,7,8,9];
+	// 	for (var i = 0; i < arr.length; i++) {
+	// 		alert(arr[i]);
+	// 	}
+	// // i是一个计数的，从0开始。 
+	// // i=0 说明第一个 
+	// // arr 数组里的数被计数了，arr第一个值是1，就显示的是1，
+	// // 然后一直计算到 arr.length 所代表的数 即九个数 
+	// // 然后 i=8 的时候计数到arr的最后一位数 9 然后停止计数。
+
+	// arr.push(元素) //在数组末尾添加
+	// arr.pop()  //删除数组的末尾元素
+	// arr.shift() //删除数组的第一个元素
+	// arr.unshift(元素) //把元素添加到数组的头部
+	// arr.splice(起始下标,删除个数,插入值1,插入值2...)
+	// arr.join(字符) //用指定的字符连接数组 1字符2字符3...
+	// 数组1.concat(数组2) //把数组1和数组2合并生成一个新的数组
+	// arr.slice(起始位数,结束位数)                 var arr2=arr.slice(2,4) 
+	//基于当前数组创建一个新数组
+	// arr.indexOf(数组的值,从开头第几位开始查找) //从数组头部开始向后查找,返回查找到的数组的下标,如果没有找到返回-1,indexof查找到的是该元素的位数 即第几位元素，位数从零开始计算。
+	// arr.lastIndexOf(数组的值,起始下标从开头第几位开始查找) //从数组未部开始向前查找,返回查找到的数组的下标,如果没有找到返回-1
+
+	//数组的排序
+	var van=[4,6,1,45,23,89,22];
+	console.log(van);
+	//sort() 为默认排序，首字母数字首位数
+	van.sort(function (n1,n2) {
+		return n1-n2;
+	})
+	console.log(van);
+
+
+	//去除数组重复元素
+	var acc=[5,6,5,23,45,68,45,23];
+	function newacc(bbb){
+		var result=[];
+		for (var i = 0; i < bbb.length; i++) {
+			var isdup=false;
+			for (var j = 0; j < result.length; j++) {
+				if (bbb[i]==result[j]) {
+					isdup=true;
+					break;
+				}
+			} 
+			if (!isdup) {
+				result.push(bbb[i]);
+			}
+		}
+		return result;
+	}
+	console.log(newacc(acc));
+	</script>
+</head>
+<body>
+
+</body>
+</html>

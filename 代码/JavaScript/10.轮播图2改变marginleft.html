@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lunbo</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		.right {
+			position: relative;
+		}
+		.leftarrow,.rightarrow{
+			width: 46px;
+			height: 80px;
+			position: absolute;
+			top: 207px;
+			z-index: 99;
+			font-size: 50px;
+			text-align: center;
+			line-height: 80px;
+			color: #d5d4d1;
+		}
+		.leftarrow{left: 0px;}
+		.rightarrow{right: 0px;}
+		li{
+			list-style: none;
+		}
+		#ul1{
+			width: 5000px;
+			
+		}
+		#box{
+			width: 1000px;
+			height: 600px;
+			overflow: hidden;
+		}
+		#ul1 li{
+			width: 1000px;
+			height: 600px;
+			float: left;
+
+		}
+		#ul1 li img{
+			height: 100%;
+			width: 100%;
+		}
+		#ul2{
+			position: absolute;
+			top: 565px;
+			right: 0px;
+			z-index: 99;
+		}
+		#ul2 li{
+			width: 5px;
+			height: 5px;
+			border: 2px solid #97958f;
+			border-radius: 50%;
+			margin-right: 9px;
+			float: left;
+		}
+		</style>
+		<script>
+			window.onload=function(){
+				var oul=document.getElementById('ul1');
+				var oul2=document.getElementById('ul2');
+				var oli=oul.children;
+				var oli2=oul2.children;
+				var oleft=document.getElementById('lefta');
+				var oright=document.getElementById('righta');
+				var obox=document.getElementById('box');
+				var now=0;
+				
+			function change(){
+				for (var i = 0; i < oli.length; i++) {
+					oli2[i].style.background='';
+				}
+				oul.style.marginLeft=now*-1000+'px';
+				oli2[now].style.background='red';
+			}
+			oright.onclick=function(){
+				now++;
+				if (now>=oli.length) {
+					now=0;
+				}
+				change();		
+			}
+			oleft.onclick=function(){
+				now--;
+				debugger;
+				if (now<0) {
+					now=oli.length-1;
+				}
+				change();		
+			}
+			for (var i = 0; i < oli2.length; i++) {
+				oli2[i].index=i;
+				oli2[i].onclick=function(){
+					now=this.index;
+					change();
+				}
+			}
+			
+			var timer =setInterval(function(){
+				oright.onclick();
+			},2000);
+			
+			obox.onmouseover=function(){
+				clearInterval(timer); 
+			}
+			
+			obox.onmouseout=function(){
+				timer =setInterval(function(){
+					oright.onclick();
+				},2000);
+			}
+			
+		}  
+		</script>
+</head>
+<body>
+	<div class="right" id="box" >
+		<ul id="ul1">
+			<li>
+				<img src="../54/1080+1920.jpg">
+			</li>
+			<li>
+				<img src="../54/1080+19202.jpg">
+			</li>
+			<li>
+				<img src="../54/1080+19203.jpg">
+			</li>
+			<li>
+				<img src="../54/1080+19204.jpg">
+			</li>
+			<li>
+				<img src="../54/1080+19205.jpg">
+			</li>
+		</ul>
+		<div class="leftarrow" id="lefta">&lt;</div>
+		<div class="rightarrow" id="righta">&gt;</div>
+		<ul id="ul2">
+			<li style="background: red;"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

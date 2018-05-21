@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+		function show(name){
+			alert('hello'+name);
+		}
+		show('luoshida');
+
+
+		//三种参数样式
+		function css(obj,attr,value){
+			obj.style[attr]=value;
+		}
+		function css(){
+			if (arguments.length==2) {
+				return getComputedStyle(arguments[0],false)[arguments[1]];
+			} else {
+				return arguments[0].style[arguments[1]]=arguments[3];
+			}
+		}
+		function css(obj,attr,value){
+			if (arguments.length==2) {
+				return getComputedStyle(obj,false)[attr];
+			} else {
+				return obj.style[attr]=value;
+			}
+		}
+		//函数传参数，改变元素的样式函数，在使用属性时,用'[]'可以代替所有的'.',但是'.'不一定能代替'[]'
+		window.onload=function(){
+			var obtn1=document.getElementById('btn1');
+			var obtn2=document.getElementById('btn2');
+			var obtn3=document.getElementById('btn3');
+			var obox=document.getElementById('box');
+			var obox2=document.getElementById('box2');
+			obtn1.onclick=function(){
+				css(obox,'width','400px');
+				css(obox2,'width','400px');
+			}
+			obtn2.onclick=function(){
+				css(obox,'height','400px');
+				//获取行间样式	
+			}
+			obtn3.onclick=function(){
+				getComputedStyle(obox,false)['width'];
+				//获取非行间样式	
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" id="btn1" value="变宽">
+	<input type="button" id="btn2" value="变高">
+	<input type="button" id="btn3" value="获取">
+	<div id="box"></div>
+	<div id="box2"></div>
+</body>
+</html>

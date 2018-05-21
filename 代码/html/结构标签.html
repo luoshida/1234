@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>结构标签</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0}
+		.header{background-color: green;width: 100%;height: 100px}
+		.logo{width: 40%;height: 50%;background-color: blue;float: left;}
+		.nav{width: 20%;height: 50%;background: yellow;float: left;}
+		.main{width: 100%;height: 600px;background: gray}
+		.footer{width: 100%;height: 100px;background-color: black}
+	</style>
+</head>
+<body>
+	<div class="header">	<!-- <header> -->
+		<h1 class="logo">123</h1>
+		<div class="nav"></div> <!-- <nav></nav> -->
+	</div>					<!-- </header> -->
+	<div class="main">
+		<div class="aside"></div>
+		<div class="article"></div>
+	</div>
+	<time datetime="21:00" pubdate>12:00</time><!-- time为时间标签 --><!-- pubdate为发布时间 -->
+	<!-- <span>13:00</span> 字符串（老的）没有任何意义，现在用time-->
+	<meter max="100" min="0" value="68"></meter>
+	<!-- meter为特定范围数值value属性,当前取值 -->
+	<progress value="20" max="100"></progress>
+<!-- progress为进度条标签 表示20% -->
+	<div class="footer"></div>
+</body>
+</html>

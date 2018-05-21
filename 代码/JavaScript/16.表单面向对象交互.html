@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>form example</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+		.reg{
+			width: 980px;
+            margin: 50px 58px; 
+		}
+		.msg{
+			display: none;
+		}
+		.msg1{
+			font-size: 12px;
+            color: #aaa;
+            line-height: 15px;
+            margin-left: 8px;
+            position: absolute;
+            top: 0px;
+		}
+		.ok{
+			width: 16px;
+			height: 16px;
+			line-height: 15px;
+			display: inline-block;
+			position: absolute;
+			margin-top: 4px;
+			margin-left: 8px;
+			background-image: url(images/reg_icons.png);
+			background-position: -80px 0px;
+		}
+		.err{
+			
+			height: 16px;
+			color: #fc4343;
+			font-size: 12px;
+			text-indent: 20px;
+			height: 16px;
+			margin-left: 8px;
+			line-height: 15px;
+			display: inline-block;
+			position: absolute;
+			margin-top: 4px;
+			background-image: url(images/reg_icons.png) no-repeat;
+			background-position: -80px -24px;
+		}
+		.reg div{
+			margin-bottom: 22px;
+			position: relative;
+		}
+		.reg div:after {
+            content: "";
+            clear: both;
+            display: block;
+            visibility: hidden;
+            height: 0;
+        }
+		.reg div label{
+			position: absolute;
+			font-size: 15px;
+			color: #666;
+			width: 45px;
+			height: 40px;
+			font-weight: 700;
+			text-align: right;
+		}
+		.reg div input{
+			position: relative;
+			width: 350px;
+			height: 40px;
+			border:1px solid #ddd;
+			margin-left: 60px;
+			margin-top: -10px; 
+			box-sizing: border-box;
+			padding: 11px 10px;
+		}
+		.reg div input:focus{
+			border-color: #488ee7;
+            outline: 0;
+		}
+		.cancel{
+			position: absolute;
+			width: 16px; 
+			height: 16px;
+			left: 387px;
+			top: 4px;
+			background-image: url(images/reg_icons.png);
+			background-position:-32px -24px;
+		}
+		.cancel:hover{
+			background-position:-48px -24px;
+		}
+		.reg .verification input{
+			width: 178px;
+		}
+		.reg .verification div{
+			border: 1px solid #ddd;
+			width: 160px;
+			height: 38px;
+			position: absolute;
+			line-height: 40px;
+			text-align: center;
+			left: 247px;
+			top: -7.5px;
+			color: #666;
+			font-size: 14px;
+		}
+		.reg .agreement input{
+			width: 13px;
+			height: 13px;
+		}
+		.reg .agreement p{
+			position: absolute;
+			font-size: 12px;
+			left: 78px; 
+			top: 0px;
+		}
+		.reg .agreement p span{
+			color: #666;
+		}
+		.reg .register input{
+			background: #3f89ec;
+			color: #fff;
+			border-radius: 3px;
+		}
+	</style>
+</head>
+<body>
+	<div class="reg">
+		<form action="https://www.baidu.com">
+			<div>
+				<label for="username">用户名</label>
+				<input type="text" name="username" placeholder="请设置用户名">
+				<span class="cancel" style="display: none;"></span>
+	            <span class="msg"></span>
+			</div>
+			<div>
+				<label for="telephone">手机号</label>
+				<input type="text" name="telephone" placeholder="可用于登录和找回密码">
+				<span class="cancel" style="display: none;"></span>
+	            <span class="msg"></span>
+			</div>
+			<div>
+				<label for="password">密码</label>
+				<input type="password" name="password" placeholder="请设置登录密码">
+				<span class="cancel" style="display: none;"></span>
+	            <span class="msg"></span>
+			</div>
+			<div class="verification">
+				<label>验证码</label>
+				<input type="text" name="verification" placeholder="请输入验证码">
+				<div>获取短信验证码</div>
+			</div>
+			<div class="agreement">
+				<input type="checkbox">
+				<p>
+					<span>阅读并接受</span><a href="#">《百度用户协议》</a><span>及</span><a href="#">《百度隐私权保护声明》</a>
+				</p>
+			</div>
+			<div class="register">
+				<input type="submit" name="submit" value="注册">
+			</div>	
+		</form>
+	</div>
+</body>
+<script>
+	function getLen(str){
+		return str.replace(/\u4e00-\u9fa5/g,'aa')
+	}
+	var theForm=document.forms[0];
+	var oMsg=document.querySelectorAll('.msg');
+	var oCancel=document.querySelectorAll('.cancel');
+	theForm[0].focus();
+	oMsg[0].className='msg1';
+	oMsg[0].innerHTML='设置后不可更改<br>中英文均可，最长14个英文或7个汉字';
+	theForm[0].oninput=function(){
+		if (theForm[0].value.length>0) {
+			oCancel[0].style.display='block';
+		} else {
+			oCancel[0].style.display='none';
+		}
+	}
+	oCancel[0].onclick=function(){
+		theForm[0].value='';
+		oCancel[0].style.display='none';
+	}
+	theForm[0].onblur=function(){
+		var theLong=getLen(theForm[0].value);
+		if (theLong.length>14) {
+			oMsg[0].className='err';
+			oMsg[0].innerHTML='用户名不能超过7个汉字或14个字符';	
+		}
+	}
+
+	
+	
+
+</script>
+</html>

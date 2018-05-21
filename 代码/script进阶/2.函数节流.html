@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//加定时器来节流
+	function setlink(fn,delay){
+		var timer;
+		return function(){
+			clearTimeout(timer)
+			timer=setTimeout(fn,delay)
+		}
+	}
+	window.onresize=setlink(function(){
+		console.log('aa') 
+	},300)
+</script>
+</html>

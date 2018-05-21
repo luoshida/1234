@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>排序</title>
+ 	<script>
+ 		window.onload=function(){
+ 			var oul=document.getElementById('ul1');
+ 			var obtn=document.getElementById('btn');
+ 			var oli=oul.children;
+ 			obtn.onclick=function(){
+	 			var result=[];
+	 			for (var i = 0; i < oli.length; i++) {
+	 				result.push(oli[i]);
+	 			}
+	 			result.sort(function(ol1,ol2){
+	 					var n1=ol1.innerHTML;
+	 					var n2=ol2.innerHTML;
+	 					return n1-n2;
+	 			});
+	 			for (var i = 0; i < result.length; i++) {
+	 				oul.appendChild(result[i]);
+			 	}
+ 			}
+ 		}
+ 	</script>
+ </head>
+ <body>
+ 	<input type="button" value="排序" id="btn">
+ 	<ul id="ul1">
+ 		<li>65</li>
+ 		<li>32</li>
+ 		<li>45</li>
+ 		<li>12</li>
+ 	</ul>
+ </body>
+ </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>event</title>
+	<style>
+		body{
+			height: 2000px;
+		}
+		#box{
+			width: 50px;
+			height: 50px;
+			background: gray;
+			border-radius: 50%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		div{
+			width: 50px;
+			height: 50px;
+			background: gray;
+			border-radius: 50%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script>
+		//移动单个物体
+		// function getPoint(ev){
+		// 		var iTop = document.body.scrollTop || document.documentElement.scrollTop;
+		// 		var iLeft = document.body.scrollLeft || document.documentElement.scrollLeft;	
+		// 		return {x:ev.clientX+iLeft,y:ev.clientY+iTop}
+		// }
+		// window.onload = function(){
+		// 	var obox = document.getElementById('box');
+		// 	document.onmousemove = function(ev){
+		// 		var oEvent = ev || event;
+		// 		var oPoint = getPoint(oEvent);
+		// 		obox.style.left = oPoint.x + 'px';
+		// 		obox.style.top = oPoint.y+ 'px';
+
+		// 	}
+		// }
+		function getPoint(ev){
+			var iTop=document.body.scrollTop || document.documentElement.scrollTop;
+			var iLeft=document.body.scrollLeft || document.documentElement.scrollLeft;
+			return{x:ev.clientX+iLeft,y:ev.clientY+iTop}
+		}
+		window.onload=function(){
+			var obox=document.getElementsByTagName('div');
+			document.onmousemove=function(ev){
+				var oEvent=ev || event;
+				var oPoint=getPoint(oEvent);
+
+				obox[0].style.left=oPoint.x+'px';
+				obox[0].style.top=oPoint.y+'px';
+				
+				for(var i=obox.length-1;i>0;i--){
+					obox[i].style.left=obox[i-1].offsetLeft+10+'px';
+					obox[i].style.top=obox[i-1].offsetTop+10+'px';
+				}
+			
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	<div ></div>
+	<div ></div>
+	<div ></div>
+	<div ></div>
+	<div ></div>
+</body>
+</html>

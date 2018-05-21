@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>event</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: #000;
+		}
+		#menu{
+			width: 100px;
+			height: 300px;
+			background: gray;
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			//键盘控制物体移动
+			var obox=document.getElementById('box');
+			document.onkeydown=function(ev){
+				var oEvent=ev || event;
+				if (oEvent.keyCode==37) {
+					obox.style.left=obox.offsetLeft-10+'px';
+				}else if(oEvent.keyCode==39){
+					obox.style.left=obox.offsetLeft+10+'px';
+				}
+			}
+
+			//默认菜单的改变
+			var omenu=document.getElementById('menu');
+			document.oncontextmenu=function(ev){
+				var oEvent=ev || event;
+				var itop=document.body.scrollTop || document.documentElement.scrollTop;
+				var ileft=document.body.scrollLeft || document.documentElement.scrollLeft;
+				
+				omenu.style.display='block';
+				omenu.style.left=ileft+oEvent.clientX+'px';
+				omenu.style.top=itop+oEvent.clientY+'px';
+				return false;
+			}
+			document.onclick=function(){
+				omenu.style.display='none';
+			}
+		}
+	
+	</script> 
+</head>
+<body>
+	<div id="box"></div>
+	<div id="menu"></div>
+
+</body>
+</html>

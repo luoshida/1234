@@ -1,0 +1,255 @@
+
+	分布式版本控制git
+
+pwd查询当前目录   ls    ls -la
+git config --global user.name xxx
+git config --global user.email xxx
+git config user.name
+git config user.email
+mkdir xxx文件夹 touch xxx.html
+vim xxx.txt 打开文件夹 i 进入编辑模式 ESC 退出编辑模式
+在插入编辑模式下编辑文件。
+按下 “ESC” 键，退出编辑模式，切换到命令模式。
+在命令模式下键入"ZZ"或者":wq"保存修改并且退出 vi 。
+如果只想保存文件，则键入":w"，回车后底行会提示写入操作结果，并保持停留在命令模式。
+放弃所有文件修改：按下 "ESC" 键进入命令模式，键入 ":q!" 回车后放弃修改并退出vi。
+放弃所有文件修改，但不退出 vi ，即回退到文件打开后最后一次保存操作的状态，继续进行文件操作：按下 "ESC" 键进入命令模式，键入 ":e!" ，回车后回到命令模式。
+git merge dev该命令把指定分支合并到当前分支,执行该操作前经常会切换到master分支,意思是把当前的分支的提交合并到master分支上
+git branch dev创建分支
+git branch查看分支
+git checkout dev切换分支
+git branch -d dev删除分支
+git checkout -b dev origin/dev抓取分支
+抓取失败时
+git branch --set-upstream-to=origin/dev dev
+git branch --set-upstream dev origin/dev
+git push origin dev推送分支
+cd xxx
+git init 
+git status如果查看时中文显示乱码,可以添加如下配置git config --global core.quotepath false
+git add ./xxx
+git commit -m'做了什么'
+git rm xxx     git commit -m'删除了什么'
+git mv xx1 xx2     git commit -m'改了什么'
+git checkout -- xxx 撤销工作区修改 git reset HEAD xxx 撤销暂存区修改
+git reset --hard xxxid
+git log 查看现有版本     git reflog 查看历史所有版本
+git remote -v 查看当前绑定hub网址
+git remote rm origin 删除绑定hub网址
+git remote add origin https://github.com/luoshida/1234.git 电脑上的东西绑定到hub上
+git push -u origin master 推送 可合并为 git push -u httpxxx master
+git clone httpxxx        hub上的东西复制到电脑上
+ssh-keygen -t rsa -C '791371894@qq.com' 生成公钥和密钥
+cd .ssh  进入隐藏文件夹.ssh    公钥id_rsa.pub 密钥id_rsa
+cat id_rsa.pub  查看公钥
+ssh -T git@github.com 验证密钥是否绑定成功
+
+	html标签
+
+<h1>指定标题</h1>  h1-h6
+<p>指定段落</p>
+<hr>画一条水平分割线
+<br>内容换行
+<b>加粗文字</b>       =  <strong>定义重要性强调的文字</strong>
+<u>给字体标下划线</u> =  <ins>定义插入的文字</ins>
+<i>字体变斜</i>       =  <em>定义强调的文字</em>
+<s>字体上加删除线</s> =  <del>定义被删除的文字</del>
+<sub>定义下标文本</sub>
+<sup>定义上标文本</sup>
+<ul><li>无序列表,用于导航栏商品列表等</li></ul>
+ ul与li配套使用 ol li为有序列表与无序列表差不多 多用于排行榜
+<dl><dt>条目</dt><dd>条目的描述</dd></dl> 给内容添加定义列表语义用于网站底部相关信息
+
+	<table>表格标签
+
+	<caption>给整个表格设置标题</caption>
+	<tr>
+		<td>1行1列</td>      <thead><th>添加头命令（加粗居中）</th><td>正常</td></thead>
+		<td>1行2列</td>      <tfoot>添加脚命令</tfoot>
+	</tr>
+	<tr>
+		<td>2行1列</td>
+		<td>2行2列</td>
+	</tr>
+</table>
+table      bgcolor="yellow"背景色  width="200px"宽度  height="200px"高度
+表内参数   align="left/center/right" valign="top/center/bottom" table中为表格朝向，在tr或td为文字朝向
+           border="1/2/3"边框粗细 cellspacing单元格之间的距离外边框 cellpadding文字与边框的距离内边框
+           rowspan/colspan="2"垂直或水平合并2单元格 被合并的单元格程序命令删除
+	
+	<form>表单标签
+
+<head>
+	<title>123</title>
+	<style>textarea{resize: none;}</style>
+	<!-- 使最下面的简介输入框固定大小 -->
+</head>
+<body>
+<form action="https://www.baidu.com">
+	<fieldset>
+	<!-- fieldset命令为在form表单加大边框 -->
+	<legend>在大边框上加自己想要的字</legend>
+	<p>
+		姓名:
+		<input type="text" name="name" value="默认在输入框内容" list="123" placeholder="请设置用户名">
+placeholder属性提供可描述输入字段预期值的提示信息（hint）该提示会在输入字段为空时显示，并会在字段获得焦点时消失。
+		<datalist id="123">
+	<!-- datalist命令是在输入框内加入备选项 -->
+			<option>ddd</option>
+			<option>aaa</option>
+			<option>bbb</option>
+			<option>ccc</option>
+		</datalist>
+	</p>
+	<p>
+		<label for="Use">密码:</label>
+	<!-- label命令是使鼠标点到内容时也能是光标定位在输入框内 -->
+		<input type="password" name="password" id="Use">
+	</p>
+	<p>
+		性别(单选项)：男<input type="radio" name="sex" value="1">
+		女<input type="radio" name="sex" value="2">
+	<!-- （value为上传到服务器的一个代号radio和checkbox同样适用 上传结果为sex=1/2） -->
+	</p>
+	<p>
+		爱好(多选项)：走<input type="checkbox" name="bobbit" value="1">
+		跑<input type="checkbox" name="bobbit" value="2">
+		跳<input type="checkbox" name="bobbit" value="3">
+	</p>
+	<P>
+		<input type="reset" name="重置清空表单内容" value="重置">
+	<!-- value是在按钮上显示的文字 -->
+	</P>
+		<input type="hidden" name="隐藏目录私密上传">
+		<input type="button" name="万能按钮自己起名" value="显示的文字">
+		<input type="submit" name="提交">
+		邮箱<input type="email" name="email" value="默认在输入框内容">
+		网址<input type="url" name="网址" value="默认在输入框内容">
+		<input type="number" name="数字输入框">
+		日期<input type="date" name="日期">
+		喜欢的颜色<input type="color" name="颜色选择框">
+	<p>
+		用图片提交<input type="image" src="C:\Users\liyuphp\Desktop\图片\timg (1) - 副本.jpg">
+	</P>	
+	<p>
+		住址<!-- 选择命令，只能选择不能输入 -->
+		<select name="address" multiple 多选标签，可多选>
+			<optgroup label="市区">
+	<!-- optgroup为分组命令可加可不加 -->
+				<option value="1">郑州</option>
+				<option value="2">周口</option>
+				<option value="3">南阳</option>
+	<!-- value为上传到网站的代号为住址=1 -->
+			</optgroup>
+			<optgroup label="省份">
+				<option value="4">河南</option>
+				<option value="5">河北</option>
+				<option value="6">安徽</option>
+			</optgroup>
+		</select>
+	<P>
+		简介<!-- 多行编辑 -->
+		<textarea name="intr" id="intr" cols="20" rows="5">这里是表单上默认文字</textarea>
+	</P>
+	</fieldset>
+</form>
+</body>
+
+	图片标签
+
+<img src="网址或路径" alt="图片不显示时显示的东西"
+ title="点击查看源网页" height="200px">
+	
+	音频视频标签
+
+<video src="https://www.4611.com" loop muted height="100px"></video>
+<!-- autoplay:是否需要自动播放视频 controls:是否需要显示控制条
+ poster: 视频没有播放之前显示的占位图片
+loop: 一般用于做广告视频,视频播放完毕之后是否需要循环播放 
+preload:预加载视频,但是需要注意preload和autoplay相冲,如果设置了autoplay属性,那么preload属性就会失效
+muted:静音
+ width/height:和img标签中的一模一样 -->
+<video>
+	<source src="" type="video/mp4"></video>
+	<source src="" type="video/ogg"></video>
+	<source src="" type="video/webm"></video>
+</video>
+<!-- 不管是格式1还是格式2都需要浏览器支持HTML5,如果不支持,需要引入相应的框架,如:[html5media](https://html5media.info/) -->
+<!--Ogg=带有heora视频编码和Vorbis音频编码的Ogg文件
+   MPEG4=带有H.264视频编码和AAC音频编码的MPEG4文件
+  WebM=带有VP8视频编码和Vorbis音频编码的WebM文件-->
+<audio src=""></audio>
+
+	链接标签a标签
+
+<head>
+	<meta charset="utf-8">
+	<title>链接标签a标签</title>
+	<base href="https://www.123.com">
+<!-- base标签为页面上的所有链接规定默认地址或默认打开的方式
+base标签必须写在head标签中 base标签没有结束标签 
+如果既在base中指定了target又在a标签中指定了target,那么浏览器会按照a标签中指定的来执行 
+如果在base中指定了默认地址,a标签的地址和img标签的地址都会以base标签的地址为相对地址 -->
+</head>
+<body>
+	<a href="https://www.baidu.com" target="_blank" title="链接">百度一下你就知道</a>
+	<a href="#">假链接</a>
+	<a href="javascript:">假链接2</a>
+	<p id="123">1.我的猫飞走了<p>
+	<a href="#">返回顶部</a>
+	<a href="#123">返回1</a>
+	<a href="另一个网页的名称#转到某个命令行的id" target="_blank">返回另一个页面某个命令行中的id</a>
+</body>
+
+	结构标签
+
+<div>无实际意义，块状结构，独占一行，配合css</div>
+<span>无实际语义，用于布局</span>
+	<div class="header">
+		<h1 class="logo"></h1>
+		<div class="nav"></div>
+	</div>
+	<div class="main">
+		<div class="aside"></div>
+		<div class="article"></div>
+	</div>
+	<div class="footer"></div>
+header代表页面头部内容<header></header>
+nav(navigator)页面的导航部分
+section代表一个区域,里面可以有其他的标签,如h标签...
+article页面当中的核心内容文章
+aside页面文章的辅助信息,有时也代表页面的侧边栏
+footer代表页面底部内容
+meter特定范围的数值 max属性,定义最大值。默认值是 1。
+min属性,定义最小值。默认值是 0。value属性,当前取值
+<meter max="100" min="0" value="68"></meter>
+progress进度条标签 20%
+<progress value="20" max="100"></progress>
+time时间标签pubdate为发布时间datetime规定的时间
+<time datetime="21:00" pubdate>12:00</time>
+
+	字符实体
+
+&nbsp;空格
+&copy;版权
+&lt;小于 http://www.w3school.com.cn/html/html_entities.asp
+
+	元信息
+
+<meta charset="utf-8">
+<meta name="keyword" content="关键字">
+<!-- 告诉搜索引擎当前网页的关键词,能够提高搜索命中率,让别人更容易找到你,搜索引擎会用这些关键字对文档进行分类。 -->
+<meta http-equiv="Content-Type" content="text/html">
+<!-- 服务器发送到浏览器时首先发送text/html请求，告诉浏览器准备接受这样类型的文档，再发送请求的内容 -->
+<meta name="description" content="对网页的描述信息">
+<meta name="author" content="罗世达" />
+<meta name="renderer" content="webkit">
+<!-- renderer标签，告诉浏览器用webkit内核解析 -->
+<meta http-equiv="Refresh" content="5;url=https://www.kuazhu.com" />
+<!-- 进入该网站后5秒后自动跳转到url指定的网站 -->
+
+	html属性
+
+全局属性 class id style title contenteditable可编辑属性
+局部属性 某个html标签自己所特有的属性
+事件属性 触发动作的能力

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		li{
+			width: 500px;
+			height: 100px;
+			border:1px solid red;
+		}
+		.active{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+	<script>
+		var oLi=document.getElementsByTagName('li');
+		var aaa=0;
+		debugger;
+		for (var i = 0; i < oLi.length; i++) {
+			// oLi[i].index=i;
+			// oLi[i].onmouseover=function(){
+			// 	oLi[aaa].className='';
+			// 	this.className='active';
+			// 	aaa=this.index;
+			// }
+			(function(index){
+				oLi[index].onmouseover=function(){
+					oLi[aaa].className='';
+					this.className='active';
+					aaa=index;
+				}
+				
+			})(i)
+
+		}
+	</script>
+</html>

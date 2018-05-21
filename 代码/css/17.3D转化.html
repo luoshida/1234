@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.father{
+			transform-style: preserve-3d;
+	/*flat让子元素呈现2D展示；preserve-3d让子元素呈现3D展示 3D使元素具有厚度*/
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+			transform: rotateX(30deg);
+			transform: rotateY(30deg);
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="father">
+		<div class="son"></div>
+	</div>
+</body>
+</html>

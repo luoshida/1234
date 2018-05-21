@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>event</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			border: 1px solid gray;
+		}
+	
+	</style>
+	<script>
+		
+		window.onload=function(){
+			function change(){
+				oBox.style.background='yellow';
+				console.log(oBox.style.background);
+			}
+			var oBox=document.getElementById('box');
+			//事件绑定,同样的事件不冲突，同时执行。
+			oBox.addEventListener('click',change,false)
+			oBox.addEventListener('click',function(){
+				oBox.style.background='red';
+			 },false)
+			// oBox.removeEventListener('mouseover',change,false)
+
+
+			oBox.onclick=function(){
+				oBox.style.width='150px';
+				oBox.style.width='200px';
+				//两个都执行了
+			}
+
+			function oBoxChange(ev){
+				var oEvent=ev || event;
+				if(oEvent.type=='mouseover'){
+					oBox.style.background='red';
+				}else if(oEvent.type=='click'){
+					oBox.style.background='blue';
+				}
+			}
+			oBox.addEventListener('mouseover',oBoxChange);
+			oBox.addEventListener('click',oBoxChange);
+
+
+			
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	
+</body>
+</html>
