@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	
+</body>
+<script>
+		(function(w){
+			var king=null;
+			function King(name,id){
+				// this.name =name;
+				// this.id=Math.random();
+
+				//方法1
+				// var slef=this;
+				// return (function(){
+				// 	if (!king) {
+				// 		slef.name=name;
+				// 		slef.id=Math.random();
+				// 		king=slef;
+				// 	}
+				// })()
+				
+
+				//方法2
+				if (!king) {
+					this.name=name;
+					this.id=Math.random();
+					king=this;
+				}
+
+				return king;
+			}
+			King.prototype={
+				constructor:King,
+				say:function(){
+					console.log(this.name+this.id+'say hello')
+				}
+			}
+			// King.only=(function(){
+			// 	var king=null;
+			// 	return function(){
+			// 		if (!king) {
+			// 			king=new King('皇帝');
+			// 		}
+			// 		return king;	
+			// 	} 
+			// })();
+			w.King=King;
+		})(window);
+		for (var i = 0; i < 6; i++) {
+			// King.only().say();
+			new King('皇帝').say();
+		}
+		
+	</script>
+</html>

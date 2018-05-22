@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	
+</body>
+<script>
+	(function(w){
+		function Local(name){
+			this.oInput = null;
+			this.foreigns = [];
+			this.init(name);
+		}
+		Local.prototype = {
+			constructor:Local,
+			init:function(name){
+				var oP = document.createElement('p');
+				oP.innerHTML = name;
+				document.body.appendChild(oP);
+				this.oInput = document.createElement('input');
+				oP.appendChild(this.oInput);
+			},
+			register:function(fore){
+				this.foreigns.push(fore);
+			},
+			publish:function(){
+				this.oInput.oninput=function(){
+					for (var i = 0; i < this.foreigns.length; i++) {
+					this.foreigns[i].listen(this.oInput.value);
+					}
+				}.bind(this);	
+			}
+		}
+		w.Local = Local;
+	})(window);
+	(function(w){
+		function Foreign(name,rate,loc){
+			loc.register(this);
+			this.rate=rate;
+			this.init(name);
+		}
+		Foreign.prototype={
+			init:function(name){
+				var oP = document.createElement('p');
+				oP.innerHTML = name;
+				document.body.appendChild(oP);
+				this.oInput = document.createElement('input');
+				oP.appendChild(this.oInput);
+			},
+			listen:function(val){
+				this.oInput.value=val/this.rate;
+			}
+		}
+		w.Foreign=Foreign;
+	})(window);
+
+	var cny = new Local('人民币');
+	var usd = new Foreign('美元',6,cny);
+	cny.publish();
+	</script>
+</html>
