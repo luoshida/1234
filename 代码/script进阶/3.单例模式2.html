@@ -16,23 +16,43 @@
 	<input type="button" value="请点" id="btn">
 </body>
 	<script>
-		var oBtn=document.getElementById('btn');
+		// (function(w){
+		// 	var obj=null;
+		// 	function CreatDiv(){
+		// 		if (!obj) {
+		// 			var oDiv=document.createElement('div');
+		// 			oDiv.className='active';
+		// 			document.body.appendChild(oDiv);
+		// 			obj=oDiv;
+		// 		}
+		// 	}
+		// 	w.CreatDiv=CreatDiv;
+		// })(window);
+		
+
 		function CreatDiv(){
 			var oDiv=document.createElement('div');
 			oDiv.className='active';
 			document.body.appendChild(oDiv);
-			return oDiv;
-		}
-		var obj=null;
+			return oDiv;	
+		} 
 		function onlyClick(fn){
-			if (!obj) {
-				obj=fn()
+			var obj=null;
+			return function(){
+				if (!obj) {
+		 			obj=fn();
+		 		}
+		 		return obj;
 			}
-			return obj
+		 	
 		}
-		// var aaaaaa = onlyClick(CreatDiv);
+		var createSignleLayer = onlyClick(CreatDiv);
+
+
+		var oBtn=document.getElementById('btn');
 		oBtn.onclick=function(){
-			onlyClick(CreatDiv)
+			// new CreatDiv();
+			createSignleLayer();
 		}
 	</script>
 </html>

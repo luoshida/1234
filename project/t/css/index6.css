@@ -31,19 +31,16 @@
 .top .account{
 	float: right;
 	margin-top: 40px;
-	margin-right: 10px;	
+	margin-right: 10px;
+	position: relative;	
 }
 .top .account ul li:nth-child(1){
 	margin-right: 27px;
-	opacity: 0.6;
 }
 .top .account li{
-	position: relative;
+	opacity: 0.6;
 }
-.top .account li:nth-child(1):hover{
-	opacity: 1;
-}
-.top .account li:nth-child(2) a:hover+div{
+.top .account li:hover{
 	opacity: 1;
 }
 .hx:after{
@@ -58,19 +55,33 @@
 .top .show .link li a:hover{
 	color: #fff;
 }
-.top .account li div{
+.top .account .accountD{
 	position: absolute;
-	top: 22px;
-    right: -16px;
-    z-index: 2;
-	opacity: 0;
+	top: 23px;
+    right: -15px;
+    z-index: 1000;
+	display: none;
+}
+.top .account li:nth-child(2){
+	margin-top: -2px;
 }
 .content{
 	background: #e5e5e5;
 	padding-bottom: 41px;
+	position: relative;
+}
+.content .nav{
+	height: 90px;
+	width: 100%;
 }
 .content .label{
-	height: 90px;
+	height: 89px;
+	width: 1220px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.btnLine{
+	border-bottom: 1px solid #cacaca;
 }
 .content .label li{
 	margin-right: 20px;
@@ -80,6 +91,7 @@
 	color: #616161;
 	font-size: 14px;
 	line-height: 90px;
+	opacity: 0.8;
 }
 .content .label li:first-child a{
 	font-weight: 900;
@@ -88,22 +100,46 @@
 .content .label li:first-child{
 	margin-left: 10px;
 }
-.content .show img{
-	border-radius: 10px;
-	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+.content .liList{
+	height: 0px;
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+	top: 90px;
+	left: 0px;
+	background-color: #fff;
+	z-index: 1000;
+	box-shadow: 0 3px 5px -3px rgba(0,0,0,0.3);
 }
-
+.content .liList div{
+	width: 78px;
+	float: left;
+	margin-top: 74px;
+}
+.content .liList div:nth-child(1){
+	margin-left: 668px;
+	margin-right: 90px;
+}
+.content .liList div p{
+	margin-left: 8px;
+}
 .dot:before{
 	content: "·";
 	color: #c7c7c7;
 	margin-right: 20px;
 }
-.bottomBtn{
+
+/*标签为content1的内容样式*/
+.content1 .show img{
+	border-radius: 10px;
+	border:1px solid #cacaca;
+}
+.content1 .bottomBtn{
 	position: absolute;
 	bottom: 10px;
 	left: 50%;
 }
-.bottomBtn li{
+.content1 .bottomBtn li{
 	float: left;
 	width: 10px;
 	height: 10px;
@@ -113,84 +149,78 @@
 	cursor: pointer;
 	list-style: none;
 }
-.bottomBtn li.active{
+.content1 .bottomBtn li.active{
 	background: rgba(255,0,255);
 }
-.content .load{
+.content1 .load{
 	height: 800px;
 	margin-top: 14px;
 	border-radius: 10px;
 	position: relative;
 	cursor: pointer;
 }
-.content .load div{
+.content1 .load div{
 	position: absolute;
 }
-.content .load .link .king{
+.content1 .load .link .king{
 	width: 100%;
 	height: 100%;
 }
-.content .load li{
+.content1 .load li{
 	width: 303px;
 	height: 398px;
 	text-align: center;
 	border: 1px solid #f5f5f5;
 	background: #ffffff;
 }
-.content .load li a{
+.content1 .load li a{
 	display: inline-block;
 	width: 100%;
 	height: 100%;
 }
-.content .load ul li:nth-child(1){
+.content1 .load ul li:nth-child(1){
 	border-top-left-radius: 10px;
 }
-.content .load li:nth-child(4){
+.content1 .load li:nth-child(4){
 	border-top-right-radius: 10px;	
 }
-
-.content .load li:nth-child(5){
+.content1 .load li:nth-child(5){
 	border-bottom-left-radius: 10px;
 }
-.content .load li:nth-child(8){
+.content1 .load li:nth-child(8){
 	border-bottom-right-radius: 10px;
 }
-.content .load .demon {
+.content1 .load .demon {
 	z-index: 2;
 }
-.content .load .demon li:hover{
-	opacity: 0;
-}
-.content .load .demon li  img:nth-child(1){
+.content1 .load .demon li  img:nth-child(1){
 	margin-top: 90px;
 	margin-bottom: 20px;
 }
-.content .load .demon li  p:nth-of-type(1){
+.content1 .load .demon li  p:nth-of-type(1){
 	margin-bottom: 17px;
 	font-size: 14px;
 	color: #999;
 }
-.content .load .demon li  p:nth-of-type(2){
+.content1 .load .demon li  p:nth-of-type(2){
 	font-size: 12px;
 	color: #bdbdbd;
 	margin-bottom: 30px;
 }
-
-.content .load .link li img{
+.content1 .load .link li img{
 	margin-top: 68px;
 	margin-bottom:38px; 
-
 }
-.content .load .link li a p:nth-of-type(1){
+.content1 .load .link li a p:nth-of-type(1){
 	margin-bottom: 45px;
 	font-size: 15px;
 	color: #757575;
 }
-.content .load .link li a p:nth-of-type(2){
+.content1 .load .link li a p:nth-of-type(2){
 	font-size: 13px;
 	color: #6e95f3;
 }
-.content .load .link li:nth-child(1) img{
+.content1 .load .link li:nth-child(1) img{
 	width: 100%;
 	height: 100%;
 	border-radius: 10px;
