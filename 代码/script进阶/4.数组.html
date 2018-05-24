@@ -9,16 +9,18 @@
 		var arr1=arr.forEach(function(value,index){
 			console.log('index'+' '+index+' '+value);
 		})
+		//遍历数组 没有返回值 接收不到arr1
 
 		var arr2=arr.map(function(value,index){
 			return value+10;
 		})
+		//遍历数组 arr2是一个数组
 		console.log(arr2);
 
 		var arr3=arr.filter(function(value,index){
-			return true;
+			return value>30;
 		})
-		//返回值是真就返回一个数组
+		//遍历数组 过滤返回一个返回值为真的数组，返回的都是满足value为真的部分
 		console.log(arr3);
 
 		var arr4=arr.every(function(value,index){

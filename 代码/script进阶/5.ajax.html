@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="获取数据" id="btn">
+</body>
+<script>
+	//AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+	var oBtn=document.getElementById('btn');
+	oBtn.onclick=function(){
+
+		var oAjax=new XMLHttpRequest();
+		//oAjax.readyState=0
+		console.log(oAjax.readyState);
+
+		oAjax.open('GET','http://127.0.0.1:3000/5.ceshi.txt',true);
+		//oAjax.readyState=1
+		console.log(oAjax.readyState);
+		oAjax.send();
+		//oAjax.readyState=1
+		console.log(oAjax.readyState);
+
+		oAjax.onreadystatechange=function(){
+			//oAjax.readyState=2,3,4
+			console.log(oAjax.readyState);
+			if (oAjax.readyState==4) {
+				if (oAjax.status==200) {
+					console.log('success'+oAjax.responseText);
+				}else{
+					console.log('fail'+oAjax.status);
+				}
+			}
+		}
+	}
+	
+</script>
+</html>

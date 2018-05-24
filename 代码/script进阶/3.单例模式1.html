@@ -16,24 +16,29 @@
 				// this.id=Math.random();
 
 				//方法1
-				// var slef=this;
-				// return (function(){
-				// 	if (!king) {
-				// 		slef.name=name;
-				// 		slef.id=Math.random();
-				// 		king=slef;
-				// 	}
-				// })()
-				// return king;
+				var slef=this;
+				var fn= function(){
+					return (function(){
+						if (!king) {
+							slef.name=name;
+							slef.id=Math.random();
+							king=slef;
+						}
+						return king;
+					})()
+				}
+				return fn()
+				
+				
 				
 
 				//方法2
-				if (!king) {
-					this.name=name;
-					this.id=Math.random();
-					king=this;
-				}
-				return king;
+				// if (!king) {
+				// 	this.name=name;
+				// 	this.id=Math.random();
+				// 	king=this;
+				// }
+				// return king;
 			}
 			King.prototype={
 				constructor:King,
@@ -54,7 +59,7 @@
 		})(window);
 		for (var i = 0; i < 6; i++) {
 			// King.only().say();
-			new King('皇帝').say();
+			new King('xxx').say();
 		}
 		
 	</script>
