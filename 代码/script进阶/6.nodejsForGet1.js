@@ -19,6 +19,7 @@ var server = http.createServer(function(req,res){
 		res.end(parmsStr);
 	}
 	var filePath='./'+fileUrl;
+	//readfile异步操作
 	fs.readFile(filePath,function(err,date){
 		if (err) {
 			res.statusCode=404;
