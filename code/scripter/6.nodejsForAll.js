@@ -5,6 +5,7 @@ var url = require('url');
 var querystring = require('querystring');
 var server = http.createServer(function(req,res){
 	res.setHeader("Content-Type","text/html;charset=UTF-8");
+	
 	var urlStr = req.url;
 	console.log("req url:::",urlStr);
 	//如果请求的是/favicon.ico直接返回

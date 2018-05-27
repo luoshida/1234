@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+	<div id="box1"></div>
+	<div class="box2"></div>
+	<div></div>
+</body>
+<script>
+		var oss=$(function(){
+		});
+		console.log(oss);
+
+
+		$(function(){
+			console.log($(null));
+		});
+		//$(null/undefined/0/false/)都会返回一个空伪数组
+
+
+		$(function(){
+			console.log($('.box2'));
+		});
+		//相当于$函数的自我调用 返回一个 $('.box2')伪数组 jq对象
+		$(function(){
+			console.log($('#box1'));
+		});
+		$(function(){
+			console.log($('div'));
+		});
+		$(function(){
+			console.log($(1));
+		});
+
+		var oDiv=document.getElementById('box1');
+		$(function(){
+			console.log($(oDiv));
+		});
+
+		//$的核心函数是一个回调函数 
+		//$(function(){}) 相当于一个$的回调函数
+		//$('.box2') 是一个jq对象 相当于一个伪数组
+		 
+	</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>quote</title>
+	<script src='js/jquery-1.12.4.js'></script>
+	<script>
+		//必须等到页面全部加载完成然后执行,并且只能执行一次,
+		window.onload=function(){
+			alert('ee')
+		};
+
+
+		//当页面DOM结构加载完毕后执行回调函数,只需页面中的DOM结构加载完毕就执行,可以执行多次，相当于小异步
+		$(function(){
+			alert('aa')
+		});
+		jQuery(function(){
+			alert('bb')
+		});
+		$(document).ready(function(){
+			alert('cc')
+		});
+		jQuery(document).ready(function(){
+			alert('dd')
+		});
+		
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<img src="js/123.png" alt="">
+</body>
+</html>

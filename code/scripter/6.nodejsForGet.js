@@ -8,11 +8,14 @@
 
 var http = require('http');
 //引入node.jsde的http模块
-var fs=require('fs');
+var fs=require('fs');    
 var server = http.createServer(function(req,res){
 
 	res.setHeader("Content-Type","text/html;charset=UTF-8");
 	//支持中英文的格式
+	res.setHeader("Access-Control-Allow-Origin","*");
+	//允许跨域任何域名 
+	
 
 	// res.setHeader("Content-Type","text/plain");
 	//纯文本模式
@@ -37,7 +40,7 @@ var server = http.createServer(function(req,res){
 	})
 
 });
-server.listen(3000,'127.0.0.1',function(){
-	console.log("Server is running at http://127.0.0.1:3000");
+server.listen(3000,'10.196.9.90',function(){
+	console.log("Server is running at http://10.196.9.90:3000");
 })
 

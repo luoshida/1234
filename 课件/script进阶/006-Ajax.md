@@ -21,7 +21,9 @@ function ajax(method,url,data,fnSucc,fnFaild){
         //post方法处理
         if(method.toLowerCase() == 'post'){
                 oAjax.open(method,url,true);
+                //设置请求头,该方法必须在open和send中间调用
                 oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                //post发送的数据 
                 oAjax.send(data);               
         }else{
                 if(data){
@@ -53,3 +55,46 @@ function ajax(method,url,data,fnSucc,fnFaild){
         }
 }
 ```
+
+### 跨域方案
+* 请求端的协议,域名,端口和服务器的协议,域名,端口有一个不一致就会发生跨域
+* CORS(Cross-origin resource sharing)跨域方案
+
+> 服务器端设置响应头
+```javascript
+res.setHeader("Access-Control-Allow-Origin","*")
+```
+> 注意:
+> * Access-Control-Allow-Origin设置可以跨域的域名
+> * *代表所有
+
+> * 一次只能只能设置一个值
+> * 简单请求同时满足条件
+
+> * 请求方法必须是 HEAD,GET,POST之一
+> * 请求头中的字段仅限于 Accept,Accept-Language,Content-Language,Last-Event-ID,Content-Type
+> * Content-Type 的值仅限于application/x-www-form-urlencoded,multipart/form-data,text/plain
+
+
+* 复杂请求
+不满足简单请求的时候就是复杂请求,复杂请求会先发一次OPTIONS方法进行预检(preflight)请求
+
+例如设置如下请求头后该请求就会变为复杂请求
+oAjax.setRequestHeader('abc','abc');
+
+需要在服务器端设置如下响应头才能实现请求
+
+```javascript
+res.setHeader("Access-Control-Allow-Headers","abc");
+```
+> Access-Control-Allow-Headers 表示服务端接受的跨域请求的字段
+
+
+* 服务器端响应头Access-Control-Expose-Headers
+
+> Access-Control-Expose-Headers表示允许客户端通过getResponseHeader方法获取的字段
+> CORS方式下默认只能获取6个基础字段,Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma
+
+
+
+

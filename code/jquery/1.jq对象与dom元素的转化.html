@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div id="box">3</div>
+</body>
+	<script>
+		$(function(){
+			var aDiv = $('div');
+
+			// var oDiv = aDiv[0];
+			var oDiv = aDiv.get(0);
+			//两种 jq 对象转为 dom 元素的方法
+
+			console.log(aDiv);
+			console.log(oDiv);
+		})
+
+
+		// dom 元素转 jq 对象的方法
+		var aBox=document.getElementsByTagName('div');
+		var oBox1=$(aBox);
+		console.log(oBox1);
+		
+	</script>
+</html>
