@@ -13,9 +13,12 @@ var server = http.createServer(function(req,res){
 
 	res.setHeader("Content-Type","text/html;charset=UTF-8");
 	//支持中英文的格式
+
 	res.setHeader("Access-Control-Allow-Origin","*");
 	//允许跨域任何域名 
-	
+
+	// res.setHeader("Access-Control-Allow-Origin","http://127.0.0.1:3001");
+	//允许跨域到http://127.0.0.1:3001
 
 	// res.setHeader("Content-Type","text/plain");
 	//纯文本模式
@@ -40,7 +43,7 @@ var server = http.createServer(function(req,res){
 	})
 
 });
-server.listen(3000,'10.196.9.90',function(){
-	console.log("Server is running at http://10.196.9.90:3000");
+server.listen(3000,'127.0.0.1',function(){
+	console.log("Server is running at http://127.0.0.1:3000");
 })
 

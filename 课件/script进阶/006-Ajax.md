@@ -58,6 +58,8 @@ function ajax(method,url,data,fnSucc,fnFaild){
 
 ### 跨域方案
 * 请求端的协议,域名,端口和服务器的协议,域名,端口有一个不一致就会发生跨域
+
+一般浏览器的端口号都是443 一般登录的省略了
 * CORS(Cross-origin resource sharing)跨域方案
 
 > 服务器端设置响应头
