@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.father{
+			width: 200px;
+			height: 200px;
+			background-color: yellow;
+			margin:100px auto;
+			overflow: auto;
+		}
+		.son{
+			width: 3000px;
+			height: 3000px;
+			background-color: red;
+		}
+		.btn{
+			width: 20px;
+			height: 20px;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){  
+			console.log($('.father').offset());
+			console.log($('.father').offset().top);
+			console.log($('.son').offset());
+			console.log($('.son').offset({top:50,left:50}));
+			//设置相对于body的偏移位 无视position属性，返回一个包含偏移值对象
+
+			console.log($('.son').position());
+			//查看相对于最近有定位的父元素的偏移位，返回一个包含偏移值对象
+
+			$('.btn').click(function(){
+				//查看元素垂直和水平滚动距离
+				console.log($('.father').scrollTop());
+				console.log($('.father').scrollLeft());
+				//设置滚动距离
+				$('.father').scrollTop(500);
+				$('.father').scrollLeft(500);
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="father">
+		<div class="son"></div>
+	</div>
+	<div class="btn">点击</div>
+</body>
+</html>

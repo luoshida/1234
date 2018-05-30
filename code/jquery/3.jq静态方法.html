@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jq</title>
+	
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		var likeArr={0:'aa',1:'bb',2:'cc',length:3};
+		var ali=document.getElementsByTagName('li');
+		//jq的静态方法
+
+		//jq的each方法 能对伪数组遍历 一般的ali.forEach不能
+		$.each(ali,function(index,value){
+			console.log(index':::'value)
+		})
+		
+ 
+		$.each(likeArr,function(index,value){
+			console.log(index':::'value)
+		})
+		
+
+
+		//jq的map方法 能对伪数组遍历 映射 接收到的$ali/$likeArr是真数组 一般的ali.map不能
+		var $ali = $.map(ali,function(value,index){
+			return value;
+		 });
+		//return后 返回一个真数组
+
+		var $likeArr = $.map(likeArr,function(value,index){
+			return value;
+		});
+		
+		console.log($ali);
+		console.log($likeArr);
+
+		$.trim(str) 去除字符串两边的空格并返回
+ 		$.isWindow(arg) 判断参数对象是不是window对象
+ 		$.isArray(arg) 判断参数对象是不是真数组
+ 		$.isFunction(arg) 判断参数对象是不是函数
+ 		$.holdReady(布尔值) 参数为true时暂停jQuery入口函数的执行,参数为false时恢复jQuery入口函数的执行
+	</script>
+</html>

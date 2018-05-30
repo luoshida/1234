@@ -12,16 +12,10 @@
 </body>
 	<script>
 		$(function(){
-			var aDiv = $('div');
-
-			// var oDiv = aDiv[0];
-			var oDiv = aDiv.get(0);
 			//两种 jq 对象转为 dom 元素的方法
-
-			console.log(aDiv);
-			console.log(oDiv);
+			var oDiv = $('div')[0];
+			var oDiv = $('div').get(0);
 		})
-
 
 		// dom 元素转 jq 对象的方法
 		var aBox=document.getElementsByTagName('div');

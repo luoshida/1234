@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11</title>
+	<style>
+		.father{
+			width: 200px;
+			height: 200px;
+			background-color: yellow;
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('.father').on('click.zs',function(){
+				alert('zs.father')
+			})
+			$('.father').on('click',function(){
+				alert('ls.father')
+			})
+			$('.son').on('click.zs',function(){
+				alert('zs.son')
+			})
+			$('.son').on('click.ls',function(){
+				alert('ls.son')
+			})
+			//用trigger触发子元素有命名空间的事件时,父元素相同命名空间的相同事件会触发,没有相同命名空间的事件不会触发 用trigger触发子元素没有命名空间的事件时,子元素所有相同类型的事件和父元素所有相同类型的事件都会被触发
+			$('.son').trigger('click.zs');
+			$('.son').trigger('click.ls');
+
+			
+		})
+	</script>
+</head>
+<body>
+	<div class="father">
+		<div class="son"></div>
+	</div>
+</body>
+</html>

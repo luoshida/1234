@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.aaa{
+			width: 300px;
+			height: 300px;
+			background-color: yellow;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+		.bbb{
+			width: 200px;
+			height: 200px;
+			background-color: green;
+			margin:50px;
+			overflow: hidden;
+		}
+		.ccc{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin:50px;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('.ccc').click(function(ev){
+				alert('ccc')
+				// return false
+				// ev.stopPropagation()
+				//阻止事件冒泡
+			})
+			$('.bbb').click(function(){
+				alert('bbb');
+			})
+			$('.aaa').click(function(){
+				alert('aaa')
+			})
+			$('a').click(function(ev){
+				alert('baidu.com');
+				// return false;
+				// ev.preventDefault()
+				//阻止默认行为
+			})
+			$('.ccc').trigger('click')
+			//自动触发 不阻止事件冒泡和默认行为的事件触发
+			//a标签用trigger不阻止事件冒泡,但是会阻止默认行为,如果需要发生默认行为需要触发a标签的子元素 例如span
+			$('.ccc').triggerHandler('click')
+			//自动触发 阻止事件冒泡和默认行为的事件触发
+		})
+	</script>
+</head>
+<body>
+	<div class="aaa">
+		<div class="bbb">
+			<div class="ccc"></div>
+		</div>
+	</div>
+	<a href="https://www.baidu.com"><span>百度一下</span></a>
+</body>
+</html>

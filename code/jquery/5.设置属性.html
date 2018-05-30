@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>attr</title>
+</head>
+<body>
+	<div class="div1" id="div2">1<p>22</p></div>
+	<div>2</div>
+	<div>345</div>
+	<input type="checkbox">
+</body>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		var oDiv = document.getElementById('div2');
+
+		//原生函数获取和设置属性的方法
+		//获取属性
+		console.log(oDiv.getAttribute('id'));
+		console.log(oDiv.getAttribute('class'));
+		console.log(oDiv.id);
+		console.log(oDiv['id']);
+
+		//设置属性
+		oDiv.setAttribute('id','ppp');
+		oDiv.setAttribute('sss','ppp');
+
+		//oDiv.name='ccc';
+		//非原生属性name不能用此方法获取
+
+		//删除属性
+		oDiv.removeAttribute('id');
+
+		//JQ获取和设置属性的方法
+		$(function(){
+			//获取属性 只能获取第一个div元素的值
+			console.log($('div').attr('class'));
+			console.log($('div').prop('class'));
+			console.log($('div').attr('id'));
+			console.log($('div').prop('id'));
+			console.log($('div').prop('sss'));
+			
+
+			//设置属性 能设置所有的元素的值
+			$('div').attr('id','aaa');
+			$('div').prop('id','aaa');
+			oDiv.id='aaa';
+
+			$('div').attr('class','bbb');
+			$('div').prop('class','bbb');
+			oDiv.className='bbb';
+
+			console.log($('div').attr('name','ccc'));
+			console.log($('div').prop('name','ccc'));
+
+			//存在布尔值的属性用prop设置 其他用attr设置属性
+			console.log($('input').prop('checked',true));
+			console.log($('input').prop('checked',false));
+
+			//删除 删除所有元素的值
+			$('div').removeAttr('name')
+			//删除所有属性的值
+
+			$('div').removeProp('name')
+			//所有属性只能变为undefined
+
+
+			$('div').addClass('active');
+			//添加class标签
+			$('div').removeClass('active');
+			//删除class标签
+			$('div').toggleClass("class1 class2...")
+			//切换class标签 有该标签就加上没有删除
+
+			console.log($('div').html());
+			//获取第一个div标签的内容相当于innerHTML 获取到的是1<p>22</p>
+			console.log($('div').text());
+			//获取所有div标签的txt内容 获取到的是12223
+			$('div').html(['<p>你好</p>']);
+			//设置所有div标签里面的内容 标签能被生效
+			$('div').text(['<p>你好</p>']);
+			//设置所有div标签里面的文本内容 标签不能被生效
+
+			$('input').val(['val']);
+			//获取第一个 和设置所有input里面的value值；
+
+			//获取css样式
+			console.log($('div').css('width'));
+			//三种设置css样式的方法
+			$('div').css('width','100px');
+			$('div').css('width','100px').css('height','100px');
+			$('div').css({
+				width:'200px',
+				height:'200px',
+				backgroundColor:'red'
+			})
+
+			//设置或获取元素的宽高
+			$('div').width([val])
+			$('div').innerWidth([val])
+			//包含内边距
+			$('div').outerWidth([val])
+			//包含边框和内边距
+		})
+	</script>
+</html>
