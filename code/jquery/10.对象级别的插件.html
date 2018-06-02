@@ -6,12 +6,22 @@
 	<script src="js/jquery-1.12.4.js"></script>
 	<script>
 		$(function(){
-			$.changeC=function(){
-				color:'red'
-			}
-			$('button').click(function(){
-				// $('div').css('color','red');
-				$('div').changeC(option.color);
+			$.fn.extend({
+				setColor:function(options){
+					var defaults={
+						color:'red'
+					}
+					options=$.extend(defaults,options)
+					this.each(function(){
+						this.style.color=options.color;
+					})
+				},
+				setBackground:function(){
+
+				}
+			})
+			$('button').click(function(){ 
+				$('div').setColor({color:'red'})
 			})
 		})
 	</script>
