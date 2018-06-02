@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+
+//添加节点
+			$('button:eq(0)').click(function(){
+				var $li=$('<li>111</li>');
+				$('ul').append($('<li>111</li>'));
+				$('ul').append($li);
+				$li.appendTo($('ul'));
+				//ul的内部 最后插入li
+
+				$('ul').prepend($li);
+				$li.prependTo($('ul'));
+				//ul的内部 最前面插入li
+
+				$('ul').after($li);
+				//ul的外部 最后面插入li
+
+				$('ul').before($li);
+				//ul的外部 最前面插入li
+			})
+
+//删除节点
+			$('button:eq(1)').click(function(){
+				$('button').remove()
+				//删除jQuery对象中的节点同时删除事件
+				$('ul').detach()
+				//删除jQuery对象中的节点但保留事件
+				$('ul').empty()
+				//清空jQuery对象总节点的所有内容
+			})
+
+//替换节点
+			$('button:eq(2)').click(function(){
+				$('button').replaceWith($('div'));
+				//用jq对象替换 用div(此处div可以是选择器可以是html代码)替换button
+				$('div').replaceWith('<h1>12112</h1>');
+				//用原生html替换
+				$('div').replaceAll($('button'));
+				////用jq对象替换 用div(此处div可以是选择器可以是html代码)替换所有button 相当于replacewith的被动句
+			})
+			//待续
+			
+//复制节点
+			$('button:eq(3)').click(function(){
+				var $div=$('div').clone();
+				var $div=$('div').clone(true);
+				//默认为false不克隆div的事件 true为克隆节点和事件
+				$('body').append($div);
+			})
+		})
+
+
+	</script>
+</head>
+<body>
+	<button>添加节点</button>
+	<button>删除节点</button>
+	<button>替换节点</button>
+	<button>复制节点</button>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<div>hello</div>
+</body>
+</html>

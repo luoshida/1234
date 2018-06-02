@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$.changeC=function(){
+				color:'red'
+			}
+			$('button').click(function(){
+				// $('div').css('color','red');
+				$('div').changeC(option.color);
+			})
+		})
+	</script>
+</head>
+<body>
+	<button>color</button>
+	<div>134555</div>
+</body>
+</html>

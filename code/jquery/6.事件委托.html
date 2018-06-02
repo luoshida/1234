@@ -6,11 +6,17 @@
 	<script src="js/jquery-1.12.4.js"></script>
 	<script>
 		$(function(){
+
+			// $('li').click(function(){
+			// 	alert($(this).html())
+			// })
+
 			$('ul').delegate('li','click',function(){
-				$('input').click(function(){
-					var oli=$('n').html('<li>00</li>');
-					$('ul').append(oli);
-				})
+				alert($(this).html())
+			})
+			$('input').click(function(){
+				var oli=$('<li>00</li>');
+				$('ul').append(oli);
 			})
 		})
 	</script>

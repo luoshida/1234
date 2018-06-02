@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$.ajaxSetup({
+				url:'http://127.0.0.1:3000/9.data.json',
+				type:'GET',
+				// type:'POST',
+				// data:{name:'fxm',age:20},
+				dataType:'json'
+			})
+			//设置可作为全局参数使用 下面的ajax可以不写
+			$(document).ajaxStart(function(){
+				console.log('ajaxStart');
+				$('div').show();
+			})
+			$(document).ajaxSend(function(){
+				console.log('ajaxSend');
+			})
+			$(document).ajaxSuccess(function(){
+				console.log('ajaxSuccess');
+			})
+			$(document).ajaxError(function(){
+				console.log('ajaxError');
+			})
+			$(document).ajaxComplete(function(){
+				console.log('ajaxComplete');
+				$('div').hide()
+			})
+			$(document).ajaxStop(function(){
+				console.log('ajaxStop');
+			})
+			$('button').click(function(){
+				$.ajax({
+					success:function(data,statusMsg,jqXHR){
+						console.log(data,statusMsg,jqXHR)
+					},
+					error:function(jqXHR,statusMsg){
+						console.log(jqXHR,statusMsg)
+					},
+					complete:function(jqXHR,statusMsg){
+						console.log(jqXHR,statusMsg)
+					},
+					timeout:3000,
+					statusCode:{
+						404:function(){
+							console.log('not found')
+						}
+					},
+					headers:{test:'test'},
+					global:false
+				})
+			})
+
+			
+		})
+	</script>
+</head>
+<body>
+	<button>send</button>
+	<div>正在请求数据。。。。。</div>
+</body>
+</html>

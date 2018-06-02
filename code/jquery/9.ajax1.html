@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('button').click(function(){
+				$.get('./9.data.json',{name:'tom',age:20},function(data){
+					console.log(data.name)
+				},'json');
+
+				// $.getJSON('./9.data.json',{name:'tom',age:20},function(data){
+				// 	console.log(data.name)
+				// })
+
+				// $.getScript('./9.js.js',function(data){
+				// 	console.log(data)
+				// })
+
+				// $.post('./postReq',{name:'tom',age:20},function(data){
+				// 	console.log(data)
+				// },'json')
+
+				// $('div').load('./9.data.json')
+				//把json数据直接加载进入选择的元素里面
+			})
+			
+		})
+	</script>
+</head>
+<body>
+	<button>send</button>
+	<div></div>
+</body>
+</html>

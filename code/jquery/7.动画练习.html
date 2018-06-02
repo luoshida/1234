@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: rgba(0,0,0,0.5);
+		}
+		.ul{
+			width: 208px;
+			margin: 10px auto;
+		}
+		li{
+			float: left;
+			width: 104px;
+			height: 35px;
+			background: #fff;
+			list-style: none;
+			cursor: pointer;
+			text-align: center;
+			line-height: 35px;
+			font-size: 13px;
+		}
+		.ul>li{
+			position: relative;
+		}
+		p:hover+span, p:hover{
+			color: red;
+		}
+		span{
+			position: absolute;
+			top: 0px;
+			right:12px;
+		}
+		p.active3{
+			background: #ccc;
+		}
+		p.active2{
+			background: #fff;
+		}
+		span.active{
+			transform: rotateZ(180deg);
+			transition: all 1s;
+		}
+		span.active1{
+			transform: rotateZ(0deg);
+			transition: all 1s;
+		}
+		.li2 span{
+			top: 0px;
+			right:19px;
+		}
+		.ul1,.ul2{
+			position: absolute;
+			top: 35px;
+			left: 0px;
+			overflow: hidden;
+			display: none;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('.ul>li').hover(function(){
+				var $this=$(this);
+				console.log($(this));
+				var $ul=$this.find('ul');
+				$ul.stop();
+				$ul.slideDown(500);
+				$this.find('p').addClass('active2');
+				var $span = $this.find('span');
+				$span.removeClass('active1').addClass('active');			
+			},function(){
+				var $this=$(this);
+				var $ul=$this.find('ul');
+				$ul.stop();
+				$ul.slideUp(500);
+				$this.find('p').removeClass('active2');
+				var $span = $this.find('span');
+				$span.removeClass('active').addClass('active1');
+			})
+		})
+	</script>
+</head>
+<body>
+	<ul class="ul">
+		<li class="li1">
+			<p class="active3">我的淘宝</p>
+			<span>&or;</span>
+			<ul class="ul1">
+				<li>已买到的宝贝</li>
+				<li>我的足迹</li>
+			</ul>
+		</li>
+		<li class="li2">
+			<p class="active3">收藏夹</p>
+			<span>&or;</span>
+			<ul class="ul2">
+				<li>收藏到的宝贝</li>
+				<li>收藏的店铺</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

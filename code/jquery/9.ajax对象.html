@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('button').click(function(){
+				var $jqXHR=$.ajax({
+					url:'http://127.0.0.1:3000/9.data.json',
+					type:'GET',
+					// type:'POST',
+					// data:{name:'fxm',age:20},
+					dataType:'json',
+					success:function(data,statusMsg,jqXHR){
+						console.log(data,statusMsg,jqXHR)
+					},
+					error:function(jqXHR,statusMsg){
+						console.log(jqXHR,statusMsg)
+					},
+					complete:function(jqXHR,statusMsg){
+						console.log(jqXHR,statusMsg)
+					},
+					timeout:3000,
+					statusCode:{
+						404:function(){
+							console.log('not found')
+						}
+					},
+					headers:{test:'test'}
+				});
+				$xml.done(function(data,statusMsg,jqXHR){
+					console.log(msg1,msg2,msg3);
+					//请求成功时执行
+				});
+				$xml.fail(function(jqXHR,statusMsg){
+					console.log(msg1,msg2);
+					//请求失败时执行
+				});
+				$xml.always(function(msg1,msg2,msg3){
+					console.log(msg1,msg2,msg3);
+					//这个回调和true或false一致 总是触发
+				})
+			})
+
+			
+		})
+	</script>
+</head>
+<body>
+	<button>send</button>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.father{
+			width: 200px;
+			height: 200px;
+			background-color: yellow;
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('.father').hover(function(){
+				alert('mouseenter')
+			},function(){
+				alert('mouseleave')
+			})
+
+			$('.son').hover(function(){
+				alert('sonmouse')
+			})
+			//hover相当于mouseenter和mouseleave的合并版
+			//可以设置一个函数 也可设置两个函数
+		})
+	</script>
+</head>
+<body>
+	<div class="father">
+		<div class="son"></div>
+	</div>
+</body>
+</html>
