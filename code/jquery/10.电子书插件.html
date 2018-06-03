@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.cover{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+		}
+		.book{
+			width:996px;
+			height: 646px ;
+			position: absolute;
+			left: -498px;
+			top: -323px;
+
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script src="textbook/turnjs4/lib/turn.js"></script>
+	<script>
+		$(function(){
+			$('.book').turn()
+		})
+	</script>
+</head>
+<body>
+	<div class="cover">
+		<div class="book">
+			<div style="background: url(textbook/turnjs4/samples/basic/pages/5.jpg);"></div>
+			<div style="background: url(textbook/turnjs4/samples/basic/pages/6.jpg);"></div>
+			<div style="background: url(textbook/turnjs4/samples/basic/pages/7.jpg);"></div>
+			<div style="background: url(textbook/turnjs4/samples/basic/pages/8.jpg);"></div>
+			<div style="background: url(textbook/turnjs4/samples/basic/pages/9.jpg);"></div>
+			<div style="background: url(textbook/turnjs4/samples/basic/pages/10.jpg);"></div>
+		</div>
+	</div>
+</body>
+
+</html>

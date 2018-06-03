@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.tab{
+			width: 200px;
+			height: 300px;
+			margin: 10px auto;
+		}
+		li{	
+			list-style: none;
+		}
+		.btn{
+			overflow: hidden;
+		}
+		.btn>li{
+			width: 20px;
+			height: 20px;
+			border: 1px solid #000;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 20px;
+			float: left;
+		}
+		.btn>li.active{
+			background-color: red;
+		}
+		.content>li{
+			width: 100px;
+			height: 200px;
+			border: 1px solid #000;
+			display: none;
+			font-size: 30px;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		;(function($){
+			$.fn.extend(){
+				tab:function(){
+					console.log(this)
+				}
+			}
+		})(jQuery);
+	</script>
+	<script>
+		$(function(){
+			$('.tab').tab();
+		})
+	</script>
+</head>
+<body>
+	<div class="tab">
+		<ul class="btn">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul class="content">
+			<li style="display: block;">内容1</li>
+			<li>内容2</li>
+			<li>内容3</li>
+			<li>内容3</li>
+		</ul>
+	</div>
+</body>
+</html>
