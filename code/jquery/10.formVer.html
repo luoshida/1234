@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		label.error{
+			color: red;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script src="validation/dist/jquery.validate.js"></script>
+	<script>
+		$(function(){
+			$('#reg').validate({
+				rules:{
+					username:{
+						required:true,
+						// minlength:2,
+						// maxlength:8,
+						rangelength:[2,8],
+						remote:'/10.date.json'
+					},
+					password:{
+						required:true,
+						number:true
+					},
+					email:{
+						email:true
+					},
+					homepage:{
+						url:true
+					}
+
+				},
+				messages:{
+					username:{
+						required:'用户名必须输入',
+						// minlength:'用户名最少2位',
+						// maxlength:'用户名最多8位',
+						rangelength:'用户名最少2位最多8位',
+						remote:'用户名太受欢迎了'
+					},
+					password:{
+						required:'密码必须输入',
+						number:'密码必须是数字'
+					},
+					email:{
+						email:'邮箱格式不对'
+					},
+					homepage:{
+						url:'地址错误'
+					}
+				}
+			})
+		})
+	</script>
+</head>
+<body>
+	<form action="https://www.baidu.com" id="reg">
+		<div>
+			用户名:<input type="text" name="username">
+		</div>	
+		<div>
+			密码:<input type="text" name="password">
+		</div>
+		<div>
+			邮箱<input type="text" name="email">
+		</div>
+		<div>
+			主页<input type="text" name="homepage">
+		</div>
+		<input type="submit">
+	</form>
+</body>
+</html>

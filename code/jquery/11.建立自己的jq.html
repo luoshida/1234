@@ -4,9 +4,67 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script>
-		(function(window){
+		(function( window, undefined ){
+		var
+			kQuery = function(selector){
+				return new kQuery.fn.init(selector);
+			};
+		kQuery.fn = kQuery.prototype = {
+			constructor:kQuery,
+			init:function(selector){
+				selector = kQuery.trim(selector);
+				if (!selector) {
+					return this;
+				} else if (kQuery.isFunction(selector)){
+					document.addEventListener('DOMContentLoaded',function(){
+						selector();
+					});
+					this[0] = document;
+					this.length = 1;
+					return this; 
+				} else if (kQuery.isString(selector)){
+					if (kQuery.isHTML(selector)) {
+						var tmpDom = document.createElement('div');
+						tmpDom.innerHTML=selector;
+						[].push.apply(this,tmpDom.children);
+						return this;
+					} else {
+						var doms=document.querySelectorAll(selector);
+						[].push.apply(this,doms);
+						return this;
+					}
+				}
 
+			}
+		};
+		kQuery.isFunction = function(str){
+			return typeof str === 'function';
+		};
+		kQuery.isString = function(str){
+			return typeof str === 'string';
+		};
+		kQuery.isHTML = function(str){
+			return str.charAt(0) == '<' && str.charAt(str.length-1) == '>' && str.length >= 3
+		}
+		kQuery.isObject = function(str){
+			return typeof str === 'object';
+		}
+		kQuery.isArray = function(str){
+			return kQuery.isObject(str) && length in str
+		}
+		kQuery.trim = function(str){
+			if (kQuery.isString(str)) {
+				return str.replace(/^\s+|\s+$/g,'')
+			} else {
+				return str;
+			}
+		}
+		kQuery.fn.init.prototype = kQuery.fn;
+		window.kQuery = window.$ = kQuery;	
 		})(window)
+	</script>
+	<script>
+		console.log($())
 	</script>
 </head>
 <body>
