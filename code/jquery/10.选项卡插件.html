@@ -55,9 +55,10 @@
 					}
 					
 					options = $.extend(defaults,options);
-
+					// console.log(this);
 					this.each(function(){
 						var $tab = $(this);
+						console.log($tab);
 						var $btns = $tab.find(options.btnSelector);
 						$btns.on(options.eventType,function(){
 							$(this).addClass(options.activeClass).siblings().removeClass(options.activeClass);
@@ -114,7 +115,7 @@
 			<li>内容4</li>
 		</ul>
 	</div>
-		<div class="nav">
+	<!-- <div class="nav">
 		<ul class="btn">
 			<li class="current">1</li>
 			<li>2</li>
@@ -142,6 +143,6 @@
 			<li>内容3</li>
 			<li>内容4</li>
 		</ul>
-	</div>
+	</div> -->
 </body>
 </html>
