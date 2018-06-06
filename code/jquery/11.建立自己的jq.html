@@ -75,15 +75,36 @@ kQuery.fn = kQuery.prototype = {
 		return [].slice.call(this);
 	},
 	get:function(num){
-		if (arguments.length==1) {
-			if (num>=0) {
+		if (arguments.length == 1) {
+			if (num >= 0) {
 				return this[num]
-			} else {}
-		} else {}
+			} else {
+				return this[this.length + num]
+			}
+		} else {
+			return this.toArray();
+		}
 	},
-	eq:function(){
-
+	eq:function(num){
+		if(arguments.length == 1) {
+			return kQuery(this.get(num));
+		} else {
+			return new kQuery();
+		}
 	},
+	first:function(){
+		return this.eq(0);
+	},
+	last:function(){
+		return this.eq(-1);
+	},
+	each:function(fn){
+		return kQuery.each(this,fn);
+	},
+	map:function(fn){
+		return kQuery(kQuery.map(this,fn));
+	},
+	
 
 }
 kQuery.extend=kQuery.fn.extend=function(obj){
@@ -114,9 +135,138 @@ kQuery.extend({
 		}else{
 			return str;
 		}	
+	},
+	each:function(arr,fn){
+		if (arr.isArray()) {
+			for (var i = 0; i < arr.length; i++) {
+				var res = fn.call(arr[i],i,arr[i]);
+				if (res == false) {
+					break
+				} else if (res == true) {
+					continue
+				}
+			}
+		} else {
+			for(key in arr){
+				// console.log(key,arr[key]);
+				var res = fn.call(arr[key],key,arr[key]);
+				if(res == false){
+					break;
+				}else if(res == true){
+					continue;
+				}				
+			}
+		}
+		return arr;
+	},
+	map:function(){
+		var retArr = [];
+		if (kQuery.isArray(arr)) {
+			for (var i = 0; i < arr.length; i++) {
+				var res = fn(arr[i],i);
+				if (res) {
+					retArr.push(res);
+				}
+			}
+		} else {
+			for(key in arr){
+				var res = fn(arr[key],key);
+				if (res) {
+					retArr.push(res);
+				}
+			}
+		}
+		return retArr;
 	}
 })
-
+kQuery.fn.extend({
+	html:function(content){
+		if (content) {
+			this.each(function(){
+				this.innerHTML=content;
+			})
+			return this;
+		} else {
+			return this[0].innerHTML
+		}
+	},
+	text:function(content){
+			if (content) {
+				this.each(function(){
+					this.innerHTML = content;
+				})
+				return this;
+			} else {
+				var str = '';
+				this.each(function(){
+					str += this.innerText;
+				});
+				return str;
+			}
+	},
+	attr:function(arg1,arg2){
+		if (kQuery.isObject(arg1)) {
+			this.each(function(){
+				var dom = this;
+				kQuery.each(arg1,function(attr,val){
+					dom.setAttribute(attr,val);
+				})
+			})
+		} else {
+			if (arguments.length == 1) {
+				return this[0].getAttribute(arg1);
+			} else if (arguments.length == 2){
+				this.each(function(){
+					this.setAttribute(arg1,arg2);
+				})
+			}
+		}
+		return this;
+	},
+	removeAttr:function(attr){
+		if (attr) {
+			this.each(function(){
+				this.removeAttribute(attr);
+			})
+		}
+		return this;
+	},
+	val:function(val){
+		if (val) {
+			this.each(function(){
+				this.value=val;
+			});
+			return this;
+		} else {
+			return this[0].value;
+		}
+	},
+	css:function(arg1,arg2){
+		if (kQuery.isString(arg1)) {
+			if (arguments.length == 1) {
+				if (this[0].currentStyle) {
+					return this[0].currentStyle[arg1];
+				} else {
+					return getComputedStyle(this[0],false)[arg1];
+				}
+			} else if (arguments.length == 2){
+				this.each(function(){
+					this.style[arg1] = arg2;
+				});
+			}
+		} else if (kQuery.isObject(arg1)){
+			this.each(function(){
+				for(key in arg1){
+					this.style[key] = arg1[key];
+				}
+			});
+		}
+		return this;
+	},
+	hasClass:function(str){
+		
+	}
+})
 
 
 kQuery.fn.init.prototype = kQuery.fn;
@@ -130,9 +280,15 @@ window.kQuery = window.$ = kQuery;
 </head>
 <body>
 	<div></div>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
 </body>
 	<script>
-		console.log($({0:'aa',1:'bb',2:'cc'}))
+		console.log($('li').get(0));
 	</script>
 </html>
 
