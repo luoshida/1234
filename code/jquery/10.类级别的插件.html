@@ -4,26 +4,30 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script src="js/jquery-1.12.4.js"></script>
+
+</head>
+<body>
+	<div class="aaa ccc">1</div>
+	<div class="bbb">2</div>
+</body>
 	<script>
 			$.extend({
 				sayhi:function(){
 					alert('hi')
 				}
 			});
-			$.sayhi();
+			// $.sayhi();
 
 			var obj={
 				sayhi:function(){
 					alert('hio')
 				}
 			}
-			obj.sayhi();
+			// obj.sayhi();
 			$.zs=obj;
-			$.zs.sayhi();
-
+			// $.zs.sayhi();
+			// console.log($('div').remove('.bbb'))
+			console.log($('div'));
+			console.log($('<p>123</p>'));
 	</script>
-</head>
-<body>
-	
-</body>
 </html>

@@ -100,6 +100,7 @@ kQuery.fn = kQuery.prototype = {
 	},
 	each:function(fn){
 		return kQuery.each(this,fn);
+		//kq对象被调用 就遍历kq对象 this就是kq对象 arr就是kq对象
 	},
 	map:function(fn){
 		return kQuery(kQuery.map(this,fn));
@@ -112,6 +113,7 @@ kQuery.extend=kQuery.fn.extend=function(obj){
 		this[key]=obj[key]
 	}
 }
+//静态方法 可以用kq调用 $.isFunction
 kQuery.extend({
 	isFunction : function(str){
 		return typeof str === 'function';
@@ -137,13 +139,13 @@ kQuery.extend({
 		}	
 	},
 	each:function(arr,fn){
-		if (arr.isArray()) {
+		if (kQuery.isArray(arr)) {
 			for (var i = 0; i < arr.length; i++) {
 				var res = fn.call(arr[i],i,arr[i]);
 				if (res == false) {
-					break
+					break;
 				} else if (res == true) {
-					continue
+					continue;
 				}
 			}
 		} else {
@@ -177,8 +179,13 @@ kQuery.extend({
 			}
 		}
 		return retArr;
+	},
+	toWords:function(arr){
+		var reg=/\b\w+\b/;
+		return arr.match(reg);
 	}
 })
+//原型链上的方法 可以用kq对象直接调用 $('div').html
 kQuery.fn.extend({
 	html:function(content){
 		if (content) {
@@ -247,9 +254,9 @@ kQuery.fn.extend({
 				if (this[0].currentStyle) {
 					return this[0].currentStyle[arg1];
 				} else {
-					return getComputedStyle(this[0],false)[arg1];
+					return getComputedStyle(this[0].false)[arg1];
 				}
-			} else if (arguments.length == 2){
+			} else if (arguments.length == 2) {
 				this.each(function(){
 					this.style[arg1] = arg2;
 				});
@@ -264,7 +271,87 @@ kQuery.fn.extend({
 		return this;
 	},
 	hasClass:function(str){
-		
+		var res = false;
+		if (str) {
+			var reg = eval('/\\b'+str+'\\b/');
+			this.each(function(){
+				if (reg.test(this.className)) {
+					res = true;
+					return false;
+				}
+			})
+		}
+		return res;
+	},
+	addClass:function(str){
+		this.each(function(){
+			var $this = kQuery(this);
+			var arr=kQuery.toWords(str);
+			for (var i = 0; i < arr.length; i++) {
+				if (!$this.hasClass(arr[i])) {
+					this.className = this.className+' '+arr[i];
+				}
+			}	
+		})
+		return this;
+	},
+	removeClass:function(str){
+		if (str) {
+			var reg = eval('/\\b'+str+'\\b/');
+			
+			this.each(function(){
+				var $this = kQuery(this);
+				var arr=kQuery.toWords(str);
+				
+				for (var i = 0; i < arr.length; i++) {
+					if ($this.hasClass(arr[i])) {
+						this.className = this.className.replace(arr[i],'')
+					}
+				}	
+			});		
+		} else {
+			this.each(function(){
+				this.className='';
+			})
+		}
+		return this;
+	},
+	toggleClass:function(str){
+		if (str) {
+			this.each(function(){
+				var $this = kQuery(this);
+				if ($this.hasClass(str)) {
+					$this.removeClass(str)
+				} else {
+					$this.addClass(str)
+				}
+			});
+			return this;
+		}
+	},
+	empty:function(){
+		this.each(function(){
+			this.innerHTML=''
+		})
+		return this;
+	},
+	remove:function(){
+		this.each(function(){
+			var parentNode=this.parentNode;
+			parentNode.removeChild(this);
+		})
+		return this;
+	},
+	append:function(){
+		var $source = kQuery(source);
+		this.each(function(index,value){
+			if (index == 1) {
+				
+			}
+		})
+	}
+	prepend:function(){
+
 	}
 })
 
@@ -279,16 +366,23 @@ window.kQuery = window.$ = kQuery;
 	
 </head>
 <body>
-	<div></div>
+	<div class="bbb aaa">scscsc</div>
+	<div>scscsc</div>
 	<ul>
 		<li></li>
 		<li></li>
 		<li></li>
 		<li></li>
 	</ul>
+	<button>测试</button>
 </body>
 	<script>
-		console.log($('li').get(0));
+		window.onload=function(){
+			var oBtn=document.getElementsByTagName('button')[0];
+			oBtn.onclick=function(){
+				console.log($('div').remove());
+			}
+		}
 	</script>
 </html>
 
