@@ -180,9 +180,15 @@ kQuery.extend({
 		}
 		return retArr;
 	},
-	toWords:function(arr){
-		var reg=/\b\w+\b/;
-		return arr.match(reg);
+	toWords:function(str){
+		return str.match(/\b\w+\b/g);
+	},
+	addEvent:function(dom,eventName,fn){
+		if(dom.addEventListener){
+			dom.addEventListener(eventName,fn);
+		}else{
+			dom.attachEvent('on'+eventName,fn);
+		}
 	}
 })
 //原型链上的方法 可以用kq对象直接调用 $('div').html
@@ -284,12 +290,12 @@ kQuery.fn.extend({
 		return res;
 	},
 	addClass:function(str){
+		var names=kQuery.toWords(str);
 		this.each(function(){
 			var $this = kQuery(this);
-			var arr=kQuery.toWords(str);
-			for (var i = 0; i < arr.length; i++) {
-				if (!$this.hasClass(arr[i])) {
-					this.className = this.className+' '+arr[i];
+			for (var i = 0; i < names.length; i++) {
+				if (!$this.hasClass(names[i])) {
+					this.className = this.className+' '+names[i];
 				}
 			}	
 		})
@@ -297,15 +303,13 @@ kQuery.fn.extend({
 	},
 	removeClass:function(str){
 		if (str) {
-			var reg = eval('/\\b'+str+'\\b/');
-			
+			var arr=kQuery.toWords(str);
 			this.each(function(){
-				var $this = kQuery(this);
-				var arr=kQuery.toWords(str);
-				
+				var $this = kQuery(this);	
 				for (var i = 0; i < arr.length; i++) {
 					if ($this.hasClass(arr[i])) {
-						this.className = this.className.replace(arr[i],'')
+						var reg = eval('/\\b'+arr[i]+'\\b/');
+						this.className = this.className.replace(reg,'');
 					}
 				}	
 			});		
@@ -318,44 +322,133 @@ kQuery.fn.extend({
 	},
 	toggleClass:function(str){
 		if (str) {
+			var arr=kQuery.toWords(str);
 			this.each(function(){
 				var $this = kQuery(this);
-				if ($this.hasClass(str)) {
-					$this.removeClass(str)
-				} else {
-					$this.addClass(str)
+				for (var i = 0; i < arr.length; i++){
+					if ($this.hasClass(arr[i])) {
+						$this.removeClass(arr[i]);
+					} else {
+						$this.addClass(arr[i]);
+					}
 				}
-			});
-			return this;
+				
+			})
+		} else {
+			this.each(function(){
+				this.className='';
+			})
 		}
-	},
+		return this;
+	}
+})
+//原型链上关于dom节点的方法
+kQuery.fn.extend({
 	empty:function(){
 		this.each(function(){
 			this.innerHTML=''
 		})
 		return this;
 	},
-	remove:function(){
-		this.each(function(){
-			var parentNode=this.parentNode;
-			parentNode.removeChild(this);
-		})
+	remove:function(selector){
+		if (selector) {
+			var doms = document.querySelectorAll(selector);
+			this.each(function(){
+				for (var i = 0; i < doms.length; i++) {
+					if (doms[i] == this) {
+						var parentNode = this.parentNode;
+						parentNode.removeChild(this);
+					}
+				}
+			})
+		} else {
+			this.each(function(){
+				var parentNode = this.parentNode;
+				parentNode.removeChild(this);
+			})
+		}
 		return this;
 	},
-	append:function(){
-		var $source = kQuery(source);
-		this.each(function(index,value){
-			if (index == 1) {
-				
-			}
-		})
-	}
-	prepend:function(){
-
+	append:function(source){
+		if (source) {
+			var $source = kQuery(source);
+			this.each(function(index,value){
+				var parentNode = this;
+				if (index == 0) {
+					$source.each(function(){
+						parentNode.appendChild(this);
+					})
+				} else {
+					$source.each(function(){
+						var dom=this.cloneNode(true)
+						parentNode.appendChild(dom);
+					})
+				}
+			})
+		} 
+		return this;
+	},
+	prepend:function(source){
+		if (source) {
+			var $source = kQuery(source);
+			this.each(function(index,value){
+				var parentNode = this;
+				if (index == 0) {
+					$source.each(function(){
+						parentNode.insertBefore(this,parentNode.firstChild);
+					})
+				} else {
+					$source.each(function(){
+						var dom=this.cloneNode(true)
+						parentNode.insertBefore(dom,parentNode.firstChild);
+					})
+				}
+			})
+		} 
+		return this;
 	}
 })
-
-
+//原型链上 dom节点 事件方法
+kQuery.fn.extend({
+	on:function(eventName,fn){
+		if (!this.bucketEvent) {
+			this.bucketEvent = {};
+		}
+		if (!this.bucketEvent[eventName]) {
+			this.bucketEvent[eventName]=[];
+			this.bucketEvent[eventName].push(fn);
+			kQuery.addEvent(this,eventName,function(){
+				kQuery.each(this.bucketEvent[eventName],function(){
+					this();
+				})
+			})
+		} else {
+			this.bucketEvent[eventName].push(fn);
+		}
+	},
+	off:function(eventName,fnName){
+		if(arguments.length == 0){
+			this.each(function(){
+				this.
+			})
+		}
+	},
+	clone:function(bcopy){
+		var res = [];
+		this.each(function(){
+			var dom = this.cloneNode(true);
+			if (bcopy && this.cloneNode(true)) {
+				kQuery.each(this.bucketEvent,function(eventName,fnArr){
+					kQuery.each(fnArr,function(){
+						kQuery(dom).on(eventName,this);
+					})
+				})
+			}
+			res.push(dom);
+		});
+		return kQuery(res);
+	}
+})
 kQuery.fn.init.prototype = kQuery.fn;
 
 
@@ -366,7 +459,7 @@ window.kQuery = window.$ = kQuery;
 	
 </head>
 <body>
-	<div class="bbb aaa">scscsc</div>
+	<div class="bbb aaa"><p>scscsc</p></div>
 	<div>scscsc</div>
 	<ul>
 		<li></li>
@@ -380,7 +473,7 @@ window.kQuery = window.$ = kQuery;
 		window.onload=function(){
 			var oBtn=document.getElementsByTagName('button')[0];
 			oBtn.onclick=function(){
-				console.log($('div').remove());
+				console.log($('div').prepend('button'));
 			}
 		}
 	</script>

@@ -11,6 +11,7 @@
 			$('button:eq(0)').click(function(){
 				var $li=$('<li>111</li>');
 				$('ul').append($('<li>111</li>'));
+				//append()括号内可以是HTML dom节点 jq对象
 				$('ul').append($li);
 				$li.appendTo($('ul'));
 				//ul的内部 最后插入li
@@ -29,7 +30,7 @@
 //删除节点
 			$('button:eq(1)').click(function(){
 				$('button').remove()
-				//删除jQuery对象中的节点同时删除事件
+				//删除jQuery对象中的节点同时删除事件,()可以加便签表示删除某一个
 				$('ul').detach()
 				//删除jQuery对象中的节点但保留事件
 				$('ul').empty()
