@@ -411,25 +411,54 @@ kQuery.fn.extend({
 //原型链上 dom节点 事件方法
 kQuery.fn.extend({
 	on:function(eventName,fn){
-		if (!this.bucketEvent) {
-			this.bucketEvent = {};
-		}
-		if (!this.bucketEvent[eventName]) {
-			this.bucketEvent[eventName]=[];
-			this.bucketEvent[eventName].push(fn);
-			kQuery.addEvent(this,eventName,function(){
-				kQuery.each(this.bucketEvent[eventName],function(){
-					this();
-				})
-			})
-		} else {
-			this.bucketEvent[eventName].push(fn);
-		}
+		//click test1
+		//click test2
+		this.each(function(){
+			// this.addEventListener(eventName,fn);
+			// kQuery.addEvent(this,eventName,fn);
+			/*
+			{
+				'click':[fn1,fn1,fn2],
+				'mouseover':[fn1,fn1,fn2],
+			}
+			*/
+			if(!this.bucketEvent){
+				this.bucketEvent = {};
+			}
+			if(!this.bucketEvent[eventName]){
+				this.bucketEvent[eventName] = []; //bt1DOM.bucketEvent= {click:[test1,f()],mouseover:[]}
+				this.bucketEvent[eventName].push(fn);// bt1DOM.bucketEvent= {click:[test1,f()],mouseover:[f()]}
+				kQuery.addEvent(this,eventName,function(){
+					kQuery.each(this.bucketEvent[eventName],function(){
+						this();
+					})
+				});
+			}else{
+				this.bucketEvent[eventName].push(fn);// bt1DOM.bucketEvent= {click:[test1,f()]}
+			}
+		})	
 	},
 	off:function(eventName,fnName){
 		if(arguments.length == 0){
 			this.each(function(){
-				this.
+				this.bucketEvent = {};
+			})
+		} else if (arguments.length == 1){
+			this.each(function(){
+				if (this.bucketEvent) {
+					this.bucketEvent[eventName] = [];
+				}
+			})
+		} else if (arguments.length == 2){
+			this.each(function(){
+				var dom = this;
+				if (this.bucketEvent && this.bucketEvent[eventName]) {
+					kQuery.each(this.bucketEvent[eventName],function(index,fn){
+						if (this == fnName) {
+							dom.bucketEvent[eventName].splice(index,1);
+						}
+					})
+				}
 			})
 		}
 	},
@@ -472,9 +501,12 @@ window.kQuery = window.$ = kQuery;
 	<script>
 		window.onload=function(){
 			var oBtn=document.getElementsByTagName('button')[0];
-			oBtn.onclick=function(){
-				console.log($('div').prepend('button'));
-			}
+			
+			$('div').on('mouseover',function(){
+				alert('aaa')
+			});
+			$('div').off('mouseover')
+			
 		}
 	</script>
 </html>
