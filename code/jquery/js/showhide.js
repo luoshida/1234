@@ -1,52 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>跨淘网</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/common.css">
-	<style>
-		#box{
-			width: 200px;
-			height: 200px;
-			background: red;
-			display: none;
-			overflow: hidden;
-			padding-top: 30px;
-			padding-bottom: 30px;
-			/*opacity: 0;*/
-		}
-		.fadeOut{
-			opacity: 0 !important;
-			visibility: hidden !important;
-		}
-		.slideUpDownCollapse{
-			height: 0 !important;
-			padding-top: 0 !important;
-			padding-bottom: 0 !important;
-		}
-		.slideLeftRightCollapse{
-			width: 0 !important;
-			padding-left: 0 !important;
-			padding-right: 0 !important;
-		}		
-	</style>
-</head>
-<body>
-<button>显示</button><button>隐藏</button>
-<div id='box' class="">
-</div>
-<p>我在这里</p>
-</body>
-<script src="js/jquery-1.12.4.js"></script>
-<script src="js/transition.js"></script>
-<script>
-	// console.log(kuazhu.transition);
+/*
+* @Author: TomChen
+* @Date:   2018-06-11 20:07:55
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-06-11 21:06:36
+*/
+;(function($) {
 	//共通的初始化方法
 	function init($elem,hiddenCallBack){
 		if($elem.is(':hidden')){
 			$elem.data('status','hidden');
-			//hiddenCallBack && hiddenCallBack();
 			if(typeof hiddenCallBack == 'function') hiddenCallBack();
 		}else{
 			$elem.data('status','shown');
@@ -191,7 +153,9 @@
 			$elem.addClass(className);	
 		});			
 	}
+	//js相关显示和隐藏
 	var js = {
+		//淡入淡出的显示隐藏
 		fade:{
 			init:function($elem){
 				js._init($elem);
@@ -199,8 +163,8 @@
 			show:function($elem){
 				js._show($elem,'fadeIn');
 			},
-			hide:function($elem){
-				js._hide($elem,'fadeOut')
+			hide:function(){
+				js._hide($elem,'fadeOut');
 			}
 		},
 		slideUpDown:{
@@ -208,69 +172,183 @@
 				js._init($elem);
 			},
 			show:function($elem){
-				js._show($elem,'slideDown')
+				js._show($elem,'slideDown');		
 			},
 			hide:function($elem){
 				js._hide($elem,'slideUp');
 			}
 		},
+		//左右卷入卷出
 		slideLeftRight:{
 			init:function($elem){
-				
+				js._customInit($elem,{
+						width:'0px',
+						paddingLeft:'0px',
+						paddingRight:'0px'
+					});
+			},
+			show:function($elem){
+				js._customShow($elem);
+			},
+			hide:function($elem){
+				js._customHide($elem,{
+						width:'0px',
+						paddingLeft:'0px',
+						paddingRight:'0px'				
+					});
 			}
+		},
+		//淡入淡出上下卷入卷出
+		fadeSlideUpDown:{
+			init:function($elem){
+				js._customInit($elem,{
+						height:'0px',
+						paddingTop:'0px',
+						paddingBottom:'0px',
+						opacity:0
+					});
+			},
+			show:function($elem){
+				js._customShow($elem);
+			},
+			hide:function($elem){
+				js._customHide($elem,{
+						height:'0px',
+						paddingTop:'0px',
+						paddingBottom:'0px',	
+						opacity:0		
+					});
+			}			
+		},
+		//淡入淡出左右卷入卷出
+		fadeSlideLeftRight:{
+			init:function($elem){
+				js._customInit($elem,{
+						width:'0px',
+						paddingLeft:'0px',
+						paddingRight:'0px',
+						opacity:0
+					});
+			},
+			show:function($elem){
+				js._customShow($elem);
+
+			},
+			hide:function($elem){
+				js._customHide($elem,{
+						width:'0px',
+						paddingLeft:'0px',
+						paddingRight:'0px',
+						opacity:0				
+					});
+			}
+		}				
+	}
+	js._init = function($elem){
+		$elem.removeClass('transition');//避免和css3的过渡发生冲突
+		init($elem);
+	}
+	js._show = function($elem,mode){
+		show($elem,function(){
+			$elem.stop()[mode](function(){
+				$elem.trigger('shown').data('status','shown');
+			})
+		});		
+	}
+	js._hide = function($elem,mode){
+		hide($elem,function(){
+			$elem.stop()[mode](function(){
+				$elem.trigger('hidden').data('status','hidden');
+			})
+		});		
+	}
+	js._customInit = function($elem,options){
+		$elem.removeClass('transition');
+
+		var styles = {};
+
+		for(key in options){
+			styles[key] = $elem.css(key);
+		}
+		$elem.data('styles',styles);				
+		init($elem,function(){
+			//把水平的宽度值设置为0
+			$elem.css(options);
+		});		
+	}
+	js._customShow = function($elem){
+		$elem.show();//display:block
+		//获取原始值
+		show($elem,function(){
+			$elem
+			.stop()
+			.animate($elem.data('styles'),function(){
+				$elem.trigger('shown').data('status','shown');
+			});					
+		})		
+	}
+	js._customHide = function($elem,options){
+		hide($elem,function(){
+			$elem.stop().animate(options,function(){
+				$elem.hide();
+				$elem.trigger('hidden').data('status','hidden');
+			});						
+		})		
+	}
+
+	//根据参数决定使用什么方式的显示和隐藏
+	function showHide($elem,options){
+		/*
+			slient/css3/js
+			{
+				css3:true/false
+				js:true/fase
+				mode:'slideUpDown'
+			}
+		*/
+		
+		var showHideFn = null;
+
+		if(options.css3 && kuazhu.transition.isSupport){//css3
+			showHideFn = css3[options.mode];
+		}else if(options.js){//js
+			showHideFn = js[options.mode];
+		}else{//slietn
+			showHideFn = slient;
+		}
+
+		showHideFn.init($elem);
+		
+		return {
+			show:showHideFn.show,
+			hide:showHideFn.hide
 		}
 	}
-	var $elem = $('#box');
-	$elem.on('click',function(){
-		alert('I am here');
-	})
-	$elem.on('show shown hide hidden',function(ev){
-		if(ev.type == 'show'){
-			console.log('show.....');
-		}else if(ev.type == 'shown'){
-			console.log('shown.....');
-		}else if(ev.type == 'hide'){
-			console.log('hide....');
-		}else if(ev.type == 'hidden'){
-			console.log('hidden....');
+
+	$.fn.extend({
+		showHide:function(options){
+			var defaults = {
+				css3 :false,
+				js:false,
+				mode:'fade'
+			}
+			this.each(function(){
+				var $elem = $(this); 
+				var mode = $elem.data('mode');
+				//单例模式
+				if(!mode){
+					options = $.extend(defaults,options);
+					mode = showHide($elem,options);
+					//把有方法(show/hide)的对象存到对应的DOM元素上
+					$elem.data('mode',mode);
+				}  
+				if(typeof mode[options] == 'function'){
+					//注意，此处要不执行显示隐藏的元素jquery对象传递
+					mode[options]($elem);
+				}
+			});
+			return this;
 		}
-	});	
-	//显示
-	/*
-	css3.fade.init($elem);
+	});
 
-	$('button').eq(0).on('click',function(){
-
-		css3.fade.show($elem);
-	})
-	//隐藏
-	$('button').eq(1).on('click',function(){
-		css3.fade.hide($elem);
-	})
-	*/
-	
-	css3.fadeSlideLeftRight.init($elem);
-
-	$('button').eq(0).on('click',function(){
-
-		css3.fadeSlideLeftRight.show($elem);
-	})
-	//隐藏
-	$('button').eq(1).on('click',function(){
-		css3.fadeSlideLeftRight.hide($elem);
-	})
-	
-	/*
-	slient.init($elem);
-
-	$('button').eq(0).on('click',function(){
-
-		slient.show($elem);
-	})
-	//隐藏
-	$('button').eq(1).on('click',function(){
-		slient.hide($elem);
-	})	
-	*/
-</script>
-</html>
+})(jQuery);

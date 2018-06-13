@@ -3,6 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		p{
+			font-size: 50px;
+			color: red;
+			border:1px solid #000;
+			width: 200px;
+			height: 100px;
+			line-height: 100px;
+			text-align: center;
+		}
+		div{
+			width: 300px;
+			height: 300px;
+			/*background: url(1.gif) no-repeat;*/
+		}
+	</style>
 	<script src="js/jquery-1.12.4.js"></script>
 	<script>
 		$(function(){
@@ -14,7 +30,9 @@
 					// data:{name:'fxm',age:20},
 					dataType:'json',
 					success:function(data,statusMsg,jqXHR){
-						console.log(data,statusMsg,jqXHR)
+						console.log(data,statusMsg,jqXHR);
+						
+						$('p').html(data.name);
 					},
 					error:function(jqXHR,statusMsg){
 						console.log(jqXHR,statusMsg)
@@ -37,5 +55,7 @@
 </head>
 <body>
 	<button>send</button>
+	<div></div>
+	<p>获取</p>
 </body>
 </html>
