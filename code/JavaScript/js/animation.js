@@ -21,7 +21,7 @@ function animation(obj,opation,isLinear,fnadd){
 				}else{
 					isStopAll = false;
 				}
-			}else{
+			} else {
 				iSpeed = (opation[attr] - curr) / 10;
 				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
 				if (!iSpeed) {

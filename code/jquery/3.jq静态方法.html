@@ -18,7 +18,7 @@
 		var ali=document.getElementsByTagName('li');
 		//jq的静态方法
 
-		//jq的each方法 能对伪数组遍历 一般的ali.forEach不能
+		//jq的each方法 能对伪数组遍历返回一个ARR数组或ARR里的某些值 一般的ali.forEach不能
 		$.each(ali,function(index,value){
 			console.log(index':::'value)
 		})
@@ -44,9 +44,9 @@
 		console.log($likeArr);
 
 		$.trim(str) 去除字符串两边的空格并返回
- 		$.isWindow(arg) 判断参数对象是不是window对象
- 		$.isArray(arg) 判断参数对象是不是真数组
- 		$.isFunction(arg) 判断参数对象是不是函数
+ 		$.isWindow(arg) 判断参数对象是不是window对象返回true或false
+ 		$.isArray(arg) 判断参数对象是不是真数组返回true或false
+ 		$.isFunction(arg) 判断参数对象是不是函数返回true或false
  		$.holdReady(布尔值) 参数为true时暂停jQuery入口函数的执行,参数为false时恢复jQuery入口函数的执行
 	</script>
 </html>

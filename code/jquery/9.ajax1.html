@@ -5,7 +5,7 @@
 	<title>Document</title>
 	<script src="js/jquery-1.12.4.js"></script>
 	<script>
-		$(function(){
+		$(function(){ 
 			$('button').click(function(){
 				$.get('./9.data.json',{name:'tom',age:20},function(data){
 					console.log(data.name)
@@ -25,6 +25,14 @@
 
 				// $('div').load('./9.data.json')
 				//把json数据直接加载进入选择的元素里面
+* $.get(url[,参数][,回调函数][,返回数据类型])//发送GET请求 
+* $.post(url[,参数][,回调函数][,返回数据类型]) //发送POST请求
+* $.getScript(url[,回调函数]) //获取JS代码
+* $.getJSON(url[,回调函数]) //获取JSON数据
+* jQuery对象.load(url[,参数][,回调函数]) //将服务器返回的数据加载到jQuery对象的DOM元素中
+
+> 所有的回调函数接收的参数依次为 返回数据,返回状态信息(成功为success 失败为error),jqXHR对象
+
 			})
 			
 		})

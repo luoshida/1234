@@ -30,15 +30,15 @@
 					},
 					headers:{test:'test'}
 				});
-				$xml.done(function(data,statusMsg,jqXHR){
+				$jqXHR.done(function(data,statusMsg,jqXHR){
 					console.log(msg1,msg2,msg3);
 					//请求成功时执行
 				});
-				$xml.fail(function(jqXHR,statusMsg){
+				$jqXHR.fail(function(jqXHR,statusMsg){
 					console.log(msg1,msg2);
 					//请求失败时执行
 				});
-				$xml.always(function(msg1,msg2,msg3){
+				$jqXHR.always(function(msg1,msg2,msg3){
 					console.log(msg1,msg2,msg3);
 					//这个回调和true或false一致 总是触发
 				})
