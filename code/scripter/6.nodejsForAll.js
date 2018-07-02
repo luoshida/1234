@@ -32,10 +32,10 @@ var server = http.createServer(function(req,res){
 	}else{//处理GET请求
 		//如果请求中有参数,把参数返回给前端页面
 		if(urlStr.search(/\?/) != -1){
-			var prams = url.parse(urlStr,true).query;
+			var parms = url.parse(urlStr,true).query;
 			//通常拿到参数后需要根据参数做相应的处理
 			//todo......
-			var parmsStr = JSON.stringify(prams);
+			var parmsStr = JSON.stringify(parms);
 			res.statusCode = 200;
 			res.end(parmsStr);		
 		}

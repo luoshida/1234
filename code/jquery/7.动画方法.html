@@ -17,6 +17,7 @@
 			$('button:eq(0)').click(function(){
 				$('#box').show(1000,function(){})
 			})
+			//show(1000,回调) show执行完执行回调
 			//显示
 			$('button:eq(1)').click(function(){
 				$('#box').hide(1000,function(){})
@@ -82,7 +83,7 @@
 			// })
 
 			$('#box1').delay(2000);
-			//延迟该命令之下的动画
+			//延迟该命令之下的动画 延迟的是动画show hide不在延迟之下
 
 			$('button:eq(4)').click(function(){
 				$('#box1').animate({
