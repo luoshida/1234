@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="300">
+		您的浏览器不支持
+	</canvas>
+	<canvas></canvas>
+</body>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+// canvas默认的宽高是300px*150px
+//在canvas标签中设置的width和height是指画布大小,不用带单位
+//在style样式css中设置的width和height是指画布拉伸缩放后的大小
+//一般建议在js中设置画布的大小
+			var oCanvas=$('canvas')[0];
+			console.log(oCanvas);
+			var ctx=oCanvas.getContext('2d');
+		//画线起始坐标
+			ctx.moveTo(0,0);
+		//直线终点坐标
+			ctx.lineTo(50,50);
+		//指定描边的样式
+			ctx.strokeStyle='red';
+		//设置线条的宽度
+			ctx.lineWidth=5;
+		//运行描边 没有描边属性时有一个默认的描边
+			ctx.stroke();
+
+			var oCanvas1 = $('canvas')[1];
+		//写在js的width和height和在body的行间样式一致
+			oCanvas1.width="600";
+			oCanvas1.height="300";
+
+			var ctx1=oCanvas1.getContext('2d');
+			ctx1.moveTo(0,0);
+			ctx1.lineTo(50,50);
+			ctx1.lineTo(50,100);
+			ctx1.closePath();
+			ctx1.strokeStyle='red';
+			ctx1.lineWidth=5;
+			ctx1.stroke();
+		//设置填充的颜色
+			ctx1.fillStyle='yellow';
+			//运行填充 
+			ctx1.fill();
+		//重新开始路径,绘制时不会绘制之前的路径
+			ctx1.beginPath();
+			ctx1.moveTo(100,0);
+			ctx1.lineTo(200,50);
+			ctx1.lineTo(200,200);
+		//封闭路径
+			ctx1.closePath();
+			ctx1.stroke();
+			ctx1.fillStyle='black';
+			ctx1.fill();
+		})
+	</script>
+</html>

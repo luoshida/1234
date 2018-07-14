@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.fl{
+			float: left;
+			width: 400px;
+			height: 600px;
+			border:1px solid yellow;
+			text-align: center;
+			padding: 50px 0;
+		}
+		.demo{
+			width: 1000px;
+			margin: 10px auto;
+		}
+		input{
+			width: 200px;
+			height: 30px;
+			outline: none;
+			border: 1px dashed grey;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo">
+	<div class="container fl">
+		<h1>问卷调查</h1>
+	</div>
+	<div class="target-list fl">
+		<div id="box" draggable='true'>
+			<label>姓名</label><input type="text">
+		</div>
+		<div id="box" draggable='true'>
+			<label>年龄</label><input type="text">
+		</div>
+		<div id="box" draggable='true'><label>熬好</label><input type="text"></div>
+		<div id="box" draggable='true'><label>进阶</label><input type="text"></div>
+	</div>
+	</div>
+</body>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var forId=null
+		$(function(){
+			$('.target-list').on('dragstart','#box',function(ev){
+				forId=$(this);
+				
+			})
+			$('.container').on('drop',function(ev){
+				console.log(forId);
+				$('.container').append(forId.clone())
+			}).on('dragover',function(ev){
+				ev.preventDefault();
+			})
+		})
+	</script>
+</html>

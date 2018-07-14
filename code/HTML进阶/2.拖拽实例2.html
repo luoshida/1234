@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.container{
+			width: 1000px;
+			height: 600px;
+		}
+		li{
+			width: 200px;
+			height: 300px;
+			float: left;
+			list-style: none;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<ul class="container">
+		<li draggable='true'><img src="image/01.png" alt=""></li>
+		<li draggable='true'><img src="image/02.png" alt=""></li>
+		<li draggable='true'><img src="image/03.png" alt=""></li>
+		<li draggable='true'><img src="image/04.png" alt=""></li>
+		<li draggable='true'><img src="image/05.png" alt=""></li>
+		<li draggable='true'><img src="image/06.png" alt=""></li>
+		<li draggable='true'><img src="image/07.png" alt=""></li>
+		<li draggable='true'><img src="image/08.png" alt=""></li>
+		<li draggable='true'><img src="image/09.png" alt=""></li>
+		<li draggable='true'><img src="image/10.png" alt=""></li>
+	</ul>
+</body>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			var tar=null
+			$('.container').on('dragstart','li',function(ev){
+				tar=this;
+			}).on('drop','li',function(ev){
+				var thisTar=$(tar).html();
+				$(tar).html($(this).html());
+				$(this).html(thisTar);
+			}).on('dragover','li',function(ev){
+				ev.preventDefault()
+			})
+		})
+	</script>
+</html>

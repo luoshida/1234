@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+//localStorage 持久化 sessionStorage 网页会话结束就会失效
+//存储容量不同 localStorage 2-5 Mb左右   sessionStorage 2-10 Mb左右部分浏览器没有限制
+//Storage仅能存储字符串 Storage的数据不能在不同的域中共享
+
+
+			//设置存储
+			localStorage.setItem('name','lsd');
+			sessionStorage.setItem('name','mmm');
+			//获取存储
+			console.log(localStorage.getItem('name'));
+			console.log(sessionStorage.getItem('name'));
+			//删除存储
+			localStorage.removeItem('name','lsd');
+			sessionStorage.removeItem('name','mmm');
+			//清空所有存储
+			localStorage.clear();
+			sessionStorage.clear();
+
+			console.log(localStorage.length);
+			//第几个key的value
+			console.log(sessionStorage.key(num));
+
+		})
+	</script>
+</body>
+</html>

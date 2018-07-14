@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	
+</body>
+	<script src="jquery-1.12.4.js"></script>
+<script>
+	//cookie是document对象上的一个属性
+	//cookie的大小限制是4k
+	//cookie会存在于请求头中
+	//主域名中的cookie会在子域名中存在
+	
+	//cookie 存取，
+	document.cookie='name=value';//键 值
+
+	//设置过期时间
+	var oDate=new Date();
+	oDate.setDate(oDate.getDate()+14);
+	document.cookie='aaa=ccc;expires='+oDate;
+
+	//获取，参数
+	console.log(document.cookie);
+
+
+	//设置cookie 和有效时间
+	function setCookie(key,value,iDate){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate()+iDate)
+		document.cookie=key+ "=" +value+";expires="+exdate;
+	}
+	setCookie('ddd','bbb',1);
+
+
+	//获取cookie的某个value
+	function getCookie(key){
+		var value='';
+		var str=document.cookie;
+		var arr1=str.split(';');
+		for (var i = 0; i < arr1.length; i++) {
+			var arr2=arr1[i].split('=');
+			if ($.trim(arr2[0])==key) {
+				console.log($.trim(arr2[0]));
+				value=arr2[1];
+				break;
+			}
+		}
+		return value;
+	}
+	console.log(getCookie('name'));
+
+
+	//删除某个cookie
+	function removeCookie(key){
+		setCookie(key,false,-1);
+	}
+	removeCookie('ddd');
+
+
+</script>
+</html>

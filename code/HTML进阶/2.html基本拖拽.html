@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.container{
+			width: 200px;
+			height: 200px;
+			background: green;
+		}
+		.target{
+			width: 50px;
+			height: 50px;
+			background: yellow;
+		}
+		.hide{
+			/*display: none;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="container" id="container"></div>
+	<div class="target" id="target" draggable='true'></div>
+	<img src="../JavaScript/images/6.png" alt="" class="hide">
+</body>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('#target').on('dragstart',function(ev){
+				ev.originalEvent.dataTransfer.setData('id',this.id);
+				ev.originalEvent.dataTransfer.setDragImage($('.hide')[0],12,18)
+				console.log(this.id);
+			})
+			$('#container').on('drop',function(ev){
+				$('#container').append($('#'+ev.originalEvent.dataTransfer.getData('id')));
+			}).on('dragover',function(ev){
+				ev.preventDefault();
+			})
+		})
+/*被拖拽元素添加 draggable=true
+
+被拖拽元素相关
+ondragstart 当元素开始拖动时触发
+ondrag 被拖动元素拖动时触发
+ondragend 拖拽时松开鼠标时触发
+
+容器相关 
+ondrop 当放置被拖动元素时触发
+ondragover 被拖动元素正在到放置到容器时触发,默认无法把元素放置到其他元素中,如果需要设置允许放置,我们必须阻止对元素的默认处理方式。
+ondragenter 当被拖动元素进入容器时触发
+ondragleave 当被拖动元素离开容器时触发
+ondragend 被拖动元素在容器中松开鼠标时触发
+ondrag 容器中的被拖动元素拖动时触发
+
+设置数据 dataTransfer.setData(key,val)
+获取数据 dataTransfer.getData(key)
+设置拖动的图标图片: dataTransfer.setDragImage(图片DOM节点,x,y) x,y为鼠标对于图片的相对位置
+
+dataTransfer对象存在在原生的event对象上,如果用jQuery的event对象,需要使用jQuery的event对象的originalEvent*/
+	</script>
+</html>

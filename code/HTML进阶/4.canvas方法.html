@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas></canvas>
+</body>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			var oCanvas=$('canvas')[0];
+			oCanvas.width="600";
+			oCanvas.height="300";
+			var ctx=oCanvas.getContext('2d');
+
+
+//cxt.arc(圆心x,圆心y,半径,起始角度,终止角度,是否是逆时针(true为逆时针)3点钟时0PI 6点钟是0.5PI 9点钟是1PI 12点钟是1.5PI
+			ctx.arc(100,100,20,0,2*Math.PI,true);
+			ctx.fillStyle='red';
+			ctx.fill();
+			ctx.strokeStyle='blue';
+			ctx.lineWidth=5;
+			ctx.stroke();
+			
+//坐标，坐标系，缩放，环境
+
+	//保存此时的环境
+		ctx.save();
+		//平移坐标原点到(x,y)
+		ctx.translate(300,150);
+	//此时的圆心在0 0位于中心
+		ctx.arc(0,0,20,0,2*Math.PI,true);
+		ctx.stroke();
+
+		ctx.beginPath();
+	//旋转坐标系cxt.rotate(弧度) 以顺时针为方向旋转
+	//坐标系顺时针旋转90度
+		ctx.rotate(0.5*Math.PI);
+	//缩放
+		ctx.scale(1.5,1.5);
+		ctx.strokeRect(0,0,100,50);
+
+	//获取保存之前的环境 save和restore配套使用
+		ctx.restore();
+		ctx.beginPath();
+		ctx.strokeRect(0,0,50,50);
+	//所有的变换都是针对坐标系的 各种变换之间是相互叠加的
+		
+
+//创建矩形
+
+	//(x,y,宽,高)矩形x y为矩形左上角的坐标
+	//描边矩形，所有操作针对外面的矩形边
+		ctx.strokeRect(300,150,100,100);
+	//填充矩形 所有操作针对矩形的内部填充区域
+		ctx.fillRect(100,150,100,100);	
+
+
+//文本和图片
+
+	ctx.beginPath();
+	var str = "Hello KuaZhu";
+	ctx.font = '50px sans-serif';
+	ctx.textAlign = 'left';
+	ctx.textBaseline = 'middle';
+	//创建填充字体
+	ctx.fillText(str,0,200);
+	//创建描边字体
+	ctx.strokeText(str,0,300);
+
+	
+	var img =new Image();
+	img.src='../JavaScript/images/p_b_0001.jpg';
+	img.onload=function(){
+		// ctx.drawImage(img,0,0);
+		ctx.drawImage(img,0,0,300,300);
+		// ctx.drawImage(img,0,0,200,200,50,50,300,300);
+	}
+
+
+//两点渐变
+//var linearGradient = cxt.createLinearGradient(起始x,起始y,终止x,终止y);linearGradient.addColorStop(百分比,颜色)
+		var linearGradient = ctx.createLinearGradient(0,50,200,50)
+		linearGradient.addColorStop(0.1,'rgb(255,0,0)');
+		linearGradient.addColorStop(1,'rgb(0,255,0)');
+		ctx.fillStyle=linearGradient;
+		ctx.fillRect(0,0,200,100);
+		ctx.fill();
+
+
+//圆形渐变			
+//(起始圆心x,起始圆心y,起始圆半径,终止圆心x,终止圆心y,终止圆半径)
+		var radialGradient=ctx.createRadialGradient(300,150,0,300,150,100);
+		radialGradient.addColorStop(0.1,'rgb(255,0,0)');
+		radialGradient.addColorStop(1,'rgb(0,255,0)');
+		ctx.fillStyle=radialGradient;
+
+		ctx.arc(300,150,100,0,2*Math.PI,true);
+		ctx.fill();	
+
+
+//画刷 与剪辑
+		var img =new Image();
+		img.src='../JavaScript/images/8.png';
+		img.onload=function(){
+			//创建画刷的样式
+			var pattern=ctx.createPattern(img,'repeat');
+			//把画刷的样式赋给新建的填充矩形
+			ctx.fillStyle=pattern;
+			//设置填充图形的大小
+			ctx.fillRect(0,0,300,300);
+		}	
+
+
+		//剪辑区ctx.clip(); 当剪辑区创建完 所有的操作只能显示剪辑区的位置
+		ctx.arc(300,300,100,0,2*Math.PI,true);
+		ctx.fillStyle='red';
+		ctx.fill();
+		// ctx.clip();
+
+		ctx.beginPath();
+		ctx.fillStyle='yellow';
+		ctx.fillRect(300,300,200,100);
+
+
+//阴影
+		ctx.beginPath();
+		ctx.fillStyle = '#f00';
+	//模糊水平距离
+		ctx.shadowOffsetX = 10;
+	//模糊竖直距离
+		ctx.shadowOffsetY = 10;
+	//模糊阴影的程度
+		ctx.shadowBlur = 10;
+	//模糊阴影的颜色
+		ctx.shadowColor = 'rgba(0,0,0,0.2)';
+		ctx.fillRect(300,300,200,100);		
+		})
+	</script>
+</html>
