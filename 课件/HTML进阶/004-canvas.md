@@ -86,8 +86,7 @@ var radialGradient = createRadialGradient(起始圆心x,起始圆心y,起始圆�
 >> http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html
 
 ### 推荐插件
-* http://echarts.baidu.com/
-* https://antv.alipay.com/zh-cn/index.html
-* http://www.chartjs.org/
-* https://www.highcharts.com
-* https://d3js.org/
+* http://echarts.baidu.com/ 内置的包含了丰富功能的图表
+* https://antv.alipay.com/zh-cn/index.html 可视化图形语法可交互的统计图表
+* https://www.highcharts.com 交互图表
+* https://d3js.org/ 互动图表

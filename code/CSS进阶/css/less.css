@@ -1,0 +1,25 @@
+body {
+  background-color: #f938ab;
+}
+.box1 {
+  width: 100px;
+  height: 200px;
+  border: 1px solid #000;
+}
+.box2 {
+  width: 100px;
+  height: 200px;
+  border: 1px solid #000;
+  background: #000;
+}
+.box3 {
+  width: 100px;
+  height: 200px;
+  border: 1px solid #000;
+  background: #000;
+  -webkit-border-radius: 12px;
+  -o-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+}

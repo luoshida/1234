@@ -1,0 +1,104 @@
+
+@base: #f938ab;
+@w: 100px;
+@rem: 158;
+
+*{
+	margin: 0;
+	padding: 0;
+}
+.box1{
+	width: @w;
+	height: 200px;
+	border: 1px solid #000;
+}
+.box2{
+	.box1;
+	background: @base;
+}
+.border-radius(@border-width){
+	-webkit-border-radius: @border-width;
+	-o-border-radius: @border-width;
+	-ms-border-radius: @border-width;
+	-moz-border-radius: @border-width;
+	border-radius: @border-width;
+}
+.box3{
+	.box2;
+	.border-radius(12px);
+}
+.triangle(top,@w:10px,@c:red){
+	border-width: @w;
+	border-color: @c transparent transparent transparent;
+}
+.triangle(left,@w:10px,@c:red){
+	border-width: @w;
+	border-color: transparent @c transparent transparent;
+}
+/*单行注释的内容在转译成CSS的时候会被删除,多行注释不会*/
+
+// @_代表任意值 此时top和left上都有width和height的值 
+.triangle(@_,@w:10px,@c:red){
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+}
+.box4{
+	.triangle(left,20px,blue);
+}
+
+// 嵌套式样式的写法
+.list{
+	width: 100px;
+	height: 100px;
+	li{
+		list-style: none;
+		background: yellow;
+		margin-bottom: 10px;
+		text-align: center;
+		span{
+			font-size: 15px;
+		}
+		//& 代表上一层
+		&:hover{
+			background-color: #f10;
+		}
+	}
+	.li1{
+		color: red;
+	}
+	.li2{
+		color: blue;
+	}
+}
+.fs(@s){
+	// 符号左右必须有一个以上空格
+	font-size: @s*10px;
+	font-size: @s - 10px;
+	font-size: @s+10px;
+	font-size: @s/10px;
+}
+.box5{
+	.fs(10);
+}
+.box6{
+	//避免编译 calc是css上的一个原生函数
+	font-size: ~'calc(50px - 10px)';
+}
+.box7{
+	//给混合添加!important的话,混合中所有的属性都有!important
+	.box1 !important;
+}
+.set(@attr,@val){
+    @{attr}:unit(@val,px);
+}
+.rem(@attr,@val){
+    @{attr}:unit(@val / @rem,rem);
+}
+.box8{
+	.set(width,100);
+	.set(height,100);
+}
+img{
+	.rem(width,400);
+}

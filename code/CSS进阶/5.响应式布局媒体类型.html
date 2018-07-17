@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Document</title>
+	<!-- 利用link标签的media属性实现布局的选择和style的@media效果一样 -->
+	<!-- <link rel="stylesheet" media="screen" href="screen.css"> -->
+	<!-- <link rel="stylesheet" media="print" href="print.css"> -->
+	<link rel="stylesheet" href="print.css" media="screen and (min-width:320px) and (max-width:960px)">
+	<style>
+
+		/*在屏幕显示时的样式*/
+		/*@media screen {
+			h1{
+				color: green;
+			}
+		}*/
+		/*当打印时的样式*/
+		/*@media print {
+			h1{
+				color: green;
+			}
+		}*/
+
+		/*@media screen and (width:320px){
+			body{
+				background: red;
+			}
+		}
+		@media screen and (device-width:320px){
+			body{
+				background: blue;
+			}
+		}
+		
+		@media screen and (min-width:320px) and (max-width:960px){
+			body{
+				background: yellow;
+			}
+		}*/
+		/*orientation设备的移动方向 portrait(纵向),landscape(横向)*/
+		/*@media screen and (min-width:320px) and (max-width:960px) and (orientation:portrait){
+			body{
+				background: green;
+			}
+		}*/
+	</style>
+</head>
+<body>
+	<h1>我是一本书</h1>
+</body>
+</html>

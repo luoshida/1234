@@ -1,0 +1,26 @@
+
+@base: #f938ab;
+@w: 100px;
+body{
+	 background-color:@base;	
+}
+.box1{
+	width: @w;
+	height: 200px;
+	border: 1px solid #000;
+}
+.box2{
+	.box1;
+	background: #000;
+}
+.border-radius(@border-width){
+	-webkit-border-radius: @border-width;
+	-o-border-radius: @border-width;
+	-ms-border-radius: @border-width;
+	-moz-border-radius: @border-width;
+	border-radius: @border-width;
+}
+.box3{
+	.box2;
+	.border-radius(12px);
+}

@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.box1 {
+  width: 100px;
+  height: 200px;
+  border: 1px solid #000;
+}
+.box2 {
+  width: 100px;
+  height: 200px;
+  border: 1px solid #000;
+  background: #f938ab;
+}
+.box3 {
+  width: 100px;
+  height: 200px;
+  border: 1px solid #000;
+  background: #f938ab;
+  -webkit-border-radius: 12px;
+  -o-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+}
+/*单行注释的内容在转译成CSS的时候会被删除,多行注释不会*/
+.box4 {
+  border-width: 20px;
+  border-color: transparent #0000ff transparent transparent;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+}
+.list {
+  width: 100px;
+  height: 100px;
+}
+.list li {
+  list-style: none;
+  background: yellow;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.list li span {
+  font-size: 15px;
+}
+.list li:hover {
+  background-color: #f10;
+}
+.list .li1 {
+  color: red;
+}
+.list .li2 {
+  color: blue;
+}
+.box5 {
+  font-size: 100px;
+  font-size: 0px;
+  font-size: 20px;
+  font-size: 1px;
+}
+.box6 {
+  font-size: calc(50px - 10px);
+}
+.box7 {
+  width: 100px !important;
+  height: 200px !important;
+  border: 1px solid #000 !important;
+}
+.box8 {
+  width: 100px;
+  height: 100px;
+}
+img {
+  width: 2.53164557rem;
+}

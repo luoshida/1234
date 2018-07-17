@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--设置视口的宽度,表示把移动设备的宽缩放为多少个CSS像素,为一个正整数 -->
+	<!-- <meta name="viewport" content="width=320"> -->
+
+	<!-- 自适应屏幕大小 -->
+	<!-- device-width表示缩放到设备合成后的CSS像素 -->
+	<!-- initial-scale 设置页面的初始缩放值
+	minimum-scale 允许用户的最小缩放值
+	maximum-scale 允许用户的最大缩放值
+	user-scalable,是否允许用户进行缩放,值为"no"或"yes"
+	height,设置视口的高度 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		p{
+			/*1vw 当前设备宽度的1%,1vh 当前设备高度的1%*/
+			font-size: 10vw;
+		}
+		html{
+			/*根元素的字体大小*/
+			font-size: 20px;
+		}
+		span{
+			/*rem 根元素字体的大小默认16px /5个根元素字体大小*/
+			font-size: 5rem;
+		}
+	</style>
+</head>
+<body>
+	<p>p的 你好</p>
+	<span>span的 你好</span>
+	<!--
+	iphone5 1136×640 4.0    实际的像素点非常小
+	mac     1336*768 11.6   实际的像素点比较大
+
+	-->
+</body>
+</html>

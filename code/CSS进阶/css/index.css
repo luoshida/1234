@@ -1,0 +1,43 @@
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.header {
+  height: 1.40625rem;
+  line-height: 1.40625rem;
+  font-size: 0.53125rem;
+  border-bottom: 0.03125rem solid #dfdfdf;
+}
+.header .header-back {
+  width: 1.40625rem;
+  text-align: center;
+}
+.header .header-title {
+  display: inline-block;
+  width: 6.375rem;
+  font-weight: bold;
+  text-align: center;
+}
+.location {
+  height: 1.40625rem;
+  line-height: 1.40625rem;
+  font-size: 0.4375rem;
+  color: #878787;
+  border-bottom: 0.03125rem solid #dfdfdf;
+}
+.location .fa-map-marker-alt {
+  margin-left: 0.3125rem;
+}
+.location .location-sell {
+  display: block;
+  width: 2.4375rem;
+  text-align: center;
+  color: #dc2930;
+}
+.logo {
+  height: 1.40625rem;
+  line-height: 1.40625rem;
+  font-size: 0.5rem;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	img{
+		width: 10rem;
+	}
+</style>
+<body>
+	<img src="../HTML进阶/image/girl.jpg" alt="">
+</body>
+	<script>
+		(function(win,doc){
+			var oRoot=doc.getElementsByTagName('html')[0];
+			function nnn(){
+				//clientWidth 设备物理像素宽度
+				var iWidth=doc.body.clientWidth || doc.documentElement.clientWidth;
+				console.log(iWidth);
+				oRoot.style.fontSize=iWidth/10 +'px';
+			}
+			win.addEventListener('resize',nnn,false);
+			win.addEventListener('DOMContentLoaded',nnn);
+			
+		})(window,document)
+		
+	</script>
+</html>
