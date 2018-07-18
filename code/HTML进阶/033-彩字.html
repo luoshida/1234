@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>033-彩字.html</title>
+	<style>
+		#canvas{
+			/*background: #000;*/
+			margin-left:200px;
+			border:1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">
+		您的浏览器不支持, 请更换高版本浏览器	
+	</canvas>
+</body>
+<script>
+	var oCanvas = document.getElementById('canvas');
+	oCanvas.width = 1000;
+	oCanvas.height = 600;
+	//获取canvas的上下文环境
+	var ctx = oCanvas.getContext('2d');
+	ctx.beginPath();
+
+	//随时数函数
+	function getRandom(min,max) {
+		return Math.round((min + (max-min)*Math.random()));
+	}
+
+	function Ball(str,x,y){
+		this.x = x;
+		this.y = y;
+		this.str = str;
+		this.r = 40;
+		this.dX = getRandom(-5,5);
+		this.dY = getRandom(-5,5);	
+	}
+	Ball.prototype = {
+		constructor:Ball,
+		render:function(){
+			ctx.save();
+			ctx.beginPath();	
+			ctx.font = '50px sans-serif';
+			// ctx.textAlign = 'left';
+			ctx.textBaseline = 'middle';
+			ctx.fillStyle=color[getRandom(0,color.length-1)];
+			ctx.fillText(this.str,this.x,this.y)
+			ctx.restore();
+		},
+		update:function(){
+			this.x += this.dX;
+			this.y += this.dY;
+		}
+	}
+	var color = ['red','yellow','green','blue','purple','pink','orange-red'];
+	var strArr = ['我','喜','欢','你','付','雪','梅'];
+	// var ball = new Ball(strArr[1],100,100);
+	// ball.render();
+	var ballArr = [];
+				
+	oCanvas.addEventListener('mousemove',function(ev){
+		//创建小球
+		var ball = new Ball(strArr[getRandom(0,strArr.length-1)],ev.offsetX,ev.offsetY);
+		ballArr.push(ball);
+	});
+
+	setInterval(function(){
+		ctx.clearRect(0,0,oCanvas.width,oCanvas.height);
+		for(var i = 0;i<ballArr.length;i++){
+			ballArr[i].render();
+			ballArr[i].update();
+		}
+	},50)
+
+
+</script>
+</html>

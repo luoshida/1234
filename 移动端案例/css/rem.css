@@ -89,6 +89,7 @@
 }
 .shopcart .shops .shopdesc .shopdesc-name {
   font-size: 0.5rem;
+  font-weight: bold;
   display: block;
 }
 .shopcart .shops .shopdesc .shopdesc-weght {
