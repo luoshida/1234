@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扩展运算</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr = [11,22,33,44];
+	console.log(arr);
+	console.log(...arr);
+	
+	
+
+
+	var arr1=[1,2,3,4,5];
+	// var arr2=arr1.concat();
+	var arr2=arr1.slice();
+	arr2.push(6);
+	console.log(arr1);
+	console.log(arr2);
+// 如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错
+	// ES5 的写法
+	Math.max.apply(null, [14, 3, 77])
+
+	// ES6 的写法
+	Math.max(...[14, 3, 77])
+	// 等同于
+	Math.max(14, 3, 77);
+
+	// ES5的 写法
+	var arr1 = [0, 1, 2];
+	var arr2 = [3, 4, 5];
+	Array.prototype.push.apply(arr1, arr2);
+
+	// ES6 的写法
+	let arr1 = [0, 1, 2];
+	let arr2 = [3, 4, 5];
+	arr1.push(...arr2);
+
+	// var obj1={name:'kk',age:15};
+	// var obj2={...obj1};
+	// obj2.name='oo';
+	// console.log(obj1);
+	// console.log(obj2);
+
+	var obj1={name:'kk',age:15,friend:{name:'pp',age:1}};
+	var obj2={...obj1};
+	obj2.friend.name='oo';
+	//此方法不能将对象里面的对象也完全变为自己单独的数据
+	console.log(obj1);
+	console.log(obj2);
+</script>
+</html>

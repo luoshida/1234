@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//异步编程的一种解决方案 简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果 存有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态
+	let promiseLoad = (url) => {
+		let promise = new Promise((resolve,reject) => {
+			let image = new Image();
+			image.onload = () => {
+				console.log('load success');
+				resolve(url);
+			}
+			image.onerror = () => {
+				console.log('load failed');
+				reject(url);
+			}
+			image.src = url;
+		})
+		return promise;
+		
+	}
+	var promise = promiseLoad('../JavaScript/images/p_b_0003.jpg');
+	// promise.then(() => {
+	// 	console.log('loaded success');
+	// },() => {
+	// 	console.log('loaded failed');
+	// })
+
+
+//1种 catch相当于then的失败执行的回调函数
+	// promise.then((url) => {
+	// 	console.log('loaded success',url);
+	// })
+	// .catch((url) => {
+	// 	console.log('loaded failed',url)
+	// })
+
+//2种 catch相当于then的成功执行的回调函数时接受数据失败的函数
+	// promise.then((url) => {
+	// 	console.log('loaded success',url);
+	// 	throw new Error('im error')
+	// })
+	// .catch((data) => {
+	// 	console.log('loaded failed,',data)
+	// })
+	
+
+//finally 成功和失败都会执行的操作
+	promise.then((url) => {
+		console.log('loaded success',url);
+	})
+	.catch((url) => {
+		console.log('loaded failed,',url)
+	})
+	.finally(()=>{
+		console.log('loaded alway')
+	})
+	
+//promise的静态方法 resolve
+	let p1 =Promise.resolve();
+	let p2 =Promise.resolve(p1);
+	// p1=p2 都是promise对象
+	let thenObj={
+		then:()=>{
+			console.log('im then ');
+		}
+	}
+	let p3=Promise.resolve(thenObj);
+	// 在promise里传入带有then方法的对象时 then方法被执行
+	let p4 = Promise.resolve('nnn');
+	//[[PromiseValue]]为'nnn'的promise对象
+	console.log(p4);
+
+//promise的静态方法 reject
+	let p5=Promise.reject('kkk');
+	p5.then(()=>{
+		console.log('success')
+	},()=>{
+		console.log('reject')
+	})
+	//会执行reject方法
+
+
+//promise的all方法
+	var pp=['../JavaScript/images/p_b_0001.jpg','../JavaScript/images/p_b_0002.jpg','../JavaScript/images/p_b_0003.jpg'].map((url)=>promiseLoad(url));
+	let p=Promise.all(pp);
+	console.log(p);
+	p.then((val)=>{
+		//成功返回所有val
+		console.log('resolved',val);
+	},(val)=>{
+		//失败返回失败的第一个val
+		console.log('reject',val);
+	})
+
+//promise的race方法
+	let p7 = new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			resolve('p1');
+		},1200)
+		setTimeout(()=>{
+			reject('p1');
+		},1000)
+	});
+
+	let p8= new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			resolve('p2');
+		},500)
+	});
+
+	let p9 = Promise.race([p7,p8]);
+	// console.log(p);
+	p9.then((val)=>{
+		console.log('resolved...',val);
+	},(val)=>{
+		console.log('rejected...',val);
+	})
+</script>
+</html> 

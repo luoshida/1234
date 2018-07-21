@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//箭头函数的定义
+	// let sum = (x,y) =>{
+	// 	return (x+y);
+	// }
+	// let sum = (x,y) => x+y;
+	// let sum = x => x+10;
+	// let show = () =>{ 
+	// 	console.log('sss')
+	// }
+
+	let arr = [22,11,54,62,88,14];
+	arr.sort((n1,n2) => n2-n1)
+
+	// function Timer(id){
+	// 	this.id=id;
+	// 	console.log(this);
+	// 	(function (){
+	// 		console.log(this,this.id);
+	// 	})()
+	// }
+	function Timer(id){
+		this.id=id;
+		console.log(this);
+		(() =>{
+			console.log(this);
+			console.log(this.id);
+		})()
+	}
+//箭头函数不能bind 
+	var timer = new Timer('lsd');
+
+
+	var facts = (...arr) => {
+		//箭头函数内部没有arguments这个数组 可以使用...arr来使用参数数组;
+	}
+	function fact(n){
+		if (n<=1) {
+			return 1;
+		} else {
+			// return n * fact(n-1);
+			return n * arguments.callee(n-1);
+		}
+	}
+	console.log(fact(5));
+	var facts=fact;
+	fact=0;
+	//当把fact=0的时候把fact的指针指向了null的堆里面 内部调用fact的时候就会变为null，所以使用arguments.callee()来代表函数本身 就能避免原来函数的清空带来的影响；
+	console.log(facts(5));
+
+
+	//默认传的参 
+	function show1(msg = 'hi'){
+		console.log(msg)
+	}
+
+	function show2(name,{age=44,sex='man'}={}){
+		console.log(name,age,sex)
+	}
+	show2('ddd',{age:48});
+
+	function show3(name, ...arg){
+		console.log(name,arg[0],arg[1],arg[2],arg[3])
+	}
+	show3('tim','hij',54,'dd');
+
+	let i=99;
+	function show4(age = i + 1) {
+		console.log(age);
+	}
+</script>
+</html>

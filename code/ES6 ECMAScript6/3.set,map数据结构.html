@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	let s=new Set();
+	let ar=[];
+	s.add(1);
+	s.add(2);
+//类似数组 Set中没有相同的值
+	s.add(2);
+	s.add(3);
+	s.delete(3);
+	// s.clear(); //清除所有
+	console.log(s.has(1));//ture or false
+	console.log(typeof ar);
+	console.log(typeof s);
+	console.log(s);
+	console.log(s.size);
+
+	let arr =[1,1,2,3,4,5];
+	let d=new Set(arr);
+	let arr1=[...d];
+	arr1.push(6);
+	console.log(d);
+	console.log(arr);
+	console.log(arr1); 
+
+//遍历set数组
+	for(key of d.keys()){
+		console.log(key);
+	};
+	for(value of d.values()){
+		console.log(value);
+	}
+	for(entry of d.entries()){
+		console.log(entry[0],entry[1]);
+	}
+	d.forEach(function(value,key){
+		console.log(value,key);
+	})
+
+
+//Map类似于对象，但键的范围不限于字符串，各种类型的值（包括对象）都可以当作键的数据结构
+	let obj={name:'tom'};
+	let map = new Map();
+	map.set('name','thg');
+	map.set(obj,'nnn');
+	console.log(map);
+	// map.delete('name');
+	// map.get('name');
+	// map.clear();
+	for(key of map.keys()){
+		console.log(key);
+	};
+	for(value of map.values()){
+		console.log(value);
+	}
+	for(entry of map.entries()){
+		console.log(entry);
+	}
+	map.forEach(function(value,key){
+		console.log(value,key);
+	})
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>let variable</title>
+</head>
+<body>
+	<button>1</button>
+	<button>2</button>
+	<button>3</button>
+	<button>4</button>
+</body>
+<script>
+	// console.log(name); //报错 let声明的变量不会提升
+	// let name ='a';
+	// let name ='b';
+	// console.log(name);//报错 let声明的变量不可重复
+
+	//var tmp = 123;
+	//if (true) {
+	  //tmp = 'abc'; 报错 在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”
+	//   let tmp;
+	// }
+
+	var oBtn=document.getElementsByTagName('button');
+	// for (var i = 0; i < oBtn.length; i++) {
+	// 	console.log('one'+i);
+	// 	(function(i){
+	// 		oBtn[i].onclick=function(){
+	// 			console.log(this);
+	// 			console.log('two'+i);
+	// 		}
+	// 	})(i);	
+	// }
+	// console.log('three'+i);
+
+// for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+
+	for (let i = 0; i < oBtn.length; i++) {
+		console.log('one'+i);
+		oBtn[i].onclick=function(){
+			console.log(this);
+			console.log('two'+i);
+		}
+	}
+
+
+	// let [a,b,c]=[1,2,3];
+	// let [a,[b,c],d]=[1,[2,3],4];
+
+	// let [a,b,c=5] = [1,2,4];
+	//c位置undefined时 值为前面的赋值，其他为后面的赋值
+	let [a,b,c=5] = [1,2,undefined];
+
+	console.log(a,b,c);
+	// console.log(a,b,c,d);
+
+	let [foo, [[bar], baz]] = [1, [[2], 3]];
+	foo // 1
+	bar // 2
+	baz // 3
+
+	let [ , , third] = ["foo", "bar", "baz"];
+	third // "baz"
+
+	let [x, , y] = [1, 2, 3];
+	x // 1
+	y // 3
+
+	let [head, ...tail] = [1, 2, 3, 4];
+	head // 1
+	tail // [2, 3, 4]
+
+	let [x, y, ...z] = ['a'];
+	x // "a"
+	y // undefined
+	z // []
+	
+	// let {name=name , age=age} ={name:'ll',age:12};
+	// let {name , age} ={name:'ll',age:12};
+	let {name,age} ={name:{bb:'ll'},age:{aa:12}} ;
+	console.log(name,age);
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>const常量</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// const PI= 3.14;
+	// PI=PI+1 //报错 常量不可改变值
+
+	// const PI；
+	// PI=3.14; //报错 常量需在定义的时候被赋值
+	// console.log(PI);
+
+ //其他的一些属性 常量和let变量一致
+	const DEFAULT={name:'aa'};
+	DEFAULT.name='bbb'; //常量对于复合类型的数据（主要是对象和数组） 会被存在堆里面 可改变值
+	console.log(DEFAULT);
+</script>
+</html>

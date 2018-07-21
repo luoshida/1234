@@ -1,0 +1,1 @@
+exports.obj={'name':'ooo'};
