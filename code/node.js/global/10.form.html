@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<!-- <form action="http://127.0.0.1:3000" method="GET"> -->
+	<form action="http://127.0.0.1:3000" enctype="multipart/form-data"  method="POST">
+		<div>
+			姓名：<input type="text" name="name">
+		</div>
+		<div>
+			爱好：<input type="radio" name="ball" value="ball">球
+			<input type="radio" name="ball" value="pan">罐
+		</div>
+		<div>
+			<input type="file" name="image">
+		</div>
+		<input type="submit" value="提交">
+	</form>
+</body>
+</html>

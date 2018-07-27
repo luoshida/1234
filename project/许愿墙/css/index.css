@@ -1,0 +1,45 @@
+body{
+	background: url(../images/1234.jpg);
+	background-size: auto;
+}
+.wool{
+	width: 800px;
+	height: 500px;
+	float: left;
+
+}
+.input{
+	position: absolute;bottom: 0;right: 0;
+}
+.intr{
+	width: 400px;
+	height: 100px;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: 楷体;
+}
+.btn{
+	width: 406px;
+	height: 64px;
+	background: red;
+	font-size: 30px;
+	color: white;
+	display: block;
+}
+.box{
+	background: blue;
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	left: 0;
+	top: 0;
+	color:white;
+}
+.active{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	color: white;
+	white-space: wrap;
+}

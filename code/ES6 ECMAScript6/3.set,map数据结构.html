@@ -8,6 +8,7 @@
 	
 </body>
 <script>
+
 	let s=new Set();
 	let ar=[];
 	s.add(1);
@@ -15,6 +16,10 @@
 //类似数组 Set中没有相同的值
 	s.add(2);
 	s.add(3);
+	//两个空对象不相等，所以它们被视为两个值
+	s.add({});
+	s.add({});
+
 	s.delete(3);
 	// s.clear(); //清除所有
 	console.log(s.has(1));//ture or false

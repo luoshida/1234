@@ -11,16 +11,31 @@
 	<button>4</button>
 </body>
 <script>
-	// console.log(name); //报错 let声明的变量不会提升
-	// let name ='a';
-	// let name ='b';
-	// console.log(name);//报错 let声明的变量不可重复
+//允许在块级作用域之中声明函数 块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用
+//函数声明类似于var，即会提升到全局作用域或函数作用域的头部。
+//同时，函数声明还会提升到所在的块级作用域的头部。
 
-	//var tmp = 123;
-	//if (true) {
-	  //tmp = 'abc'; 报错 在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”
-	//   let tmp;
-	// }
+	function f() { console.log('I am outside!'); }
+
+	(function () {
+	  if (false) {
+	    // 重复声明一次函数f
+	    function f() { console.log('I am inside!'); }
+	  }
+
+	  f();
+	}());
+
+	console.log(name); //报错 let声明的变量不会提升
+	let name ='a';
+	let name ='b';
+	console.log(name);//报错 let声明的变量不可重复
+
+	var tmp = 123;
+	if (true) {
+	  tmp = 'abc'; 报错 在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”
+	  let tmp;
+	}
 
 	var oBtn=document.getElementsByTagName('button');
 	// for (var i = 0; i < oBtn.length; i++) {
