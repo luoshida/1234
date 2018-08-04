@@ -39,7 +39,10 @@ console.log(myEvent.listeners('myEvent'));
 
 //移除某个事件
 myEvent.removeListener('myEvent',fn2);
-myEvent.off('myEvent',fn1);
+// myEvent.off('myEvent',fn1);
 
 // myEvent.emit('myEvent');
+//'a'是传入的参数
+console.log('5555');
 myEvent.emit('myEvent','a');
+console.log('6666');
