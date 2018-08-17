@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 
+//请求静态资源
 //默认会请求public文件夹下的index.html，所以写到下面
 app.use(express.static('public'));
 

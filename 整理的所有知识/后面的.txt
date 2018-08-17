@@ -1,0 +1,1544 @@
+001-本地存储.md
+源码模式
+cookie
+?cookie的设置
+document.cookie = 'key1=value1';
+document.cookie = 'key2=value2';
+注意,后面的不会覆盖前面的,在ff下测试
+?cookie有效期的设置
+    var oDate = new Date();
+    oDate.setDate(oDate.getDate() + 14);
+    document.cookie = "name=Tom;expires="+oDate;
+?封装cookie相关的函数
+        
+        function setCookie(key,value,iDate){
+            var oDate = new Date();
+            oDate.setDate(oDate.getDate() + iDate);
+            document.cookie = key+"="+value+";expires="+oDate;
+        }
+        function getCookie(name){
+            var str = document.cookie;
+            var arr1 = str.split(";");
+            var result = "";
+            for(var i=0;i<arr1.length;i++){
+                var arr2 = arr1[i].split("=");
+                if(arr2[0].trim() == name.trim()){
+                    result = arr2[1];
+                    break;
+                }
+            }
+            return result;
+        }
+        
+        function removeCookie(name){
+            setCookie(name,false,-1);
+        }
+
+?cookie的特点:
+?cookie是document对象上的一个属性
+?cookie的大小限制是4k
+?cookie会存在于请求头中
+?主域名中的cookie会在子域名中存在
+Storage
+?localStorage 和 sessionStorage的api相同
+?setItem(key,value) 设置
+?getItem(key) 获取
+?removeItem(key) 删除
+?clear() 清除所有
+?length 内容个数
+?key(num) 获取key的值
+?localStorage 和 sessionStorage的存储时效不同
+?localStorage 持久化
+?sessionStorage 网页会话结束失效
+?localStorage 和 sessionStorage的存储容量不同
+?localStorage 2-5Mb左右
+?sessionStorage 2-10Mb左右,部分浏览器 没有限制
+?注意点:
+?Storage仅能存储字符串
+?Storage的数据不能在不同的域中共享
+002-拖拽.md
+源码模式
+拖拽
+?
+被拖拽元素添加 draggable=true
+?
+?
+绑定拖拽事件
+?
+被拖拽元素相关
+?ondragstart 当元素开始拖动时触发
+?ondrag 被拖动元素拖动时触发
+?ondragend 拖拽时松开鼠标时触发
+容器相关
+?ondrop 当放置被拖动元素时触发
+?ondragover 被拖动元素正在到放置到容器时触发,默认无法把元素放置到其他元素中,如果需要设置允许放置,我们必须阻止对元素的默认处理方式。
+?ondragenter 当被拖动元素进入容器时触发
+?ondragleave 当被拖动元素离开容器时触发
+?ondragend 被拖动元素在容器中松开鼠标时触发
+?ondrag 容器中的被拖动元素拖动时触发
+?dataTransfer对象
+?设置数据 dataTransfer.setData(key,val)
+?获取数据 dataTransfer.getData(key)
+?设置拖动的图标图片: dataTransfer.setDragImage(图片DOM节点,x,y)
+注意:dataTransfer对象存在在原生的event对象上,如果用jQuery的event对象,需要使用jQuery的event对象的originalEvent
+拖拽插件
+?jquery.pep.js 官网: http://pep.briangonzalez.org/
+003-SVG体验.md
+源码模式
+SVG 介绍
+SVG(Scalable Vector Graphics)可缩放矢量图形,一种用来描述二维矢量图形的XML语言
+SVG视口(viewport)
+?SVG视口是指可见区域的大小(画布的大小)
+<svg width='800' height='600'></svg>
+svg默认的宽高是300px*150px
+SVG视区盒子(viewBox)
+viewBox = 'x y width height'
+//x:水平坐标 y:垂直坐标 width:宽度 height:高度
+?viewBox会根据坐标点和宽高来截取视口,把截取后的内容全屏
+<svg width='800' height='600' viewBox='0 0 80 60'>
+    <rect >
+</svg>
+图形
+?
+直线 <line x1="0" y1="0" x2="300" y2="300" style="stroke:rgb(99,99,99);stroke-width:2"/>
+?
+?
+矩形 <rect x='100' y='100' width='400' height='300' fill="#ff0">
+004-canvas.md
+源码模式
+canvas
+canvas是一个画布,用来在网页上绘制图像
+canvas基础
+?创建canvas
+<canvas></canvas>
+canvas默认的宽高是300px*150px
+?画布的大小
+?在canvas标签中设置的width和height是指画布大大小,不用带单位
+?在css中设置的width和height是指画布拉伸缩放后的大小
+?一般建议在js中设置画布的大小
+?画直线
+    cxt.moveTo(0,0);//指定起始坐标
+    cxt.lineTo(100,100);//直线终点坐标
+    cxt.lineTo(100,200);
+    cxt.strokeStyle='#f00';//指定描边的样式
+    cxt.lineWidth = 10;//设置线条的宽度
+    cxt.closePath();//封闭路径
+    cxt.stroke(); //描边
+
+    cxt.fillStyle = 'rgba(0,255,0,0.5)';//设置填充的颜色
+    cxt.fill();//闭合路径后填充    
+?
+cxt.beginPath();重新开始路径,绘制时不会绘制之前的路径
+?
+?
+圆形
+?
+cxt.arc(圆心x,圆心y,半径,起始角度,终止角度,是否是逆时针(true为逆时针))
+3点钟时0PI 6点钟是0.5PI 9点钟是1PI 12点钟是1.5PI
+?
+矩形 cxt.strokeRect(x,y,宽,高) cxt.fillRect(x,y,宽,高)
+?
+?
+平移坐标原点 cxt.translate(x,y);
+?
+?
+旋转坐标系 cxt.rotate(弧度) 以顺时针为方向旋转
+?
+?
+缩放变换 cxt.scale(x轴比例,y轴比例);
+?
+所有的变换都是针对坐标系的 各种变换之间是相互叠加的
+?
+save和restore环境 cxt.save(); 保存之前的环境 cxt.restore();恢复到上一次保存时的环境
+?
+?
+线性渐变(LinearGradient) var linearGradient = cxt.createLinearGradient(起始x,起始y,终止x,终止y); linearGradient.addColorStop(百分比,颜色)
+?
+?
+径向渐变(RadialGradient) var radialGradient = createRadialGradient(起始圆心x,起始圆心y,起始圆半径,终止圆心x,终止圆心y,终止圆半径);
+?
+?
+文本
+?
+?
+图像绘制
+?
+?
+图形画刷
+?
+?
+剪辑区
+?
+?
+绘制阴影
+?
+?
+绘制曲线
+?
+?圆弧: context.arc(圆心x,圆心y,半径,起始角度,终止角度,是否逆时针)
+?二次样条曲线: context.quadraticCurveTo(qcpx,qcpy,qx,qy)
+http://blogs.sitepointstatic.com/examples/tech/canvas-curves/quadratic-curve.html
+?贝塞尔曲线: context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)
+http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html
+推荐插件
+?http://echarts.baidu.com/
+?https://antv.alipay.com/zh-cn/index.html
+?http://www.chartjs.org/
+?https://www.highcharts.com
+?https://d3js.org/
+?
+001-Less.md
+源码模式
+Less介绍
+Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。
+Less编译
+?浏览器
+    <!--
+    1. 引入.less文件,注意rel="stylesheet/less"
+    2. 在less文件后面引入编译less的js文件,可以从http://lesscss.cn/中下载
+    -->
+    <link rel="stylesheet/less" type="text/css" href="less/001.less">
+    <script src="js/less.js" type="text/javascript"></script>
+?客户端
+http://koala-app.com/
+?服务端
+Less语法
+?注释
+//我是注释一 编译被删除
+/*我是注释二 编译被保留*/
+?
+变量 @变量名:值
+?
+?
+混合(Mixin)
+?
+?基本混合,直接把选择器写在另外一个选择中
+?带参数
+?带参数有默认值
+?
+匹配模式 选择符合条件的混合模式,根据传入的参数来决定使用哪个混合
+?
+?
+嵌套 在选择器中嵌套选择器
+?
+?
+运算 +-*/
+?
+?
+避免编译 属性:~'css的值'
+?
+?
+!important关键字 在混合模式后添加!important关键字,会为混合模式中的所有样式添加!important
+?
+*混合参数做为属性和设置计算后的属性值
+.set(@attr,@val){ @{attr}:unit(@val/10,px); }
+002-移动端.md
+×
+源码模式
+移动基础
+?像素
+?设备的物理像素,屏幕的物理像素,任何设备的物理像素是固定的,例如电脑屏幕的分辨率是1366 X 768,表示在电脑屏幕上有1366 X 768个小格子,一个小格子代表一个物理像素
+?CSS像素,又称逻辑像素,是为WEB开发者创造出来的一个抽象层
+?只有在页面不缩放的情况下,一个CSS像素才等于一个物理像素
+?如果页面放大,根据放大的比例,多个物理像素合成一个CSS像素
+?如果页面缩小,根据缩小的比例,一个物理像素分成多个CSS像素
+?因为像素的合成,当网页放大后,CSS定义的像素并没有改变,但是视觉效果上变大了
+?DPI/PPI
+?DPI（Dot Per Inch）每英寸的墨汁点，多用于印刷行业
+?PPI（Pixels Per Inch）屏幕每英寸的物理像素数量，即单位英寸的物理像素密度
+?1 英寸(inch)=25.4毫米(millimetres)=2.54厘米
+<img src="img/ppi.png">
+?
+PPI值越高,一个实际1英寸上容纳的物理像素就越多,就能够展示更多的画面细节,也就意味着画面更细腻
+?
+?
+DPR
+?
+?手机分辨率很高,但手机屏幕尺寸有限,所以可以让手机屏幕上的多个物理像素合成一个CSS像素来更好的显 示内容
+?DPR(device Pixel Ratio) 设备像素比 = 设备物理像素 / CSS像素,这个DPR就决定了多少个物理像素合成一个CSS像素
+?以iPhone6为例
+?iPhone6 的分辨率为1334X750
+?iPhone6 的CSS像素为667X375
+?所以iPhone6 的DPR为 1336/667 = 2,即2个物理像素对应一个css像素
+?DPR的设置是根据人体手臂的长度来设定的,也就是说将 1334X750的物理像素合成667X375的CSS像素,视觉效果是最好的
+?视口 viewport
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+?width,设置视口的宽度,表示把移动设备的宽缩放为多少个CSS像素,为一个正整数,或字符串"device-width",device-width表示缩放到设备合成后的CSS像素
+?initial-scale 设置页面的初始缩放值,为一个数字,可以带小数
+?minimum-scale 允许用户的最小缩放值,为一个数字,可以带小数
+?maximum-scale 允许用户的最大缩放值,为一个数字,可以带小数
+?height,设置视口的高度
+?user-scalable,是否允许用户进行缩放,值为"no"或"yes", no 代表不允许,yes代表允许
+?这些属性可以同时使用，也可以单独使用或混合使用，多个属性同时使用时用逗号隔开
+屏幕尺寸适配
+?像素px,绝对单位,由于单位固定
+?无法做屏幕的适配
+?百分比%,相对于父元素的宽高
+?可以实现布局的适配,但是字体不容易适配
+?em,当前元素字体的大小,1em=当前元素的font-size
+?可以根据不同的屏幕来设置元素的font-size,再利用em来适配,但是元素的font-size可以被继承,同时js和css经常会修改font-size,如果用em来适配的话容易造成混乱
+?注意:font-size最小值是12px;
+?1vw=当前设备宽度的1%,vh=当前设备高度的1%
+?可以适配布局和文字,但兼容性不好
+?rem,根元素字体的大小,默认值是16px
+?可以根据不同的屏幕来设置根元素的font-size,再利用rem来适配
+?根元素的font-size需要动态设置,一般有JS和媒体查询两种方法来动态设置
+响应式布局(Responsive)
+?媒体类型 (media type)
+?媒体类型是从CSS2和HTML4开始,可以根据设备的类型来决定使用什么样式
+?使用方法一
+    <link rel="stylesheet" media="print" href="css/print.css" >
+    <link rel="stylesheet" media="screen" href="css/screen.css" >
+?使用方法二
+<style type="text/css">
+    @media screen{
+        h1{
+            color: blue;
+        }
+    }
+    @media print{
+        h1{
+            color: red;
+        }
+    }
+</style>        
+?常见的媒体类型有(还有其他的但基本已被抛弃,所以在此不在列举)
+screen 屏幕 print 打印机 all 所有
+?媒体查询(media query)
+?媒体查询是由媒体类型(media type)和媒体特征(media features)共通决定使用什么样式
+?常见的媒体特征有
+?width, 浏览器窗口的宽度,可以有min/max前缀
+?height, 浏览器窗口的高度,可以有min/max前缀
+?device-width,分辨率宽度,可以有min/max前缀
+?device-height,分辨率高度,可以有min/max前缀
+?orientation,移动设备窗口的方向,portrait(纵向),landscape(横向)
+?min/max的解释
+?(min-width:400px) 浏览器窗口的宽度最小是400px样式生效,换句话说是大于等于400px时样式生效
+?(max-width:800px) 浏览器窗口的宽度最大是800px样式生效,换句话说是小于等于800px时样式生效
+?使用方法一
+    <link rel="stylesheet" href="css/blue.css">
+    <link rel="stylesheet" href="css/yellow.css" media="screen and (max-width: 500px)">
+?使用方法二
+<style>
+    @media screen and (min-width: 500px){
+        body{
+            background: yellow;
+        }
+    }
+</style>
+弹性布局(Flexible Box)
+?把容器指定为弹性布局
+?块状元素 display: flex;
+?行内元素 display: inline-flex;
+?
+指定了弹性布局的元素称为Flex容器(flex container),它的所有子元素自动成为容器成员,称为 Flex项目(flex item)
+?
+?
+容器属性
+?
+?flex-direction 决定项目的排列方向,有以下取值
+?row(默认值):水平方向,起点在左端
+?row-reverse:水平方向,起点在右端
+?column:垂直方向,起点在上沿
+?column-reverse:垂直方向,起点在下沿
+?flex-wrap 决定项目一行排不下，如何换行,有以下取值
+?nowrap(默认值):不换行,元素的宽度按照指定款的的比例从新计算
+?wrap:换行,第一行在上方
+?换行后项目的垂直对齐方式由align-items/align-content来决定
+?wrap-reverse:换行,第一行在下方
+?flex-flow:flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap。
+?justify-content 决定项目的水平对齐方式,有以下取值
+?flex-start(默认值):左对齐
+?flex-end:右对齐
+?center:居中
+?space-between:两端对齐,项目之间的间隔都相等。
+?space-around:每个项目两侧的间隔相等。所以,项目之间的间隔比项目与边框的间隔大一倍。
+?align-items/align-content 决定项目的垂直对齐方式,有以下取值
+?stretch(默认值):换行后,如果项目未设置高度或设为auto,将占满整个容器的高度
+?flex-start：起点对齐
+?flex-end：终点对齐
+?center：中点对齐
+?baseline: 项目的第一行文字的基线对齐
+?align-items/align-content的区别在于:
+?align-item换行后会根据父容器的高度填充整个行
+?align-content换行后按项目的的高度来填充行
+?项目属性
+?order 项目的排列顺序,数值越小,排列越靠前,默认为0
+?flex-grow 项目的放大比例,默认为0,即如果存在剩余空间,也不放大
+?如果所有项目的flex-grow属性都为1,则它们将等分剩余空间(如果有的话)
+?如果一个项目的flex-grow属性为2,其他项目都为1,则前者占据的剩余空间将比其他项多一倍
+?flex-shrink 项目的缩小比例,默认为1,即如果空间不足,该项目将缩小
+?如果所有项目的flex-shrink属性都为1,当空间不足时,都将等比例缩小
+?如果一个项目的flex-shrink属性为0,其他项目都为1,则空间不足时,前者不缩小
+?flex-basis 定义了在分配多余空间之前,项目占据的大小,浏览器根据这个属性,计算是否有多余空间
+?它的默认值为auto,即项目的本来大小
+?flex 是flex-grow,flex-shrink,flex-basis的简写,默认值为0 1 auto,后两个属性可选
+?align-self 允许单个项目有与其他项目不一样的对齐方式,可覆盖align-items属性
+001-变量.md
+源码模式
+let
+?作用:定义变量
+?注意点:
+?let定义过的变量不能再定义,var定义过的变量可以重新定义
+?let定义的变量不会声明提升,var定义的变量会发生声明提升
+?let定义的变量在let命令所在的代码块内有效,var定义的变量在函数范围内有效
+const
+?作用:定义常量(一旦定义,值就不能改变)
+?注意点:
+?定义常量的时候必须赋初值
+?常量不可以再次赋值
+?const定义的常量保证的是常量的地址不可以改变
+?对于简单数据来说值就保存在变量指向的那个内存地址,因此不可以再赋值
+?对于复杂数据来说常量指向数据保存的地址,const保证的是这个地址不变,但地址指向的数据是可以修改的
+?const定义的常量在const命令所在的代码块内有效
+?const定义的常量不会声明提升
+结构解析
+?
+作用:从数组或者对象中提取值然后对变量进行赋值
+?
+?
+数组的结构解析:按照对应位置,把等号右边数组中的值赋给等号左边数组中的变量,数组可以嵌套
+?
+?注意点
+?如果解构不成功,变量的值就等于undefined
+?如果等号的右边不是数组,会报错
+?可以在等号右边数组中设置默认值,当等号左边数组中对应位置的值是undefined时默认值才会生效。
+?对象的结构解析:按照对应属性名,把等号右边对象中的属性的值赋给等号左边对象中的同名属性
+?注意点
+?等号左边对象中的属性的值是真正被赋值的变量名,如果属性的值省略,属性的值和属性的名称相同
+模版字符
+语法:字符 ${javascript表达式}
+002-扩展运算.md
+源码模式
+扩展运算
+?
+扩展运算符三个点...
+?
+?
+数组的扩展运算就是将一个数组转为用逗号分隔的参数序列
+?
+?
+数组的扩展运算的应用
+?
+?函数调用时使用把数组转换为参数列表
+function add(n1,n2){
+    return n1+n2;
+}
+let arr = [11,22];
+add(...arr);
+?函数定义时使用把参数列表转换为数组
+function add(...arr){
+    let result = 0;
+    for(let i = 0;i<arr.length;i++){
+        result += arr[i]
+    }
+    return result;
+}
+add(11,22);
+?求数组的最大数
+let arr = [11,22,44,88,77];
+//ES5
+Math.max.apply(null,arr)
+//ES6 用扩展运算
+Math.max(...arr)
+?深拷贝数组
+let arr1 = [11,22,44,88,77];
+//ES5
+let arr2 = arr1.concat();
+//ES6 用扩展运算
+let arr2 = [...arr1];
+?
+对象的扩展运算符...用于取出参数对象的所有可遍历属性,拷贝到当前对象之中
+?
+?
+对象的扩展运算符的应用
+?
+?拷贝对象(浅拷贝)
+let obj1 = {name:'Tom',age:18};
+let obj2 = {...ojb1};
+如果对象中有复杂数据类型,拷贝的是数据的地址
+003-Set和Map.md
+源码模式
+遍历器
+?遍历器(Iterator)是一种接口,实现了该接口的数据结构就可以完成遍历操作
+?遍历器接口主要供for...of循环来使用,也就是说实现了遍历器接口的数据类型都可以用for...of循环来遍历数据
+Set
+?
+类似于数组,但值唯一的数据结构
+?
+?
+Set对象的size属性返回Set实例的值的总数
+?
+?
+Set对象的操作方法
+?
+?add(value):添加某个值,返回 Set 结构本身
+?delete(value):删除某个值,返回一个布尔值,表示删除是否成功
+?has(value):返回一个布尔值,表示该值是否为Set的成员
+?clear():清除所有值,没有返回值
+?Set对象的遍历方法
+?keys():返回键名的遍历器
+?values():返回键值的遍历器
+?entries():返回键值对的遍历器
+?forEach(function(value,key){}):使用回调函数遍历
+?注意点:
+?Set只有值没有键,所以key和value一样
+?Set的遍历顺序就是插入顺序
+Map
+?
+类似于对象,但键的范围不限于字符串,各种类型的值(包括对象)都可以当作键的数据结构
+?
+?
+Map对象的size属性返回Map实例的键值对的总数
+?
+?
+Map对象的操作方法
+?
+?set(key,value):设置键名key对应的键值为value，然后返回整个 Map 结构,如果key已经有值，则键值会被更新，否则就新生成该键。
+?get(key):读取key对应的键值，如果找不到key，返回undefined。
+?delete(key):delete方法删除某个键，返回true。如果删除失败，返回false。
+?has(key):has方法返回一个布尔值，表示某个键是否在当前 Map 对象之中。
+?clear():清除所有键值,没有返回值
+?Map对象的遍历方法
+?keys():返回键名的遍历器
+?values():返回键值的遍历器
+?entries():返回键值对的遍历器
+?forEach(function(value,key){}):使用回调函数遍历
+?注意点:
+?Map的遍历顺序就是插入顺序
+004-Symbol数据类型.md
+源码模式
+Symbol
+?Symbol是一种新的数据类型,表示独一无二的值
+?Symbol值通过Symbol函数生成
+?Symbol函数可以接受一个字符串作为参数,表示对Symbol实例的描述
+?Symbol的主要作用是用来表示对象的属性名
+?Symbol值作为对象属性名时,不能用点运算符,在对象的内部页不可以
+005-类.md
+源码模式
+class类
+?
+class类是ES5面向对象的语法糖
+?
+?
+举例
+?
+    class Person{
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        show(){
+            console.log('I am '+this.name+' and I am '+this.age+' years old');
+        }
+        showName(){
+            console.log('I am '+this.name);
+        }
+        showAge(){
+            console.log('I am '+this.age+' years old');
+        }
+        static sayHi(){
+            console.log('Hi...')
+        }
+    }
+
+    class Student extends Person{
+        constructor(name,age,major){
+            super(name,age);
+            this.major = major;
+        }
+        show(){
+            super.show();
+            console.log('I am from '+this.major)
+        }
+        showMajor(){
+            console.log('I am from '+this.major)
+        }
+    }
+?定义注意点
+?用class定义的类也是函数
+?constructor方法是类的默认方法,通过new命令生成对象实例时,自动调用该方法。
+?一个类必须有constructor方法,如果没有显式定义,系统默认添加一个空的constructor方法
+?constructor方法默认返回实例对象
+?在class 中定义的方法实际上是给原型对象上添加方法
+?类不存在变量提升
+?静态方法前面添加static关键字,调用时用 类名.方法名 的形式调用
+?继承注意点
+?父类的静态方法,可以被子类继承
+?通过extends关键字实现继承
+?子类必须在constructor方法中调用super方法,该super方法实际上是调用父类的constructo
+?子类如果没有定义constructor方法,系统默认添加一个空的constructor方法,并且在这个方法会被默认添加一个空的super方法
+?在子类的构造函数中,只有调用super之后,才可以使用this关键字
+006-函数.md
+源码模式
+函数参数默认值
+?直接在参数定义的时候赋值来为为函数的参数设置默认值
+    function show2(x,y="world"){
+        console.log(x,y);
+    }
+    show2("hello");//hello world
+?参数默认值不是传值的,而是每次都重新计算默认值表达式的值
+    let x = 1;
+    function show(i=x+1){
+        console.log(i);
+    }
+    show();//2
+    x = 2;
+    show();//3
+?结构解析和默认参数结合
+    function show2(url,{method="GET",body="name=Tom"} = {}){
+        console.log(method,body);
+    }
+    show2();//GET name=Tom
+    show2('http://kuazhu.com');//GET name=Tom
+?默认值参数应该是参数的尾部参数,否则不能省略
+rest参数
+?rest参数就是在函数定义时使用扩展运算(...变量名)把参数列表转换为数组
+箭头函数
+?
+箭头函数就是使用"箭头"(=>)来定义函数
+?
+?
+箭头函数的基本用法
+?
+    let fn = (x,y)=>{
+        console.log(x,y);
+        return x + y;
+    }
+?如果函数体只有返回值,函数体的花括号和return语句可以省略,简写:
+    let fn = (x,y)=> x + y
+?如果只有一个参数,圆括号可以省略,简写:
+    let fn =  x =>{
+        console.log(x);
+        return x + 10;
+    }
+?箭头函数中的this是在定义时确定的(定义时属于谁),而不是在运行时确定(谁调用)的
+    function Timer(id){
+        this.id = id;       
+        setTimeout(function(){
+            console.log(this,this.id);//window 99
+        },100)  
+    }
+    var id = 99;
+    let t = new Timer(100);
+?function 定义的函数,this是在运行时确定的,运行时函数属于谁this就是谁,上面例子中的延迟函数会在100毫秒后由window对象来调用,所以里面的this是window对象
+?function 定义的函数,可以通过call/bind/apply来改变函数的内部this
+    function Timer(id){
+        this.id = id;    
+        setTimeout(()=>{
+            console.log(this,this.id);//Timer?{id: 100} 100
+        },100); 
+    }   
+    var id = 99;
+    let t = new Timer(100);
+?箭头函数导致this总是指向函数定义生效时所在的对象
+?上面例子中延迟函数中匿名函数在定义的时候是属于Timer的实例对象,所以里面的this就是Timer对象
+?用let定义的函数不会声明提升
+007-promise.md
+源码模式
+Promise的概念
+?Promise 是一种异步编程解决方案
+?将异步操作以同步操作的流程表达出来,避免了层层嵌套的回调函数
+?Promise对象提供统一的接口,使得控制异步操作更加容易
+Promise的特点
+?Promise有三种状态
+?pending（进行中）
+?fulfilled（已成功）
+?rejected（已失败）
+?
+只有异步操作的结果,可以决定当前是哪一种状态,任何其他操作都无法改变这个状态
+?
+?
+一旦状态改变,就不会再变
+?
+?
+Promise对象的状态改变，只有两种可能：
+?
+?从pending变为fulfilled
+?从pending变为rejected
+Promise的使用
+?Promise构造函数接受一个函数作为参数,该函数的两个参数分别是resolve和reject
+?resolve函数在异步操作成功时(从pending变为fulfilled)调用,并将异步操作的结果作为参数传递出去
+?reject在异步操作失败时(从pending变为rejected)调用,并将异步操作报出的错误作为参数传递出去
+?Promise实例生成以后,可以用then方法分别指定resolved状态和rejected状态的回调函数,rejected状态的回调函数可以省略
+?Promise 新建后就会立即执行
+Promise对象的方法
+?then(resolved状态的回调,rejected状态的回调)
+?then方法返回的是一个新的Promise实例
+?catch(回调)
+?如果异步操作抛出错误,状态就会变为rejected,当then中没有指定rejected状态的回调时就会调用catch方法指定的回调函数
+?如果运行中抛出错误,也会被catch方法捕获
+?finally(回调)
+?不管Promise对象最后状态如何,都会执行的操作
+?finally方法的回调函数不接受任何参数
+Promise静态方法
+?Promise.resolve()
+?如果参数是Promise实例,那么Promise.resolve将不做任何修改、原封不动地返回这个实例
+?如果参数是一个具有then方法的对象,resolve方法会将这个对象转为 Promise 对象然后就立即执行该对象的then方法
+?如果参数参数不是具有then方法的对象,或根本就不是对象,返回一个新的 Promise 对象,状态为resolved
+?不带有任何参数,直接返回一个resolved状态的 Promise 对象
+?Promise.reject()
+?返回一个新的Promise实例,该实例的状态为rejected,参数会原封不动地作为reject的理由
+?Promise.all()
+?接受一个Promise实例数组作为参数,返回一个新Promise实例
+?当数组中的所有Promise实例的状态都变成fulfilled时,Promise实例的状态才会变成fulfilled,此时,返回值组成一个数组传递给新Promise实例的回调函数
+?当数组中有一个Promise实例被rejected,新Promise实例的状态就变成rejected,此时第一个被reject的实例的返回值会传递给新Promise实例的回调函数
+?Promise.race()
+?接受一个Promise实例数组作为参数,返回执行最快的那个promise对象
+源码模式
+什么是NodeJs
+NodeJs是基于V8引擎的JavaScript运行环境
+NodeJs特点
+?单线程
+?非阻塞式I/O
+?事件驱动
+NodeJs 简介
+?2009年5月 Ryan Dahl发布了最初版本的部分Node.js包
+?目前的LTS版本是8.11.3
+NodeJs 安装
+https://nodejs.org/en/
+源码模式
+模块
+?在NodeJs中,一个文件就是一个模块,这个模块的本质其实就是一个函数,每个模块都有自己的属性
+模块化
+?
+CommonJS exports 和 require
+?
+?
+ES6 export 和 import
+?
+?
+AMD define 和 require 语句
+?
+NodeJs模块分类
+?核心模块
+?系统核心模块在Node源代码编译过程中被编译成了二进制文件,在node启动时被直接加载到了内存中
+?自定义模块
+?在目录node_modules下的文件或者包,例如用npm安装的模块
+?自定义模块的加载路径可以通过module.paths查看
+?文件模块
+?文件模块是用户自己编写的模块,以相对或者绝对路径形式引入
+?注意点
+?Node对所有加载过的模块对象都会缓存
+?Node对二次加载的模块一律采用缓存优先
+?核心模块的优先级高于自定义模块
+NodeJs文件模块
+?模块定义
+?module.exports, 在module.exports对象上添加属性导出值
+?exports,在exports对象上添加属性导出值
+?exports对象和module.exports对象是同一个对象
+?exports对象添加属性来导出值
+?module.exports对象可以赋值一个对象来导出值
+?导出的始终是module.exports指向的对象
+?模块引用
+?require('文件名'),执行对应的文件并且返回该文件对应的modeule.exports对象
+?模块标识
+?模块标识其实就是传递给require()方法的参数
+?模块标识可以是绝对路径也可以是相对路径
+?用绝对路径的话系统会直接加载路径指定的文件
+?用相对路径时注意,当前目录一定要写“./”,否则表明要加载系统的核心模块
+?模块加载规则
+?首先按照模块的文件名进行查找
+?如果没有找到,则会在模块名称后面加上.js后缀进行查找
+?如果还没有找到,则会在模块名称后面加上.json后缀进行查找
+?如果还没有找到,则会在模块名称后面加上.node 后缀进行查找
+?如果还没有找到,则会报错
+源码模式
+NPM(Node Package Manager)
+?NPM是一个工具,安装node时会自动安装
+?NPM主要用来完成第三方模块的发布,安装和依赖
+NPM 常用命令
+?
+查看版本 npm -v
+?
+?
+搜索包 npm search 包名关键字
+?
+?
+初始化 npm init [--yes]
+?
+?参数--yes表明不出现提问设置,所有参数采用默认值
+?安装包 npm install [-g] 包名 [--save] [--save-dev]
+?如果带参数-g,表明全局安装,这样安装的包在/usr/local/lib/node_modules文件夹中，可以在命令行中使用,但不可以在项目中require,使用-g参数时没有--save
+?如果不带参数-g表明本地安装,包文件安装在当前文件夹的node_modules文件夹中,只能在当前项目中使用require引入模块
+?参数--save:把包的版本信息添加到package.json中dependencies 中,一般是需要最终需要打包到业务代码中的依赖,如果执行npm install就会安装 package.json中dependencies的依赖
+?参数--save-dev: 依赖会加在package.json的devDependencies中,一般是辅助开发的依赖,不会打包上线的
+?卸载包 npm uninstall [-g] 包名 [--save] [--save-dev]
+安装用什么参数卸载就用什么参数
+yarn
+源码模式
+什么是全局变量
+在所有的模块中都可以使用,不需要引入
+作用域在模块内的变量
+?__dirname 当前模块的文件夹名次
+?__filename 当前模块文件的绝对路径
+?module 当前的模块信息
+?exports module.exports对象,用来导出模块
+?require() 引入模块
+global全局的命名空间对象
+process进程对象
+?process 和 global.process是同一个对象
+?process.argv
+?process.env
+?process.pid
+?process.nextTick()
+定时器
+?setInterval()/clearInterval()
+?setTimeout()/clearTimeout()
+?setImmediate()/clearImmediate()
+控制台对象
+Buffer类
+?Buffer是用来存放二进制数据的容器
+?Buffer.from
+?Buffer.alloc
+源码模式
+event
+?概念
+?Node中的event没有默认行为和事件冒泡
+?const EventEmitter = require('events');//返回的是一个类
+?通常我们需要继承EventEmitter类来实现事件
+?一个EventEmitter对象默认最大可以有10个监听,可以通过emitter.setMaxListeners(n)来设置最大监听数
+?大多数 Node.js 核心对象都继承事件类
+?添加监听
+?emitter.addListener(eventName, listener)
+?emitter.on(eventName, listener)
+?emitter.once(eventName, listener)
+?注意点:
+?和浏览器端的事件不同,监听函数的第一个参数就是触发时传入的参数而不是event对象
+?emitter.addListener和emitter.on(eventName, listener)是同一个方法
+?触发事件
+?emitter.emit(eventName[, ...args])
+?注意点:
+?和浏览器端的事件不同,传入参数不用数组而是参数列表
+?移除事件
+?emitter.removeListener(eventName, listener)
+?emitter.off(eventName, listener)
+?注意点:
+?emitter.removeListener和emitter.off是同一个方法
+?emitter.off 新增于: v10.0.0
+?事件
+'newListener'事件,当有新的监听被添加是触发,回调函数接受两个参数分别是添加的事件名称和函数的
+stream
+?概念
+?流stream是一种中处理数据的抽象接口,是将数据分割成一段一段的来处理,提高效率
+?流可以是可读的、可写的、或是可读写的,所有的流都是 EventEmitter 的实例
+?
+readable.pipe(writable) 将可读流的数据传递给可写流
+?
+?
+writable 流指的是只能流进不能流出的流
+?
+?
+readable 流是产出数据的流
+?
+?
+process.stdin 代表控制台的可读流
+?
+?
+process.stdout 代表控制台的可写流
+?
+fs(File System)
+?
+同步读写文件
+
+异步读写文件
+
+?
+读写文件流
+// const ws=fs.createWriteStream('./test2.txt');
+// ws.write('asdfghjk');
+// ws.write('uuuuuuu');
+// ws.on('finish',()=>{
+// 	console.log('finally');
+// });
+// ws.end();
+
+
+let body ='';
+const rs=fs.createReadStream('./test2.txt');
+rs.on('data',(chunk)=>{
+	body += chunk;
+})
+rs.on('end',()=>{
+	console.log(body)
+})
+rs.pipe(ws);
+
+读写文件
+fs.writeFile(Path, data, (err)=>{传入的data是一个字符串
+fs.readFile(Path,(err,data)=>{//data是一个buffer 通过Json.parse(data)得到obj
+
+fs模块
+fs.rename(oldPath,newPath,()=>{})//转换文件名
+
+http模块
+?http.createServer((req,res)=>{}) 创建一个服务器实例
+?req 它实现了 可读流 接口
+?res 它实现了 可写流 接口
+url模块
+
+path模块
+path.normalize(path)//规范路径
+path.extname(path)//获取文件名后缀 如.jpg
+
+querystring模块
+字符串转obj
+querystring.parse(带&的字符串)
+
+crypto模块
+001-介绍和安装.md
+源码模式
+数据库介绍
+?什么是数据库
+数据库(DataBase,简称DB),是一种专门用来管理数据的软件
+?为什么要数据库
+因为应用程序中的数据是保存在内存中的,随着程序的执行完毕或者退出,数据就会销毁,而对于大多数情况下我们是需要把用户的数据保存下来的,一个最简单的方法是把用户数据写入文件,但是随着程序的功能越来越复杂,数据量越来越大,用文件管理数据就显得力不从心了,所以需要一个专门来管理数据的软件来帮忙,他就是数据库
+?数据的分类和选择
+?SQL数据库
+?Oracle ,SQL Server,DB2,Sybase
+?MySQL,PostgreSQL,sqlite
+?NoSQL(not only sql)数据库
+?MongoDB
+?CouchDB
+?HBase
+?Redis
+?SQL数据库结构化,适合中大型系统
+?NoSQL数据库数据模型比较简单,但操作比较灵活,适合微架构
+?SQL数据库和NoSQL数据库不是二选一的关系,而是相互辅助和补充的关系
+mongodb 的安装
+https://www.mongodb.com/
+https://docs.mongodb.com/manual/reference/
+http://www.mongodb.org.cn/tutorial/
+?注意环境变量的配置
+002-基本使用.md
+源码模式
+mongodb 存储基本组成
+?database 数据仓库,数据仓库中存放集合,一个mongodb中可以有多个数据仓库
+?collection 集合,集合中存放文档,一个集合可以有多个文档
+?document 文档,文档是有字段(field)和值组成,数据结构和JSON基本一样,是数据库中的最小单位,是存储和操作的内容
+mongodb 常用终端命令
+?启动Mongodb: mongod
+注意点:
+?启动前需要创建默认数据库存储目录
+?如果不用默认的存储目录,可以用 mongod --dbpath 自定义路径 来指定数据库存储目录
+?连接MongoDB: mongo
+数据库操作
+?
+创建数据库:use DATABASE_NAME,如果数据库不存在，则创建数据库，否则切换到指定数据库。
+?
+?
+查看数据库:show dbs
+?
+注意:
+?只有数据库中插入了数据后用show dbs才能查看到
+?默认的数据库为test,如果你没有创建新的数据库,集合将存放在test数据库中
+?
+查看当前数据库名:db
+?
+?
+删除数据库:db.dropDatabase()
+?
+注意:
+?删除前要切换到需要删除的数据库
+集合操作
+?
+显示当前数据中的集合: show collections
+?
+?
+删除当前数据库中指定的集合:db.COLLECTION_NAME.drop()
+?
+文档操作
+?插入文档:db.COLLECTION_NAME.insert(document)
+注意:
+?新插入的数据系统会自动添加一个_id的主键,也可以自己指定
+?db.COLLECTION_NAME.save(document),不指定 _id 和insert一样,指定 _id 则是更新该 _id 的数据
+?查看文档:db.COLLECTION_NAME.find(query,projection)
+注意:
+?query是查询的条件,是一个对象,不传的话是查询所有
+?query查询可以用查询操作符,常见的查询操作符有
+?比较查询操作符
+?$lt 小于
+?$lte 小于等于
+?$gt 大于
+?$gte 大于等于
+?$in 包含
+?逻辑查询操作符
+?$and 与
+?$or 或
+?$not 非
+?该方法返回一个返回指向符合条件的所有文档的游标对象
+?游标对象的常用方法有
+?skip(num)
+?limit(num)
+?toArray()
+?length()
+?count()
+?sort({ field: value }),1升序,-1降序
+?projection是指定那些字段显示或者隐藏,格式为{ field1: <value>, field2: <value> ... },1显示,0隐藏
+?更新文档:db.COLLECTION_NAME.update(query,update)
+注意:
+?query是更新的条件,是一个对象
+?update是有更新操作符和更新后的值组成的对象
+?常见更新操作符有
+?$set,设置某一个字段的值,如果匹配到的文档有该字段则修改没有则新增
+?$unset,删除字读
+?update默认更新复合条件的第一条文档,如果需要更新所有
+?可以给update方法增加一个参数{multi:true}
+?也可以用updateMany方法
+?删除文档:db.COLLECTION_NAME.remove(query,justOne)
+注意:
+?query是删除的条件,是一个对象,如果是一个空对象则删除所有
+?justOne如果设置为true表示只删除第一条
+集合间关系
+?一对一 1:1, 例如老公和老婆
+可以通过文档关联或者内嵌文档的形式来实现
+?一对多 1:n, 例如老爸和孩子
+可以通过文档关联或者内嵌文档的形式来实现
+?多对多 n:n, 例如老师和学生
+可以通过文档关联的形式来实现
+索引
+?
+为了提高查询效率,通常会为经常需要查询的字段创建索引,索引是对文档中的字段排序的一种数据结构,可以理解为书的目录
+?
+?
+创建索引 db.COLLECTION_NAME.createIndex( {field1: 1|-1, field2: 1|-1,….}<,{name:”indexName”, unique:true|fase}> )
+?
+?1是升序,-1是降序
+?第二个参数是可选的，可以指定索引的名字,设置索引是否唯一
+?如果设置了unique为true,则该字段不能重复插入
+?如果新建索引时字段中有重复值，新建会失败
+?
+查看索引 db.COLLECTION_NAME.getIndexes()
+?
+?
+删除索引
+?
+?db.COLLECTION_NAME.dropIndex( {field1: 1|-1} 删除指定的索引
+?db.COLLECTION_NAME.dropIndexes() 删除所有索引(除了_id)
+003-Driver和mongoose.md
+源码模式
+NodeJs Driver
+http://mongodb.github.io/node-mongodb-native/3.1/quick-start/quick-start/
+?
+mongodb NodeJs Driver 安装
+?
+?
+CRUD 体验
+?
+mongoose 基本使用
+
+const mongoose = require('mongoose');
+//把Schema规则通过require请求过来 书写上简介
+//const useModel = require('./model/user.js');
+
+mongoose.connect('mongodb://localhost/lsd');
+let db = mongoose.connection;
+db.on('error',(err)=>{
+	throw err;
+});
+db.once('open',()=>{
+	console.log('connected ok.....');
+ 	const UserSchema = new mongoose.Schema({
+ 		name:String,
+		age:Number,
+		sex:String
+ 	});
+	//'new'会默认变为小写 并且加上s变为news 建的集合带s就正常新建
+ 	const useModel = mongoose.model('new',UserSchema);
+}）
+mongoose 安装
+?
+?
+CRUD 体验
+?
+连接DB 定义Schema 用Schema生成Model
+?CRUD 进阶
+?新增
+?Model.insertMany()
+?Model.prototype.save()
+?Model.create()
+?查找
+?Model.find()
+?Model.findById()
+?Model.findOne()
+?更新
+?Model.update()
+?Model.updateMany()
+?Model.updateOne()
+?删除
+?Model.remove()
+?Model.deleteOne()
+?Model.deleteMany()
+?获取去重后的值
+?Model.distinct()
+?Schema 定义文档的模型
+?常见定义类型
+?String
+?Number
+?Date
+?Boolean
+?ObjectId(mongoose.Schema.Types.ObjectId)
+?Array
+?注意点
+?在存储和更新数据时,如果数据的类型和定义字段的类型不一致,mongoose内部会尝试将数据转换为定义的字段类型,如果转换失败则操作失败
+?定义类型的方法有两种,一种是直接用类型,另一种是用一个对象,类型是对象type属性的值
+?MongoDB存储的是格林尼治标准时间(GMT时间),和们的时区错8个小时,存储时会减去8小时
+?通常我从数据库中取出的时间需要做格式化,可以借助 moment 包来格式化时间
+?MongoDB会自动添加ObjectId的id,如果字段类型是ObjectId,插入时会把字符串转化为ObjectId
+?验证
+?内置验证
+?所有的类型都有required(必须)验证
+?Number类型有min(最小)和max(最大)值验证
+?String有enum(枚举),maxlength(最大长度)和minlength(最小长度)验证.
+?每一个验证都可以写为: 规则:[值,错误消息]的格式,也可以写为:规则:值
+?自定义验证举例
+        validate:{
+            validator:function(v){
+                return /1[358]\d{9}/.test(v)
+            },
+            message:'{VALUE} 不是合法电话号码'
+        }
+?方法
+?自定义实例方法举例
+//this是 UserModel的一个实例对象 使用的时候用model的实例对象调  注意不要用箭头函数
+// 在Model的原型上有Model.prototype.findMyBlogs()方法,该方法返回一个指定的Model  
+ UserSchema.methods.findMyBlogs = function(callback){
+    this.model('Blog').find({author:this._id},(err,docs)=>{
+        callback(null,docs)
+    })
+}
+?自定义模型静态方法举例
+//注意不要用箭头函数
+//this 是 UserModel       使用的时候用UserModel调
+//Model.model()方法返回一个指定的Model,因此this和this.model('User'))相等 
+UserSchema.statics.findByPhone = function(phone,callback){  
+    this.find({phone:phone},(err,docs)=>{
+        callback(null,docs)
+    })
+}
+
+?关联查询 populate
+集合user {_id:5b4d3a,name:lsd.age:11}
+集合Blog {_id:3d4w,author:5b4d3a,title:xxx}
+**多个集合之间的关联，可以给允许populate的集合属性添加 ref:'user' 所写为创建模型时的集合,指的是其中的属性可以被更改，
+在blog集合中找到某个或所有对象 数据上author为关联的user的id 然后改变为关联的对象
+Blog.findOne({}).populate('author'//所写为你所要关联的字段,'name -age'//需要显示关联user集合上面的id所在的对象的显示的属性).then(callback).catch(callback);
+Blog.findOne({}).populate('author','name'})
+也可以写为Blog.findOne({}).populate({path:'author',selected:'name'})
+db.blog.find()
+=>{_id:3d4w,author:{_id:5b4d3a,name:lsd.age:11},title:xxx}
+=>{_id:3d4w,author:{name:lsd},title:xxx}
+
+001-express介绍.md
+源码模式
+什么是express
+express是nodeJS的WEB开发框架,除了express外,还有其他比较流行的框架,比如koa,egg,hapi等 http://expressjs.com/ http://www.expressjs.com.cn/
+express 安装
+$ npm install express --save
+基本使用
+
+002-路由.md
+源码模式
+路由结构 app.METHOD(PATH, HANDLER)
+?
+app 是一个 express 实例
+?
+?
+METHOD 是某个 HTTP 请求方式中的一个
+?
+?get 查询
+?post 新增
+?put 修改
+?delete 删除
+?PATH 是服务器端的路径
+?匹配字符串
+?使用正则中的?、+、* 和 ()
+?使用正则
+?HANDLER 是当路由匹配到时需要执行的回调函数
+?使用多个回调函数处理路由需要指定next
+?app.all(PATH, HANDLER)
+all 不是一个http请求,主要用来加载中间件
+路由模块化
+?用express.Router实例化一个router对象
+?使用router.METHOD(PATH, HANDLER)来处理路由
+?导出router对象
+?用app.use(PATH,router对象)来使用导出的router对象
+
+
+003-静态资源.md
+源码模式
+托管静态文件
+?app.use(express.static(静态资源目录));
+所有的静态资源的请求路径都会相对于静态资源目录, 例如:如果请求路径的是/css/index.css,设置的静态资源目录是static,则服务器端获取文件的路径是static/css/index.css
+?app.use('虚拟路径',express.static(静态资源目录))
+设置了虚拟路径后,静态资源请求时需要加上虚拟路径 虚拟路径是根本不存在的目录
+
+004-中间件.md
+源码模式
+中间件介绍
+?中间件其实就是一个函数,在收到请求和返回响应之间处理一些操作,这个函数可以访问请求对象(req), 响应对象(res)
+?如果当前中间件没有终结请求-响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。
+?next()代表中间件数组中的下一个函数,在express内部有一个专门存放发出响应之前要执行的所有函数的数组,即中间件数组,每次执行app.use(fn)都会把函数添加到数组中
+常用中间件
+?body-parse 处理post请求中间件
+?安装并引入
+?使用中间
+//解析json
+app.use(bodyParser.json());
+//解析urlencoded内容
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post('/add',(req,res)=>{
+    console.log(req.body)//post数据
+})
+005-模板引擎.md
+源码模式
+模板的使用
+?安装
+npm i swig --save
+?集成
+
+swig.setDefaults({
+  cache: false
+})
+
+//1. 配置应用模板 
+//第一个参数是模板名称,同时也是模板文件的扩展名
+//第二个参数是解析模板的方法
+app.engine('html', swig.renderFile);
+
+//2.配置模板的存放目录
+//第一参数必须是views
+//第二个参数是模板存放的目录
+app.set('views', './views')
+
+//3.注册模板引擎
+//第一个参数必须是view engine
+//第二个参数是模板名称,也就是app.engine的第一个参数
+app.set('view engine', 'html')
+
+app.get('/',(req,res)=>{
+    //4.渲染模板
+    //第一个参数是相对于模板目录的文件
+    //第二个参数是传递给模板的数据
+    res.render('index',{
+        title:'跨猪网',
+        content:'我是内容'
+    })
+})
+swig模块 的使用
+?变量
+{{ content | safe }} //解析变量 安全模式解析 不会在页面显示html代码
+{{ article.createdAt | date('Y年m月d日 H:i:s',-8*60) }} //解析时间
+{{ obj.name }}
+?判断
+{ % if name === 'Tom' % }
+  hello Tom
+{ % endif % }
+
+{ % if name === 'Tom' % }
+  hello Tom
+{ % elseif name === 'Leo' % }
+  hello Leo
+{ % else % }
+  hello guy
+{ % endif % }
+?循环
+{ % for key, val in arr % }
+  <p>{ { key } } -- { { val } }</p>
+{ % endfor % }
+
+?继承模板
+?定义父模板
+?父模板里定义block块,子模板可以对这block继承
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock  %}</title>
+    {% block head %}{% endblock  %}
+</head>
+<body>
+    {% block content %}{% endblock  %}
+</body>
+</html>
+
+{% extends './layout.html' %}
+{% block title %} index {% endblock %}
+{% block content %}
+    <div>
+            <h1>hello kuazhu</h1>
+     <div>
+{% endblock %}
+?包含模板
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock  %}</title>
+    {% block head %}{% endblock  %}
+</head>
+<body>
+    {% block content %}{% endblock  %}
+</body>
+{% include "./footer.html" %}
+
+</html>
+///
+
+
+*href=’/url/add’;其中第一个斜杠代表根路径重新走，不带第一个斜杠则是在当前路径下。
+
+富文本编辑器 模块ckeditor
+ <script src="/js/ckeditor.js"></script>
+ <script src="/js/zh-cn.js"></script>
+富文本编辑框下的图片加载模块multer
+const multer = require('multer');
+const upload = multer({ dest: 'static/uploads/' });//保存的路径
+input框的file类型下上传土图片的配置
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+         cb(null, 'static/resource/')//保存的路径
+    },
+    filename: function (req, file, cb) {
+         cb(null, Date.now()+path.extname(file.originalname))//保存的图片的文件名
+    }
+})
+var upload = multer({ storage: storage })
+//#editor编辑框的id；
+    ClassicEditor
+        .create( document.querySelector( '#editor' ),{
+	//配置语言
+        	language:'zh-cn',
+        	ckfinder: {//让富文本编辑框上传图片时post请求的地址
+        		uploadUrl : '/admin/uploadImg'
+   			}
+        } )
+        .then(editor=>{
+        	window.editor=editor;
+        })
+        .catch( error => {
+            console.error( error );
+        } );
+
+app.post('/uploadImg',upload.single('文件file类型的input上传框的name属性'/富文本框默认为upload),(req,res)=>{
+	let path = "/uploads/"+req.file.filename;
+	res.json({
+		uploaded:true,
+        		url:path
+	})
+})
+
+Date.now();获取当前时间
+
+webpack
+###前端模块化介绍
+* 为什么需要模块化
+
+前端页面模块化主要是通过引入一大堆script标签,他有以下缺点:
+
+> * 网页体积变得臃肿
+> * 产生大量的HTTP请求
+> * 难以维护
+
+而打包工具可以解决这些问题,他可以自动加载各个模块,管理脚本之间的依赖关系,webpack就是这样一款工具,是一个现代JavaScript应用程序的静态模块打包器
+
+### webpack概念
+https://webpack.docschina.org/concepts
+
+### webpack安装和测试
+* 安装
+```
+mkdir project && cd project
+npm init --yes
+npm install webpack webpack-cli --save-dev
+```
+
+> * 注意点
+>> * --save-dev 为本地安装,推荐使用,这样容易分别升级项目,依赖会加在package.json的devDependencies中,一般是辅助开发的依赖,不会打包上线的 
+>> * --save 依赖会加在package.json的dependencies中,一般是需要最终需要打包到业务代码中的依赖 
+>> * --global 为全局安装
+>> * 也可以用npm install --save-dev webpack@<version>来指定安装的版本号 
+>> * npx webpack -v 查看版本号
+
+* 构建项目文件并测试
+
+> * 新增以下目录和文件 
+
+```
+project
+    -dist
+        index.html(该文件使用main.js文件)
+        main.js 引用接受这里
+    -src
+        index.js(测试的js文件)js写在这里
+```
+
+> * 打包
+npx webpack
+
+> * 注意点
+>> * npx 命令,可以运行在./node_modules/.bin/中文件
+>> * npx 运行后会在dist目录下生成打包后的文件main.js
+>> * webpack4.0以上不用配置文件也可以打包,但不推荐使用
+
+
+* 在项目目录下配置文件 webpack.config.js
+```
+const path = require('path');
+
+module.exports = {
+  mode:'development',
+  entry: './src/index.js', 入口文件位置-写js的地方
+  output: {
+    filename: 'bundle.js',出口文件名称-引用的js的名称，写什么就引用什么
+    path: path.resolve(__dirname, 'dist') 出口文件位置
+  }
+};
+```
+
+> * 新增配置文件后打包
+
+```
+npx webpack --config webpack.config.js
+npx webpack 存在就是打包config webpack.config.js的出口文件，没有该配置就默认打包出口文件名称main.js
+```
+> * 注意点
+>> * 虽然没有配置文件webpack也可以打包,但通常都需要配置文件来处理复杂项目
+>> * webpack默认的配置文件是webpack.config.js,也可以指定为其他的,如果使用默认的话,--config webpack.config.js可以省略
+>> * npx 运行后会在dist目录下生成打包后的文件bundle.js
+
+### webpack指南
+https://webpack.docschina.org/guides
+
+### loader
+webpack自身只支持JavaScript
+而loader能够让webpack处理那些非JavaScript文件
+
+### 加载css
+* 安装相关的loader
+npm install --save-dev style-loader css-loader
+
+* 修改配置文件
+```javascript
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  } 
+```
+
+### 加载图片
+
+* 安装相关的loader
+```
+npm install --save-dev url-loader
+```
+* 修改配置文件
+```javascript
+  module:{
+    rules:[
+      {
+        test:/\.css$/,
+        use: [
+              'style-loader',
+              'css-loader'
+            ]
+      },  
+      {
+        test:/\.(png|jpg|gif)$/,
+        use:[
+          'url-loader'
+        ]
+      }
+    ]
+  },
+
+* 自动打包,有更新就会自动执行打包
+npx webpack --watch
+
+> 注意,如果修改了配置文件需要从新启动
+
+* 显示打包过程
+```
+npx webpack --progress
+```
+* 显示打包模块
+```
+npx webpack --display-modules
+```
+* 显示打包原因
+```
+npx webpack --display-reasons
+```
+* 添加npm脚本(package.json)
+```
+  "scripts": {
+    "build": "webpack --progress --display-modules --display-reasons --watch"
+  },
+
+添加脚本后用 npm run build 命令打包
+const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = {
+  mode:'development',
+  //一个入口
+  // entry: './src/index.js', 
+  // entry: {main:'./src/index.js'}, 
+  //多个入口
+  entry: {
+  	main:'./src/page/main/index.js',
+  	index:'./src/page/index/index.js'
+  }, 
+  //一个出口
+  // output: {
+  //   filename: 'bundle.js',
+  //   path: path.resolve(__dirname, 'dist')
+  // },
+  //多个出口
+  output: {
+    // filename: '[name].bundle.js',
+    filename: '[name].[hash].bundle.js',
+    // filename: '[name].[chunkhash].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'style-loader','css-loader']
+      },
+      {
+        test:/\.(png|jpg|gif)$/,
+        use:['url-loader']
+      }
+    ]
+  },
+  plugins:[
+  	new HtmlWebpackPlugin({
+	  	template:'./src/view/index.html',
+	  	filename:'index.html',
+	  	title:'test'
+	  }),
+	new CleanWebpackPlugin(['dist'])
+  ],
+  devServer:{
+  	contentBase:'./dist'
+  }
+};
+
+ 
+
+
+

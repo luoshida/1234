@@ -2,9 +2,21 @@ let http = require('http');
 
 
 function express(){
-	let fn = [];
-	let app = function(req,res,next){
+	let fns = [];
 
+	let app = function(req,res){
+		let i = 0;
+		function next(){
+			let fn = fns[i++];
+			if (!fn) {
+				return;
+			}
+			fn(req,res,next);
+		}
+		next();
+	}
+	app.use = function(fn){
+		fns.push(fn);
 	}
 	return app;
 }	

@@ -32,6 +32,7 @@
 
 	
 	BlogSchema.statics.findAuthor=function(query={},reg,callback){
+		
 		this.find(query).populate(reg).then((data)=>{
 			callback(data);
 		}).catch((err)=>{

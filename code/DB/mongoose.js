@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//把Schema规则通过require请求过来 书写上简介
+//把Schema规则通过require请求过来 书写上简洁
 const useModel = require('./model/user.js');
 
 mongoose.connect('mongodb://localhost/lsd');
@@ -21,29 +21,29 @@ db.once('open',()=>{
 // 	const useModel = mongoose.model('new',UserSchema);
 
 
-新增 100
+新增 103
 Model.insertMany()
-新增 126
+新增 129
 Model.prototype.save()
-新增 117
+新增 120
 Model.create()
 
-查找 47
+查找 50
 Model.find()
 Model.findById()
 Model.findOne()
 
-更新 70
+更新 76
 Model.update()
 Model.updateMany()
 Model.updateOne()
 
-删除 83
+删除 89
 Model.remove()
 Model.deleteOne()
 Model.deleteMany()
 
-去除重复值 120
+去除重复值 123
 Model.distinct()
 
 //用useModel集合上面的方法来进行删除、更新、查找的操作
@@ -60,7 +60,7 @@ Model.distinct()
 	// useModel.find({age:{$gt:10}},null,{sort:{name:-1}},(err,docs)=>{})
 	
 	//findOne和find格式一样 只显示一个
-	// useModel.findOne({},{},{},()=>{});
+	// useModel.findOne({},{},{},()=>{返回的data是一个对象});
 
 	//系统生成的 ObjectId("5b6260efa822610554865892")是一个对象
 	// useModel.findById('5b6260efa822610554865892',(err,data)=>{

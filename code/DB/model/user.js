@@ -41,7 +41,7 @@
 		}
 	});
 
-	//自定义实例方法 this是一个实例对象
+	//自定义实例方法 this是一个实例对象 使用的时候用model的实例对象调
 	UserSchema.methods.findMyBlogs = function(callback){
 	
 		this.model('blos').find({author:this._id},(err,docs)=>{
@@ -49,7 +49,7 @@
 		})
 	}
 	//自定义静态方法 this是 test集合 的 model类的 本身
-	//this 是 UserModel
+	//this 是 UserModel 使用的时候用model调
     //Model.model()方法返回一个指定的Model,因此this和this.model('User'))相等 
 	UserSchema.statics.findByPhone = function(phone,callback){
 		//this.model('test') == this

@@ -1,7 +1,7 @@
 let express = require('express');
 let app = express();
 
-
+//处理post请求的数据模板
 let bodyParser = require('body-parser');
 //处理post请求获取的data数据跟req.on('data')一样
 //处理传输对象的情况
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 
 // 当输入127.0.0.1的时候，默认会请求public文件夹下的index.html 相当于app.get('/public/index.html',fn)
-//此文件夹下没有index.html的时候会请求此文件夹下你要输入的文件
+//此文件夹下没有index.html的时候会请求此文件夹下 你要输入的文件
 app.use(express.static('public'));
 //访问静态资源文件时，express.static 中间件会根据目录添加的顺序查找所需的文件
 app.use(express.static('xxx'));
@@ -27,6 +27,11 @@ app.use('/blog',require('./router/blog.js'));
 app.get('/test/bbb.html', function(req,res){
 	res.send('oooo');
 });
+app.get('/user/:id', function(req,res){
+	//把请求数据的最后项改为对象 {id:xxx}
+	console.log(req.params);
+	res.send(req.params);
+});
 app.post('/abcd', function(req,res){
 	// var body = '';
 	// req.on('data',function(chunk){
@@ -36,6 +41,8 @@ app.post('/abcd', function(req,res){
 	// 	// var bodyObj = querystring.parse(body);
 	// 	console.log(body);
 	// })
+	
+	//req.body是一个对象
 	res.send(req.body);
 });
 let server = app.listen(3000, function(){
