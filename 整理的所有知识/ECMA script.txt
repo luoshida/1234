@@ -518,6 +518,13 @@ str.search() !=-1 假如()内元素在str数组'ABcdE'内 输出结果为正值 否则为-1
 >> 文本节点
 >> 
 >> 元素节点
+document.createElement('li')
+document.getElementById('ul1')
+document.getElementsByTagName('li')
+document.getElementsByName(elementName) 通过节点的name获取节点 返回具有同样名称的节点数组
+document.getElementsByClassName("example");返回文档中所有指定类名的元素集合
+document.querySelector('#xxx/.xxx')  可以用id, 类, 类型, 属性, 属性值等来选取元素对于多个选择器，使用逗号隔开，返回一个匹配的元素。方法返回匹配指定选择器的第一个元素。如果你需要返回所有的元素，请使用 querySelectorAll() 方法替代。
+
 > * 获取子节点的方法
 var aLi=aUl.childNodes 获取父元素的所有子节点
 var aLi=aUl.children 获取父元素的所有元素节点 children[0]第一个
@@ -2308,9 +2315,22 @@ res.setHeader("Access-Control-Allow-Headers","abc");
 > Access-Control-Expose-Headers表示允许客户端通过getResponseHeader方法获取的字段
 > CORS方式下默认只能获取6个基础字段,Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma
 
+export跟export default 有什么区别呢？如下：
 
+1、export与export default均可用于导出常量、函数、文件、模块等
+2、你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用
+3、在一个文件或模块中，export、import可以有多个，export default仅有一个
+4、通过export方式导出，在导入时要加{ }，export default则不需要
 
+这样来说其实很多时候export与export default可以实现同样的目的，只是用法有些区别。注意第四条，通过export方式导出，在导入时要加{ }，export default则不需要。使用export default命令，为模块指定默认输出，这样就不需要知道所要加载模块的变量名。
 
+var name="李四";
+export { name }
+//import { name } from "/.a.js" 
+可以写成：
+var name="李四";
+export default name
+//import name from "/.a.js" 这里name不需要大括号
 
 
 
