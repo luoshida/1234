@@ -50,6 +50,7 @@ class App extends Component {
 				(<Redirect to='/login' />)
 			} />)
 		return (
+			//Route组件申明了组件根据不同的路径，所展示的不同视图
 			<Router>
 				<div>
 					<ul>

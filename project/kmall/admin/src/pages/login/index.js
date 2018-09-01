@@ -4,7 +4,11 @@ import React, { Component } from 'react';
 
 import './login.css';
 
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+
+import { connect } from 'react-redux';
+
+import { actionCreater } from './store';
 
 const FormItem = Form.Item;
 
@@ -17,7 +21,7 @@ class NormalLoginForm extends Component {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 		  if (!err) {
-		    console.log('Received values of form: ', values);
+		  	this.props.handleLogin(values)
 		  }
 		});
 	}
@@ -28,7 +32,7 @@ class NormalLoginForm extends Component {
 	    	<div className='login'>
 		      <Form className="login-form">
 		        <FormItem>
-		          {getFieldDecorator('userName', {
+		          {getFieldDecorator('username', {
 		            rules: [{ required: true, message: '请输入用户名' }],
 		            rules: [{ pattern: /^[0-9|a-z]{3,6}$/, message: '请输入3~6位字符' }],
 		          })(
@@ -44,7 +48,7 @@ class NormalLoginForm extends Component {
 		          )}
 		        </FormItem>
 		        <FormItem>
-		          <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.handleSubmit}>
+		          <Button type="primary" className="login-form-button" onClick={this.handleSubmit} loading={this.props.isLogin}>
 		           登录
 		          </Button>
 		          
@@ -54,6 +58,19 @@ class NormalLoginForm extends Component {
 	    );
   	}
 }
+const mapStateToProps=(state)=>{
+	return {
+		isLogin:state.get('login').get('isLogin')
+	}
+}
+const mapDispatchToProps = (storeDispatch)=>{
+	return {
+		handleLogin:(values)=>{
+			let action = actionCreater.getLoginAction(values);
+			storeDispatch(action);
+		},
+	}
+}
+const Login = Form.create()(NormalLoginForm);
 
-
-export default Form.create()(NormalLoginForm);
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

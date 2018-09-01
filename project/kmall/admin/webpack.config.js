@@ -11,10 +11,21 @@ module.exports = {
   entry: {main:'./src/index.js'},  
 
   output: {
-  
     filename: 'bundle.js',
     publicPath:'/',
     path: path.resolve(__dirname, 'dist')
+  },
+
+  resolve: {
+    alias: {
+      'pages': path.resolve(__dirname, "./src/pages"),
+      'util': path.resolve(__dirname, "./src/util"),
+      'api': path.resolve(__dirname, "./src/api"),
+      'layout': path.resolve(__dirname, "./src/common/layout"),
+      'common': path.resolve(__dirname, "./src/common"),
+      // 注意： 静态资源通过src，不能这么设置。
+      // "@assets": path.join(__dirname, "..", "src", "assets"),
+    }
   },
 
   module: {
@@ -51,6 +62,7 @@ module.exports = {
       }
     ]
   },
+
   plugins:[
   	new HtmlWebpackPlugin({
 	  	template:'./src/index.html',
@@ -60,6 +72,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({})
   ],
+
   devServer:{
   	contentBase:'./dist',
     port:3001,

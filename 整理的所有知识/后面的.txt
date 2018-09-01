@@ -41,6 +41,8 @@ document.cookie = 'key2=value2';
 ?主域名中的cookie会在子域名中存在
 Storage
 ?localStorage 和 sessionStorage的api相同
+
+window.localStorage.setItem('username',value)设置
 ?setItem(key,value) 设置
 ?getItem(key) 获取
 ?removeItem(key) 删除
@@ -969,7 +971,7 @@ mongodb 常用终端命令
 ?该方法返回一个返回指向符合条件的所有文档的游标对象
 ?游标对象的常用方法有
 ?skip(num)
-?limit(num)
+?limit(num),  最大limit(limit)
 ?toArray()
 ?length()
 ?count()
@@ -1055,22 +1057,62 @@ CRUD 体验
 ?CRUD 进阶
 ?新增
 ?Model.insertMany()
+//没有useModel.insert()这个方法
+useModel.insertMany({name:"qqq4",age:74},(err,docs)=>{
+//docs是一个数组[{name:"qqq4",age:74}] 插入内容}
+	
 ?Model.prototype.save()
+new useModel({name:'leo',age:581,sex:'male'})
+.save((err,doc)=>{//doc是一个对象 内容为插入的对象
+
 ?Model.create()
+//creat创建效率没有insertmany和save高
+useModel.create([{},{}],(err,docs)=>{})
+
 ?查找
-?Model.find()
-?Model.findById()
-?Model.findOne()
+// useModel.find({},(err,docs)=>{
+//docs是一个包含对象数据的数组
+	
+//skip跳过前几个显示后面的，limit显示几个，sort排序 1正序 -1倒序
+// useModel.find({age:{$gt:10}},{name:1,age:0},{skip:1,limit:1},(err,docs)=>{})
+// useModel.find({age:{$gt:10}},{name:1,age:0},{sort:{name:-1}},(err,docs)=>{})
+// useModel.find({age:{$gt:10}},null,{sort:{name:-1}},(err,docs)=>{})
+
+//findOne和find格式一样 只显示一个
+// useModel.findOne({},{},{},()=>{返回的data是一个对象});
+
+//系统生成的 ObjectId("5b6260efa822610554865892")是一个对象
+// useModel.findById('5b6260efa822610554865892',(err,data)=>{
+//data是查找到该id所在的对象 data._id还是一个对象 
+
 ?更新
-?Model.update()
-?Model.updateMany()
-?Model.updateOne()
+// useModel.update({name:"Tom"},{$set:{age:99}},(err,docs)=>{
+//docs是一个对象{n:删除的个数,nModified:删除的个数,ok:1}
+// useModel.update({name:"Tom"},{age:99},(err,docs)=>{});
+//multi变为更新所有 默认false更新一个
+// useModel.update({name:"Tom"},{age:99},{multi:true},(err,docs)=>{});
+
+// useModel.updateOne({name:"Tom"},{age:99},(err,docs)=>{});
+
+// useModel.updateMany({name:"Tom"},{age:99},(err,docs)=>{});
+
 ?删除
-?Model.remove()
-?Model.deleteOne()
-?Model.deleteMany()
+// useModel.remove({name:"leo"},(err,docs)=>{
+//docs是一个对象{n:删除的个数,ok:1}
+
+//setOptions single:true删除一个 默认所有
+// useModel.remove({name:"leo"}).setOptions({single:true})
+
+ useModel.deleteOne({},()=>{});
+ useModel.deleteMany({},()=>{});
+
+
 ?获取去重后的值
 ?Model.distinct()
+distinct不改变原来的数据
+useModel.distinct('name',{},(err,docs)=>{
+docs是一个去除name的重复值后返回的一个 值的数组
+
 ?Schema 定义文档的模型
 ?常见定义类型
 ?String
@@ -1330,6 +1372,7 @@ app.post('/uploadImg',upload.single('文件file类型的input上传框的name属性'/富文本
         		url:path
 	})
 })
+simditor组件 富文本编辑器
 
 Date.now();获取当前时间
 
