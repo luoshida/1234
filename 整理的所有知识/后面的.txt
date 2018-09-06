@@ -1431,13 +1431,91 @@ npx webpack
 * 在项目目录下配置文件 webpack.config.js
 ```
 const path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+//单独对css文件打包
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode:'development',
-  entry: './src/index.js', 入口文件位置-写js的地方
+  entry: {
+    //入口js文件的名字和对应的路径
+    'index':'./src/pages/index/index.js',
+    'user-login':'./src/pages/user-login/index.js',
+    'common':'./src/pages/common/index.js',
+  }, 
+externals: {
+ jquery: "window.jQuery",
+}
   output: {
-    filename: 'bundle.js',出口文件名称-引用的js的名称，写什么就引用什么
-    path: path.resolve(__dirname, 'dist') 出口文件位置
+    //[name]为entry入口文件的前缀名(index,login)
+    //输出的js为js文件夹下的index.js,login.js
+    filename: 'js/[name].js',
+    publicPath:'/',
+    path: path.resolve(__dirname, 'dist')
+  },
+  resolve: {
+    alias: {
+      'pages': path.resolve(__dirname, "./src/pages"),
+      'layout': path.resolve(__dirname, "./src/common/layout"),
+      'common': path.resolve(__dirname, "./src/common"),
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        // use: [ 'style-loader','css-loader']
+        use: [ 
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {}
+          },
+          "css-loader"
+        ] 
+      },
+      {
+        test:/\.(png|jpg|gif)$/,
+        use:['url-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: { 
+          loader: 'babel-loader',
+          options: {
+            //配置ES6扩展 babel
+            presets: ['env','es2015','react','stage-3'],
+            //antd按需加载
+            plugins: [
+              ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  plugins:[
+  	new HtmlWebpackPlugin({
+      //入口html的路径
+	  	template:'./src/view/index.html',
+      //输出HTML的名字
+	  	filename:'index.html',
+      //引用js的名字
+	  	chunks:['common','index']
+	  }),
+    new HtmlWebpackPlugin({
+      template:'./src/view/user-login.html',
+      filename:'user-login.html',
+      chunks:['common','user-login']
+    }),
+    new CleanWebpackPlugin(['dist']),
+    new MiniCssExtractPlugin({})
+  ],
+  devServer:{
+  	contentBase:'./dist',
+    //启用的端口
+    port:3001,
+    historyApiFallback:true
   }
 };
 ```
@@ -1677,11 +1755,11 @@ export default App;
 
 
 
-更新Updating(state或者props发生改变)
+更新Updating(state或者props发生改变)用props去更新state
 
 	static getDerivedStateFromProps(props, state){}
 
-//该方法返回布尔值,根据返回的布尔值决定是否执行后续的周期函数，多用来阻止不必要的页面渲染
+//该方法返回布尔值,根据返回的布尔值决定是否执行后续的周期函数，多用来阻止不必要的页面渲染，在该函数中可以用return state：props.xxx 用props来改变state的某个值
 	shouldComponentUpdate(nextProps, nextState){
 		return true
 	}

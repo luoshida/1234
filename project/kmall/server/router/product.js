@@ -26,12 +26,12 @@ router.use((req,res,next)=>{
 })
 
 router.post('/uploadImg',upload.single('file'),(req,res)=>{
-	let path ='127.0.0.1:3000/product-img/'+req.file.filename;
+	let path ='http://127.0.0.1:3000/product-img/'+req.file.filename;
 	res.json(path)
 })
 
 router.post('/uploadDetailImg',upload.single('upload'),(req,res)=>{
-	let path ='127.0.0.1:3000/product-img/'+req.file.filename;
+	let path ='http://127.0.0.1:3000/product-img/'+req.file.filename;
 	res.json({
 	  "success": true,
 	  "msg": "上传成功",
@@ -64,14 +64,30 @@ router.post('/add',(req,res)=>{
 		}
 	})					
 });
-
-router.get('/mount',(req,res)=>{
-	let page;
-	if(req.query.page){
-		page=req.query.page
-	}else{
-		page=1
+router.put('/add',(req,res)=>{
+	let body = req.body;
+	// console.log(body);
+	let update={
+		name:body.name,
+		price:body.price,
+		stock:body.stock,
+		int:body.int,
+		category:body.SecendListId,
+		detailContent:body.detailContent,
+		loadImg:body.loadImg,
 	}
+	productModel.update({_id:body.id},update)
+	.then((doc)=>{
+		res.json({
+			status:0,
+			data:doc,
+			messages:'添加成功'
+		});
+	})							
+});
+router.get('/mount',(req,res)=>{
+	// console.log(page);
+	let page=req.query.page
 	list({
 		model: productModel,
 		sort: {order:-1},
@@ -89,7 +105,29 @@ router.get('/mount',(req,res)=>{
 		res.json(result);		
 	})				
 });
-
+router.get('/search',(req,res)=>{
+	let page=req.query.page;
+	let keyword=req.query.keyword;
+	// console.log(keyword);
+	list({
+		query:{name:{$regex:new RegExp(keyword,'i')}},
+		model: productModel,
+		sort: {order:-1},
+		limit:3,
+		page:page
+	})
+	.then((data)=>{
+		let result = {
+			dataSource:data.data,
+			current:page,
+			defaultCurrent:1,
+			total:data.total,
+			pageSize:3,
+			keyword:keyword
+		}	
+		res.json(result);		
+	})				
+});
 router.get('/updateOrder',(req,res)=>{
 	let order = req.query.order;
 	let id = req.query.id;

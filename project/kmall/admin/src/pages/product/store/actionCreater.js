@@ -3,7 +3,7 @@ import * as types from './actionTypes.js';
 import { message } from 'antd';
 import { REQUIRE } from 'util';
 import { PRODUCT_ADD,PRODUCT_MOUNT,UPDATE_PRODUCT_ORDER,
-	UPDATE_PRODUCT_STATUS,GET_PRODUCT_EDIT } from 'api';
+	UPDATE_PRODUCT_STATUS,GET_PRODUCT_EDIT,PRODUCT_SEARCH } from 'api';
 
 export const getListIdAction = (FirstListId,SecendListId)=>{
 	return {
@@ -55,11 +55,15 @@ export const handleProductSubmitAction = (err,values)=>{
 		values.SecendListId=state.get('SecendListId');
 		values.loadImg=state.get('loadImg');
 		values.detailContent=state.get('detailContent');
-		console.log(values);
+		// console.log(values);
 		storeDispatch(changeStatusStart());
+		let method='post';
+		if (values.id) {
+			method='put'
+		}
 		REQUIRE({
 		    	url:PRODUCT_ADD,
-		    	method:'post',
+		    	method:method,
 		    	data:values
 		    })
 		    .then((result)=>{
@@ -81,13 +85,20 @@ const mountStatusDid = (payload)=>{
 		payload
 	}
 };
+const keyWordStore = (payload)=>{
+	return {
+		type:types.KEYWORD_STORE,	
+		payload
+	}
+};
 export const getMountProduct=(page)=>{
 	return( (storeDispatch)=>{
 		storeDispatch(changeStatusStart());
+		// console.log(page);
 		REQUIRE({
 			url:PRODUCT_MOUNT,
 			data:{
-				page:page
+				page:page,
 			}
 		})
 		.then((result)=>{
@@ -100,7 +111,23 @@ export const getMountProduct=(page)=>{
 	    }) 
     })
 }
-
+export const getSearchProduct=(keyword,page)=>{
+	return( (storeDispatch)=>{
+		storeDispatch(changeStatusStart());
+		// console.log(page);
+		REQUIRE({
+			url:PRODUCT_SEARCH,
+			data:{
+				keyword,
+				page
+			}
+		})
+		.then((result)=>{
+	    	storeDispatch(mountStatusDid(result))
+	    	storeDispatch(changeStatusDone());
+	    })
+    })
+}
 export const updateProductOrder =(order,id)=>{
 	return ( (storeDispatch,getState)=>{
 		const state=getState().get('category');

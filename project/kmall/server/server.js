@@ -63,6 +63,7 @@ app.use(bodyParser.json());
 //处理路由
 // app.use('/',require('./router/index.js'));
 app.use('/admin',require('./router/admin.js'));
+app.use('/user',require('./router/user.js'));
 app.use('/product',require('./router/product.js'));
 app.use('/addcategory',require('./router/category.js'));
 

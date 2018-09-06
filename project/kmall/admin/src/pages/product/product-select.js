@@ -6,7 +6,7 @@ import {SALEMOUNT_LOAD} from 'api'
 
 const Option = Select.Option;
 
-class NormalLoginForm extends Component {
+class ProductSelect extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -14,27 +14,61 @@ class NormalLoginForm extends Component {
 		    FirstListId:'',
 		    SecendListData:[],
 		    SecendListId:'',
+		    shouldLoadSecendList:false,
+		    isChanged:false
 		};
 	
 		this.handleFirstListChange=this.handleFirstListChange.bind(this);
-		
 		this.handleSecendListChange=this.handleSecendListChange.bind(this);
 		this.getListId=this.getListId.bind(this);
+
+		// console.log(this.props.categoryId);
+		// console.log(this.props.parentCategoryId);
 	}
-	componentDidMount(){
-		// if (this.props.parentCategoryId) {
-		// 	this.setState({
-		// 	    FirstListId:this.props.parentCategoryId,
-		// 	    SecendListId:this.props.categoryId,
-		// 	})
-		// }else if(this.props.parentCategoryId=='0'){
-		// 	this.setState({
-		// 	    FirstListId:this.props.categoryId,
-		// 	})
-		// }
+	componentDidMount(){	
+
 		this.handleLoadFirstList()
-		
-		
+	}
+	static getDerivedStateFromProps(props, state){
+		// console.log(props)
+		// console.log(state)
+		const FirstListIdChanged=props.parentCategoryId != state.FirstListId;
+		const SecendListIdChanged=props.categoryId!=state.SecendListId;
+		//新增的时候不更新state
+		if ( state.FirstListId && !props.parentCategoryId && !props.categoryId) {
+			return null
+		}
+		//分类ID没有改变 不更新state
+		if ( !FirstListIdChanged && !SecendListIdChanged ) {
+			return null
+		}
+		//编辑时已经更新过了就不更新state
+		if (state.isChanged) {
+			return null
+		}
+		if (props.parentCategoryId==0) {
+			return {
+			    FirstListId:props.categoryId,
+			    SecendListId:'',
+			    isChanged:true
+			}			
+		}else {
+			return {
+			    FirstListId:props.parentCategoryId,
+			    SecendListId:props.categoryId,
+			    shouldLoadSecendList:true,
+			    isChanged:true
+			}
+		}
+		return null;
+	}
+	componentDidUpdate(){
+		if (this.state.shouldLoadSecendList) {
+			this.handleLoadSecendList (this.state.FirstListId);
+			this.setState({
+				shouldLoadSecendList:false
+			})
+		}
 	}
 	handleLoadFirstList () {
 		REQUIRE({
@@ -88,9 +122,6 @@ class NormalLoginForm extends Component {
 		
 	}
 	render() {
-		
-		
-		
 		const {FirstListData,FirstListId,SecendListData,SecendListId}=this.state;
 		const FirstListOptions = FirstListData.map(
 			a => <Option key={a._id} value={a._id}>{a.name}</Option>
@@ -99,26 +130,29 @@ class NormalLoginForm extends Component {
 		return (
       		  SecendListOptions.length ?  <div>
       			<Select 
-      				defaultValue={FirstListId} 
+      				// defaultValue={FirstListId} 
 			        value={FirstListId}		            
 		            style={{ width: 200 }} 
+		           disabled={this.props.disable}
 		            onChange={this.handleFirstListChange}
 	            >
 		          {FirstListOptions}
 		        </Select>
 		        <Select 
-			        defaultValue={SecendListId} 
+			        // defaultValue={SecendListId} 
 			        value={SecendListId}
 			        style={{ width: 200 }} 
+			        disabled={this.props.disable}
 			        onChange={this.handleSecendListChange}
 			    >
 		          {SecendListOptions}
 		        </Select>
 		       </div> :  <div>
       			<Select 
-      				defaultValue={SecendListId} 
-			        value={SecendListId}			   		            
+      				// defaultValue={FirstListId} 
+			        value={FirstListId}				   		            
 		            style={{ width: 200 }} 
+		            disabled={this.props.disable}
 		            onChange={this.handleFirstListChange}
 	            >
 		          {FirstListOptions}
@@ -128,5 +162,4 @@ class NormalLoginForm extends Component {
 	}
 }
 
-const ProductSelect = Form.create()(NormalLoginForm);
 export default ProductSelect;

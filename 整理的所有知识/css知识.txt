@@ -598,8 +598,9 @@ forwards(动画执行结束保持显示动画的最后一帧)|both(动画执行前显示动画的第一帧并且
 
 
 ### Less介绍
-Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。
+/*Less是一门CSS预处理语言，它扩充了CSS语言，增加了诸如变量、混合（mixin）、函数等功能，让CSS更易维护、方便制作主题、扩充。Less可以运行在Node或浏览器端。*/
 
+/*使用之前在sublime上装一个less插件*/
 ### Less编译
 * 浏览器
 ```javascript
@@ -653,7 +654,14 @@ Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使
     @{attr}:unit(@val/10,px);
 }
 
-
+//用rem来设置大小
+@rem:32;
+.rem(@attr,@px){
+    @{attr}:unit(@px/@rem,rem);
+}
+img{
+    .rem(width,120)
+}
 ### 移动基础
 * 像素
 
@@ -712,7 +720,7 @@ Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使
 
 > * 可以实现布局的适配,但是字体不容易适配
 
-* em,当前元素字体的大小,1em=当前元素的font-size
+* em,当前元素字体的大小,1em=当前元素可继承的font-size
 
 > * 可以根据不同的屏幕来设置元素的font-size,再利用em来适配,但是元素的font-size可以被继承,同时js和css经常会修改font-size,如果用em来适配的话容易造成混乱
 
@@ -723,7 +731,22 @@ Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使
 > * 可以适配布局和文字,但兼容性不好
 
 * rem,根元素字体的大小,默认值是16px
+(function(win,doc){
+	//1.获取根元素
+	var oRoot = doc.getElementsByTagName('html')[0];
+	
+	function refreshFontSize(){
+		//2.获取设备的物理元素的宽
+		var iWidth = doc.body.clientWidth || doc.documentElement.clientWidth;
+		//3.根据设备的宽计算出根元素的fontSize
+		var iFontSize = iWidth / 10;
+		oRoot.style.fontSize = iFontSize + 'px';			
+	}
 
+	win.addEventListener('resize',refreshFontSize,false);
+	doc.addEventListener('DOMContentLoaded',refreshFontSize,false);
+
+})(window,document);
 > * 可以根据不同的屏幕来设置根元素的font-size,再利用rem来适配
 > * 根元素的font-size需要动态设置,一般有JS和媒体查询两种方法来动态设置
 

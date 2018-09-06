@@ -17,7 +17,16 @@ const Default = fromJS ({
 	defaultCurrent:1,
 	total:500,
 	pageSize:10,
-	editObj:{}
+
+
+
+	int:"",
+	name:"",
+	order:'',
+	price:'',
+	stock:'',
+
+	keyword:'',
 });
 
 export default (state=Default,action)=>{
@@ -57,11 +66,23 @@ export default (state=Default,action)=>{
 			defaultCurrent:action.payload.defaultCurrent,
 			total:action.payload.total,
 			pageSize:action.payload.pageSize,
+			keyword:action.payload.keyword
 		})
 	}
 
 	if (action.type==types.EDIT_PRODUCT_LOAD) {
-		return state.set('editObj',action.payload)
+
+		return state.merge({
+			FirstListId:action.payload.category.pid,
+			SecendListId:action.payload.category._id,
+			loadImg:action.payload.loadImg,
+			detailContent:action.payload.detailContent,
+			int:action.payload.int,
+			name:action.payload.name,
+			order:action.payload.order,
+			price:action.payload.price,
+			stock:action.payload.stock	
+		})
 	}
 	return state
 };

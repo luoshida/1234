@@ -15,6 +15,16 @@ class LoadImg extends Component {
 		this.handleChange=this.handleChange.bind(this);
 		this.handleCancel=this.handleCancel.bind(this);
 	}
+	static getDerivedStateFromProps(props, state){
+		// console.log(props.fileList);
+		// console.log(state.fileList);
+		if (props.fileList.length>0 && state.fileList.length==0 ) {
+			return{
+				fileList:props.fileList
+			}
+		}
+		return null;
+	}
 	handleCancel (){
 		this.setState({ previewVisible: false })
 	} 
@@ -25,16 +35,14 @@ class LoadImg extends Component {
 		  previewVisible: true,
 		});
 	}
-
   	handleChange  ({ fileList }){
-  		console.log(fileList);
+  		// console.log(fileList);
   		this.setState({ fileList },()=>{
   			this.props.LoadImg(
   				fileList.map((value)=>{
   					return value.response
   				}).join(',')
   			)
-
   		})
   	} 
 	render() {

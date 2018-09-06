@@ -38,7 +38,7 @@ class App extends Component {
 	
 	render() {
 		return (
-			<Router>
+			<Router forceRefresh={ true }>
 				<div>
 					<Switch>
 						<ProtectedRoute exact path='/' component={ Index } />

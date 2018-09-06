@@ -9,6 +9,7 @@ module.exports = {
   // entry: {main:'./src/index.js'}, 
   //多个入口
   entry: {
+    //入口js文件的名字和对应的路径
   	main:'./src/page/main/index.js',
   	index:'./src/page/index/index.js'
   }, 
@@ -19,6 +20,7 @@ module.exports = {
   // },
   //多个出口
   output: {
+     //输出的js为js文件夹下的index.js,main.js
     // filename: '[name].bundle.js',
     filename: '[name].[hash].bundle.js',
     // filename: '[name].[chunkhash].bundle.js',
@@ -39,9 +41,13 @@ module.exports = {
   },
   plugins:[
   	new HtmlWebpackPlugin({
+//入口html的路径
 	  	template:'./src/view/index.html',
+ //输出HTML的名字
 	  	filename:'index.html',
-	  	title:'test'
+	  	title:'test',
+//引用js的名字
+      chunks:['index']
 	  }),
 	new CleanWebpackPlugin(['dist'])
   ],

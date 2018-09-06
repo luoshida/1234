@@ -19,3 +19,4 @@ export const PRODUCT_MOUNT = SERVER + 'product/mount';
 export const UPDATE_PRODUCT_ORDER = SERVER + 'product/updateOrder';
 export const UPDATE_PRODUCT_STATUS = SERVER + 'product/updateStatus';
 export const GET_PRODUCT_EDIT = SERVER + 'product/getEdit';
+export const PRODUCT_SEARCH = SERVER + 'product/search';

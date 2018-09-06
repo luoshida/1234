@@ -24,18 +24,27 @@ class NormalLoginForm extends Component {
 	handleSubmit(e) {
 	    e.preventDefault();
 	    this.props.form.validateFieldsAndScroll((err, values) => {
-	     
+	    	if (this.props.match.params.id) {
+	    		values.id=this.props.match.params.id
+	    	}
 	        this.props.handleProductSubmit(err,values);
 	     
 	    });
   	}
 	render() {
-		const { category,detailContent,int,name,price,stock }=this.props.editObj;
-		let categoryId,parentCategoryId;
-		if (category) {
-			categoryId=category._id;
-			parentCategoryId=category.pid;
+		const { categoryId,parentCategoryId,detailContent,loadImg,int,name,price,stock }=this.props;
+		// console.log('5555',detailContent);
+		let fileList = [];
+		if (loadImg) {
+			fileList=loadImg.split(',').map((img,key)=>({
+		      uid: key,
+		      status: 'done',
+		      url: img,
+		      response: img,
+		    }));
 		}
+		
+	   
 		const { getFieldDecorator } = this.props.form;
 		const formItemLayout = {
 	      labelCol: {
@@ -64,7 +73,9 @@ class NormalLoginForm extends Component {
 			<div className='productSave'>
 				<Breadcrumb>
 				    <Breadcrumb.Item>商品管理</Breadcrumb.Item>
-				    <Breadcrumb.Item>新增商品</Breadcrumb.Item>
+				    {this.props.match.params.id
+				    ? <Breadcrumb.Item>编辑商品</Breadcrumb.Item>
+				    : <Breadcrumb.Item>新增商品</Breadcrumb.Item>}
 				</Breadcrumb>
 			    <Form  className="login-form">
 			        <FormItem  {...formItemLayout} label="商品名称">
@@ -120,6 +131,7 @@ class NormalLoginForm extends Component {
 				        <LoadImg 
 				        	num={3} 
 				        	saveAddress={IMG_UPLOAD} 
+				        	fileList={fileList}
 				        	LoadImg={(fileList)=>{
 				        		this.props.getloadImg(fileList);
 				        	}}
@@ -134,6 +146,7 @@ class NormalLoginForm extends Component {
 			             	LoadDetailImg={(fileContent)=>{
 			             		this.props.getDetailImg(fileContent);
 			             	}}
+			             	detail={detailContent}
 			             />
 			          )}
 			        </FormItem>
@@ -151,11 +164,21 @@ class NormalLoginForm extends Component {
 	}
 }
 const mapStateToProps=(state)=>{
+
 	return {
 		isCategory:state.get('product').get('isCategory'),
 		ListIdValidateStatus:state.get('product').get('ListIdValidateStatus'),
-		ListIdHelp:state.get('product').get('ListIdHelp'),	
-		editObj:state.get('product').get('editObj'),	
+		ListIdHelp:state.get('product').get('ListIdHelp'),
+
+		categoryId:state.get('product').get('SecendListId'),	
+		parentCategoryId:state.get('product').get('FirstListId'),	
+		loadImg:state.get('product').get('loadImg'),	
+		detailContent:state.get('product').get('detailContent'),	
+		int:state.get('product').get('int'),	
+		name:state.get('product').get('name'),	
+		order:state.get('product').get('order'),
+		price:state.get('product').get('price'),
+		stock:state.get('product').get('stock'),	
 	}
 }
 const mapDispatchToProps = (storeDispatch)=>{
