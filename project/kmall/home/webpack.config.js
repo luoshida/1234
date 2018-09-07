@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ShowHtmlWebpack=(name,title)=>({
       template:'./src/view/'+name+'.html',
       filename:name+'.html',
-      title:title
+      title:title,
       chunks:['common',name]
 })
 
@@ -110,15 +110,14 @@ module.exports = {
    //    chunks:['common','user-login']
    //  }),
     new HtmlWebpackPlugin(ShowHtmlWebpack('index','首页')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录'),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('user-register')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('result')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-register','用户注册')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('result','用户结果')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
-    })
+    }),
   ],
-
   devServer:{
 //webpack-dev-server提供了一个简单的基于node express的web服务器,能够实时重新加载页面
   	contentBase:'./dist',
@@ -130,5 +129,5 @@ module.exports = {
         changeOrigin:true
       }
     }
-  }
+  },
 };

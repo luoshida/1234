@@ -31,12 +31,15 @@ var _util = {
 	},
 	getParamFromUrl:function(key){
 		var query = window.location.search.substr(1);
-		var reg = new RegExp('(^|&)'+key+'=([^&]*)(&|$)');
-		var result = query.match(reg);
+		// var reg = new RegExp('(^|&)'+key+'=([^&]*)(&|$)');
+		// var result = query.match(reg);
 		
-		// var result=query.replace(/[&=]/g,',');
-		console.log(result);
-		console.log(query);
+		var result=query.replace(/[&=]/g,',').spilt(',');
+		for (var i = 0; i < result.length; i++) {
+			if(result[i]==key){
+				return result[i+1]
+			}
+		}
 	},
 	validate:function(value,type){
 		if (type === 'require') {

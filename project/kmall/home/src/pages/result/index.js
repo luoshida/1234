@@ -4,5 +4,6 @@ require('pages/common/foot');
 var _util = require('util');
 
 $(function(){
-	_util.getParamFromUrl('register');
+	var type = _util.getParamFromUrl('type');
+	$('.'+type).show();
 })
