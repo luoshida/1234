@@ -1,4 +1,4 @@
- require('./index.css');
+require('./index.css');
 require('pages/common/logo/index.js');
 var _user = require('service/user');
 var _util = require('util');
@@ -19,7 +19,20 @@ var page = {
 	},
 	bindEvent:function(){
 		var _this=this;
-		$('#user-load-btn').on('click',function(){
+		
+		$('[name="username"]').on('blur',function(){
+			if (!_util.validate($.trim($('[name="username"]').val()),'username')) {
+				return;
+			} 
+			_user.usernameBlur({
+				username:$.trim($('[name="username"]').val())
+			},function(data){
+				formErr.show(data.messages);
+			},function(message){
+				formErr.hide();
+			})
+		})
+		$('#user-register-btn').on('click',function(){
 			_this.submit()
 		})
 	},
@@ -27,21 +40,22 @@ var page = {
 		var formDate={
 			username:$.trim($('[name="username"]').val()),
 			password:$.trim($('[name="password"]').val()),
+			rePassword:$.trim($('[name="rePassword"]').val()),
+			phone:$.trim($('[name="phone"]').val()),
+			email:$.trim($('[name="email"]').val()),
 		};
 		var validateResult = this.validate(formDate);
-		// console.log(validateResult);
 		if (validateResult.status) {
 			formErr.hide();
-			_user.login(formDate,function(data){
-				
-				_util.goHome();
+			_user.register(formDate,function(data){
+				window.location.href='./result.html?type=register'
 			},function(message){
-				// console.log(message);
 				formErr.show(message);
 			});
 		}else{
 			formErr.show(validateResult.msg);
 		}
+
 	},
 	validate:function(formDate){
 		var result={
@@ -62,6 +76,30 @@ var page = {
 		}
 		if (!_util.validate(formDate.password,'password')) {
 			result.msg='密码格式错误';
+			return result;
+		}
+		if (!_util.validate(formDate.rePassword,'require')) {
+			result.msg='请再次输入密码';
+			return result;
+		}
+		if (formDate.password != formDate.rePassword) {
+			result.msg='两次密码不一致';
+			return result;
+		}
+		if (!_util.validate(formDate.phone,'require')) {
+			result.msg='手机号不能为空';
+			return result;
+		}
+		if (!_util.validate(formDate.phone,'phone')) {
+			result.msg='手机号不能为空';
+			return result;
+		}
+		if (!_util.validate(formDate.email,'require')) {
+			result.msg='邮箱不能为空';
+			return result;
+		}
+		if (!_util.validate(formDate.email,'email')) {
+			result.msg='邮箱格式错误';
 			return result;
 		}
 		result.status=true;

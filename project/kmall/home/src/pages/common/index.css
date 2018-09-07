@@ -91,4 +91,15 @@ input, textarea {
 .container{
     width: 1200px;
     margin: 0 auto;
+    min-width: 1200px;
+}
+.btn{
+    display: inline-block;
+    height: 30px;
+    width: 80px;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    background-color: #2b99ff;
+    border-radius: 5px;
 }

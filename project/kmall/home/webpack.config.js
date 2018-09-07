@@ -19,6 +19,8 @@ module.exports = {
     'common':'./src/pages/common/index.js',
     'index':'./src/pages/index/index.js',
     'user-login':'./src/pages/user-login/index.js',
+    'user-register':'./src/pages/user-register/index.js',
+    'result':'./src/pages/result/index.js',
    
   },  
   //引入额外的模块
@@ -108,6 +110,8 @@ module.exports = {
    //  }),
     new HtmlWebpackPlugin(ShowHtmlWebpack('index')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-login')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-register')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('result')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',

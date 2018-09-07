@@ -1,45 +1,79 @@
 const Router = require('express').Router;
 let swig = require('swig');
-// const hmac = require('../util/crypto.js');
+const hmac = require('../util/crypto.js');
 const router = Router();
-// const userModel = require('../model/mongooseModel.js')
+const userModel = require('../model/user.js')
 
 router.post('/login',(req,res)=>{
-	var result={
-		status:0,
-		data:req.body
-	};
-	res.json(result);
+	let body = req.body;
+	// console.log(body);
+	userModel
+	.findOne({username:body.username,password:hmac(body.password),isAdmin:false})
+	.then((data)=>{  
+		if (data) {
+			req.session.userInfo = {
+			 	_id:data._id,
+			 	username:data.username,
+			 	isAdmin:data.isAdmin
+			}
+			res.json({
+				status:0,
+				messages:'登录成功',
+				data:data
+			});
+		}else{
+			res.json({
+				status:1,
+				messages:'用户名或密码错误',
+			});
+		}
+	})
+})
+router.get('/userInfo',(req,res)=>{
+	if (req.userInfo._id) {
+		res.json({
+			status:0,
+			data:req.userInfo
+		})
+	}else{
+		res.json({
+			status:1
+		})
+	}
+})
+router.post('/register',(req,res)=>{
+	var body=req.body;
+	userModel
+	.findOne({username:body.username})
+	.then((data)=>{  
+		if (data) {
+			res.json({
+				messages:'该账号已被注册',
+				status:1
+			});
+		}else{
+			new userModel({
+				username:body.username,
+				password:hmac(body.password),
+				phone:body.phone,
+				email:body.email,
+			})
+			.save((err,result)=>{
+				if (!err) {
+					res.json({
+						status:0,
+						data:result
+					})
+				}else{
+					res.json({
+						messages:'注册失败',
+						status:1
+					});
+				}
+			})
+		}
+	})
 
-	// let body = req.body;
-
-// 	userModel
-// 	.findOne({username:body.username,password:hmac(body.password)})
-// 	.then((data)=>{  
-// 		if (data) {
-// 			req.session.userInfo = {
-// 			 	_id:data._id,
-// 			 	username:data.username,
-// 			 	isAdmin:data.isAdmin
-// 			}
-// 			result.messages='登录成功';
-// 			result.data=data;
-// 			res.json(result);
-// 		}else{
-// 			result.status=10;
-// 			result.messages='用户名或密码错误';
-// 			res.json(result);
-// 		}
-// 	})
-// })
-// router.use((req,res,next)=>{
-// 	if (req.userInfo.isAdmin) {
-// 		next();
-// 	}else{
-// 		res.send({
-// 			status:10
-// 		})
-// 	}
 })
 router.get('/logout',(req,res)=>{
 	let result  = {
@@ -50,6 +84,26 @@ router.get('/logout',(req,res)=>{
 	req.session.destroy();
 
 	res.json(result);
+
+})
+router.get('/blur',(req,res)=>{
+	userModel
+	.findOne({username:req.query.username})
+	.then((data)=>{  
+		if (data) {
+			res.json({
+				data:{
+					messages:'该账号已被注册'
+				},
+				status:0
+			});
+		}else{
+			res.json({
+				status:1,
+				messages:'该账号可用'
+			});
+		}
+	})
 
 })
 
