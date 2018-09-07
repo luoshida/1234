@@ -19,7 +19,11 @@ var nav={
 		})
 	},
 	loadUserInfo:function(){
-
+		_user.getUserInfo(function(userInfo){
+			$('.user-load').hide();
+			$('.user-loaded').show().find('.username')
+			.text(userInfo.username);
+		});
 	},
 	loadCartInfo:function(){
 

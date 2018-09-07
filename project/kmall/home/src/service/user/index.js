@@ -18,6 +18,30 @@ var _user = {
 			error:error,
 		})
 	},
+	register: function (data,success,error) {
+		_util.request({
+			url:'/user/register',
+			data:data,
+			type:'post',
+			success:success,
+			error:error,
+		})
+	},
+	getUserInfo: function(success,error){
+		_util.request({
+			url:'/user/userInfo',
+			success:success,
+			error:error,
+		})
+	},
+	usernameBlur: function (data,success,error) {
+		_util.request({
+			url:'/user/blur',
+			data:data,
+			success:success,
+			error:error,
+		})
+	},
 }
 
 module.exports = _user;

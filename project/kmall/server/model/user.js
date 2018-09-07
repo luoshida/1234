@@ -9,7 +9,8 @@
       },
       phone:{
         type:String
-      }
+      },
+      email:String,
   },{
     timestamps:true
   });
