@@ -5,9 +5,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 //单独对css文件打包
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ShowHtmlWebpack=(name)=>({
+const ShowHtmlWebpack=(name,title)=>({
       template:'./src/view/'+name+'.html',
       filename:name+'.html',
+      title:title,
       chunks:['common',name]
 })
 
@@ -108,16 +109,15 @@ module.exports = {
    //    filename:'user-login.html',
    //    chunks:['common','user-login']
    //  }),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('index')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('user-login')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('user-register')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('result')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('index','首页')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-register','用户注册')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('result','用户结果')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
-    })
+    }),
   ],
-
   devServer:{
 //webpack-dev-server提供了一个简单的基于node express的web服务器,能够实时重新加载页面
   	contentBase:'./dist',
@@ -129,5 +129,5 @@ module.exports = {
         changeOrigin:true
       }
     }
-  }
+  },
 };
