@@ -1,0 +1,18 @@
+.search{
+    height: 100px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    line-height: 100px;
+}
+.search .kmall{
+    color: red;
+    font-size: 40px;
+    line-height: 100px;
+    margin-right: 100px;
+}
+.search .search-input{
+	height: 30px;
+	border: 1px solid #2b99ff;
+	outline: none;
+}

@@ -1,0 +1,42 @@
+
+.list .container{
+	padding-top: 10px;
+}
+.list .list-sort li{
+	border: 1px solid #666;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	color: #000;
+	text-align: center;
+	margin-right: 1px;
+	cursor: pointer;
+	background-color: #fff;
+}
+.list .list-sort li.active{
+	background-color: red;
+}
+.list .list-sort .sort-price i{
+	display: inline-block;
+	top: 0px;
+	color: #888;
+	opacity: 0.4;
+	font-size: 18px;
+}
+.list .list-sort .sort-price i:nth-of-type(1){
+	vertical-align: 12%;
+	margin-left: 4px;
+}
+.list .list-sort .sort-price i:nth-of-type(2){
+	vertical-align: -27%;
+	margin-left: -14px;
+}
+
+.list .list-sort .sort-price.asc .fa-sort-asc{
+	color: #000;
+	opacity:1;
+}
+.list .list-sort .sort-price.desc .fa-sort-desc{
+	color: #000;
+	opacity:1;
+}

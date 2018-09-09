@@ -18,6 +18,7 @@ module.exports = {
   entry: {
     //入口js文件的名字和对应的路径
     'common':'./src/pages/common/index.js',
+    'list':'./src/pages/list/index.js',
     'index':'./src/pages/index/index.js',
     'user-login':'./src/pages/user-login/index.js',
     'user-register':'./src/pages/user-register/index.js',
@@ -39,6 +40,7 @@ module.exports = {
   resolve: {
     alias: {
       pages: path.resolve(__dirname, "./src/pages"),
+      image: path.resolve(__dirname, "./src/images"),
       util: path.resolve(__dirname, "./src/util"),
       service: path.resolve(__dirname, "./src/service"),
       node_modules: path.resolve(__dirname, "./node_modules"),
@@ -83,11 +85,13 @@ module.exports = {
           options: {
             //配置ES6扩展 babel
             presets: ['env','es2015','react','stage-3'],
-            //antd按需加载
-            plugins: [
-              ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
-            ]
           }
+        }
+      },
+      {
+        test: /\.tpl$/,
+        use: { 
+          loader: 'html-loader',
         }
       }
     ]
@@ -111,6 +115,7 @@ module.exports = {
    //  }),
     new HtmlWebpackPlugin(ShowHtmlWebpack('index','首页')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('list','商品列表')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-register','用户注册')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('result','用户结果')),
     new CleanWebpackPlugin(['dist']),

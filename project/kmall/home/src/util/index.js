@@ -1,3 +1,5 @@
+
+var Hogan =require('hogan.js');
 var _util = {
 	request: function (params) {
 		var _this = this;
@@ -23,6 +25,11 @@ var _util = {
 	showErrorMsg:function(msg){
 		alert(msg);
 	},
+	render:function(tem,data){
+		var template = Hogan.compile(tem);
+		var html = template.render(data);
+		return html;
+	},
 	doLogin:function(){
 		window.location.href='./user-login.html'
 	},
@@ -33,8 +40,9 @@ var _util = {
 		var query = window.location.search.substr(1);
 		// var reg = new RegExp('(^|&)'+key+'=([^&]*)(&|$)');
 		// var result = query.match(reg);
-		
-		var result=query.replace(/[&=]/g,',').spilt(',');
+		 
+		var aaa=query.replace(/[&=]/g,',');
+		var result = aaa.split(',');
 		for (var i = 0; i < result.length; i++) {
 			if(result[i]==key){
 				return result[i+1]

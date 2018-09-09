@@ -1,5 +1,6 @@
 require('./index.css');
 require('pages/common/logo/index.js');
+require('util/carousel');
 var _user = require('service/user');
 var _util = require('util');
 var formErr={
