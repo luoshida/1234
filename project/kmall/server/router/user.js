@@ -29,11 +29,12 @@ router.post('/login',(req,res)=>{
 		}
 	})
 })
-router.get('/userInfo',(req,res)=>{
+
+router.get('/username',(req,res)=>{
 	if (req.userInfo._id) {
 		res.json({
 			status:0,
-			data:req.userInfo
+			data:{username:req.userInfo.username}
 		})
 	}else{
 		res.json({
@@ -107,7 +108,43 @@ router.get('/blur',(req,res)=>{
 
 })
 
-
-
-
+router.use((req,res,next)=>{
+	if (req.userInfo._id) {
+		next();
+	}else{
+		res.json({
+			status:10
+		})
+	}
+})
+router.get('/userInfo',(req,res)=>{
+	if (req.userInfo._id) {
+		userModel.findById(req.userInfo._id,'username phone email')
+		.then(user=>{
+			res.json({
+				status:0,
+				data:user
+			})
+		})
+	}else{
+		res.json({
+			status:1
+		})
+	}
+})
+router.put('/updatePassword',(req,res)=>{
+	userModel.update({_id:req.userInfo._id},{password:hmac(req.body.password)})
+	.then(raw=>{
+		res.json({
+			status:0,
+			messages:'更新成功'
+		})
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'更新失败'
+		})
+	})
+})
 module.exports = router;

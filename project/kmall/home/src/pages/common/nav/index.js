@@ -5,8 +5,7 @@ var _util = require('util');
 var nav={
 	init:function(){
 		this.bindEvent();
-		this.loadUserInfo();
-		this.loadCartInfo();
+		this.loadUsername();
 		return this;
 	},
 	bindEvent:function(){
@@ -18,15 +17,13 @@ var nav={
 			})
 		})
 	},
-	loadUserInfo:function(){
-		_user.getUserInfo(function(userInfo){
+	loadUsername:function(){
+		_user.getUsername(function(user){
 			$('.user-load').hide();
 			$('.user-loaded').show().find('.username')
-			.text(userInfo.username);
+			.text(user.username);
 		});
 	},
-	loadCartInfo:function(){
 
-	}
 }
 module.exports=nav.init();

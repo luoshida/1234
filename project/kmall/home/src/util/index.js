@@ -31,10 +31,11 @@ var _util = {
 		return html;
 	},
 	doLogin:function(){
-		window.location.href='./user-login.html'
+		//执行dologin之前把当前页面地址传给 登录页面；
+		window.location.href='./user-login.html?redirect='+encodeURIComponent(window.location.href)
 	},
 	goHome:function(){
-		window.location.href='/';
+		window.location.href='./';
 	},
 	getParamFromUrl:function(key){
 		var query = window.location.search.substr(1);
@@ -45,7 +46,8 @@ var _util = {
 		var result = aaa.split(',');
 		for (var i = 0; i < result.length; i++) {
 			if(result[i]==key){
-				return result[i+1]
+				// console.log(result[i+1]);
+				return decodeURIComponent(result[i+1])
 			}
 		}
 	},

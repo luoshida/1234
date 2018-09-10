@@ -22,6 +22,8 @@ module.exports = {
     'index':'./src/pages/index/index.js',
     'user-login':'./src/pages/user-login/index.js',
     'user-register':'./src/pages/user-register/index.js',
+    'user-center':'./src/pages/user-center/index.js',
+    'user-update-password':'./src/pages/user-update-password/index.js',
     'result':'./src/pages/result/index.js',
    
   },  
@@ -117,7 +119,9 @@ module.exports = {
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('list','商品列表')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-register','用户注册')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('result','用户结果')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('result','操作结果')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-center','用户中心')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-update-password','密码修改')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',

@@ -12,7 +12,18 @@
     margin-right: 100px;
 }
 .search .search-input{
+    width: 300px;
 	height: 30px;
 	border: 1px solid #2b99ff;
+    padding: 0 10px;
 	outline: none;
+}
+.search-btn{
+    margin-left: -4px;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+.search-btn:hover{
+    opacity: 0.8;
+    cursor: pointer;
 }
