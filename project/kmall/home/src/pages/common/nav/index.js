@@ -1,11 +1,13 @@
 require('./index.css');
 var _user = require('service/user');
 var _util = require('util');
+var _cart = require('service/cart');
 
 var nav={
 	init:function(){
 		this.bindEvent();
 		this.loadUsername();
+		this.loadCartNum();
 		return this;
 	},
 	bindEvent:function(){
@@ -24,6 +26,13 @@ var nav={
 			.text(user.username);
 		});
 	},
+	loadCartNum:function(){
+		_cart.getCartNum(function(cartNum){
+			$('#cart-total').html(cartNum || 0);
+		},function(num){
+			$('#cart-total').html(0);
+		})
+	}
 
 }
 module.exports=nav.init();

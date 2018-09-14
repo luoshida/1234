@@ -64,8 +64,10 @@ app.use(bodyParser.json());
 // app.use('/',require('./router/index.js'));
 app.use('/admin',require('./router/admin.js'));
 app.use('/user',require('./router/user.js'));
+app.use('/cart',require('./router/cart.js'));
 app.use('/product',require('./router/product.js'));
 app.use('/addcategory',require('./router/category.js'));
+app.use('/order',require('./router/order.js'));
 
 
 

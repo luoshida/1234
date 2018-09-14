@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
+
 
 //把Schema规则通过require请求过来 书写上简洁
 const useModel = require('./model/user.js');
 
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lsd');
 let db = mongoose.connection;
 db.on('error',(err)=>{

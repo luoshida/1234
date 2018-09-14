@@ -6,10 +6,12 @@
     line-height: 100px;
 }
 .search .kmall{
-    color: red;
     font-size: 40px;
     line-height: 100px;
     margin-right: 100px;
+}
+.search .kmall a{
+    color: red; 
 }
 .search .search-input{
     width: 300px;

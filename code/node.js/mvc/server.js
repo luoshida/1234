@@ -13,7 +13,13 @@ const server = http.createServer((req,res)=>{
 
 	let pathname = url.parse(req.url,true).pathname;
 
-	if (pathname.startsWith('/static/')) {
+	//约定: 
+	//1.请求路径以 /static/开始的都是静态资源
+	//           /static/css/index.css
+	//2.路由的请求格式: /Controller/action/arg1/arg2.....
+	//				 /Wish/index/
+
+	if (pathname.startsWith('/static/')) {//处理静态资源
 		let filePath = path.normalize(__dirname + pathname);
 		let fileExtName = path.extname(filePath);
 
@@ -28,7 +34,7 @@ const server = http.createServer((req,res)=>{
 				res.end('<h1>页面走丢了1。。。。</h1>')
 			}
 		});
-	}else{
+	}else{//处理动态路由
 		let pathStr = pathname.split('/');
 		let controller = pathStr[1] || 'wish';
 		let action = pathStr[2] || 'index';

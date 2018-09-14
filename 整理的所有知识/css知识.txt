@@ -59,13 +59,13 @@ h1{
  		white-space:nowrap; /*空白符处理
  		normal默认值,文字超出容器宽度会自动换行,容器会变高
  		nowrap,文字超出容器宽度不会换行文本会在同一行上溢出。*/
-  			
+  		overflow: hidden;	
   		text-overflow: clip;
-  		overflow: hidden;
   /*文本溢出处理方式 clip剪贴ellipsis显示省略号...*/
   		word-wrap: normal;
   /*长单词换行到下一行 break-word单词换行 需要在容器上设置*/
 	}
+不让用户点到页面上的字 user-select:none
 </style>
 
 	选择器

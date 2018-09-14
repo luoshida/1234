@@ -20,10 +20,13 @@ module.exports = {
     'common':'./src/pages/common/index.js',
     'list':'./src/pages/list/index.js',
     'index':'./src/pages/index/index.js',
+    'detail':'./src/pages/detail/index.js',
     'user-login':'./src/pages/user-login/index.js',
     'user-register':'./src/pages/user-register/index.js',
     'user-center':'./src/pages/user-center/index.js',
     'user-update-password':'./src/pages/user-update-password/index.js',
+    'order-confirm':'./src/pages/order-confirm/index.js',
+    'cart':'./src/pages/cart/index.js',
     'result':'./src/pages/result/index.js',
    
   },  
@@ -116,12 +119,15 @@ module.exports = {
    //    chunks:['common','user-login']
    //  }),
     new HtmlWebpackPlugin(ShowHtmlWebpack('index','首页')),
-    new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('detail','商品详情')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('list','商品列表')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-login','用户登录')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-register','用户注册')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('result','操作结果')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-center','用户中心')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-update-password','密码修改')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('cart','购物车')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('order-confirm','订单确认')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
@@ -134,6 +140,14 @@ module.exports = {
     port:3002,
     proxy:{
       "/user":{
+        target:'http://127.0.0.1:3000',
+        changeOrigin:true
+      },
+      "/cart":{
+        target:'http://127.0.0.1:3000',
+        changeOrigin:true
+      },
+      "/order":{
         target:'http://127.0.0.1:3000',
         changeOrigin:true
       }

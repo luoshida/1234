@@ -36,6 +36,9 @@ table {
     table-layout: fixed;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
 .clearfix:after {
     content: "";
     height: 0;
@@ -95,4 +98,16 @@ table {
     text-align: center;
     background-color: #2b99ff;
     border: none;
+    cursor: pointer;
+}
+.errorMsg{
+    text-align: center;
+    color: red;
+    font-size: 25px;
+    height: 30px;
+    line-height: 30px;
+}
+.empty-btn{
+    display: block;
+    margin: 20px auto;
 }

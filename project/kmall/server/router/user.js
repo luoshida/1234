@@ -2,7 +2,9 @@ const Router = require('express').Router;
 let swig = require('swig');
 const hmac = require('../util/crypto.js');
 const router = Router();
-const userModel = require('../model/user.js')
+const userModel = require('../model/user.js');
+const productModel = require('../model/product.js');
+const list = require('../model/list.js');
 
 router.post('/login',(req,res)=>{
 	let body = req.body;
@@ -107,7 +109,43 @@ router.get('/blur',(req,res)=>{
 	})
 
 })
+router.get('/getProductList',(req,res)=>{
+	var sort={};
+	if (req.query.orderBy=='price-asc') {
+		sort.price=-1;
+	}else if(req.query.orderBy=='price-desc'){
+		sort.price=1;
+	}else if(req.query.orderBy=='default'){
+		sort._id=-1;
+	}
+	if (req.query.keyword) {
+		var keyword = req.query.keyword;
+		list({
+			model:productModel,
+			// query:{name:{$regex:new RegExp(keyword,'i')}},
+			page:req.query.page,
+			sort:sort,
+			limit:2
+		})
+		.then(result=>{
+			res.json({
+				status:0,data:result
+			})
+		})
+	}else{
 
+	}
+})
+
+router.get('/getProductDetail',(req,res)=>{
+	productModel.findOne({status:0,_id:req.query.productId})
+	.then(product=>{
+		res.json({
+			status:0,
+			data:product
+		})
+	})
+})
 router.use((req,res,next)=>{
 	if (req.userInfo._id) {
 		next();
