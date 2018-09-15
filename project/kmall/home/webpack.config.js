@@ -24,9 +24,12 @@ module.exports = {
     'user-login':'./src/pages/user-login/index.js',
     'user-register':'./src/pages/user-register/index.js',
     'user-center':'./src/pages/user-center/index.js',
+    'order-list':'./src/pages/order-list/index.js',
     'user-update-password':'./src/pages/user-update-password/index.js',
     'order-confirm':'./src/pages/order-confirm/index.js',
+    'order-detail':'./src/pages/order-detail/index.js',
     'cart':'./src/pages/cart/index.js',
+    'payment':'./src/pages/payment/index.js',
     'result':'./src/pages/result/index.js',
    
   },  
@@ -125,9 +128,12 @@ module.exports = {
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-register','用户注册')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('result','操作结果')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-center','用户中心')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('order-list','订单中心')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-update-password','密码修改')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('cart','购物车')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('order-confirm','订单确认')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('order-detail','订单详情')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('payment','支付订单')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
@@ -148,6 +154,10 @@ module.exports = {
         changeOrigin:true
       },
       "/order":{
+        target:'http://127.0.0.1:3000',
+        changeOrigin:true
+      },
+      "/payment":{
         target:'http://127.0.0.1:3000',
         changeOrigin:true
       }

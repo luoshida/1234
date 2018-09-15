@@ -61,7 +61,30 @@ var _order = {
 			error:error,
 		})
 	},
-
+	getOrder:function (data,success,error) {
+		_util.request({
+			url:'/order/getOrder',
+			data:data,
+			success:success,
+			error:error,
+		})
+	},
+	getOrderDetail:function (data,success,error) {
+		_util.request({
+			url:'/order/getOrderDetail',
+			data:data,
+			success:success,
+			error:error,
+		})
+	},
+	cancellOrder:function (data,success,error) {
+		_util.request({
+			url:'/order/cancellOrder',
+			data:data,
+			success:success,
+			error:error,
+		})
+	},
 }
 
 module.exports = _order;

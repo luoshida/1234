@@ -3,6 +3,7 @@ const Router = require('express').Router;
 const router = Router();
 const userModel = require('../model/user.js');
 const orderModel = require('../model/order.js');
+const list = require('../model/list.js');
 
 router.use((req,res,next)=>{
 	if (req.userInfo._id) {
@@ -29,6 +30,65 @@ router.get('/getOrderList',(req,res)=>{
 		res.json({
 			status:1,
 			messages:'获取订单商品失败'
+		})
+	})
+})
+router.get('/getOrder',(req,res)=>{
+	list({
+		model:orderModel,
+		query:{user:req.userInfo._id},
+		page:req.query.page,
+		limit:2,
+		sort:{_id:-1}
+	})
+	.then(order=>{
+		res.json({
+			status:0,
+			data:{
+				order:order.data,
+				page:order.page,
+				total:order.total,
+				pages:order.pages,
+			}
+		})
+			
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'获取订单失败'
+		})
+	})
+})
+router.get('/getOrderDetail',(req,res)=>{
+	orderModel.findOne({orderNo:req.query.orderNo,user:req.userInfo._id})
+	.then(order=>{
+		res.json({
+			status:0,
+			data:order
+		})		
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'获取订单详情失败'
+		})
+	})
+})
+router.get('/cancellOrder',(req,res)=>{
+	orderModel.findOneAndUpdate({orderNo:req.query.orderNo,user:req.userInfo._id},{
+		status:"20",statusDesc:"取消"
+	},{new:true})
+	.then(order=>{
+		res.json({
+			status:0,
+			data:order
+		})		
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'获取订单详情失败'
 		})
 	})
 })
@@ -147,7 +207,7 @@ router.post('/createOrder',(req,res)=>{
 				productList.push({
 					productId:item.product._id,
 					number:item.number,
-					allPrice:item.allPrice,
+					allPrice:item.price,
 					price:item.product.price,
 					loadImg:item.product.loadImg,
 					name:item.product.name
@@ -169,10 +229,21 @@ router.post('/createOrder',(req,res)=>{
 			new orderModel(order)
 			.save()
 			.then(newOrder=>{
-				res.json({
-					status:0,
-					data:newOrder
+				userModel.findById(req.userInfo._id)
+				.then(userUser=>{
+					var cartItem=userUser.cart.cartList.filter((item)=>{
+						return item.isSelect==false
+					});
+					userUser.cart.cartList=cartItem;
+					userUser.save()
+					.then(newUser=>{
+						res.json({
+							status:0,
+							data:newOrder
+						})
+					})
 				})
+				
 			})
 		})
 	})

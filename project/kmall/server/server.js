@@ -68,6 +68,7 @@ app.use('/cart',require('./router/cart.js'));
 app.use('/product',require('./router/product.js'));
 app.use('/addcategory',require('./router/category.js'));
 app.use('/order',require('./router/order.js'));
+app.use('/payment',require('./router/payment.js'));
 
 
 

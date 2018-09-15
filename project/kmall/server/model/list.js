@@ -35,7 +35,7 @@ let list = (options)=>{
 		}else{
 			qqqq=options.query;
 		}
-		
+		 
 		options.model.countDocuments(qqqq)
 		.then((count)=>{
 
@@ -65,7 +65,6 @@ let list = (options)=>{
 			.skip(skip)
 			.limit(limit)
 			.then((data)=>{
-				
 				resolve({
 					data:data,
 					page:page*1,

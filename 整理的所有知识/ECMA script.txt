@@ -623,6 +623,10 @@ var m=now.getMinutes()
 var s=now.getSeconds()
 now.getTime() 1970年到现在为止的毫秒数
 > * 系统时间对象 Date,方法 getHours、getMinutes、getSeconds,getFullYear(),getMonth(),getDate(),getDay()
+
+Date 对象转换为字符串，并返回结果
+ new Date(createdAt).toLocaleString()
+
 > * 字符串的charAt方法
 
 * 案例2:分类菜单
