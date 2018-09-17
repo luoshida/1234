@@ -9,3 +9,7 @@ a:hover{
 	line-height: 30px;
 	background-color: #fff;
 }
+.nav .container{
+	height: 100%;
+	border-bottom: 1px solid #eee;
+}

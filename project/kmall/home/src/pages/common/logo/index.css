@@ -1,6 +1,10 @@
 .logo{
     height: 100px;
-    background-color: #fff
+    background-color: #fff;
+}
+.logo .container{
+	height: 100%;
+    border-bottom: 1px solid #eee;
 }
 .logo .kmall{
     color: red;

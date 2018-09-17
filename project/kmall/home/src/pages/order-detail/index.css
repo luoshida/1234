@@ -29,6 +29,9 @@
 	color: red;
 	font-size: 18px;
 }
+.order .order-payment a{
+	color: #fff;
+}
 .order .cancelled-btn{
 	background-color: red;
 }

@@ -12,7 +12,11 @@
 			{{/order}}
 
 			{{#needpay}}
-			<span class=" btn">立即支付</span>
+			{{#order}}
+			<span class="order-payment btn">
+				<a href="./payment.html?orderNo={{orderNo}}">立即支付</a>
+			</span>
+			{{/order}}
 			{{/needpay}}
 			{{#canCancell}}
 			<span class="order-cancell btn">取消订单</span>
