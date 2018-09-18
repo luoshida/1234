@@ -19,10 +19,8 @@ class MySider extends Component {
             <Menu.Item key="2"><NavLink to='/option2'>用户管理</NavLink></Menu.Item>
             <Menu.Item key="3"><NavLink to='/option3'>分类管理</NavLink></Menu.Item>
             <Menu.Item key="4"><NavLink to='/product'>商品管理</NavLink></Menu.Item>
-            <Menu.Item key="5"><NavLink to='/option5'>option5</NavLink></Menu.Item>
-            <Menu.Item key="6"><NavLink to='/option6'>option6</NavLink></Menu.Item>
-            <Menu.Item key="7"><NavLink to='/option7'>option7</NavLink></Menu.Item>
-            <Menu.Item key="8"><NavLink to='/option8'>option8</NavLink></Menu.Item>
+            <Menu.Item key="5"><NavLink to='/order'>订单管理</NavLink></Menu.Item>
+          
         </Menu>
       </Sider>     
     )

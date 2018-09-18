@@ -18,12 +18,23 @@
 	border:1px solid red;
 }
 .detail-content{
+	width: 850px;
 	padding-top: 20px;
-	margin-left: 50px;
+	padding-left: 50px;
+	padding-right: 100px;
 }
 .detail-content p{
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	font-size: 18px;
+}
+.detail-content .name{
+	font: 700 16px Arial,"microsoft yahei";
+    color: #666;
+    margin-bottom: 10px;
+}
+.detail-content .intro{
+	font-size: 12px;
+	color: #e4393c;
 }
 .detail-content .num{
 	position: relative;
@@ -35,17 +46,19 @@
 	height: 30px;
 }
 .detail-content .count-btn{
-	position: absolute;
-	right: 73px;
-	top: 1px;
+	display: inline-block;
 	cursor: pointer;
 	user-select: none;
 }
+
 .detail-content .detail-btn{
 	width: 200px;
 	height: 50px;
 	line-height: 50px;
 	font-size: 18px;	
+}
+.product-detail{
+	background-color: #fff;
 }
 .product-detail .product-detail-title{
 	background-color: red;
@@ -53,4 +66,11 @@
 	line-height: 30px;
 	margin-top: 20px;
 	color: white;
+}
+.product-detail .product-detail-content img{
+	width: 80px;
+	height: 100px;
+}
+.product-detail .product-detail-content li{
+	float: none;
 }

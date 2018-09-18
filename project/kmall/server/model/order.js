@@ -27,7 +27,6 @@ const productModel = require('./product.js');
         phone:String,
         zip:String,
       });
-
 const OrderSchema = new mongoose.Schema({
     user:{
       type:mongoose.Schema.Types.ObjectId,

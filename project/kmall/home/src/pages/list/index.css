@@ -62,3 +62,11 @@
 .product-list .product-item p{
 	margin-top: 10px;
 }
+.product-list .product-item .product-name{
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 40px;
+	line-height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

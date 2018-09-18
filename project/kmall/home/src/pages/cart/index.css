@@ -45,6 +45,11 @@
 .content-left .head-item{
 	margin-right: 20px;
 }
+.content-left .name{
+	width: 250px;
+	height: 60px;
+	overflow: hidden;
+}
 .content-left img{
 	vertical-align: top;
 	width: 80px;

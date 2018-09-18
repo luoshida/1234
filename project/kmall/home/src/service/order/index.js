@@ -4,7 +4,7 @@ var _util = require('util');
 var _order = {
 	getOrderList:function (success,error) {
 		_util.request({
-			url:'/order/getOrderList',
+			url:'/order/home/getOrderList',
 			success:success,
 			error:error,
 		})
@@ -71,7 +71,7 @@ var _order = {
 	},
 	getOrderDetail:function (data,success,error) {
 		_util.request({
-			url:'/order/getOrderDetail',
+			url:'/order/home/getOrderDetail',
 			data:data,
 			success:success,
 			error:error,

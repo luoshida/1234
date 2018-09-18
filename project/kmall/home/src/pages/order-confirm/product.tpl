@@ -16,7 +16,7 @@
 				<a href="./detail.html?caregoryId={{product._id}}" target="_blank">
 					<img src="{{product.loadImg}}" alt="">
 				</a>
-				<a href="./detail.html?caregoryId={{product._id}}" target="_blank"><span>{{product.name}}</span></a>
+				<a href="./detail.html?caregoryId={{product._id}}" target="_blank"><p class="name">{{product.name}}</p></a>
 			</li>	
 			<li class="price">
 				￥{{product.price}}

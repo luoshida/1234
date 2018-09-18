@@ -19,6 +19,7 @@ import Login from 'pages/login';
 import Option2 from 'pages/option2'; 
 import Option3 from 'pages/option3'; 
 import Product from 'pages/product'; 
+import Order from 'pages/order'; 
 import ErrPage from 'pages/errorpage'; 
 
 const ProtectedRoute=({component:Component,...rest})=>(
@@ -45,6 +46,7 @@ class App extends Component {
 						<ProtectedRoute path='/option2' component={ Option2 } />
 						<ProtectedRoute path='/option3' component={ Option3 } />
 						<ProtectedRoute path='/product' component={ Product } />
+						<ProtectedRoute path='/order' component={ Order } />
 
 						<LoginRoute path='/login' component={ Login } />
 						<Route component={ ErrPage } />

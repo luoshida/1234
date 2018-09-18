@@ -63,13 +63,16 @@ var page = {
 		? (delete this.listParams.keyword)
 		: (delete this.listParams.categoryId)
 		// console.log(this.listParams);
+		$('.product-list').html("<div class='loading'></div>");
 		_product.getProductList(this.listParams,function(data){
 			// console.log(data);
 			for (var i = 0; i < data.data.length; i++) {
 				 data.data[i].mainImg=data.data[i].loadImg.split(',')[0]
 			}
+			
 			var html = _util.render(tpl,{list:data.data});
 			$('.product-list').html(html);
+
 			$('.pagination-box').pagination('render',{
 				current:data.page,
 				total:data.total,

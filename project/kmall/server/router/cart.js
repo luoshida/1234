@@ -45,7 +45,7 @@ router.use((req,res,next)=>{
 
 router.post('/addCart',(req,res)=>{
 	var body = req.body;
-	
+	// console.log(body);
 	userModel.findById(req.userInfo._id)
 	.then(user=>{
 		if (user.cart) {
@@ -72,7 +72,7 @@ router.post('/addCart',(req,res)=>{
 		}
 		user.save()
 		.then(newUser=>{
-			// console.log(newUser);
+			// console.log(user);
 			res.json({
 				status:0,
 				data:{messages:'添加购物车成功'}

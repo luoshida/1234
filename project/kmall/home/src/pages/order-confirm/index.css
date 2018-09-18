@@ -74,11 +74,20 @@
 	border-bottom: 1px solid #bbb;
 }
 .product-box .cart .product{
-	width: 70%
+	width: 70%;
+}
+.product-box .cart .product .name{
+	display: inline-block;
+	height: 60px;
+	line-height: 30px;
+	width: 300px;
+	overflow: hidden;
+	vertical-align:middle;
 }
 .product-box .cart .product img{
 	width: 80px;
 	height: 100px;
+	
 }
 .product-box .cart .price{
 	width: 10%

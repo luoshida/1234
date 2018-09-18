@@ -12,6 +12,8 @@ const Default = fromJS ({
 
 	ListIdValidateStatus:'',
 	ListIdHelp:'',
+	ImageValidateStatus:'',
+	ImageHelp:'',
 	dataSource:[],
 	current:1,
 	defaultCurrent:1,
@@ -39,7 +41,11 @@ export default (state=Default,action)=>{
 		})
 	}
 	if (action.type==types.LOAD_IMG) {
-		return state.set('loadImg',action.payload)
+		return state.merge({
+			loadImg:action.payload,
+			ImageValidateStatus:'',
+			ImageHelp:'',
+		})
 	}
 
 	if (action.type==types.DETAIL_IMG) {
@@ -57,6 +63,12 @@ export default (state=Default,action)=>{
 		return state.merge({
 			ListIdValidateStatus:'error',
 			ListIdHelp:'请输入分类'
+		})
+	}
+	if (action.type==types.ERR_IMG) {
+		return state.merge({
+			ImageValidateStatus:'error',
+			ImageHelp:'请上传商品图片'
 		})
 	}
 	if (action.type==types.PRO_MOUNT_DONE) {

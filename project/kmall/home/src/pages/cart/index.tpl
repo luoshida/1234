@@ -35,8 +35,8 @@
 				<img src="{{product.loadImg}}" alt="">
 			</a>
 		</li>
-		<li class="head-item">
-			<a href="./detail.html?caregoryId={{product._id}}" target="_blank"><p>{{product.name}}</p></a>
+		<li class="head-item name">
+			<a href="./detail.html?caregoryId={{product._id}}" target="_blank"><span>{{product.name}}</span></a>
 		</li>	
 	</ul>
 	<ul class="content-right fr">

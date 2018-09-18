@@ -126,7 +126,11 @@ class NormalLoginForm extends Component {
 			          )}
 			        </FormItem>
 
-			        <FormItem  {...formItemLayout} label="上传图片">
+			        <FormItem  {...formItemLayout} 
+			        	label="上传图片"
+			        	validateStatus={this.props.ImageValidateStatus}
+						help={this.props.ImageHelp}
+			        >
 				        {(
 				        <LoadImg 
 				        	num={3} 
@@ -169,7 +173,9 @@ const mapStateToProps=(state)=>{
 		isCategory:state.get('product').get('isCategory'),
 		ListIdValidateStatus:state.get('product').get('ListIdValidateStatus'),
 		ListIdHelp:state.get('product').get('ListIdHelp'),
-
+		ImageValidateStatus:state.get('product').get('ImageValidateStatus'),
+		ImageHelp:state.get('product').get('ImageHelp'),
+		
 		categoryId:state.get('product').get('SecendListId'),	
 		parentCategoryId:state.get('product').get('FirstListId'),	
 		loadImg:state.get('product').get('loadImg'),	

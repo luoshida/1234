@@ -20,7 +20,7 @@
 			</ul>
 			{{#productList}} 
 			<ul class="order-product">
-				<li>{{name}}</li>
+				<li class="name">{{name}}</li>
 				<li><img src="{{loadImg}}" alt=""></li>
 				<li>￥{{price}}</li>
 				<li>{{number}}</li>

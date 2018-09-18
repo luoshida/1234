@@ -71,10 +71,10 @@ var page= {
 		$('.product-box').on('click','.submit-btn',function(e){
 			if (_this.data.addressId) {
 				_order.createOrder({addressId:_this.data.addressId},function(order){
-					console.log(order);
-					// window.location.href='./payment.html?orderNo='+order.orderNo
+					// console.log(order);
+					window.location.href='./payment.html?orderNo='+order.orderNo
 				},function(){
-
+					alert('添加订单失败')
 				})
 			}else{
 				alert('请选择地址')

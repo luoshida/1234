@@ -4,6 +4,8 @@ const router = Router();
 
 
 const userModel = require('../model/user.js');
+const orderModel = require('../model/order.js');
+const productModel = require('../model/product.js');
 const list = require('../model/list.js');
 
 
@@ -69,24 +71,28 @@ router.use((req,res,next)=>{
 	}
 })
 router.get('/link',(req,res)=>{
-	let result  = {
-		status:0,// 0 代表成功 
-		userNum:999,
-		aNum:250,
-		bNum:758
-	}	
-	res.json(result);
+	userModel.estimatedDocumentCount((err,userNum)=>{
+		orderModel.estimatedDocumentCount((err,orderNum)=>{
+			productModel.estimatedDocumentCount((err,productNum)=>{
+				res.json({
+					status:0,// 0 代表成功 
+					userNum:userNum,
+					orderNum:orderNum,
+					productNum:productNum,
+				});
+			});
+		});
+	});	
 })
 
 router.get('/mount',(req,res)=>{
 	list({
 		model: userModel,
-		sort: {_id:1},
+		sort: {_id:-1},
 		limit:7
 	})
 	.then((data)=>{
 		let result = {
-
 			dataSource:data.data,
 			current:1,
 			defaultCurrent:1,
@@ -101,7 +107,7 @@ router.get('/page',(req,res)=>{
 	list({
 		page:page,
 		model: userModel,
-		sort: {_id:1},
+		sort: {_id:-1},
 		limit:7
 	})
 	.then((data)=>{

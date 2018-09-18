@@ -14,9 +14,10 @@ var page = {
 	onload:function(){
 		var _this=this;
 		_cart.getCart(function(cart){
+			$('.cart-box').html("<div class='loading'></div>");
 			_this.renderCart(cart)
 		},function(err){
-			_this.showErrMessage();
+			$('.cart-box').html("<div class='errorMsg'>购物车数据获取失败</div>");
 		})	
 	},
 	configCancell:function(){
@@ -31,6 +32,7 @@ var page = {
 			}
 		})
 		cart.notEmpty = !!cart.cartList.length;
+		
 		var html = _util.render(tpl,cart);
 		$('.cart-box').html(html);
 	},

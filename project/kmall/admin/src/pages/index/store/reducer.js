@@ -2,9 +2,9 @@ import * as types from './actionTypes.js';
 
 import { fromJS } from 'immutable';
 let Default = fromJS({
-	userNum:100,
-	aNum:300,
-	bNum:400
+	userNum:0,
+	orderNum:0,
+	productNum:0
 })
 
 
@@ -12,8 +12,8 @@ export default (state=Default,action)=>{
 	if (action.type==types.GET_LINK) {
 		return state.merge({
 			userNum:action.payload.userNum,
-			aNum:action.payload.aNum,
-			bNum:action.payload.bNum
+			orderNum:action.payload.orderNum,
+			productNum:action.payload.productNum
 		})
 	}
 	// if (action.type==types.CHANGE_DONE) {

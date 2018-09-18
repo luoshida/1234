@@ -18,14 +18,14 @@ class Index extends Component {
 		return (
 			<div className='index'>
 				<MyLayout>
-					<Card title="用户" hoverable={true}>
+					<Card title="用户数量" hoverable={true}>
 					    <p>{this.props.userNum}</p>
 					</Card>
-					<Card title="用户" hoverable={true}>
-					    <p>{this.props.aNum}</p>  
+					<Card title="订单数量" hoverable={true}>
+					    <p>{this.props.orderNum}</p>  
 					</Card>
-					<Card title="用户" hoverable={true}>
-					    <p>{this.props.bNum}</p>
+					<Card title="产品数量" hoverable={true}>
+					    <p>{this.props.productNum}</p>
 					</Card>
 				</MyLayout>
 			</div>
@@ -35,8 +35,8 @@ class Index extends Component {
 const mapStateToProps=(state)=>{
 	return {
 		userNum:state.get('index').get('userNum'),
-		aNum:state.get('index').get('aNum'),
-		bNum:state.get('index').get('bNum'),
+		orderNum:state.get('index').get('orderNum'),
+		productNum:state.get('index').get('productNum'),
 	}
 }
 const mapDispatchToProps = (storeDispatch)=>{

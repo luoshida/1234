@@ -51,6 +51,7 @@ var page = {
 			}
 			// console.log(data);
 			_cart.addCart(data,function(data){
+				// console.log(data);
 				window.location.href='./result.html?type=addCart'
 			},function(err){
 				
@@ -59,11 +60,13 @@ var page = {
 	},
 	loadDetail:function(){
 		var _this=this;
+		$('.detail-box').html("<div class='loading'></div>");
 		_product.getProductDetail({productId:this.params.productId},function(product){
 			
 			product.imgMain=product.loadImg.split(',')[0];
 			product.loadImg=product.loadImg.split(',');
 			_this.stock=product.stock;
+			
 			var html=_util.render(tpl,product);
 			$('.detail-box').html(html);
 		},function(msg){

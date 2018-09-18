@@ -38,6 +38,7 @@
 .order-list .order-product-header li{
 	width: 19%;
 }
+
 .order-list .order-product-header li:last-child{
 	width: 5%;
 }
@@ -53,6 +54,12 @@
 .order-list .order-product li{
 	width: 19%;
 }
+.order-list .order-product .name{
+	margin-top: 20px;
+	overflow: hidden;
+	height: 60px;
+	line-height: 30px;
+}
 .order-list .order-product-footer{
 	height: 30px;
 	line-height: 30px;
@@ -62,5 +69,8 @@
 	width: 54px;
 	color: red;
 	font-weight: bold;
+}
+.order-list .order-address{
+	padding-top: 10px;
 }
 

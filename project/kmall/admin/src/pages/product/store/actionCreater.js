@@ -41,11 +41,24 @@ const errId=()=>{
 		type:types.ERR_ID,	
 	}
 }
+const errImg=()=>{
+	return {
+		type:types.ERR_IMG,	
+	}
+};
 export const handleProductSubmitAction = (err,values)=>{
 	return ( (storeDispatch,getState)=>{
 		const state=getState().get('product');
+		let hasError=false;
 		if (!state.get('SecendListId')) {
 			storeDispatch(errId());
+			hasError=true;
+		}
+		if (!state.get('loadImg')) {
+			storeDispatch(errImg());
+			hasError=true;
+		}
+		if (hasError) {
 			return
 		}
 		if (err) {

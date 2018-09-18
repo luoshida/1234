@@ -15,7 +15,94 @@ router.use((req,res,next)=>{
 	}
 })
 
-router.get('/getOrderList',(req,res)=>{
+router.get('/mount',(req,res)=>{
+	list({
+		model:orderModel,
+		sort:{_id:-1},
+		page:req.query.page,
+		limit:2,
+	})
+	.then(order=>{
+		// console.log(order);
+		res.json({
+			dataSource:order.data,
+			current:order.page,
+			defaultCurrent:1,
+			total:order.total,
+			pageSize:order.pages,
+		})	
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'获取订单商品失败'
+		})
+	})
+})
+
+router.get('/search',(req,res)=>{
+	let page=req.query.page;
+	let keyword=req.query.keyword;
+	list({
+		query:{orderNo:{$regex:new RegExp(keyword,'i')}},
+		model: orderModel,
+		sort: {_id:-1},
+		limit:2,
+		page:page
+	})
+	.then((order)=>{
+		res.json({
+			dataSource:order.data,
+			current:order.page,
+			defaultCurrent:1,
+			total:order.total,
+			pageSize:order.pages,
+			keyword:keyword
+		});		
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'获取订单商品失败'
+		})
+	})
+})
+router.get('/mountDetail',(req,res)=>{
+	orderModel.findOne({orderNo:req.query.orderNo})
+	.then(order=>{
+		// console.log(order);
+		res.json({
+			status:0,
+			order:order
+		})	
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'获取订单商品失败'
+		})
+	})
+})
+router.put('/deliver',(req,res)=>{
+	orderModel.findOneAndUpdate(
+		{orderNo:req.body.orderNo},
+		{status:40,statusDesc:"已发货"},
+		{new:true})
+	.then(order=>{
+		// console.log(order);
+		res.json({
+			status:0,
+			order:order
+		})	
+	})
+	.catch(e=>{
+		res.json({
+			status:1,
+			messages:'发货失败'
+		})
+	})
+})
+router.get('/home/getOrderList',(req,res)=>{
 	userModel.findById(req.userInfo._id)
 	.then(user=>{
 		user.getOrderCartList()
@@ -60,7 +147,7 @@ router.get('/getOrder',(req,res)=>{
 		})
 	})
 })
-router.get('/getOrderDetail',(req,res)=>{
+router.get('/home/getOrderDetail',(req,res)=>{
 	orderModel.findOne({orderNo:req.query.orderNo,user:req.userInfo._id})
 	.then(order=>{
 		res.json({

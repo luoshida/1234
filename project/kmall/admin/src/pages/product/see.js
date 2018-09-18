@@ -27,7 +27,7 @@ class NormalLoginForm extends Component {
 		let fileList;
 		if (loadImg) {
 			fileList=loadImg.split(',').map((img,key)=>(
-		     <li key={key} style={{listStyle:'none'}}>
+		     <li key={key} style={{listStyle:'none',float:'left'}}>
 		     	<img src={img} style={{width:100,height:100}}/>
 		     </li>
 		    ));

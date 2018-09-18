@@ -9,6 +9,7 @@ import {reducer as indexReducer} from 'pages/index/store';
 import {reducer as userReducer} from 'pages/option2/store';
 import {reducer as categoryReducer} from 'pages/option3/store';
 import {reducer as productReducer} from 'pages/product/store';
+import {reducer as orderReducer} from 'pages/order/store';
 
 export default combineReducers({
 	todolist:todolistReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
 	user:userReducer,
 	category:categoryReducer,
 	product:productReducer,
+	order:orderReducer,
 })

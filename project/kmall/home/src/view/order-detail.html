@@ -9,6 +9,14 @@
 	<%= require('html-loader!./common/nav.html') %>
 
 	<div class="user-center">
+		<div class="container ">
+			<div class="crumb">
+				<a href="/">首页</a>
+				&gt;
+				<%= htmlWebpackPlugin.options.title %>
+			
+			</div>
+		</div>
 		<div class="container clearfix">
 			<%= require('html-loader!./common/side.html') %>
 			<div class="content fl">

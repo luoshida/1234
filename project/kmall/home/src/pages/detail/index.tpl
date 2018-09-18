@@ -31,5 +31,6 @@
 	
 </div>
 <div class="product-detail">
-<p class="product-detail-title">商品详情</p>
-{{{detailContent}}}</div>
+	<p class="product-detail-title">商品介绍</p>
+	<div class="product-detail-content clearfix">{{{detailContent}}}</div>
+</div>
