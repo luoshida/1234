@@ -834,7 +834,7 @@ img{
 > * flex-flow:flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap。
 
 
-> * justify-content 决定项目的水平对齐方式,有以下取值
+> * justify-content 决定项目的水平对齐方式,建立在flex-direction排列方向的基础上生效,有以下取值
 >> * flex-start(默认值):左对齐
 >> * flex-end:右对齐
 >> * center:居中
