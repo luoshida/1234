@@ -330,6 +330,10 @@ background-clip:padding-box;
 注意点:该属性用来指定从哪个区域开始显示背景颜色,默认是border-box*/
 background: url(../54/修罗.jpg) green no-repeat fixed center center;连写
 
+
+input输入框
+outline-width：0px 点击input框时 没有颜色
+
 	块状 行内块状 行内元素
 
 div{/*块状元素，
