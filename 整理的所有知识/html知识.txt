@@ -44,6 +44,10 @@ cd .ssh  进入隐藏文件夹.ssh    公钥id_rsa.pub 密钥id_rsa
 cat id_rsa.pub  查看公钥
 ssh -T git@github.com 验证密钥是否绑定成功
 
+	html
+万维网的核心语言、标准通用标记语言下的一个应用超文本标记语言（HTML）的第五次重大修改
+html4三种文档类型：Strict, Transitional, 以及Frameset. 中译为：严格版本，过渡版本，以及基于框架的版本！
+html5文档类型<!doctype html> DTD文档声明
 	html标签
 
 <h1>指定标题</h1>  h1-h6
@@ -171,15 +175,19 @@ preload:预加载视频,但是需要注意preload和autoplay相冲,如果设置了autoplay属性,那么
 muted:静音
  width/height:和img标签中的一模一样 -->
 <video>
-	<source src="" type="video/mp4"></video>
-	<source src="" type="video/ogg"></video>
-	<source src="" type="video/webm"></video>
+	<source src="" type="video/mp4"></source>
+	<source src="" type="video/ogg"></source>
+	<source src="" type="video/webm"></source>
 </video>
 <!-- 不管是格式1还是格式2都需要浏览器支持HTML5,如果不支持,需要引入相应的框架,如:[html5media](https://html5media.info/) -->
 <!--Ogg=带有heora视频编码和Vorbis音频编码的Ogg文件
    MPEG4=带有H.264视频编码和AAC音频编码的MPEG4文件
   WebM=带有VP8视频编码和Vorbis音频编码的WebM文件-->
 <audio src=""></audio>
+
+HTML5 对于多媒体提供了强有力的支持，除了 audio 和 video 标签外，还支持以下标签：
+<embed> 标签定义嵌入的内容，比如插件。
+<embed type=”video/quicktime” src=”Fishing.mov”>
 
 	链接标签a标签
 
@@ -249,8 +257,11 @@ time时间标签pubdate为发布时间datetime规定的时间
 <meta http-equiv="Refresh" content="5;url=https://www.kuazhu.com" />
 <!-- 进入该网站后5秒后自动跳转到url指定的网站 -->
 
-	html属性
+	表单元素
+HTML5 新增了很多表单元素让开发者构建更优秀的 Web 应用程序。
+datalist,datetime,output,keygen ,date ,month ,week,time,color,number ,range ,email ,url,
 
+	html属性
 全局属性 class id style title contenteditable可编辑属性
 局部属性 某个html标签自己所特有的属性
 事件属性 触发动作的能力
