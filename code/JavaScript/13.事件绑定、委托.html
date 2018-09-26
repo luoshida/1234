@@ -19,7 +19,7 @@
 				console.log(oBox.style.background);
 			}
 			var oBox=document.getElementById('box');
-			//事件绑定,同样的事件不冲突，同时执行。
+			//事件绑定,同样的事件不冲突，同时执行。false为冒泡true为捕获
 			oBox.addEventListener('click',change,false)
 			oBox.addEventListener('click',function(){
 				oBox.style.background='red';
