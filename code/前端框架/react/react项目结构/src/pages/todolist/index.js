@@ -47,7 +47,7 @@ class TodoList extends Component {
 }
 
 //store里面的state映射到组件props上
-const mapStoreToProps = (state)=>{
+const mapStateToProps = (state)=>{
 	return {
 		value:state.get('todolist').get('value'),
 		list:state.get('todolist').get('list')
@@ -74,4 +74,4 @@ const mapDispatchToProps = (storeDispatch)=>{
 	}
 }
 //connect方法是让指定的组件和store连接
-export default connect(mapStoreToProps,mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList);
